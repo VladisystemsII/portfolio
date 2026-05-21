@@ -157,9 +157,14 @@ p{
   line-height:1.7 !important;
 }
 
-button,
-a{
+button{
   width:100%;
+  text-align:center;
+}
+
+
+a{
+  width:auto;
   text-align:center;
 }
 
@@ -205,6 +210,18 @@ a{
   gap:2rem;
 }
 
+
+footer .grid{
+  grid-template-columns: 1fr;
+  text-align:center;
+  gap:20px;
+}
+
+footer .flex{
+  justify-content:center !important;
+  flex-wrap:wrap;
+}
+
 }
 
 /* SMALL MOBILE */
@@ -244,10 +261,12 @@ h1{
 .p-8{
   padding:1.5rem !important;
 }
-
-button,
-a{
+button{
   font-size:.8rem !important;
+  letter-spacing:.15em !important;
+}
+
+a{
   letter-spacing:.15em !important;
 }
 
