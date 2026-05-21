@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VLADISYSTEMS | PORTAFOLIO</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --cement:#d9d4ca;
+  --black:#0e0e0e;
+  --rust:#9d3d22;
+  --steel:#444;
+}
+
+body{
+  background:#f5f5f2;
+  color:#111;
+  overflow-x:hidden;
+  font-family:'Oswald',sans-serif;
+  position:relative;
+}
+
+/* GRID */
+.grid-lines{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+
+  background-image:
+  linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(0,0,0,.11) 1px, transparent 1px);
+
+  background-size:50px 50px;
+}
+
+.mono{
+  font-family:'IBM Plex Mono',monospace;
+}
+
+.massive{
+  font-size:clamp(3.5rem,9vw,8rem);
+  line-height:.88;
+  font-weight:700;
+  letter-spacing:-0.06em;
+}
+
+.stroke-text{
+  color:transparent;
+  -webkit-text-stroke:1px #111;
+}
+
+.raw-box{
+  border:2px solid #111;
+  transition:.3s;
+}
+
+.raw-box:hover{
+  background:#111;
+  color:#fff;
+}
+
+.rust{
+  color:var(--rust);
+}
+
+.project-card{
+  transition:.3s;
+}
+
+.project-card:hover{
+  background:#111;
+  color:#fff;
+}
+
+.project-card:hover .project-link{
+  border-color:#fff;
+}
+
+
+
+
+/* =========================================================
+RESPONSIVE SYSTEM
+VLADISYSTEMS
+========================================================= */
+
+/* LARGE DESKTOP */
+@media (max-width:1600px){
+
+.massive{
+  font-size:clamp(3rem,8vw,7rem);
+}
+
+}
+
+/* LAPTOP */
+@media (max-width:1280px){
+
+.massive{
+  font-size:clamp(3rem,8vw,6rem);
+}
+
+}
+
+/* TABLET */
+@media (max-width:1024px){
+
+.massive{
+  font-size:clamp(3rem,11vw,5.5rem);
+  line-height:.95;
+}
+
+header nav{
+  display:none;
+}
+
+}
+
+/* MOBILE */
+@media (max-width:768px){
+
+body{
+  overflow-x:hidden;
+}
+
+.massive{
+  font-size:clamp(2.5rem,15vw,4.5rem);
+  line-height:.95;
+  letter-spacing:-0.04em;
+}
+
+.grid-lines{
+  background-size:30px 30px;
+}
+
+section{
+  min-height:auto;
+}
+
+h1{
+  font-size:2rem !important;
+}
+
+p{
+  font-size:1rem !important;
+  line-height:1.7 !important;
+}
+
+button,
+a{
+  width:100%;
+  text-align:center;
+}
+
+.raw-box{
+  width:100%;
+}
+
+.text-7xl{
+  font-size:4rem !important;
+}
+
+.text-6xl{
+  font-size:3rem !important;
+}
+
+.text-5xl{
+  font-size:2.5rem !important;
+}
+
+.text-4xl{
+  font-size:2rem !important;
+}
+
+.p-12{
+  padding:2rem;
+}
+
+.p-10{
+  padding:2rem;
+}
+
+.py-32{
+  padding-top:6rem;
+  padding-bottom:6rem;
+}
+
+.py-24{
+  padding-top:5rem;
+  padding-bottom:5rem;
+}
+
+.gap-10{
+  gap:2rem;
+}
+
+}
+
+/* SMALL MOBILE */
+@media (max-width:480px){
+
+.massive{
+  font-size:2.2rem;
+  line-height:1;
+}
+
+.grid-lines{
+  background-size:24px 24px;
+}
+
+h1{
+  font-size:1.7rem !important;
+}
+
+.text-7xl{
+  font-size:3rem !important;
+}
+
+.text-6xl{
+  font-size:2.5rem !important;
+}
+
+.text-5xl{
+  font-size:2rem !important;
+}
+
+.text-4xl{
+  font-size:1.6rem !important;
+}
+
+.p-12,
+.p-10,
+.p-8{
+  padding:1.5rem !important;
+}
+
+button,
+a{
+  font-size:.8rem !important;
+  letter-spacing:.15em !important;
+}
+
+.mono{
+  font-size:.7rem !important;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- GRID -->
+<div class="grid-lines"></div>
+
+<!-- CONTENT -->
+<div style="position:relative; z-index:1;">
+
+<!-- HEADER -->
+<header class="border-b-2 border-black">
+
+<div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
+
+<h1 class="text-3xl md:text-5xl font-bold tracking-tight">
+VLADISYSTEMS
+</h1>
+
+<nav class="hidden lg:flex gap-10 uppercase text-sm tracking-[0.25em]">
+
+<a href="#inicio">Inicio</a>
+<a href="#links">Links</a>
+<a href="#proyectos">Proyectos</a>
+<a href="#contacto">Contacto</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<!-- HERO -->
+<section id="inicio" class="min-h-screen flex items-center">
+
+<div class="max-w-[1800px] mx-auto px-6 w-full">
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+<!-- LEFT -->
+<div class="lg:col-span-8">
+
+<div class="mono text-xs tracking-[0.4em] mb-6 rust">
+BOGOTÁ / PORTAFOLIO / SISTEMAS / DESARROLLO
+</div>
+
+<h2 class="massive uppercase">
+
+PORTAFOLIO<br>
+
+<span class="stroke-text">REAL</span>
+
+SYSTEMS
+
+</h2>
+
+<p class="mt-10 text-xl max-w-2xl leading-relaxed font-light">
+
+Desarrollo web, automatización y arquitectura digital
+construidos desde experiencia técnica real.
+Proyectos funcionales.
+Diseño estructurado.
+Sin relleno visual.
+
+</p>
+
+<div class="mt-12 flex flex-wrap gap-4">
+
+<a href="#proyectos" class="raw-box px-10 py-5 uppercase tracking-[0.2em] text-sm inline-block">
+Ver proyectos
+</a>
+
+<a href="#links" class="border-2 border-black px-10 py-5 uppercase tracking-[0.2em] text-sm inline-block">
+Ver perfiles
+</a>
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="lg:col-span-4">
+
+<div class="border-2 border-black p-8 bg-black text-white">
+
+<div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+LIVE PORTFOLIO
+</div>
+
+<div class="space-y-8">
+
+<div>
+<div class="flex justify-between items-center mb-2">
+<h3 class="uppercase text-sm tracking-[0.2em]">LinkedIn</h3>
+<span class="mono text-xs">01</span>
+</div>
+<div class="h-[2px] bg-[#333]">
+<div class="h-full bg-white w-[95%]"></div>
+</div>
+</div>
+
+<div>
+<div class="flex justify-between items-center mb-2">
+<h3 class="uppercase text-sm tracking-[0.2em]">Workana</h3>
+<span class="mono text-xs">02</span>
+</div>
+<div class="h-[2px] bg-[#333]">
+<div class="h-full bg-white w-[82%]"></div>
+</div>
+</div>
+
+<div>
+<div class="flex justify-between items-center mb-2">
+<h3 class="uppercase text-sm tracking-[0.2em]">Github</h3>
+<span class="mono text-xs">03</span>
+</div>
+<div class="h-[2px] bg-[#333]">
+<div class="h-full bg-white w-[75%]"></div>
+</div>
+</div>
+
+<div>
+<div class="flex justify-between items-center mb-2">
+<h3 class="uppercase text-sm tracking-[0.2em]">Projects</h3>
+<span class="mono text-xs">04</span>
+</div>
+<div class="h-[2px] bg-[#333]">
+<div class="h-full bg-white w-[92%]"></div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- LINKS -->
+<section id="links" class="border-t-2 border-black">
+
+<div class="max-w-[1800px] mx-auto px-6 py-24">
+
+<div class="mb-20">
+
+<div class="mono text-xs tracking-[0.4em] rust mb-4">
+PROFESSIONAL NETWORK
+</div>
+
+<h3 class="text-5xl md:text-7xl uppercase leading-none">
+Links &<br>
+Perfiles
+</h3>
+
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-0 border-2 border-black">
+
+<a href="#" class="border-b-2 md:border-r-2 border-black p-10 raw-box">
+<div class="text-6xl font-bold mb-8">01</div>
+<h4 class="uppercase text-2xl mb-4">LinkedIn</h4>
+<p class="font-light text-lg">
+Perfil profesional y experiencia técnica.
+</p>
+</a>
+
+<a href="#" class="border-b-2 xl:border-r-2 border-black p-10 raw-box">
+<div class="text-6xl font-bold mb-8">02</div>
+<h4 class="uppercase text-2xl mb-4">Workana</h4>
+<p class="font-light text-lg">
+Servicios y proyectos freelance.
+</p>
+</a>
+
+<a href="#" class="border-b-2 md:border-r-2 xl:border-r-0 border-black p-10 raw-box">
+<div class="text-6xl font-bold mb-8">03</div>
+<h4 class="uppercase text-2xl mb-4">Github</h4>
+<p class="font-light text-lg">
+Repositorios y desarrollo técnico.
+</p>
+</a>
+
+<a href="#" class="md:border-r-2 border-b-2 xl:border-b-0 border-black p-10 raw-box">
+<div class="text-6xl font-bold mb-8">04</div>
+<h4 class="uppercase text-2xl mb-4">CV Profesional</h4>
+<p class="font-light text-lg">
+Currículum y experiencia laboral.
+</p>
+</a>
+
+<a href="#" class="xl:border-r-2 border-b-2 xl:border-b-0 border-black p-10 raw-box">
+<div class="text-6xl font-bold mb-8">05</div>
+<h4 class="uppercase text-2xl mb-4">Instagram</h4>
+<p class="font-light text-lg">
+Contenido y presencia digital.
+</p>
+</a>
+
+<a href="#" class="p-10 raw-box">
+<div class="text-6xl font-bold mb-8">06</div>
+<h4 class="uppercase text-2xl mb-4">WhatsApp</h4>
+<p class="font-light text-lg">
+Contacto directo para proyectos.
+</p>
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+<section id="proyectos" class="border-t-2 border-black">
+
+<div class="max-w-[1800px] mx-auto px-6 py-24">
+
+<div class="mb-20">
+
+<div class="mono text-xs tracking-[0.4em] rust mb-4">
+REAL PROJECTS
+</div>
+
+<h3 class="text-5xl md:text-7xl uppercase leading-none">
+Proyectos<br>
+Destacados
+</h3>
+
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-0 border-2 border-black">
+
+<!-- PROJECT -->
+<div class="project-card border-b-2 lg:border-r-2 border-black p-12">
+
+<div class="mono text-xs tracking-[0.3em] mb-6">
+01 / WEB SYSTEM
+</div>
+
+<h4 class="text-4xl uppercase mb-8">
+BC1166 Remodelaciones
+</h4>
+
+<p class="text-xl leading-relaxed font-light mb-10 max-w-xl">
+Sistema web orientado a captación de clientes,
+estructura digital y automatización operativa.
+</p>
+
+<a href="#" class="project-link border-b-2 border-black uppercase tracking-[0.2em] text-sm pb-2">
+Ver proyecto
+</a>
+
+</div>
+
+<!-- PROJECT -->
+<div class="project-card border-b-2 border-black p-12">
+
+<div class="mono text-xs tracking-[0.3em] mb-6">
+02 / AUTOMATION
+</div>
+
+<h4 class="text-4xl uppercase mb-8">
+Telegram Bot Vladiblues
+</h4>
+
+<p class="text-xl leading-relaxed font-light mb-10 max-w-xl">
+Bot automatizado para interacción,
+flujo digital y experimentación IA.
+</p>
+
+<a href="#" class="project-link border-b-2 border-black uppercase tracking-[0.2em] text-sm pb-2">
+Ver proyecto
+</a>
+
+</div>
+
+<!-- PROJECT -->
+<div class="project-card border-b-2 lg:border-b-0 lg:border-r-2 border-black p-12">
+
+<div class="mono text-xs tracking-[0.3em] mb-6">
+03 / FRONTEND
+</div>
+
+<h4 class="text-4xl uppercase mb-8">
+Vladisystems Landing
+</h4>
+
+<p class="text-xl leading-relaxed font-light mb-10 max-w-xl">
+Diseño visual estructurado con identidad
+industrial y arquitectura limpia.
+</p>
+
+<a href="#" class="project-link border-b-2 border-black uppercase tracking-[0.2em] text-sm pb-2">
+Ver proyecto
+</a>
+
+</div>
+
+<!-- PROJECT -->
+<div class="project-card p-12">
+
+<div class="mono text-xs tracking-[0.3em] mb-6">
+04 / SYSTEM DESIGN
+</div>
+
+<h4 class="text-4xl uppercase mb-8">
+Portal33
+</h4>
+
+<p class="text-xl leading-relaxed font-light mb-10 max-w-xl">
+Backend operativo conectado con formularios,
+Google Sheets y estructura MVP.
+</p>
+
+<a href="#" class="project-link border-b-2 border-black uppercase tracking-[0.2em] text-sm pb-2">
+Ver proyecto
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contacto" class="border-t-2 border-black">
+
+<div class="max-w-[1800px] mx-auto px-6 py-32">
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+<div class="lg:col-span-8">
+
+<div class="mono text-xs tracking-[0.4em] rust mb-6">
+CONTACT / AVAILABLE
+</div>
+
+<h3 class="massive uppercase">
+
+READY<br>
+
+<span class="stroke-text">FOR</span>
+
+PROJECTS
+
+</h3>
+
+</div>
+
+<div class="lg:col-span-4">
+
+<p class="text-xl leading-relaxed font-light mb-10">
+Disponible para desarrollo web,
+automatización y colaboración técnica.
+</p>
+
+<a href="#" class="raw-box px-10 py-5 uppercase tracking-[0.2em] text-sm inline-block">
+Contacto directo
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="bg-black text-white">
+<div class="flex flex-col items-center gap-8">
+
+<img 
+src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
+alt="VLADISYSTEMS IA"
+class="w-[140px] md:w-[180px] object-contain"
+>
+
+<div class="mono text-xs tracking-[0.3em] opacity-60">
+VLADISYSTEMS / RAW DIGITAL STRUCTURE
+</div>
+
+<div class="flex gap-8 uppercase text-sm tracking-[0.2em]">
+
+<a href="#">LinkedIn</a>
+<a href="#">Github</a>
+<a href="#">Workana</a>
+<a href="#">Contacto</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</footer>
+
+</div>
+
+</body>
+</html>
