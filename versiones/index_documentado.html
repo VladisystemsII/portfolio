@@ -1,8 +1,4 @@
-<a href="https://www.linkedin.com/in/vladisystems"
-target="_blank"
-rel="noopener noreferrer">
-LinkedIn
-</a><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -165,162 +161,15 @@ body{
   border-color:#fff;
 }
 
-/* ============================================================
-  [NUEVO] COMPONENTE: HEADER STICKY
-  Hace que el header quede fijo en la parte superior
-  de la pantalla aunque el usuario haga scroll hacia abajo.
-  Explicación de cada propiedad:
-    position:fixed   → saca el header del flujo normal y lo
-                       ancla a la ventana del navegador
-    top:0            → lo pega al borde superior
-    left:0           → lo alinea al borde izquierdo
-    width:100%       → ocupa todo el ancho de la pantalla
-    z-index:100      → se pone por encima de TODO el contenido
-                       (grid-lines está en z-index:0,
-                        el contenido en z-index:1,
-                        el header en z-index:100 → siempre visible)
-    background:#f5f5f2 → mismo color de fondo del body para
-                         que no se vea transparente al scrollear
-    border-bottom:none → elimina el borde inferior propio del header
-                         para evitar la doble línea con el borde
-                         superior de la primera sección de contenido
-============================================================ */
-header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:100;
-  background:rgba(245,245,242,0.75);
-  backdrop-filter:blur(8px);
-  border-bottom:none;
-}
 
 /* ============================================================
-  [NUEVO] COMPENSACIÓN DE ESPACIO POR HEADER FIJO
-  Cuando el header es fixed, sale del flujo normal del documento.
-  Esto hace que el contenido suba y quede tapado por el header.
-  Para compensarlo, se agrega un padding-top al primer div
-  de contenido igual a la altura del header (aprox. 90px).
-  Así el contenido empieza justo debajo del header visible.
-============================================================ */
-.content-offset{
-  padding-top:90px;
-}
-
-/* ============================================================
-  [NUEVO] COMPONENTE: HAMBURGER MENU
-  Sistema completo de menú móvil con 3 partes:
-
-  1. .hamburger-btn
-     Botón con las 3 líneas (☰) visible solo en tablet/mobile.
-     Oculto en desktop con display:none en su media query.
-     Posicionado a la derecha del header.
-
-  2. .hamburger-btn span (las 3 líneas)
-     Cada línea es un <span> con fondo negro.
-     Transición suave para el efecto de transformación
-     cuando el menú se abre (se convierten en una X).
-
-  3. .mobile-menu
-     Panel de navegación que aparece debajo del header
-     en mobile cuando el usuario toca el botón.
-     Por defecto está oculto (max-height:0, overflow:hidden).
-     Al añadir la clase .open, se expande suavemente.
-     Usa transition en max-height para la animación de apertura.
+  SISTEMA RESPONSIVE — BREAKPOINTS
+  Define cómo se adapta el diseño según el ancho del dispositivo.
+  Orden: de mayor a menor (desktop → mobile).
 ============================================================ */
 
-/* --- Botón hamburger (las 3 líneas) --- */
-.hamburger-btn{
-  display:none;          /* oculto por defecto en desktop */
-  flex-direction:column;
-  justify-content:space-between;
-  width:28px;
-  height:20px;
-  cursor:pointer;
-  background:none;
-  border:none;
-  padding:0;
-  z-index:101;           /* encima del header */
-}
-
-/* Cada una de las 3 líneas del ícono hamburger */
-.hamburger-btn span{
-  display:block;
-  width:100%;
-  height:2px;
-  background:#111;
-  transition:.3s;        /* animación suave al transformarse en X */
-  transform-origin:center;
-}
-
-/* --- Panel de navegación mobile --- */
-.mobile-menu{
-  position:fixed;        /* fijo como el header */
-  top:90px;              /* empieza justo debajo del header */
-  left:0;
-  width:100%;
-  background:rgba(245,245,242,0.85);
-  backdrop-filter:blur(8px);
-  overflow:hidden;
-  max-height:0;          /* oculto por defecto (altura 0) */
-  transition:max-height .4s ease;  /* animación de apertura suave */
-  z-index:99;            /* debajo del header (z:100) pero encima del contenido */
-}
-
-/* Estado ABIERTO del menú mobile
-   Se activa cuando JS añade la clase .open al elemento */
-.mobile-menu.open{
-  max-height:300px;      /* altura máxima cuando está abierto */
-}
-
-/* Links dentro del menú mobile */
-.mobile-menu a{
-  display:block;
-  padding:1.2rem 1.5rem;
-  border-bottom:1px solid rgba(0,0,0,.1);
-  text-transform:uppercase;
-  letter-spacing:.2em;
-  font-size:.85rem;
-  color:#111;
-  width:100%;
-  text-align:left;
-  transition:.2s;
-}
-
-.mobile-menu a:hover{
-  background:#111;
-  color:#fff;
-}
-
-/* ============================================================
-  [NUEVO] TRANSFORMACIÓN DEL BOTÓN HAMBURGER → X
-  Cuando el menú está abierto (clase .open en .hamburger-btn),
-  las 3 líneas se transforman en una X visual:
-    · La línea de arriba rota 45° hacia abajo
-    · La línea del medio desaparece (opacity:0)
-    · La línea de abajo rota -45° hacia arriba
-  Esto le indica visualmente al usuario que puede cerrar el menú.
-============================================================ */
-.hamburger-btn.open span:nth-child(1){
-  transform:translateY(9px) rotate(45deg);
-}
-
-.hamburger-btn.open span:nth-child(2){
-  opacity:0;
-}
-
-.hamburger-btn.open span:nth-child(3){
-  transform:translateY(-9px) rotate(-45deg);
-}
-
-
-/* =========================================================
-RESPONSIVE SYSTEM
-VLADISYSTEMS
-========================================================= */
-
-/* LARGE DESKTOP */
+/* --- LARGE DESKTOP (hasta 1600px) ---
+   Reduce levemente el tamaño de .massive */
 @media (max-width:1600px){
 
 .massive{
@@ -329,7 +178,8 @@ VLADISYSTEMS
 
 }
 
-/* LAPTOP */
+/* --- LAPTOP (hasta 1280px) ---
+   Reduce más el tamaño de .massive */
 @media (max-width:1280px){
 
 .massive{
@@ -340,9 +190,7 @@ VLADISYSTEMS
 
 /* --- TABLET (hasta 1024px) ---
    Ajusta .massive y oculta el menú de navegación del header
-   (se esconde la nav horizontal de escritorio).
-   [NUEVO] Aquí también aparece el botón hamburger:
-   se cambia display:none → display:flex para mostrarlo */
+   (se esconde la nav horizontal de escritorio) */
 @media (max-width:1024px){
 
 .massive{
@@ -352,11 +200,6 @@ VLADISYSTEMS
 
 header nav{
   display:none;
-}
-
-/* [NUEVO] Mostrar el botón hamburger en tablet y mobile */
-.hamburger-btn{
-  display:flex;
 }
 
 }
@@ -532,49 +375,31 @@ a{
 
 <body>
 
+<!-- ============================================================
+  ELEMENTO DECORATIVO: CUADRÍCULA DE FONDO
+  Div vacío que solo sirve para renderizar la cuadrícula CSS
+  definida en .grid-lines. Es fijo en pantalla (fixed).
+============================================================ -->
 <!-- GRID -->
 <div class="grid-lines"></div>
 
 <!-- ============================================================
-  [NUEVO] MENÚ MOBILE (HAMBURGER PANEL)
-  Panel de navegación que se despliega en tablet/mobile.
-  Está posicionado FUERA del header para no afectar su estructura.
-  Por defecto invisible (max-height:0 via CSS).
-  Se activa con la clase .open que agrega el JavaScript.
-  Contiene los mismos 4 links de navegación del header desktop.
-  Al hacer clic en cualquier link, el menú se cierra automáticamente
-  (manejado por el JavaScript al final del documento).
-============================================================ -->
-<nav class="mobile-menu" id="mobileMenu">
-  <a href="#inicio"    onclick="closeMobileMenu()">Inicio</a>
-  <a href="#links"     onclick="closeMobileMenu()">Links</a>
-  <a href="#proyectos" onclick="closeMobileMenu()">Proyectos</a>
-  <a href="#contacto"  onclick="closeMobileMenu()">Contacto</a>
-</nav>
-
-<!-- ============================================================
-  CONTENIDO
+  CONTENEDOR PRINCIPAL DEL CONTENIDO
   Envuelve todo el contenido visible con z-index:1 para
   que quede encima de la cuadrícula de fondo (z-index:0).
-  [NUEVO] La clase .content-offset agrega padding-top:90px
-  para compensar el espacio que ocupa el header fijo (sticky),
-  evitando que el contenido quede tapado debajo de él.
 ============================================================ -->
-<div style="position:relative; z-index:1;" class="content-offset">
+<!-- CONTENT -->
+<div style="position:relative; z-index:1;">
 
 <!-- ============================================================
   SECCIÓN: HEADER (Cabecera)
-  [NUEVO] Ahora es STICKY (position:fixed via CSS).
-  Queda fijo en la parte superior al hacer scroll.
-  Contiene:
+  Barra superior fija con:
     · Logo/nombre de marca (VLADISYSTEMS) a la izquierda
-    · Menú de navegación desktop a la derecha
-      (visible solo en pantallas mayores a 1024px)
-    · [NUEVO] Botón hamburger a la derecha
-      (visible solo en tablet/mobile, oculto en desktop)
-  El botón hamburger llama a toggleMobileMenu() en JavaScript
-  para abrir y cerrar el panel de navegación mobile.
+    · Menú de navegación a la derecha (oculto en tablet/mobile)
+  El menú tiene 4 anclas que llevan a las secciones del sitio:
+  #inicio, #links, #proyectos, #contacto
 ============================================================ -->
+<!-- HEADER -->
 <header class="border-b-2 border-black">
 
 <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
@@ -591,25 +416,6 @@ VLADISYSTEMS
 <a href="#contacto">Contacto</a>
 
 </nav>
-
-<!-- ============================================================
-  [NUEVO] BOTÓN HAMBURGER
-  Botón con 3 líneas (<span>) que representa el ícono ☰.
-  Solo visible en tablet y mobile (display:flex desde 1024px).
-  Al hacer clic llama a toggleMobileMenu() en JavaScript.
-  Cuando el menú está abierto, el JS agrega la clase .open
-  a este botón, transformando las 3 líneas en una X (✕)
-  mediante las transformaciones CSS definidas arriba.
-  aria-label="Menú" es importante para accesibilidad:
-  lectores de pantalla lo anuncian como "botón Menú".
-============================================================ -->
-<button class="hamburger-btn" id="hamburgerBtn"
-        onclick="toggleMobileMenu()"
-        aria-label="Menú">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
 
 </div>
 
@@ -632,6 +438,7 @@ VLADISYSTEMS
       cada una con una barra de progreso visual que indica
       el nivel de actividad/relevancia de cada perfil
 ============================================================ -->
+<!-- HERO -->
 <section id="inicio" class="min-h-screen flex items-center">
 
 <div class="max-w-[1800px] mx-auto px-6 w-full">
@@ -758,6 +565,7 @@ LIVE PORTFOLIO
   Los href="#" son placeholders — los links reales aún no
   están asignados.
 ============================================================ -->
+<!-- LINKS -->
 <section id="links" class="border-t-2 border-black">
 
 <div class="max-w-[1800px] mx-auto px-6 py-24">
@@ -777,24 +585,12 @@ Perfiles
 
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-0 border-2 border-black">
 
-<!-- <a href="#" class="border-b-2 md:border-r-2 border-black p-10 raw-box"> -->
-
-
-<a href="https://www.linkedin.com/in/vladisystems"
-   class="border-b-2 md:border-r-2 border-black p-10 raw-box"
-   target="_blank"
-   rel="noopener noreferrer">
-
-  <div class="text-6xl font-bold mb-8">01</div>
-
-  <h4 class="uppercase text-2xl mb-4">
-    LinkedIn
-  </h4>
-
-  <p class="font-light text-lg">
-    Perfil profesional y experiencia técnica.
-  </p>
-
+<a href="#" class="border-b-2 md:border-r-2 border-black p-10 raw-box">
+<div class="text-6xl font-bold mb-8">01</div>
+<h4 class="uppercase text-2xl mb-4">LinkedIn</h4>
+<p class="font-light text-lg">
+Perfil profesional y experiencia técnica.
+</p>
 </a>
 
 <a href="#" class="border-b-2 xl:border-r-2 border-black p-10 raw-box">
@@ -860,6 +656,7 @@ Contacto directo para proyectos.
 
   Todos los href="#" son placeholders pendientes de asignar.
 ============================================================ -->
+<!-- PROJECTS -->
 <section id="proyectos" class="border-t-2 border-black">
 
 <div class="max-w-[1800px] mx-auto px-6 py-24">
@@ -987,6 +784,7 @@ Ver proyecto
     · Botón CTA "Contacto directo" con efecto .raw-box
     · El href="#" es placeholder pendiente de asignar
 ============================================================ -->
+<!-- CONTACT -->
 <section id="contacto" class="border-t-2 border-black">
 
 <div class="max-w-[1800px] mx-auto px-6 py-32">
@@ -1049,6 +847,7 @@ Contacto directo
   En mobile, el footer colapsa a una sola columna centrada
   (controlado en el breakpoint 768px del sistema responsive).
 ============================================================ -->
+<!-- FOOTER -->
 <footer class="bg-black text-white">
 
 <div class="max-w-[1800px] mx-auto px-6 py-10 grid grid-cols-3 items-center">
@@ -1080,41 +879,6 @@ Contacto directo
 </footer>
 
 </div>
-
-<!-- ============================================================
-  [NUEVO] JAVASCRIPT — LÓGICA DEL HAMBURGER MENU
-  Bloque de JS propio (no externo). Es el ÚNICO JavaScript
-  escrito por nosotros en todo el proyecto.
-  Contiene 2 funciones:
-
-  1. toggleMobileMenu()
-     Se ejecuta cada vez que el usuario toca el botón ☰.
-     Alterna (toggle) la clase .open en dos elementos:
-       · #hamburgerBtn  → transforma las 3 líneas en X
-       · #mobileMenu    → expande o colapsa el panel de nav
-     .classList.toggle() agrega la clase si no está,
-     o la quita si ya estaba — así funciona el abrir/cerrar.
-
-  2. closeMobileMenu()
-     Se ejecuta cuando el usuario toca cualquier link del menú.
-     Quita la clase .open de ambos elementos,
-     cerrando el panel y volviendo el ícono a ☰.
-     Esto es importante para que después de navegar a una
-     sección, el menú no quede abierto encima del contenido.
-============================================================ -->
-<script>
-
-function toggleMobileMenu(){
-  document.getElementById('hamburgerBtn').classList.toggle('open');
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-
-function closeMobileMenu(){
-  document.getElementById('hamburgerBtn').classList.remove('open');
-  document.getElementById('mobileMenu').classList.remove('open');
-}
-
-</script>
 
 </body>
 </html>

@@ -11,3 +11,10 @@ git add .
 git commit -m "Footer corregido y logo agregado"
 
 git push
+
+
+git add .
+
+git commit -m "documentado,head y linkedin"
+
+git push
