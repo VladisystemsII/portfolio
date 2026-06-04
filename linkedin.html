@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+  MÓDULO INDEPENDIENTE: PERFIL PROFESIONAL
+  Archivo: linkedin.html
+  Parte del sistema VLADISYSTEMS PORTFOLIO
+  Contiene toda la experiencia profesional extraída del PDF
+  de LinkedIn, rediseñada con la identidad visual del portfolio.
+  Se accede desde index.html via el link de la sección LINKS.
+  El botón "← VOLVER" regresa al portfolio principal.
+============================================================ -->
+<title>VLADISYSTEMS | PERFIL PROFESIONAL</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ============================================================
+  VARIABLES — mismas del sistema VLADISYSTEMS
+============================================================ */
+:root{
+  --cement:#d9d4ca;
+  --black:#0e0e0e;
+  --rust:#9d3d22;
+  --steel:#444;
+}
+
+/* ============================================================
+  BASE
+============================================================ */
+body{
+  background:#f5f5f2;
+  color:#111;
+  overflow-x:hidden;
+  font-family:'Oswald',sans-serif;
+  position:relative;
+}
+
+/* ============================================================
+  CUADRÍCULA DE FONDO — idéntica al index.html
+============================================================ */
+.grid-lines{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  z-index:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,.11) 1px,transparent 1px);
+  background-size:50px 50px;
+}
+
+.mono{ font-family:'IBM Plex Mono',monospace; }
+.rust{ color:var(--rust); }
+
+/* ============================================================
+  HEADER STICKY — mismo sistema que index.html
+  Transparente con blur para que la cuadrícula se vea
+============================================================ */
+header{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  z-index:100;
+  background:rgba(245,245,242,0.75);
+  backdrop-filter:blur(8px);
+}
+
+.content-offset{ padding-top:90px; }
+
+/* ============================================================
+  BOTÓN VOLVER
+  Estilo coherente con .raw-box del portfolio principal.
+  Borde negro, hover invierte colores, transición suave.
+============================================================ */
+.btn-back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:2px solid #111;
+  padding:10px 24px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.75rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#111;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.btn-back:hover{
+  background:#111;
+  color:#fff;
+}
+
+/* ============================================================
+  TARJETA DE EXPERIENCIA
+  Cada trabajo es una tarjeta con borde negro.
+  La línea de tiempo es una línea vertical en el lado
+  izquierdo — número de orden en rojo óxido.
+  Hover: fondo negro, texto blanco.
+============================================================ */
+.exp-card{
+  border:2px solid #111;
+  padding:2rem 2.5rem;
+  transition:.3s;
+  position:relative;
+}
+
+.exp-card:hover{
+  background:#111;
+  color:#fff;
+}
+
+.exp-card:hover .exp-company{
+  color:#aaa;
+}
+
+.exp-card:hover .exp-date{
+  color:#888;
+}
+
+.exp-card:hover .rust{
+  color:#c4613d;
+}
+
+/* ============================================================
+  BARRA DE HABILIDADES
+  Igual al widget del hero del index.html —
+  línea horizontal con fill proporcional.
+============================================================ */
+.skill-bar{
+  height:2px;
+  background:#ddd;
+  margin-top:6px;
+}
+
+.skill-fill{
+  height:100%;
+  background:#111;
+  transition:.3s;
+}
+
+/* ============================================================
+  SISTEMA RESPONSIVE COMPLETO — 5 BREAKPOINTS
+  Mismo sistema del index.html aplicado a linkedin.html
+============================================================ */
+
+/* --- LARGE DESKTOP (hasta 1600px) --- */
+@media(max-width:1600px){
+  .massive-name{ font-size:clamp(2.8rem,7vw,6rem) !important; }
+}
+
+/* --- LAPTOP (hasta 1280px) --- */
+@media(max-width:1280px){
+  .massive-name{ font-size:clamp(2.5rem,7vw,5rem) !important; }
+}
+
+/* --- TABLET (hasta 1024px) ---
+   El header mantiene el botón volver visible.
+   Las grillas de 12 columnas colapsan a 1 columna. */
+@media(max-width:1024px){
+  .massive-name{ font-size:clamp(2.5rem,10vw,4.5rem) !important; }
+  .exp-card{ padding:1.8rem; }
+}
+
+/* --- MOBILE (hasta 768px) ---
+   Ajustes generales de texto, padding y layout:
+   · Cuadrícula de fondo más pequeña (30px)
+   · Tarjetas de experiencia con menos padding
+   · Textos grandes reducidos
+   · Footer colapsa a columna única centrada
+   · Botón de LinkedIn se centra
+   · Secciones sin altura mínima forzada */
+@media(max-width:768px){
+
+  body{ overflow-x:hidden; }
+
+  .grid-lines{ background-size:30px 30px; }
+
+  .massive-name{
+    font-size:clamp(2.2rem,12vw,3.5rem) !important;
+    letter-spacing:-0.02em !important;
+  }
+
+  .exp-card{ padding:1.5rem; }
+
+  section{ min-height:auto; }
+
+  h1{ font-size:1.6rem !important; }
+
+  p{ font-size:1rem !important; line-height:1.7 !important; }
+
+  /* Footer: de 3 columnas a 1 columna centrada */
+  footer .grid{
+    grid-template-columns:1fr;
+    text-align:center;
+    gap:20px;
+  }
+
+  footer .flex{
+    justify-content:center !important;
+    flex-wrap:wrap;
+  }
+
+  /* Botón LinkedIn en hero ocupa ancho completo */
+  .btn-linkedin-hero{
+    width:100%;
+    justify-content:center;
+  }
+
+  /* Padding de secciones reducido */
+  .py-24{ padding-top:4rem; padding-bottom:4rem; }
+  .py-20{ padding-top:3.5rem; padding-bottom:3.5rem; }
+  .py-32{ padding-top:5rem; padding-bottom:5rem; }
+
+  .p-10{ padding:1.5rem; }
+  .p-8{ padding:1.5rem; }
+
+  /* Títulos de sección */
+  .text-5xl{ font-size:2.2rem !important; }
+  .text-4xl{ font-size:1.8rem !important; }
+  .text-2xl{ font-size:1.3rem !important; }
+
+  /* Números de experiencia inline con el cargo en mobile */
+  .exp-num-col{ display:inline; margin-right:.5rem; }
+
+  /* Habilidades: de 2 columnas a 1 columna */
+  .md\:grid-cols-2{ grid-template-columns:1fr !important; }
+  .md\:border-r-2{ border-right:none !important; }
+  .border-b-2{ border-bottom-width:2px; }
+
+}
+
+/* --- SMALL MOBILE (hasta 480px) ---
+   Nivel máximo de compresión */
+@media(max-width:480px){
+
+  .grid-lines{ background-size:24px 24px; }
+
+  .massive-name{
+    font-size:2rem !important;
+    line-height:1 !important;
+  }
+
+  h1{ font-size:1.3rem !important; }
+
+  .exp-card{ padding:1.2rem; }
+
+  .mono{ font-size:.65rem !important; }
+
+  .btn-back{
+    font-size:.65rem !important;
+    padding:8px 14px !important;
+    letter-spacing:.1em !important;
+  }
+
+  .p-10{ padding:1.2rem !important; }
+
+  .text-2xl{ font-size:1.1rem !important; }
+
+  /* Skill labels más cortos en pantalla muy pequeña */
+  .text-sm{ font-size:.75rem !important; }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- CUADRÍCULA DE FONDO -->
+<div class="grid-lines"></div>
+
+<!-- ============================================================
+  HEADER
+  Mismo sistema sticky+blur del index.html.
+  Izquierda: nombre del módulo.
+  Derecha: botón para volver al portfolio principal.
+============================================================ -->
+<header class="border-b-2 border-black">
+  <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
+
+    <h1 class="text-2xl md:text-4xl font-bold tracking-tight">
+      VLADISYSTEMS
+    </h1>
+
+    <!-- BOTÓN VOLVER AL PORTFOLIO -->
+    <a href="index.html" class="btn-back">
+      ← PORTFOLIO
+    </a>
+
+  </div>
+</header>
+
+<!-- ============================================================
+  CONTENIDO PRINCIPAL
+============================================================ -->
+<div style="position:relative; z-index:1;" class="content-offset">
+
+  <!-- ============================================================
+    HERO DEL MÓDULO
+    Presenta al profesional con nombre grande y título.
+    Misma estructura visual que los heros del index.html:
+    etiqueta mono en rojo óxido + nombre con .massive-name
+    + descripción + datos de ubicación.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-24">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+
+        <!-- IZQUIERDA: nombre y título -->
+        <div class="lg:col-span-8">
+
+          <div class="mono text-xs tracking-[0.4em] mb-6 rust">
+            PERFIL PROFESIONAL / EXPERIENCIA / SISTEMAS
+          </div>
+
+          <h2 class="massive-name uppercase font-bold leading-none"
+              style="font-size:clamp(3rem,8vw,7rem); letter-spacing:-0.04em;">
+            VLADIMIR<br>ALBA
+          </h2>
+
+          <p class="mt-8 text-xl max-w-2xl leading-relaxed font-light">
+            Desarrollo páginas web para captar clientes por WhatsApp.
+            Analista de Sistemas con experiencia en ventas,
+            negocios y formación.
+          </p>
+
+          <div class="mono text-xs tracking-[0.3em] mt-6 opacity-60">
+            BOGOTÁ, COLOMBIA · HÍBRIDO · DISPONIBLE
+          </div>
+
+          <!-- LINK A LINKEDIN REAL 
+          <div class="mt-10">
+            <a href="https://www.linkedin.com/in/vladisystems"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="mono text-xs tracking-[0.25em] opacity-50 hover:opacity-100 transition"
+               style="font-family:'IBM Plex Mono',monospace;">
+              Ver perfil completo en LinkedIn ↗
+            </a>
+          </div>-->
+
+        </div>
+
+        <!-- DERECHA: resumen numérico -->
+        <div class="lg:col-span-4">
+          <div class="border-2 border-black p-8 bg-black text-white">
+
+            <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+              TRAYECTORIA
+            </div>
+
+            <div class="space-y-6">
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Años de experiencia</span>
+                  <span class="mono text-xs rust">30+</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[100%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Desarrollo web</span>
+                  <span class="mono text-xs rust">01</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[90%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Sector inmobiliario</span>
+                  <span class="mono text-xs rust">10+</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[85%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Sistemas / COBOL</span>
+                  <span class="mono text-xs rust">6+</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[70%]"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN: ACERCA DE
+    Texto del "About" del perfil LinkedIn, presentado como
+    bloque editorial con el estilo del portfolio.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">ACERCA DE</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40">ABOUT</div>
+        </div>
+
+        <div class="lg:col-span-9">
+          <p class="text-xl leading-relaxed font-light max-w-3xl mb-6">
+            Profesional con experiencia en desarrollo de sistemas,
+            negocios y soluciones orientadas a la gestión y captación
+            de clientes.
+          </p>
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-6 opacity-80">
+            Inicié en el desarrollo de sistemas administrativos en entornos
+            empresariales, trabajando con lógica de negocio, procesos
+            estructurados y manejo de información. Esta base técnica me
+            permitió comprender cómo funcionan los sistemas reales que
+            sostienen operaciones comerciales.
+          </p>
+          <p class="text-lg leading-relaxed font-light max-w-3xl opacity-80">
+            Actualmente desarrollo soluciones digitales enfocadas en ayudar
+            a negocios y emprendedores a mejorar su presencia en línea y
+            convertir esa presencia en clientes reales, principalmente
+            mediante páginas web conectadas a canales de contacto directo
+            como WhatsApp.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN: EXPERIENCIA LABORAL
+    8 posiciones ordenadas cronológicamente (más reciente primero).
+    Cada tarjeta muestra:
+      · Número de orden en rojo óxido (mono)
+      · Cargo
+      · Empresa + tipo de contrato
+      · Período y duración
+      · Ubicación y modalidad
+      · Descripción de responsabilidades
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">TRAYECTORIA PROFESIONAL</div>
+        <h3 class="uppercase leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); font-weight:700; letter-spacing:-0.03em;">
+          Experiencia<br>Laboral
+        </h3>
+      </div>
+
+      <div class="space-y-0 border-2 border-black">
+
+        <!-- EXP 01 -->
+        <div class="exp-card border-b-2 border-black">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-1">
+              <span class="mono text-xs rust tracking-[0.3em]">01</span>
+            </div>
+            <div class="lg:col-span-11">
+              <div class="mono text-xs tracking-[0.25em] exp-date opacity-60 mb-3">
+                JUN 2025 — ACTUALIDAD · 1 AÑO
+              </div>
+              <h4 class="text-2xl uppercase font-bold mb-1">
+                Fundador & Desarrollador Web
+              </h4>
+              <div class="exp-company mono text-xs tracking-[0.2em] mb-4" style="color:var(--rust);">
+                VLADISYSTEMS · PROFESIONAL INDEPENDIENTE · BOGOTÁ · HÍBRIDO
+              </div>
+              <ul class="space-y-2 font-light text-base leading-relaxed max-w-3xl">
+                <li>— Desarrollo de soluciones web para negocios, emprendedores y servicios locales con enfoque en captación de clientes vía canales digitales.</li>
+                <li>— Diseño e implementación de páginas web funcionales orientadas a facilitar el contacto directo con clientes mediante WhatsApp.</li>
+                <li>— Creación de sistemas digitales para presentación de servicios, catálogos y optimización de comunicación con prospectos.</li>
+                <li>— Estrategias de marketing digital enfocadas en visibilidad, captación y conversión de oportunidades comerciales.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 02 -->
+        <div class="exp-card border-b-2 border-black">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-1">
+              <span class="mono text-xs rust tracking-[0.3em]">02</span>
+            </div>
+            <div class="lg:col-span-11">
+              <div class="mono text-xs tracking-[0.25em] exp-date opacity-60 mb-3">
+                OCT 2024 — ABR 2026 · 1 AÑO 7 MESES
+              </div>
+              <h4 class="text-2xl uppercase font-bold mb-1">
+                Agente Inmobiliario Independiente
+              </h4>
+              <div class="exp-company mono text-xs tracking-[0.2em] mb-4" style="color:var(--rust);">
+                VLADISUPERAGENTE · PROFESIONAL INDEPENDIENTE · BOGOTÁ · PRESENCIAL
+              </div>
+              <ul class="space-y-2 font-light text-base leading-relaxed max-w-3xl">
+                <li>— Asesoría inmobiliaria orientada a toma de decisiones en arriendo, compra y venta de inmuebles.</li>
+                <li>— Orientación directa en temas de precios, negociación, condiciones de mercado y viabilidad de operaciones.</li>
+                <li>— Atención personalizada mediante WhatsApp — resolución de dudas y análisis de situaciones reales.</li>
+                <li>— Enfoque en confianza, transparencia y soluciones prácticas basadas en experiencia del sector.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 03 -->
+        <div class="exp-card border-b-2 border-black">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-1">
+              <span class="mono text-xs rust tracking-[0.3em]">03</span>
+            </div>
+            <div class="lg:col-span-11">
+              <div class="mono text-xs tracking-[0.25em] exp-date opacity-60 mb-3">
+                MAY 2016 — ACTUALIDAD · 10 AÑOS
+              </div>
+              <h4 class="text-2xl uppercase font-bold mb-1">
+                Cofundador & Coordinador de Servicios Locativos
+              </h4>
+              <div class="exp-company mono text-xs tracking-[0.2em] mb-4" style="color:var(--rust);">
+                BC1166 REMODELACIONES · PROFESIONAL INDEPENDIENTE · BOGOTÁ · PRESENCIAL
+              </div>
+              <ul class="space-y-2 font-light text-base leading-relaxed max-w-3xl">
+                <li>— Planificación, supervisión y ejecución de obras, coordinando personal técnico con cumplimiento en tiempos y calidad.</li>
+                <li>— Diseño de soluciones personalizadas según necesidades del cliente, con enfoque en funcionalidad y resultados.</li>
+                <li>— Gestión de relaciones comerciales con inmobiliarias y red de más de 400 agentes aliados.</li>
+                <li>— Atención y seguimiento de clientes mediante WhatsApp Business, optimizando cotización, cierre y post-servicio.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 04 -->
+        <div class="exp-card border-b-2 border-black">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-1">
+              <span class="mono text-xs rust tracking-[0.3em]">04</span>
+            </div>
+            <div class="lg:col-span-11">
+              <div class="mono text-xs tracking-[0.25em] exp-date opacity-60 mb-3">
+                MAR 2024 — SEPT 2024 · 7 MESES
+              </div>
+              <h4 class="text-2xl uppercase font-bold mb-1">
+                Agente Inmobiliario
+              </h4>
+              <div class="exp-company mono text-xs tracking-[0.2em] mb-4" style="color:var(--rust);">
+                PADS · PROFESIONAL INDEPENDIENTE · BOGOTÁ · PRESENCIAL
+              </div>
+              <ul class="space-y-2 font-light text-base leading-relaxed max-w-3xl">
+                <li>— Captación y promoción de inmuebles, atención al cliente, cierres de arriendo y venta.</li>
+                <li>— Manejo de visitas y acompañamiento post-venta.</li>
+                <li>— Amplia experiencia en relaciones humanas, negociación y seguimiento personalizado.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 05 -->
+        <div class="exp-card border-b-2 border-black">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-1">
+              <span class="mono text-xs rust tracking-[0.3em]">05</span>
+            </div>
+            <div class="lg:col-span-11">
+              <div class="mono text-xs tracking-[0.25em] exp-date opacity-60 mb-3">
+                MAR 2017 — ABR 2023 · 6 AÑOS 2 MESES
+              </div>
+              <h4 class="text-2xl uppercase font-bold mb-1">
+                Agente Inmobiliario
+              </h4>
+              <div class="exp-company mono text-xs tracking-[0.2em] mb-4" style="color:var(--rust);">
+                BIENES URBANOS BREIN · PROFESIONAL INDEPENDIENTE · BOGOTÁ · PRESENCIAL
+              </div>
+              <ul class="space-y-2 font-light text-base leading-relaxed max-w-3xl">
+                <li>— Gestión integral de captación, promoción y comercialización de inmuebles en Bogotá.</li>
+                <li>— Estrategias de publicación en portales y redes sociales para generación de leads y posicionamiento.</li>
+                <li>— Técnicas de negociación y cierre, logrando acuerdos efectivos entre propietarios y compradores.</li>
+                <li>— Seguimiento y fidelización de clientes mediante WhatsApp y canales digitales.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 06 -->
+        <div class="exp-card border-b-2 border-black">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-1">
+              <span class="mono text-xs rust tracking-[0.3em]">06</span>
+            </div>
+            <div class="lg:col-span-11">
+              <div class="mono text-xs tracking-[0.25em] exp-date opacity-60 mb-3">
+                MAR 2002 — ACTUALIDAD · 24 AÑOS
+              </div>
+              <h4 class="text-2xl uppercase font-bold mb-1">
+                Mentor de Estudiantes
+              </h4>
+              <div class="exp-company mono text-xs tracking-[0.2em] mb-4" style="color:var(--rust);">
+                VLADIMIREDO · CONTRATO TEMPORAL · CARACAS, VENEZUELA · HÍBRIDO
+              </div>
+              <ul class="space-y-2 font-light text-base leading-relaxed max-w-3xl">
+                <li>— Formación y mentoría en el área musical, enfocada en desarrollo técnico, creativo y personal.</li>
+                <li>— Metodologías de aprendizaje adaptadas a cada estudiante: disciplina, expresión artística y confianza.</li>
+                <li>— Desarrollo de habilidades cognitivas, atención, memoria y creatividad a través de la enseñanza musical.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 07 -->
+        <div class="exp-card border-b-2 border-black">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-1">
+              <span class="mono text-xs rust tracking-[0.3em]">07</span>
+            </div>
+            <div class="lg:col-span-11">
+              <div class="mono text-xs tracking-[0.25em] exp-date opacity-60 mb-3">
+                MAY 2000 — JUN 2013 · 13 AÑOS 2 MESES
+              </div>
+              <h4 class="text-2xl uppercase font-bold mb-1">
+                Gerente General
+              </h4>
+              <div class="exp-company mono text-xs tracking-[0.2em] mb-4" style="color:var(--rust);">
+                TULABIAL C.A. · PROFESIONAL INDEPENDIENTE · CARACAS, VENEZUELA · PRESENCIAL
+              </div>
+              <ul class="space-y-2 font-light text-base leading-relaxed max-w-3xl">
+                <li>— Coordinación de compra y venta de productos de belleza y servicio de entrega a domicilio.</li>
+                <li>— Gestión de mantenimiento de productos, estudio de mercado y garantía de servicios del sector belleza y estética.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 08 -->
+        <div class="exp-card border-b-2 border-black">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-1">
+              <span class="mono text-xs rust tracking-[0.3em]">08</span>
+            </div>
+            <div class="lg:col-span-11">
+              <div class="mono text-xs tracking-[0.25em] exp-date opacity-60 mb-3">
+                DIC 1995 — NOV 1999 · 4 AÑOS
+              </div>
+              <h4 class="text-2xl uppercase font-bold mb-1">
+                Programador Informático
+              </h4>
+              <div class="exp-company mono text-xs tracking-[0.2em] mb-4" style="color:var(--rust);">
+                IV4 CONSTRUCCIONES · CONTRATO TEMPORAL · CARACAS, VENEZUELA · PRESENCIAL
+              </div>
+              <ul class="space-y-2 font-light text-base leading-relaxed max-w-3xl">
+                <li>— Desarrollo y mantenimiento de sistemas administrativos en lenguaje COBOL en entorno empresarial.</li>
+                <li>— Análisis de procesos operativos, diseño de lógica de negocio y programación de soluciones de manejo de datos.</li>
+                <li>— Manejo de estructuras de datos y archivos (secuenciales e indexados) en procesamiento por lotes.</li>
+                <li>— Soporte técnico y resolución de incidencias garantizando continuidad operativa.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 09 -->
+        <div class="exp-card">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-1">
+              <span class="mono text-xs rust tracking-[0.3em]">09</span>
+            </div>
+            <div class="lg:col-span-11">
+              <div class="mono text-xs tracking-[0.25em] exp-date opacity-60 mb-3">
+                FEB 1993 — JUL 1995 · 2 AÑOS 6 MESES
+              </div>
+              <h4 class="text-2xl uppercase font-bold mb-1">
+                Analista de Programación
+              </h4>
+              <div class="exp-company mono text-xs tracking-[0.2em] mb-4" style="color:var(--rust);">
+                ARQUITECTOS ASOCIADOS PERDOMO-SURMONT · CARACAS, VENEZUELA · PRESENCIAL
+              </div>
+              <ul class="space-y-2 font-light text-base leading-relaxed max-w-3xl">
+                <li>— Desarrollo de sistemas administrativos en COBOL: facturación, control y gestión de datos.</li>
+                <li>— Diseño de lógica de negocio y programación de aplicaciones de procesamiento de información.</li>
+                <li>— Primera experiencia profesional en programación — base sólida en desarrollo de sistemas administrativos.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN: HABILIDADES
+    Presentadas con barras de progreso estilo widget hero
+    del index.html — coherencia visual total.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">COMPETENCIAS</div>
+        <h3 class="uppercase leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); font-weight:700; letter-spacing:-0.03em;">
+          Habilidades
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-black">
+
+        <div class="border-b-2 md:border-r-2 border-black p-10">
+          <div class="mono text-xs tracking-[0.3em] rust mb-8">TÉCNICAS</div>
+          <div class="space-y-6">
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Desarrollo Web (HTML/CSS/JS)</span>
+                <span class="mono text-xs opacity-60">90%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Tailwind CSS</span>
+                <span class="mono text-xs opacity-60">85%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Automatización Digital</span>
+                <span class="mono text-xs opacity-60">80%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Análisis de Sistemas (COBOL)</span>
+                <span class="mono text-xs opacity-60">75%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Google Sheets / Integración APIs</span>
+                <span class="mono text-xs opacity-60">70%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="border-b-2 border-black p-10">
+          <div class="mono text-xs tracking-[0.3em] rust mb-8">COMERCIALES / BLANDAS</div>
+          <div class="space-y-6">
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Negociación y Cierre</span>
+                <span class="mono text-xs opacity-60">95%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Atención al Cliente (WhatsApp)</span>
+                <span class="mono text-xs opacity-60">95%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Marketing Digital</span>
+                <span class="mono text-xs opacity-60">80%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Gestión de Equipos</span>
+                <span class="mono text-xs opacity-60">85%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Formación y Mentoría</span>
+                <span class="mono text-xs opacity-60">90%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    FOOTER DEL MÓDULO
+    Mismo footer del index.html — coherencia total del sistema.
+    Botón de regreso al portfolio visible y prominente.
+  ============================================================ -->
+  <footer class="bg-black text-white">
+    <div class="max-w-[1800px] mx-auto px-6 py-10 grid grid-cols-3 items-center">
+
+      <div class="mono text-xs tracking-[0.3em] opacity-60 text-left">
+        VLADISYSTEMS / RAW DIGITAL STRUCTURE
+      </div>
+
+      <div class="flex justify-center">
+        <img
+          src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
+          style="height:90px; width:auto;"
+          alt="VLADISYSTEMS"
+        >
+      </div>
+
+      <div class="flex justify-end gap-4 flex-wrap">
+        <a href="https://www.linkedin.com/in/vladisystems"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="mono text-xs tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition"
+           style="color:#fff;">
+          LinkedIn ↗
+        </a>
+        <a href="index.html" class="btn-back" style="border-color:#fff; color:#fff;">
+          ← PORTFOLIO
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
