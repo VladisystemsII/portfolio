@@ -1,0 +1,88 @@
+CONTEXTO DEL PROYECTO — VLADISYSTEMS PORTFOLIO
+Sistema de archivos actual (4 archivos en la misma carpeta):
+
+index.html — portfolio principal
+linkedin.html — módulo perfil profesional
+workana.html — módulo perfil Workana
+styles.css — CSS compartido por los 3 HTMLs (modular)
+
+Stack tecnológico:
+
+HTML puro, sin frameworks
+CSS propio en styles.css externo
+Tailwind CSS via CDN
+Google Fonts: Oswald + IBM Plex Mono
+Sin JavaScript propio excepto el hamburger menu en index.html
+
+
+IDENTIDAD VISUAL — VLADISYSTEMS
+
+Estilo brutalista industrial
+Paleta: #f5f5f2 fondo, #111 negro, #9d3d22 rojo óxido (rust), IBM Plex Mono para etiquetas
+Cuadrícula de fondo fija (.grid-lines) visible en todos los módulos
+Header sticky con backdrop-filter:blur(8px) + fondo semitransparente — la cuadrícula se ve a través
+Responsive: 5 breakpoints (1600px, 1280px, 1024px, 768px, 480px)
+
+
+COMPONENTES CLAVE EN styles.css:
+
+.grid-lines — cuadrícula decorativa fija
+.mono / .rust — utilidades globales
+header — sticky + blur transparente
+.content-offset — padding-top:90px compensa el header fijo
+.btn-back — botón volver al portfolio (linkedin y workana)
+.raw-box / .raw-card — cajas con borde negro, hover invertido
+.skill-bar / .skill-fill — barras de progreso horizontales
+.exp-card — tarjetas de experiencia laboral (linkedin.html)
+.cert-card — tarjetas de certificación (workana.html)
+.project-card — tarjetas de proyectos
+.massive / .massive-name / .stroke-text — tipografía especial
+Hamburger menu completo con JS: toggleMobileMenu() / closeMobileMenu()
+
+
+index.html — SECCIONES:
+
+Header sticky + hamburger menu mobile
+Hero — título PORTFOLIO REAL SYSTEMS + widget LIVE PORTFOLIO (barras LinkedIn 95%, Workana 82%, Github 75%, Projects 92%)
+Links — 6 tarjetas: LinkedIn → linkedin.html, Workana → workana.html, Github #, CV #, Instagram #, WhatsApp #
+Proyectos — 4 tarjetas: BC1166 Remodelaciones, Telegram Bot Vladiblues, Vladisystems Landing, Portal33 (todos href="#" pendientes)
+Contacto — CTA "READY FOR PROJECTS" (href="#" pendiente)
+Footer — 3 columnas: tagline | logo Cloudinary | links (todos href="#" pendientes)
+
+
+linkedin.html — SECCIONES:
+
+Header sticky + botón ← PORTFOLIO → index.html
+Hero — VLADIMIR ALBA + widget trayectoria + botón "Ver perfil completo en LinkedIn ↗" → https://www.linkedin.com/in/vladisystems (target_blank)
+Acerca de — texto About del perfil
+Experiencia laboral — 9 posiciones (01 Vladisystems, 02 Vladisuperagente, 03 BC1166, 04 PADS, 05 Bienes Urbanos Brein, 06 Vladimiredo, 07 Tulabial, 08 IV4 Construcciones, 09 Arquitectos Asociados)
+Habilidades — técnicas y comerciales con barras
+Footer — tagline | logo | LinkedIn ↗ + ← PORTFOLIO
+
+
+workana.html — SECCIONES:
+
+Header sticky + botón ← PORTFOLIO → index.html
+Hero — VLADIMIR ALBA + widget WORKANA STATS + botón "Ver perfil completo en Workana ↗" → https://www.workana.com/freelancer/vladisystems (target_blank)
+Sobre mí — texto presentación Workana
+Habilidades — Desarrollo (HTML, CSS, JS, Python, COBOL) + Diseño (Diseño Web, Gráfico, Logo, Tarjetas)
+Certificaciones — 5 exámenes Workana con puntajes + institucionales (Fundación Telefónica, SENA, Universidad — Técnico Superior en Informática)
+Proyectos Workana — 3 tarjetas: Desarrollo páginas web, Micro-Landings, Diseño Web Adaptativo
+Idiomas — Español nativo, Inglés intermedio 83%
+Footer — tagline | logo | Workana ↗ + ← PORTFOLIO
+
+
+PENDIENTES (href="#" sin asignar):
+
+Github, CV Profesional, Instagram, WhatsApp en index.html
+Botón "Contacto directo" en sección contacto
+Links del footer del index
+Links de los 4 proyectos
+
+DECISIÓN DEL CLIENTE: Los links se asignan cuando el concepto esté 100% claro. No antes.
+
+LOGO: Cargado desde Cloudinary en los 3 footers:
+https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png
+PROPIETARIO: Vladimir Alba — Bogotá, Colombia
+LinkedIn real: https://www.linkedin.com/in/vladisystems
+Workana real: https://www.workana.com/freelancer/vladisystems

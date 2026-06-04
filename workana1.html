@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+  MÓDULO INDEPENDIENTE: PERFIL WORKANA
+  Archivo: workana.html
+  Parte del sistema VLADISYSTEMS PORTFOLIO
+  Contiene el perfil profesional de Workana rediseñado
+  con la identidad visual del portfolio.
+  Se accede desde index.html via el link de la sección LINKS.
+  El botón "← PORTFOLIO" regresa al portfolio principal.
+============================================================ -->
+<title>VLADISYSTEMS | WORKANA</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+<!-- ============================================================
+  ESTILOS DEL SISTEMA VLADISYSTEMS
+  Archivo CSS compartido por todos los módulos del portfolio.
+  Contiene variables, componentes, utilidades y responsive.
+============================================================ -->
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- CUADRÍCULA DE FONDO -->
+<div class="grid-lines"></div>
+
+<!-- ============================================================
+  HEADER
+  Sticky + blur. Mismo sistema que index.html y linkedin.html.
+  Izquierda: marca VLADISYSTEMS.
+  Derecha: botón ← PORTFOLIO para volver al index.html.
+============================================================ -->
+<header class="border-b-2 border-black">
+  <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
+
+    <h1 class="text-2xl md:text-4xl font-bold tracking-tight">
+      VLADISYSTEMS
+    </h1>
+
+    <a href="index.html" class="btn-back">
+      ← PORTFOLIO
+    </a>
+
+  </div>
+</header>
+
+<!-- ============================================================
+  CONTENIDO PRINCIPAL
+============================================================ -->
+<div style="position:relative; z-index:1;" class="content-offset">
+
+  <!-- ============================================================
+    HERO DEL MÓDULO
+    Presenta el perfil de Workana con el estilo del portfolio:
+    etiqueta mono en rojo óxido + nombre grande + descripción
+    + widget de stats a la derecha + botón a Workana real.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-24">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+
+        <!-- IZQUIERDA: presentación -->
+        <div class="lg:col-span-8">
+
+          <div class="mono text-xs tracking-[0.4em] mb-6 rust">
+            WORKANA / FREELANCE / DESARROLLO WEB / BOGOTÁ
+          </div>
+
+          <h2 class="massive-name uppercase font-bold leading-none"
+              style="font-size:clamp(3rem,8vw,7rem); letter-spacing:-0.04em;">
+            VLADIMIR<br>ALBA
+          </h2>
+
+          <p class="mt-8 text-xl max-w-2xl leading-relaxed font-light">
+            Desarrollador web enfocado en crear páginas simples
+            y funcionales que ayuden a negocios y emprendedores
+            a generar contactos y clientes reales.
+          </p>
+
+          <p class="mt-4 text-lg max-w-2xl leading-relaxed font-light opacity-75">
+            Frontend y backend integrados — diseño, estructura y lógica
+            en cada proyecto. Enfoque práctico: entender el objetivo
+            del negocio primero, luego implementar con orden y claridad.
+          </p>
+
+          <!-- LINK A WORKANA REAL 
+          <div class="mt-10">
+            <a href="https://www.workana.com/freelancer/vladisystems"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn-workana-hero inline-flex items-center gap-3 border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+               style="font-family:'IBM Plex Mono',monospace;">
+              Ver perfil completo en Workana ↗
+            </a>
+          </div>
+
+        </div>-->
+
+        <!-- DERECHA: widget de stats -->
+        <div class="lg:col-span-4">
+          <div class="border-2 border-black p-8 bg-black text-white">
+
+            <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+              WORKANA STATS
+            </div>
+
+            <div class="space-y-6">
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Proyectos completados</span>
+                  <span class="mono text-xs rust">3</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[75%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Certificaciones</span>
+                  <span class="mono text-xs rust">5</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[90%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Idiomas</span>
+                  <span class="mono text-xs rust">2</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[60%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Habilidades</span>
+                  <span class="mono text-xs rust">9</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[95%]"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN: SOBRE MÍ
+    Texto de presentación del perfil Workana presentado
+    en formato editorial coherente con el portfolio.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SOBRE MÍ</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40">ABOUT</div>
+        </div>
+
+        <div class="lg:col-span-9">
+          <p class="text-xl leading-relaxed font-light max-w-3xl mb-6">
+            Diseño y construyo landings y sitios web claros, bien
+            estructurados y listos para usar, con enfoque en facilitar
+            la comunicación directa con el cliente — especialmente
+            vía WhatsApp.
+          </p>
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-6 opacity-80">
+            Trabajo frontend y backend integrando diseño, estructura
+            y lógica para que cada proyecto sea entendible, funcional
+            y fácil de mantener.
+          </p>
+          <p class="text-lg leading-relaxed font-light max-w-3xl opacity-80">
+            Busco algo simple: que tu página no sea solo presencia
+            digital, sino una herramienta que realmente funcione
+            para tu negocio. Si necesitas una web clara, una landing
+            efectiva o mejorar un proyecto existente — foco, orden
+            y compromiso desde el inicio.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN: HABILIDADES
+    9 habilidades extraídas del perfil Workana.
+    Cada una muestra proyectos trabajados y años de experiencia.
+    Divididas en dos columnas: Desarrollo y Diseño.
+    Barras de progreso coherentes con el sistema del portfolio.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">COMPETENCIAS</div>
+        <h3 class="uppercase leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); font-weight:700; letter-spacing:-0.03em;">
+          Habilidades
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-black">
+
+        <!-- COLUMNA DESARROLLO -->
+        <div class="border-b-2 md:border-b-0 md:border-r-2 border-black p-10">
+          <div class="mono text-xs tracking-[0.3em] rust mb-8">DESARROLLO</div>
+          <div class="space-y-7">
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">HTML</span>
+                <span class="mono text-xs opacity-60">3 proyectos · 1 año</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">CSS</span>
+                <span class="mono text-xs opacity-60">3 proyectos · 1 año</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">JavaScript</span>
+                <span class="mono text-xs opacity-60">1 proyecto · 1 año</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Python</span>
+                <span class="mono text-xs opacity-60">1 proyecto · 1 año</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">COBOL</span>
+                <span class="mono text-xs opacity-60">2 proyectos · +10 años</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- COLUMNA DISEÑO -->
+        <div class="p-10">
+          <div class="mono text-xs tracking-[0.3em] rust mb-8">DISEÑO</div>
+          <div class="space-y-7">
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Diseño Web</span>
+                <span class="mono text-xs opacity-60">3 proyectos · 1 año</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Diseño Gráfico</span>
+                <span class="mono text-xs opacity-60">3 proyectos · +10 años</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Diseño de Logo</span>
+                <span class="mono text-xs opacity-60">+10 años</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="uppercase text-sm tracking-[0.15em]">Diseño de Tarjetas</span>
+                <span class="mono text-xs opacity-60">3 a 5 años</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN: CERTIFICACIONES
+    5 exámenes de Workana con puntaje y estado.
+    3 certificaciones institucionales:
+      · Fundación Telefónica Colombia — HTML + CSS
+      · SENA — Programación Web + Diseño Web
+      · Universidad — Técnico Superior en Informática
+    Cada bloque tiene su propia sub-sección con título de entidad.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">VALIDACIONES</div>
+        <h3 class="uppercase leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); font-weight:700; letter-spacing:-0.03em;">
+          Certificaciones
+        </h3>
+      </div>
+
+      <!-- EXÁMENES WORKANA -->
+      <div class="mono text-xs tracking-[0.3em] rust mb-6">EXÁMENES WORKANA</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-2 border-black mb-16">
+
+        <div class="cert-card border-b-2 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">2025</div>
+          <h4 class="uppercase text-xl font-bold mb-2">HTML 5</h4>
+          <div class="mono text-xs opacity-60 mb-4">INTERMEDIO</div>
+          <div class="flex justify-between items-center">
+            <div class="h-[2px] bg-[#ddd] flex-1 mr-4">
+              <div class="h-full bg-black" style="width:93%"></div>
+            </div>
+            <span class="mono text-sm font-bold">93%</span>
+          </div>
+          <div class="mono text-xs opacity-40 mt-3 tracking-[0.2em]">FINALIZADO</div>
+        </div>
+
+        <div class="cert-card border-b-2 lg:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">2025</div>
+          <h4 class="uppercase text-xl font-bold mb-2">DreamWeaver</h4>
+          <div class="mono text-xs opacity-60 mb-4">BÁSICO</div>
+          <div class="flex justify-between items-center">
+            <div class="h-[2px] bg-[#ddd] flex-1 mr-4">
+              <div class="h-full bg-black" style="width:86%"></div>
+            </div>
+            <span class="mono text-sm font-bold">86%</span>
+          </div>
+          <div class="mono text-xs opacity-40 mt-3 tracking-[0.2em]">FINALIZADO</div>
+        </div>
+
+        <div class="cert-card border-b-2 md:border-r-2 lg:border-r-0 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">2026</div>
+          <h4 class="uppercase text-xl font-bold mb-2">Test de Inglés</h4>
+          <div class="mono text-xs opacity-60 mb-4">INTERMEDIO</div>
+          <div class="flex justify-between items-center">
+            <div class="h-[2px] bg-[#ddd] flex-1 mr-4">
+              <div class="h-full bg-black" style="width:83%"></div>
+            </div>
+            <span class="mono text-sm font-bold">83%</span>
+          </div>
+          <div class="mono text-xs opacity-40 mt-3 tracking-[0.2em]">FINALIZADO</div>
+        </div>
+
+        <div class="cert-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">2025</div>
+          <h4 class="uppercase text-xl font-bold mb-2">CSS</h4>
+          <div class="mono text-xs opacity-60 mb-4">BÁSICO</div>
+          <div class="flex justify-between items-center">
+            <div class="h-[2px] bg-[#ddd] flex-1 mr-4">
+              <div class="h-full bg-black" style="width:83%"></div>
+            </div>
+            <span class="mono text-sm font-bold">83%</span>
+          </div>
+          <div class="mono text-xs opacity-40 mt-3 tracking-[0.2em]">FINALIZADO</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">2025</div>
+          <h4 class="uppercase text-xl font-bold mb-2">Patrones de Diseño</h4>
+          <div class="mono text-xs opacity-60 mb-4">GENERAL</div>
+          <div class="flex justify-between items-center">
+            <div class="h-[2px] bg-[#ddd] flex-1 mr-4">
+              <div class="h-full bg-black" style="width:76%"></div>
+            </div>
+            <span class="mono text-sm font-bold">76%</span>
+          </div>
+          <div class="mono text-xs opacity-40 mt-3 tracking-[0.2em]">FINALIZADO</div>
+        </div>
+
+      </div>
+
+      <!-- CERTIFICACIONES INSTITUCIONALES -->
+      <div class="mono text-xs tracking-[0.3em] rust mb-6">CERTIFICACIONES INSTITUCIONALES</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-2 border-black">
+
+        <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-4">FUNDACIÓN TELEFÓNICA COLOMBIA</div>
+          <h4 class="uppercase text-xl font-bold mb-4">Programación Web</h4>
+          <div class="space-y-2">
+            <div class="mono text-xs opacity-60">— HTML</div>
+            <div class="mono text-xs opacity-60">— CSS</div>
+          </div>
+        </div>
+
+        <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-4">SENA · COLOMBIA</div>
+          <h4 class="uppercase text-xl font-bold mb-4">Desarrollo Web</h4>
+          <div class="space-y-2">
+            <div class="mono text-xs opacity-60">— Programación Web</div>
+            <div class="mono text-xs opacity-60">— Diseño Web con Adobe Dreamweaver</div>
+            <div class="mono text-xs opacity-60">— Bases de Datos y Sistemas de Gestión</div>
+          </div>
+        </div>
+
+        <div class="raw-card">
+          <div class="mono text-xs rust tracking-[0.3em] mb-4">TÍTULO UNIVERSITARIO</div>
+          <h4 class="uppercase text-xl font-bold mb-4">Técnico Superior en Informática</h4>
+          <div class="space-y-2">
+            <div class="mono text-xs opacity-60">— Analista de Redes</div>
+            <div class="mono text-xs opacity-60">— Programación de Redes</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN: PROYECTOS DESTACADOS
+    3 proyectos del perfil Workana presentados con el estilo
+    de .project-card del index.html.
+    Tecnologías usadas en cada uno mostradas en mono rojo óxido.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">TRABAJOS REALIZADOS</div>
+        <h3 class="uppercase leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); font-weight:700; letter-spacing:-0.03em;">
+          Proyectos<br>Workana
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 border-2 border-black">
+
+        <!-- PROYECTO 01 -->
+        <div class="project-card border-b-2 lg:border-b-0 lg:border-r-2 border-black">
+          <div class="mono text-xs tracking-[0.3em] mb-6">01 / DESARROLLO WEB</div>
+          <h4 class="uppercase mb-6"
+              style="font-size:1.6rem; font-weight:700; line-height:1.1;">
+            Desarrollo de<br>Páginas Web
+          </h4>
+          <p class="font-light text-base leading-relaxed mb-8 opacity-80">
+            Diseño e implementación de páginas web funcionales
+            orientadas a captación de clientes y contacto directo
+            vía WhatsApp.
+          </p>
+          <div class="space-y-1">
+            <div class="mono text-xs rust tracking-[0.2em]">TECNOLOGÍAS:</div>
+            <div class="mono text-xs opacity-60">JavaScript · HTML</div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 02 -->
+        <div class="project-card border-b-2 lg:border-b-0 lg:border-r-2 border-black">
+          <div class="mono text-xs tracking-[0.3em] mb-6">02 / DISEÑO</div>
+          <h4 class="uppercase mb-6"
+              style="font-size:1.6rem; font-weight:700; line-height:1.1;">
+            Diseños<br>Micro-Landing
+          </h4>
+          <p class="font-light text-base leading-relaxed mb-8 opacity-80">
+            Diseño visual de micro-landings orientadas a servicios
+            específicos: estructura clara, llamado a la acción
+            directo y diseño adaptado al objetivo del cliente.
+          </p>
+          <div class="space-y-1">
+            <div class="mono text-xs rust tracking-[0.2em]">TECNOLOGÍAS:</div>
+            <div class="mono text-xs opacity-60">Diseño Gráfico · Diseño Web</div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 03 -->
+        <div class="project-card">
+          <div class="mono text-xs tracking-[0.3em] mb-6">03 / RESPONSIVE</div>
+          <h4 class="uppercase mb-6"
+              style="font-size:1.6rem; font-weight:700; line-height:1.1;">
+            Diseño Web<br>Adaptativo
+          </h4>
+          <p class="font-light text-base leading-relaxed mb-8 opacity-80">
+            Implementación de diseño responsive — sitios que
+            funcionan correctamente en desktop, tablet y mobile,
+            adaptando estructura y contenido a cada dispositivo.
+          </p>
+          <div class="space-y-1">
+            <div class="mono text-xs rust tracking-[0.2em]">TECNOLOGÍAS:</div>
+            <div class="mono text-xs opacity-60">Responsive Web Design · Diseño Gráfico</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN: IDIOMAS
+    Presentados de forma minimalista en formato de grilla.
+    Español nativo e inglés intermedio.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">COMUNICACIÓN</div>
+        <h3 class="uppercase leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); font-weight:700; letter-spacing:-0.03em;">
+          Idiomas
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-black">
+
+        <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-4">01</div>
+          <h4 class="uppercase text-3xl font-bold mb-3">Español</h4>
+          <div class="mono text-xs opacity-60 tracking-[0.3em]">NATIVO</div>
+          <div class="mt-6 h-[2px] bg-[#ddd]">
+            <div class="h-full bg-black" style="width:100%"></div>
+          </div>
+        </div>
+
+        <div class="raw-card">
+          <div class="mono text-xs rust tracking-[0.3em] mb-4">02</div>
+          <h4 class="uppercase text-3xl font-bold mb-3">Inglés</h4>
+          <div class="mono text-xs opacity-60 tracking-[0.3em]">INTERMEDIO · 83% EN TEST WORKANA</div>
+          <div class="mt-6 h-[2px] bg-[#ddd]">
+            <div class="h-full bg-black" style="width:83%"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    FOOTER DEL MÓDULO
+    Mismo footer del sistema VLADISYSTEMS.
+    3 columnas: tagline | logo | links de regreso.
+    En mobile colapsa a 1 columna centrada.
+  ============================================================ -->
+  <footer class="bg-black text-white">
+    <div class="max-w-[1800px] mx-auto px-6 py-10 grid grid-cols-3 items-center">
+
+      <div class="mono text-xs tracking-[0.3em] opacity-60 text-left">
+        VLADISYSTEMS / RAW DIGITAL STRUCTURE
+      </div>
+
+      <div class="flex justify-center">
+        <img
+          src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
+          style="height:90px; width:auto;"
+          alt="VLADISYSTEMS"
+        >
+      </div>
+
+      <div class="flex justify-end gap-4 flex-wrap">
+        <a href="https://www.workana.com/freelancer/vladisystems"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="mono text-xs tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition"
+           style="color:#fff;">
+          Workana ↗
+        </a>
+        <a href="index.html" class="btn-back" style="border-color:#fff; color:#fff;">
+          ← PORTFOLIO
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

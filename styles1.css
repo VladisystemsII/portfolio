@@ -1,0 +1,485 @@
+/* ============================================================
+  VLADISYSTEMS — SISTEMA DE ESTILOS COMPARTIDO
+  Archivo: styles.css
+  Versión: 1.0
+  
+  Este archivo es el CSS central del sistema VLADISYSTEMS.
+  Es usado por TODOS los módulos del portfolio:
+    · index.html    → portfolio principal
+    · linkedin.html → módulo perfil LinkedIn
+    · workana.html  → módulo perfil Workana
+  
+  ESTRUCTURA:
+    1. Variables globales (Design Tokens)
+    2. Base (body)
+    3. Cuadrícula de fondo
+    4. Utilidades globales (.mono, .rust)
+    5. Header sticky + blur
+    6. Compensación de contenido (.content-offset)
+    7. Botón volver (.btn-back)
+    8. Componentes compartidos (.raw-box, .raw-card, .skill-bar)
+    9. Tipografía especial (.massive, .stroke-text)
+    10. Hamburger menu (index.html)
+    11. Sistema responsive — 5 breakpoints
+============================================================ */
+
+
+/* ============================================================
+  1. VARIABLES GLOBALES DE COLOR (Design Tokens)
+  Definidas en :root para usarse en todo el CSS con var(--nombre).
+  Paleta visual del sistema VLADISYSTEMS:
+    --cement  → beige/gris neutro
+    --black   → negro casi puro
+    --rust    → rojo óxido (color de acento principal)
+    --steel   → gris acero medio
+============================================================ */
+:root{
+  --cement:#d9d4ca;
+  --black:#0e0e0e;
+  --rust:#9d3d22;
+  --steel:#444;
+}
+
+
+/* ============================================================
+  2. BASE — BODY
+  Fondo general, color de texto, tipografía principal (Oswald)
+  y bloqueo de scroll horizontal en todos los módulos.
+============================================================ */
+body{
+  background:#f5f5f2;
+  color:#111;
+  overflow-x:hidden;
+  font-family:'Oswald',sans-serif;
+  position:relative;
+}
+
+
+/* ============================================================
+  3. CUADRÍCULA DE FONDO (.grid-lines)
+  Elemento decorativo fijo que cubre toda la pantalla.
+  Presente en todos los módulos del sistema.
+  z-index:0 → siempre debajo del contenido.
+  pointer-events:none → no interfiere con clics del usuario.
+  Construida con dos linear-gradient superpuestos:
+    · Horizontal: líneas cada 50px
+    · Vertical:   líneas cada 50px
+============================================================ */
+.grid-lines{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,.11) 1px,transparent 1px);
+  background-size:50px 50px;
+}
+
+
+/* ============================================================
+  4. UTILIDADES GLOBALES
+  Clases de uso frecuente en todos los módulos.
+  .mono → activa la fuente IBM Plex Mono en cualquier elemento
+  .rust → aplica el color de acento rojo óxido al texto
+============================================================ */
+.mono{ font-family:'IBM Plex Mono',monospace; }
+.rust{ color:var(--rust); }
+
+
+/* ============================================================
+  5. HEADER STICKY
+  El header queda fijo en la parte superior al hacer scroll.
+  Compartido por todos los módulos.
+    position:fixed     → anclado a la ventana, no al documento
+    z-index:100        → encima de todo el contenido
+    background+blur    → efecto vidrio esmerilado semitransparente
+                         permite ver la cuadrícula a través
+    border-bottom:none → evita doble línea con el contenido
+============================================================ */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:100;
+  background:rgba(245,245,242,0.75);
+  backdrop-filter:blur(8px);
+  border-bottom:none;
+}
+
+
+/* ============================================================
+  6. COMPENSACIÓN DE CONTENIDO (.content-offset)
+  Cuando el header es fixed, sale del flujo normal.
+  Este padding-top empuja el contenido hacia abajo para
+  que no quede tapado por el header en ningún módulo.
+============================================================ */
+.content-offset{
+  padding-top:90px;
+}
+
+
+/* ============================================================
+  7. BOTÓN VOLVER (.btn-back)
+  Botón de regreso al portfolio principal.
+  Usado en linkedin.html y workana.html.
+  Coherente con el estilo .raw-box del sistema:
+  borde negro, hover invierte colores, transición suave.
+============================================================ */
+.btn-back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:2px solid #111;
+  padding:10px 24px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.75rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#111;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.btn-back:hover{
+  background:#111;
+  color:#fff;
+}
+
+
+/* ============================================================
+  8. COMPONENTES COMPARTIDOS
+
+  .raw-box → caja con borde negro, hover invertido.
+             Usado en index.html para links y botones CTA.
+
+  .raw-card → igual que .raw-box pero para tarjetas de contenido.
+              Usado en linkedin.html y workana.html.
+
+  .skill-bar / .skill-fill → barra de progreso horizontal.
+              Usada en el widget del hero y en secciones
+              de habilidades de linkedin.html y workana.html.
+
+  .project-card → tarjeta de proyecto con hover invertido.
+                  Usada en index.html y workana.html.
+============================================================ */
+.raw-box{
+  border:2px solid #111;
+  transition:.3s;
+}
+
+.raw-box:hover{
+  background:#111;
+  color:#fff;
+}
+
+.raw-card{
+  border:2px solid #111;
+  padding:2rem 2.5rem;
+  transition:.3s;
+}
+
+.raw-card:hover{
+  background:#111;
+  color:#fff;
+}
+
+.raw-card:hover .rust{
+  color:#c4613d;
+}
+
+.skill-bar{
+  height:2px;
+  background:#ddd;
+  margin-top:6px;
+}
+
+.skill-fill{
+  height:100%;
+  background:#111;
+  transition:.3s;
+}
+
+.project-card{
+  transition:.3s;
+}
+
+.project-card:hover{
+  background:#111;
+  color:#fff;
+}
+
+.project-card:hover .project-link{
+  border-color:#fff;
+}
+
+.project-card:hover .rust{
+  color:#c4613d;
+}
+
+
+/* ============================================================
+  9. TIPOGRAFÍA ESPECIAL
+
+  .massive → tipografía gigante para títulos hero.
+             Usa clamp() para escalar fluido entre breakpoints.
+             Usada en index.html (hero y contacto).
+
+  .stroke-text → texto transparente con solo el borde visible.
+                 Efecto "texto vacío". Usado en index.html
+                 en palabras como "REAL" y "FOR".
+
+  .massive-name → variante de .massive para nombres en módulos.
+                  Usada en linkedin.html y workana.html.
+============================================================ */
+.massive{
+  font-size:clamp(3.5rem,9vw,8rem);
+  line-height:.88;
+  font-weight:700;
+  letter-spacing:-0.06em;
+}
+
+.stroke-text{
+  color:transparent;
+  -webkit-text-stroke:1px #111;
+}
+
+.massive-name{
+  font-size:clamp(3rem,8vw,7rem);
+  letter-spacing:-0.04em;
+}
+
+
+/* ============================================================
+  10. HAMBURGER MENU — Solo activo en index.html
+  Sistema de menú móvil con 3 partes:
+
+  .hamburger-btn → botón con 3 líneas (☰).
+                   Oculto en desktop, visible en tablet/mobile.
+
+  .hamburger-btn span → cada línea del ícono.
+                        Transición para convertirse en X al abrir.
+
+  .mobile-menu → panel de navegación desplegable.
+                 Oculto por defecto (max-height:0).
+                 Se expande con la clase .open via JavaScript.
+
+  .hamburger-btn.open → transforma las 3 líneas en una X:
+                         línea superior rota 45° hacia abajo,
+                         línea media desaparece (opacity:0),
+                         línea inferior rota -45° hacia arriba.
+============================================================ */
+.hamburger-btn{
+  display:none;
+  flex-direction:column;
+  justify-content:space-between;
+  width:28px;
+  height:20px;
+  cursor:pointer;
+  background:none;
+  border:none;
+  padding:0;
+  z-index:101;
+}
+
+.hamburger-btn span{
+  display:block;
+  width:100%;
+  height:2px;
+  background:#111;
+  transition:.3s;
+  transform-origin:center;
+}
+
+.mobile-menu{
+  position:fixed;
+  top:90px;
+  left:0;
+  width:100%;
+  background:rgba(245,245,242,0.85);
+  backdrop-filter:blur(8px);
+  overflow:hidden;
+  max-height:0;
+  transition:max-height .4s ease;
+  z-index:99;
+}
+
+.mobile-menu.open{
+  max-height:300px;
+}
+
+.mobile-menu a{
+  display:block;
+  padding:1.2rem 1.5rem;
+  border-bottom:1px solid rgba(0,0,0,.1);
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  font-size:.85rem;
+  color:#111;
+  width:100%;
+  text-align:left;
+  transition:.2s;
+}
+
+.mobile-menu a:hover{
+  background:#111;
+  color:#fff;
+}
+
+.hamburger-btn.open span:nth-child(1){
+  transform:translateY(9px) rotate(45deg);
+}
+
+.hamburger-btn.open span:nth-child(2){
+  opacity:0;
+}
+
+.hamburger-btn.open span:nth-child(3){
+  transform:translateY(-9px) rotate(-45deg);
+}
+
+
+/* ============================================================
+  11. SISTEMA RESPONSIVE — 5 BREAKPOINTS
+  Aplica a todos los módulos del sistema VLADISYSTEMS.
+  Orden: de pantalla más grande a más pequeña.
+============================================================ */
+
+/* --- LARGE DESKTOP (hasta 1600px) --- */
+@media(max-width:1600px){
+  .massive{ font-size:clamp(3rem,8vw,7rem); }
+  .massive-name{ font-size:clamp(2.8rem,7vw,6rem); }
+}
+
+/* --- LAPTOP (hasta 1280px) --- */
+@media(max-width:1280px){
+  .massive{ font-size:clamp(3rem,8vw,6rem); }
+  .massive-name{ font-size:clamp(2.5rem,7vw,5rem); }
+}
+
+/* --- TABLET (hasta 1024px) ---
+   Oculta nav desktop, muestra botón hamburger.
+   Grillas colapsan a 1 columna. */
+@media(max-width:1024px){
+  .massive{ font-size:clamp(3rem,11vw,5.5rem); line-height:.95; }
+  .massive-name{ font-size:clamp(2.5rem,10vw,4.5rem); }
+  header nav{ display:none; }
+  .hamburger-btn{ display:flex; }
+  .raw-card{ padding:1.8rem; }
+  .exp-card{ padding:1.8rem; }
+  .project-card{ padding:1.8rem; }
+}
+
+/* --- MOBILE (hasta 768px) ---
+   Ajustes generales para pantallas pequeñas. */
+@media(max-width:768px){
+
+  body{ overflow-x:hidden; }
+
+  .grid-lines{ background-size:30px 30px; }
+
+  .massive{
+    font-size:clamp(2.5rem,15vw,4.5rem);
+    line-height:.95;
+    letter-spacing:-0.04em;
+  }
+
+  .massive-name{
+    font-size:clamp(2.2rem,12vw,3.5rem);
+    letter-spacing:-0.02em;
+  }
+
+  section{ min-height:auto; }
+
+  h1{ font-size:1.6rem !important; }
+  p{ font-size:1rem !important; line-height:1.7 !important; }
+
+  button{ width:100%; text-align:center; }
+  a{ width:auto; text-align:center; }
+
+  .raw-box{ width:100%; }
+  .raw-card{ padding:1.5rem; }
+  .exp-card{ padding:1.5rem; }
+
+  .text-7xl{ font-size:4rem !important; }
+  .text-6xl{ font-size:3rem !important; }
+  .text-5xl{ font-size:2.2rem !important; }
+  .text-4xl{ font-size:1.8rem !important; }
+  .text-2xl{ font-size:1.3rem !important; }
+
+  .p-12{ padding:2rem; }
+  .p-10{ padding:1.5rem; }
+  .p-8{ padding:1.5rem; }
+
+  .py-32{ padding-top:6rem; padding-bottom:6rem; }
+  .py-24{ padding-top:4rem; padding-bottom:4rem; }
+  .py-20{ padding-top:3.5rem; padding-bottom:3.5rem; }
+
+  .gap-10{ gap:2rem; }
+
+  /* Footer: de 3 columnas a 1 columna centrada */
+  footer .grid{
+    grid-template-columns:1fr;
+    text-align:center;
+    gap:20px;
+  }
+
+  footer .flex{
+    justify-content:center !important;
+    flex-wrap:wrap;
+  }
+
+  /* Botones hero de módulos — ancho completo */
+  .btn-linkedin-hero,
+  .btn-workana-hero{
+    width:100%;
+    justify-content:center;
+  }
+
+  /* Habilidades: de 2 columnas a 1 columna */
+  .md\:grid-cols-2{ grid-template-columns:1fr !important; }
+  .md\:border-r-2{ border-right:none !important; }
+
+}
+
+/* --- SMALL MOBILE (hasta 480px) ---
+   Nivel máximo de compresión. */
+@media(max-width:480px){
+
+  .grid-lines{ background-size:24px 24px; }
+
+  .massive{ font-size:2.2rem; line-height:1; }
+
+  .massive-name{
+    font-size:2rem !important;
+    line-height:1 !important;
+  }
+
+  h1{ font-size:1.3rem !important; }
+
+  .raw-card{ padding:1.2rem; }
+  .exp-card{ padding:1.2rem; }
+
+  .mono{ font-size:.65rem !important; }
+
+  .btn-back{
+    font-size:.65rem !important;
+    padding:8px 14px !important;
+    letter-spacing:.1em !important;
+  }
+
+  .p-12,
+  .p-10,
+  .p-8{ padding:1.5rem !important; }
+
+  button{ font-size:.8rem !important; letter-spacing:.15em !important; }
+  a{ letter-spacing:.15em !important; }
+
+  .text-2xl{ font-size:1.1rem !important; }
+  .text-sm{ font-size:.75rem !important; }
+
+}
