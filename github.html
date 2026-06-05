@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+  MÓDULO INDEPENDIENTE: PERFIL GITHUB
+  Archivo: github.html
+  Parte del sistema VLADISYSTEMS PORTFOLIO
+  Contiene el perfil de GitHub rediseñado con la identidad
+  visual del portfolio.
+  Se accede desde index.html via el link de la sección LINKS.
+  El botón "← PORTFOLIO" regresa al portfolio principal.
+============================================================ -->
+<title>VLADISYSTEMS | GITHUB</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- ============================================================
+  ESTILOS DEL SISTEMA VLADISYSTEMS
+  Archivo CSS compartido por todos los módulos del portfolio.
+============================================================ -->
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- CUADRÍCULA DE FONDO -->
+<div class="grid-lines"></div>
+
+<!-- ============================================================
+  HEADER
+  Sticky + blur. Mismo sistema que los demás módulos.
+  Izquierda: marca VLADISYSTEMS.
+  Derecha: botón ← PORTFOLIO para volver al index.html.
+============================================================ -->
+<header class="border-b-2 border-black">
+  <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
+
+    <h1 class="text-2xl md:text-4xl font-bold tracking-tight">
+      VLADISYSTEMS
+    </h1>
+
+    <a href="index.html" class="btn-back">
+      ← PORTFOLIO
+    </a>
+
+  </div>
+</header>
+
+<!-- ============================================================
+  CONTENIDO PRINCIPAL
+============================================================ -->
+<div style="position:relative; z-index:1;" class="content-offset">
+
+  <!-- ============================================================
+    HERO DEL MÓDULO
+    Misma estructura que workana.html y linkedin.html:
+    etiqueta mono rust + nombre grande + descripción
+    + widget de stats a la derecha + botón a GitHub real.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-24">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+
+        <!-- IZQUIERDA: presentación -->
+        <div class="lg:col-span-8 order-2 lg:order-1">
+
+          <div class="mono text-xs tracking-[0.4em] mb-6 rust">
+            CÓDIGO / CONTROL DE VERSIONES / APRENDIZAJE
+          </div>
+
+          <h2 class="massive-name uppercase font-bold leading-none"
+              style="font-size:clamp(3rem,8vw,7rem); letter-spacing:-0.04em;">
+            VLADIMIR<br>ALBA
+          </h2>
+
+          <p class="mt-8 text-xl max-w-2xl leading-relaxed font-light">
+            Repositorio de aprendizaje y desarrollo continuo.
+            Espacio donde organizo prácticas, ejercicios y proyectos
+            técnicos como parte de mi evolución como desarrollador.
+          </p>
+
+          <p class="mt-4 text-lg max-w-2xl leading-relaxed font-light opacity-75">
+            Fundamentos primero — análisis, lógica y estructura clara
+            en cada commit. COBOL moderno, desarrollo web y control
+            de versiones como disciplina diaria.
+          </p>
+
+          <!-- LINK A GITHUB REAL -->
+          <div class="mt-10">
+            <a href="https://github.com/VLADISYSTEMS"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="inline-flex items-center gap-3 border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+               style="font-family:'IBM Plex Mono',monospace;">
+              Ver perfil completo en GitHub ↗
+            </a>
+          </div>
+
+        </div>
+
+        <!-- DERECHA: widget de stats -->
+        <div class="lg:col-span-4 order-2 lg:order-last">
+          <div class="border-2 border-black p-8 bg-black text-white">
+
+            <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+              GITHUB STATS
+            </div>
+
+            <div class="space-y-6">
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Repositorios</span>
+                  <span class="mono text-xs rust">15</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[100%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">COBOL</span>
+                  <span class="mono text-xs rust">3 repos</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[80%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Python</span>
+                  <span class="mono text-xs rust">2 repos</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[60%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">HTML / CSS / JS</span>
+                  <span class="mono text-xs rust">1 repo</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[40%]"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SOBRE EL REPOSITORIO
+    Lista de tecnologías y áreas de práctica — estilo raw-box.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <!-- TÍTULO DE SECCIÓN -->
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-4">SECCIÓN 01</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            SOBRE EL<br>REPOSITORIO
+          </h3>
+        </div>
+
+        <!-- CONTENIDO -->
+        <div class="lg:col-span-9">
+
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-12 opacity-80">
+            En este GitHub se encuentran prácticas y desarrollos orientados
+            a fortalecer habilidades de análisis, lógica, diseño y programación.
+            Cada repositorio forma parte de un proceso de aprendizaje sistemático
+            y documentado.
+          </p>
+
+          <!-- GRID DE ÁREAS -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.3em]">01</div>
+              <div class="font-bold uppercase tracking-wide">COBOL<br>Moderno</div>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.3em]">02</div>
+              <div class="font-bold uppercase tracking-wide">HTML<br>CSS</div>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.3em]">03</div>
+              <div class="font-bold uppercase tracking-wide">JavaScript<br>Python</div>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.3em]">04</div>
+              <div class="font-bold uppercase tracking-wide">Git &<br>GitHub</div>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.3em]">05</div>
+              <div class="font-bold uppercase tracking-wide">Estructura<br>Proyectos</div>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.3em]">06</div>
+              <div class="font-bold uppercase tracking-wide">Documentación<br>Técnica</div>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.3em]">07</div>
+              <div class="font-bold uppercase tracking-wide">Control de<br>Versiones</div>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.3em]">08</div>
+              <div class="font-bold uppercase tracking-wide">Ciencia<br>de Datos</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    REPOSITORIOS DESTACADOS
+    6 repos reales extraídos del perfil público.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <!-- TÍTULO -->
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-4">SECCIÓN 02</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            REPOS<br>DESTACADOS
+          </h3>
+        </div>
+
+        <!-- TARJETAS DE REPOSITORIOS -->
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- REPO 01 -->
+            <a href="https://github.com/VLADISYSTEMS/cobol-ejercicios"
+               target="_blank" rel="noopener noreferrer"
+               class="raw-box p-6 block group">
+              <div class="flex justify-between items-start mb-4">
+                <div class="mono text-xs rust tracking-[0.3em]">COBOL</div>
+                <div class="mono text-xs opacity-40 tracking-[0.2em]">↗</div>
+              </div>
+              <div class="font-bold uppercase text-lg mb-2">cobol-ejercicios</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                Ejercicios de práctica COBOL por Vladimir Alba.
+                Aprendizaje estructurado del lenguaje.
+              </p>
+            </a>
+
+            <!-- REPO 02 -->
+            <a href="https://github.com/VLADISYSTEMS/cobol-practicas-vladisystems"
+               target="_blank" rel="noopener noreferrer"
+               class="raw-box p-6 block group">
+              <div class="flex justify-between items-start mb-4">
+                <div class="mono text-xs rust tracking-[0.3em]">COBOL</div>
+                <div class="mono text-xs opacity-40 tracking-[0.2em]">↗</div>
+              </div>
+              <div class="font-bold uppercase text-lg mb-2">cobol-practicas</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                Entrenamiento GitHub, Ubuntu y COBOL.
+                Integración de herramientas de desarrollo.
+              </p>
+            </a>
+
+            <!-- REPO 03 -->
+            <a href="https://github.com/VLADISYSTEMS/calculadora-cobol"
+               target="_blank" rel="noopener noreferrer"
+               class="raw-box p-6 block group">
+              <div class="flex justify-between items-start mb-4">
+                <div class="mono text-xs rust tracking-[0.3em]">COBOL</div>
+                <div class="mono text-xs opacity-40 tracking-[0.2em]">↗</div>
+              </div>
+              <div class="font-bold uppercase text-lg mb-2">calculadora-cobol</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                Aplicación de cálculo desarrollada en COBOL.
+                Lógica de negocio y estructuras de datos.
+              </p>
+            </a>
+
+            <!-- REPO 04 -->
+            <a href="https://github.com/VLADISYSTEMS/BC1166"
+               target="_blank" rel="noopener noreferrer"
+               class="raw-box p-6 block group">
+              <div class="flex justify-between items-start mb-4">
+                <div class="mono text-xs rust tracking-[0.3em]">HTML</div>
+                <div class="mono text-xs opacity-40 tracking-[0.2em]">↗</div>
+              </div>
+              <div class="font-bold uppercase text-lg mb-2">BC1166</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                Proyecto web para BC1166 Remodelaciones.
+                HTML estructurado y diseño frontend.
+              </p>
+            </a>
+
+            <!-- REPO 05 -->
+            <a href="https://github.com/VLADISYSTEMS/glosario-ciencia-datos"
+               target="_blank" rel="noopener noreferrer"
+               class="raw-box p-6 block group">
+              <div class="flex justify-between items-start mb-4">
+                <div class="mono text-xs rust tracking-[0.3em]">PYTHON</div>
+                <div class="mono text-xs opacity-40 tracking-[0.2em]">↗</div>
+              </div>
+              <div class="font-bold uppercase text-lg mb-2">glosario-ciencia-datos</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                Ejercicios documentados de Ciencia de Datos
+                con Python, COBOL y Looker Studio.
+              </p>
+            </a>
+
+            <!-- REPO 06 -->
+            <a href="https://github.com/VLADISYSTEMS/demo-automatizacion-sheets"
+               target="_blank" rel="noopener noreferrer"
+               class="raw-box p-6 block group">
+              <div class="flex justify-between items-start mb-4">
+                <div class="mono text-xs rust tracking-[0.3em]">PYTHON</div>
+                <div class="mono text-xs opacity-40 tracking-[0.2em]">↗</div>
+              </div>
+              <div class="font-bold uppercase text-lg mb-2">demo-automatizacion</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                Demo de limpieza y automatización de
+                Excel/Sheets con Python.
+              </p>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    FILOSOFÍA DE TRABAJO
+    4 pilares del método de trabajo: orden, claridad, documentación,
+    mejora continua. Tarjetas raw-box con estilo brutalista.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <!-- TÍTULO -->
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-4">SECCIÓN 03</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            FILOSOFÍA<br>DE TRABAJO
+          </h3>
+        </div>
+
+        <!-- CONTENIDO -->
+        <div class="lg:col-span-9">
+
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-12 opacity-80">
+            Aprender programación no consiste únicamente en escribir código.
+            Consiste en desarrollar la capacidad de analizar problemas,
+            diseñar soluciones y construir sistemas comprensibles
+            para otras personas.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-4 tracking-[0.3em]">PILAR 01</div>
+              <div class="text-2xl font-bold uppercase mb-3">ORDEN</div>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                Estructura clara en cada repositorio. Nomenclatura
+                consistente, carpetas lógicas y commits descriptivos
+                que documentan el proceso de construcción.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-4 tracking-[0.3em]">PILAR 02</div>
+              <div class="text-2xl font-bold uppercase mb-3">CLARIDAD</div>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                Código que se entiende sin explicación adicional.
+                Nombres de variables descriptivos, lógica sin
+                ambigüedades y soluciones directas al problema.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-4 tracking-[0.3em]">PILAR 03</div>
+              <div class="text-2xl font-bold uppercase mb-3">DOCUMENTACIÓN</div>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                READMEs completos, comentarios útiles y registros
+                de aprendizaje. El conocimiento documentado
+                multiplica su valor en el tiempo.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-4 tracking-[0.3em]">PILAR 04</div>
+              <div class="text-2xl font-bold uppercase mb-3">MEJORA CONTINUA</div>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                Cada proyecto es una iteración sobre el anterior.
+                Aprendizaje permanente aplicado con disciplina
+                y evolución técnica medible en cada commit.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    AVISO IMPORTANTE
+    Diferencia entre este repositorio y el Portfolio VLADISYSTEMS.
+    Caja destacada con fondo negro — contraste máximo.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="border-2 border-black bg-black text-white p-12 md:p-16">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+          <div class="lg:col-span-2">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">NOTA</div>
+            <div class="text-5xl font-bold opacity-20">!</div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <div class="mono text-xs tracking-[0.3em] text-[#888] mb-4">IMPORTANTE</div>
+            <h3 class="text-2xl font-bold uppercase mb-6 leading-tight">
+              Este repositorio está enfocado en el proceso de aprendizaje,<br>
+              práctica técnica y evolución profesional.
+            </h3>
+            <p class="font-light leading-relaxed opacity-70 text-lg">
+              Los proyectos comerciales, sitios web terminados y desarrollos
+              orientados a clientes se presentan dentro del Portfolio VLADISYSTEMS,
+              no en este repositorio de GitHub.
+            </p>
+          </div>
+
+          <div class="lg:col-span-3 flex flex-col gap-4">
+            <a href="index.html"
+               class="inline-flex items-center justify-center gap-2 border-2 border-white px-6 py-4 uppercase tracking-[0.2em] text-sm hover:bg-white hover:text-black transition"
+               style="font-family:'IBM Plex Mono',monospace;">
+              ← Ver Portfolio
+            </a>
+            <a href="https://github.com/VLADISYSTEMS"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="inline-flex items-center justify-center gap-2 border-2 border-[#444] px-6 py-4 uppercase tracking-[0.2em] text-sm text-[#888] hover:border-white hover:text-white transition"
+               style="font-family:'IBM Plex Mono',monospace;">
+              GitHub Real ↗
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    FOOTER DEL MÓDULO
+    Mismo footer del sistema VLADISYSTEMS.
+    3 columnas: tagline | logo | links de regreso.
+  ============================================================ -->
+  <footer class="bg-black text-white">
+    <div class="max-w-[1800px] mx-auto px-6 py-10 grid grid-cols-3 items-center">
+
+      <div class="mono text-xs tracking-[0.3em] opacity-60 text-left">
+        VLADISYSTEMS / RAW DIGITAL STRUCTURE
+      </div>
+
+      <div class="flex justify-center">
+        <img
+          src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
+          style="height:90px; width:auto;"
+          alt="VLADISYSTEMS"
+        >
+      </div>
+
+      <div class="flex justify-end gap-4 flex-wrap">
+        <a href="https://github.com/VLADISYSTEMS"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="mono text-xs tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition"
+           style="color:#fff;">
+          GitHub ↗
+        </a>
+        <a href="index.html" class="btn-back" style="border-color:#fff; color:#fff;">
+          ← PORTFOLIO
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+</div><!-- end content-offset -->
+
+</body>
+</html>
