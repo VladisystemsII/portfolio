@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+  MÓDULO INDEPENDIENTE: CV PROFESIONAL
+  Archivo: cv.html
+  Parte del sistema VLADISYSTEMS PORTFOLIO
+  Contiene el CV completo de Vladimir Alba rediseñado
+  con la identidad visual del portfolio.
+  Se accede desde index.html via el link de la sección LINKS.
+  El botón "← PORTFOLIO" regresa al portfolio principal.
+============================================================ -->
+<title>VLADISYSTEMS | CV PROFESIONAL</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- CUADRÍCULA DE FONDO -->
+<div class="grid-lines"></div>
+
+<!-- ============================================================
+  HEADER
+  Sticky + blur. Mismo sistema que todos los módulos.
+============================================================ -->
+<header class="border-b-2 border-black">
+  <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
+    <h1 class="text-2xl md:text-4xl font-bold tracking-tight">
+      VLADISYSTEMS
+    </h1>
+    <a href="index.html" class="btn-back">
+      ← PORTFOLIO
+    </a>
+  </div>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div style="position:relative; z-index:1;" class="content-offset">
+
+  <!-- ============================================================
+    HERO
+    Mismo patrón que workana.html y linkedin.html:
+    etiqueta mono rust + nombre grande + descripción
+    + widget de stats a la derecha.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-24">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+
+        <!-- IZQUIERDA -->
+        <div class="lg:col-span-8 order-2 lg:order-1">
+
+          <div class="mono text-xs tracking-[0.4em] mb-6 rust">
+            SISTEMAS / DESARROLLO / COMERCIAL
+          </div>
+
+          <h2 class="massive-name uppercase font-bold leading-none"
+              style="font-size:clamp(3rem,8vw,7rem); letter-spacing:-0.04em;">
+            VLADIMIR<br>ALBA
+          </h2>
+
+          <p class="mt-8 text-xl max-w-2xl leading-relaxed font-light">
+            Desarrollador de soluciones digitales · Analista de Sistemas
+            · COBOL y sistemas empresariales · Ventas y negocios.
+          </p>
+
+          <p class="mt-4 text-lg max-w-2xl leading-relaxed font-light opacity-75">
+            Más de 30 años integrando lógica de negocio, tecnología
+            y experiencia comercial para construir soluciones digitales
+            que generan resultados reales.
+          </p>
+
+          <div class="mono text-xs tracking-[0.3em] mt-6 opacity-60">
+            BOGOTÁ, COLOMBIA · +57 311 483 1846 · vladiblues1969@gmail.com
+          </div>
+
+        </div>
+
+        <!-- DERECHA: widget stats -->
+        <div class="lg:col-span-4 order-2 lg:order-last">
+          <div class="border-2 border-black p-8 bg-black text-white">
+
+            <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+              PERFIL EJECUTIVO
+            </div>
+
+            <div class="space-y-6">
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Años de experiencia</span>
+                  <span class="mono text-xs rust">30+</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[100%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Posiciones</span>
+                  <span class="mono text-xs rust">7</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[85%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Certificaciones</span>
+                  <span class="mono text-xs rust">12+</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[90%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Competencias clave</span>
+                  <span class="mono text-xs rust">15+</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[95%]"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    PERFIL PROFESIONAL
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 01</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">ABOUT</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            PERFIL<br>PROFESIONAL
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+          <p class="text-xl leading-relaxed font-light max-w-3xl mb-6">
+            Profesional con más de 30 años de experiencia en desarrollo
+            de sistemas, análisis de procesos empresariales y soluciones
+            tecnológicas orientadas a negocios.
+          </p>
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-6 opacity-80">
+            Inicié mi carrera en programación COBOL y sistemas administrativos
+            empresariales, desarrollando lógica de negocio, manejo de datos
+            y soporte a operaciones críticas en entornos estructurados.
+          </p>
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-6 opacity-80">
+            He evolucionado hacia la integración de tecnologías modernas como
+            Linux, Git, DevOps e inteligencia artificial aplicada, orientado
+            a la construcción de soluciones digitales enfocadas en la captación
+            de clientes y optimización de procesos comerciales.
+          </p>
+          <p class="text-lg leading-relaxed font-light max-w-3xl opacity-80">
+            Complemento mi perfil técnico con amplia experiencia en ventas,
+            negociación, atención al cliente y gestión de negocios en sectores
+            inmobiliarios y de servicios.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    COMPETENCIAS CLAVE
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 02</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">SKILLS</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            COMPETENCIAS<br>CLAVE
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+
+          <!-- TÉCNICAS -->
+          <div class="mono text-xs tracking-[0.3em] rust mb-6">TÉCNICAS</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-black mb-12">
+
+            <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">Programación COBOL (sistemas empresariales legacy)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">Análisis de sistemas y lógica de negocio</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">Diseño de procesos administrativos</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">Linux (Ubuntu WSL)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">Git / GitHub</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">Visual Studio Code</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="raw-card">
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">Bases de datos (DB2 en formación)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">JCL (en formación)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">Pseudocódigo y flujogramas</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">HTML · CSS · JavaScript</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">Python (limpieza de datos)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="mono text-xs rust">—</span>
+                  <span class="text-sm font-light">IA aplicada a integración de datos</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- NEGOCIO Y COMERCIALES -->
+          <div class="mono text-xs tracking-[0.3em] rust mb-6">NEGOCIO Y COMERCIALES</div>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+
+            <div class="raw-box p-5">
+              <div class="mono text-xs rust mb-2 tracking-[0.2em]">01</div>
+              <div class="text-sm font-bold uppercase">Ventas y cierre de clientes</div>
+            </div>
+            <div class="raw-box p-5">
+              <div class="mono text-xs rust mb-2 tracking-[0.2em]">02</div>
+              <div class="text-sm font-bold uppercase">Negociación inmobiliaria</div>
+            </div>
+            <div class="raw-box p-5">
+              <div class="mono text-xs rust mb-2 tracking-[0.2em]">03</div>
+              <div class="text-sm font-bold uppercase">Captación de prospectos</div>
+            </div>
+            <div class="raw-box p-5">
+              <div class="mono text-xs rust mb-2 tracking-[0.2em]">04</div>
+              <div class="text-sm font-bold uppercase">Atención y fidelización</div>
+            </div>
+            <div class="raw-box p-5">
+              <div class="mono text-xs rust mb-2 tracking-[0.2em]">05</div>
+              <div class="text-sm font-bold uppercase">Gestión de negocios propios</div>
+            </div>
+            <div class="raw-box p-5">
+              <div class="mono text-xs rust mb-2 tracking-[0.2em]">06</div>
+              <div class="text-sm font-bold uppercase">Coordinación operativa</div>
+            </div>
+
+          </div>
+
+          <!-- FORMACIÓN HUMANA -->
+          <div class="mono text-xs tracking-[0.3em] rust mb-6">FORMACIÓN HUMANA</div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            <div class="raw-box p-5">
+              <div class="mono text-xs rust mb-2 tracking-[0.2em]">—</div>
+              <div class="text-sm font-bold uppercase">Docencia y mentoría</div>
+            </div>
+            <div class="raw-box p-5">
+              <div class="mono text-xs rust mb-2 tracking-[0.2em]">—</div>
+              <div class="text-sm font-bold uppercase">Formación musical formal</div>
+            </div>
+            <div class="raw-box p-5">
+              <div class="mono text-xs rust mb-2 tracking-[0.2em]">—</div>
+              <div class="text-sm font-bold uppercase">Coaching y acompañamiento</div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    EXPERIENCIA PROFESIONAL
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">SECCIÓN 03</div>
+        <h3 class="uppercase leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); font-weight:700; letter-spacing:-0.03em;">
+          Experiencia<br>Profesional
+        </h3>
+      </div>
+
+      <div class="space-y-0">
+
+        <!-- EXP 01 -->
+        <div class="exp-card border-2 border-black border-b-0">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-3">
+              <div class="mono text-xs rust tracking-[0.3em] mb-2">01 / ACTUAL</div>
+              <div class="mono text-xs opacity-50 tracking-[0.2em]">2025 — PRESENTE</div>
+            </div>
+            <div class="lg:col-span-9">
+              <h4 class="text-2xl font-bold uppercase mb-1">Vladisystems</h4>
+              <div class="mono text-xs tracking-[0.2em] opacity-60 mb-4">FUNDADOR / DESARROLLADOR · BOGOTÁ, COLOMBIA</div>
+              <div class="space-y-2">
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Desarrollo de soluciones web orientadas a la captación de clientes para negocios y servicios locales.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Diseño e implementación de páginas web simples y funcionales enfocadas en conversión y contacto directo vía WhatsApp.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Creación de sistemas digitales para presentación de servicios y optimización de comunicación con clientes.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 02 -->
+        <div class="exp-card border-2 border-black border-b-0">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-3">
+              <div class="mono text-xs rust tracking-[0.3em] mb-2">02 / ACTUAL</div>
+              <div class="mono text-xs opacity-50 tracking-[0.2em]">2020 — PRESENTE</div>
+            </div>
+            <div class="lg:col-span-9">
+              <h4 class="text-2xl font-bold uppercase mb-1">BC1166 Remodelaciones</h4>
+              <div class="mono text-xs tracking-[0.2em] opacity-60 mb-4">COFUNDADOR / COORDINACIÓN OPERATIVA · BOGOTÁ, COLOMBIA</div>
+              <div class="space-y-2">
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Coordinación de servicios locativos, remodelaciones y gestión operativa de proyectos.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Supervisión de personal técnico y ejecución de trabajos en campo.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Red de más de 400 contactos en el sector de servicios y aliados comerciales.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 03 -->
+        <div class="exp-card border-2 border-black border-b-0">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-3">
+              <div class="mono text-xs rust tracking-[0.3em] mb-2">03 / ACTUAL</div>
+              <div class="mono text-xs opacity-50 tracking-[0.2em]">2016 — PRESENTE</div>
+            </div>
+            <div class="lg:col-span-9">
+              <h4 class="text-2xl font-bold uppercase mb-1">Agente Inmobiliario Independiente</h4>
+              <div class="mono text-xs tracking-[0.2em] opacity-60 mb-4">ASESOR COMERCIAL · BOGOTÁ, COLOMBIA</div>
+              <div class="space-y-2">
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Asesoría en compra, venta y arriendo de inmuebles.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Negociación directa con clientes y cierre de operaciones.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Gestión de relaciones comerciales y atención personalizada.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 04 -->
+        <div class="exp-card border-2 border-black border-b-0">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-3">
+              <div class="mono text-xs rust tracking-[0.3em] mb-2">04</div>
+              <div class="mono text-xs opacity-50 tracking-[0.2em]">2000 — 2013</div>
+            </div>
+            <div class="lg:col-span-9">
+              <h4 class="text-2xl font-bold uppercase mb-1">TULABIAL C.A.</h4>
+              <div class="mono text-xs tracking-[0.2em] opacity-60 mb-4">GERENTE GENERAL · CARACAS, VENEZUELA</div>
+              <div class="space-y-2">
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Gestión integral de empresa de productos de belleza y estética.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Coordinación de ventas, logística, atención al cliente y distribución.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Implementación de estrategias de captación de clientes mediante canales digitales emergentes.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 05 -->
+        <div class="exp-card border-2 border-black border-b-0">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-3">
+              <div class="mono text-xs rust tracking-[0.3em] mb-2">05</div>
+              <div class="mono text-xs opacity-50 tracking-[0.2em]">1995 — 1999</div>
+            </div>
+            <div class="lg:col-span-9">
+              <h4 class="text-2xl font-bold uppercase mb-1">IV4 Construcciones</h4>
+              <div class="mono text-xs tracking-[0.2em] opacity-60 mb-4">PROGRAMADOR / ANALISTA DE SISTEMAS · CARACAS, VENEZUELA</div>
+              <div class="space-y-2">
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Desarrollo y mantenimiento de sistemas administrativos en COBOL.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Análisis de procesos empresariales y diseño de lógica de negocio.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Soporte técnico y optimización de sistemas de información.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 06 -->
+        <div class="exp-card border-2 border-black">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-3">
+              <div class="mono text-xs rust tracking-[0.3em] mb-2">06</div>
+              <div class="mono text-xs opacity-50 tracking-[0.2em]">1993 — 1995</div>
+            </div>
+            <div class="lg:col-span-9">
+              <h4 class="text-2xl font-bold uppercase mb-1">Arquitectos Asociados Perdomo-Surmont</h4>
+              <div class="mono text-xs tracking-[0.2em] opacity-60 mb-4">ANALISTA DE SISTEMAS · CARACAS, VENEZUELA</div>
+              <div class="space-y-2">
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Desarrollo de sistemas administrativos en COBOL.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Procesamiento de datos, análisis de procesos y soporte a sistemas internos.</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="mono text-xs rust mt-1">—</span>
+                  <span class="text-sm font-light leading-relaxed">Primera experiencia profesional en desarrollo de software empresarial.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    FORMACIÓN ACADÉMICA
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 04</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">EDUCATION</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            FORMACIÓN<br>ACADÉMICA
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-black">
+
+            <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+              <div class="mono text-xs rust tracking-[0.3em] mb-4">TÍTULO PRINCIPAL</div>
+              <h4 class="uppercase text-xl font-bold mb-2">Técnico Superior en Informática</h4>
+              <div class="mono text-xs opacity-60 mb-1">Instituto Universitario de Tecnología Venezuela (IUTV)</div>
+              <div class="mono text-xs opacity-40 tracking-[0.2em]">1987 — 1990</div>
+            </div>
+
+            <div class="raw-card border-b-2 md:border-b-0 border-black">
+              <div class="mono text-xs rust tracking-[0.3em] mb-4">POSTGRADO</div>
+              <h4 class="uppercase text-xl font-bold mb-2">Diplomado en Docencia Universitaria</h4>
+              <div class="mono text-xs opacity-60 mb-1">Formación pedagógica y metodología de enseñanza</div>
+              <div class="mono text-xs opacity-40 tracking-[0.2em]">2011 — 2012</div>
+            </div>
+
+            <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+              <div class="mono text-xs rust tracking-[0.3em] mb-4">BACHILLER</div>
+              <h4 class="uppercase text-xl font-bold mb-2">Bachiller en Ciencias</h4>
+              <div class="mono text-xs opacity-60 mb-1">Colegio Fray Luis Amigó</div>
+              <div class="mono text-xs opacity-40 tracking-[0.2em]">1981 — 1985</div>
+            </div>
+
+            <div class="raw-card">
+              <div class="mono text-xs rust tracking-[0.3em] mb-4">FORMACIÓN MUSICAL</div>
+              <h4 class="uppercase text-xl font-bold mb-2">Música Formal + Armonía Contemporánea</h4>
+              <div class="mono text-xs opacity-60 mb-1">Escuela Lino Gallardo · Estudios con Gerry Weil</div>
+              <div class="mono text-xs opacity-40 tracking-[0.2em]">2001 — 2009</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    FORMACIÓN COMPLEMENTARIA CERTIFICADA
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">SECCIÓN 05</div>
+        <h3 class="uppercase leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); font-weight:700; letter-spacing:-0.03em;">
+          Certificaciones
+        </h3>
+        <div class="mono text-xs tracking-[0.3em] mt-4 opacity-50">SENA · FUNDACIÓN TELEFÓNICA · OTROS</div>
+      </div>
+
+      <!-- DESARROLLO WEB Y TECNOLOGÍA -->
+      <div class="mono text-xs tracking-[0.3em] rust mb-6">DESARROLLO WEB Y TECNOLOGÍA</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-2 border-black mb-12">
+
+        <div class="raw-card border-b-2 lg:border-b-0 lg:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.2em] mb-3">SENA</div>
+          <div class="font-bold uppercase text-base">Metodología de la Programación de Sistemas Informáticos</div>
+        </div>
+
+        <div class="raw-card border-b-2 lg:border-b-0 lg:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.2em] mb-3">SENA</div>
+          <div class="font-bold uppercase text-base">Bases de Datos (MySQL / fundamentos)</div>
+        </div>
+
+        <div class="raw-card border-b-2 lg:border-b-0 border-black">
+          <div class="mono text-xs rust tracking-[0.2em] mb-3">SENA</div>
+          <div class="font-bold uppercase text-base">Diseño Web con HTML5 + CSS</div>
+        </div>
+
+        <div class="raw-card border-b-2 lg:border-b-0 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.2em] mb-3">SENA</div>
+          <div class="font-bold uppercase text-base">Diseño Web con Adobe Dreamweaver</div>
+        </div>
+
+        <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.2em] mb-3">SENA</div>
+          <div class="font-bold uppercase text-base">Analítica Web</div>
+        </div>
+
+        <div class="raw-card">
+          <div class="mono text-xs rust tracking-[0.2em] mb-3">FUNDACIÓN TELEFÓNICA</div>
+          <div class="font-bold uppercase text-base">WordPress Básico</div>
+        </div>
+
+      </div>
+
+      <!-- IA Y TECNOLOGÍAS EMERGENTES -->
+      <div class="mono text-xs tracking-[0.3em] rust mb-6">IA Y TECNOLOGÍAS EMERGENTES</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-black mb-12">
+
+        <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.2em] mb-3">SENA</div>
+          <div class="font-bold uppercase text-base">Aplicación de IA en integración de datos</div>
+        </div>
+
+        <div class="raw-card">
+          <div class="mono text-xs rust tracking-[0.2em] mb-3">SENA</div>
+          <div class="font-bold uppercase text-base">Blockchain: contratos inteligentes</div>
+        </div>
+
+      </div>
+
+      <!-- AUTOMATIZACIÓN -->
+      <div class="mono text-xs tracking-[0.3em] rust mb-6">AUTOMATIZACIÓN Y HERRAMIENTAS</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-black">
+
+        <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.2em] mb-3">SENA</div>
+          <div class="font-bold uppercase text-base">Automatización de procesos organizacionales</div>
+        </div>
+
+        <div class="raw-card">
+          <div class="mono text-xs rust tracking-[0.2em] mb-3">SENA · EN FORMACIÓN</div>
+          <div class="font-bold uppercase text-base">Limpieza de datos con Python</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+    DESARROLLO PERSONAL
+    Discreta pero presente — parte del perfil integral.
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 06</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">PERSONAL</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            DESARROLLO<br>PERSONAL
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-10 opacity-80">
+            Parte integral del perfil profesional. El desarrollo técnico
+            y el crecimiento personal son procesos paralelos — uno
+            potencia al otro.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">PRÁCTICA</div>
+              <div class="font-bold uppercase mb-2">Rebirthing</div>
+              <p class="text-xs font-light opacity-60 leading-relaxed">
+                Desarrollo personal y respiración consciente.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">DISCIPLINA</div>
+              <div class="font-bold uppercase mb-2">Vipassana</div>
+              <p class="text-xs font-light opacity-60 leading-relaxed">
+                Meditación y observación mental como disciplina diaria.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">PROCESO</div>
+              <div class="font-bold uppercase mb-2">Dieta del Perdón</div>
+              <p class="text-xs font-light opacity-60 leading-relaxed">
+                Liberación emocional y autoconocimiento aplicado.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    FOOTER — igual que workana.html adaptado para cv
+  ============================================================ -->
+  <footer class="bg-black text-white">
+    <div class="max-w-[1800px] mx-auto px-6 py-10 grid grid-cols-3 items-center">
+
+      <div class="mono text-xs tracking-[0.3em] opacity-60 text-left">
+        VLADISYSTEMS / RAW DIGITAL STRUCTURE
+      </div>
+
+      <div class="flex justify-center">
+        <img
+          src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
+          style="height:90px; width:auto;"
+          alt="VLADISYSTEMS"
+        >
+      </div>
+
+      <div class="flex justify-end gap-4 flex-wrap">
+        <a href="https://www.linkedin.com/in/vladisystems"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="mono text-xs tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition"
+           style="color:#fff;">
+          LinkedIn ↗
+        </a>
+        <a href="index.html" class="btn-back" style="border-color:#fff; color:#fff;">
+          ← PORTFOLIO
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+</div><!-- end content-offset -->
+
+</body>
+</html>
