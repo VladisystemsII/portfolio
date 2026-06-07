@@ -48,3 +48,10 @@ git add .
 git commit -m "página CV"
 
 git push
+
+
+git add .
+
+git commit -m "carpeta y codigo de credenciales"
+
+git push

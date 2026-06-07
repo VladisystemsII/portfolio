@@ -667,36 +667,35 @@
 
 <!-- ============================================================
   JAVASCRIPT — SISTEMA DE MODAL
-  Cada credencial tiene un ID que mapea a su archivo PDF/imagen.
-  Cuando el PDF esté subido a Cloudinary, se reemplaza el '#'
-  por la URL real del archivo.
-  Por ahora muestra un placeholder con el nombre del documento.
+  Rutas relativas directas al repo. Funcionan en GitHub Pages.
 ============================================================ -->
 <script>
 
   // MAPA DE CREDENCIALES
   // key: id del modal → value: { url, tipo, descripcion }
   // Cuando subas los PDFs a Cloudinary, reemplaza las URLs '#'
+  // RUTAS RELATIVAS — los archivos están en la misma carpeta del repo
+  // Estructura GitHub Pages: vladisystemsii.github.io/portfolio/[archivo]
   const credenciales = {
-    'titulo':           { url: '#', tipo: 'imagen',      desc: 'Título oficial expedido por IUTV, Venezuela. 1990.' },
-    'notas-uni':        { url: '#', tipo: 'pdf',         desc: 'Constancia de notas certificadas — 37 asignaturas aprobadas, índice 15.2593.' },
-    'cert-prog':        { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Metodología de la Programación de Sistemas Informáticos. 40h. Nov 2025.' },
-    'cert-bd':          { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Bases de Datos Generalidades y Sistemas de Gestión. 40h. Dic 2025.' },
-    'cert-mysql':       { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Construcción de Bases de Datos con MySQL. 48h. Dic 2025.' },
-    'cert-html':        { url: '#', tipo: 'pdf',         desc: 'Certificado Fundación Telefónica — Diseño Web con HTML5 + CSS. 30h. Oct 2025.' },
-    'cert-dw':          { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Diseño Web con Adobe Dreamweaver. 40h. Dic 2025.' },
-    'cert-analitica':   { url: '#', tipo: 'pdf',         desc: 'Certificado Fundación Telefónica — Analítica Web. 30h. Oct 2025.' },
-    'cert-wp':          { url: '#', tipo: 'pdf',         desc: 'Certificado Fundación Telefónica — Aprende WordPress de forma sencilla. 30h. Nov 2025.' },
-    'cert-ia':          { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — IA en la Integración de Datos. 48h. Mar 2026.' },
-    'cert-blockchain':  { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Blockchain: Contratos Inteligentes. 48h. Abr 2026.' },
-    'cert-auto':        { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Automatización de Procesos. 48h. Mar 2026.' },
-    'notas-prog':       { url: '#', tipo: 'pdf',         desc: 'Registro de notas — Programación de Sistemas. Apto 4.5.' },
-    'notas-bd':         { url: '#', tipo: 'pdf',         desc: 'Registro de notas — Bases de Datos. Apto 4.5.' },
-    'notas-mysql':      { url: '#', tipo: 'pdf',         desc: 'Registro de notas — MySQL. Apto 4.5.' },
-    'notas-dw':         { url: '#', tipo: 'pdf',         desc: 'Registro de notas — Dreamweaver. Apto 4.5.' },
-    'notas-auto':       { url: '#', tipo: 'pdf',         desc: 'Registro de notas — Automatización. Apto 4.5.' },
-    'notas-ia':         { url: '#', tipo: 'pdf',         desc: 'Registro de notas — IA Integración de Datos. Apto 4.5.' },
-    'notas-blockchain': { url: '#', tipo: 'pdf',         desc: 'Registro de notas — Blockchain. Apto 4.5.' },
+    'titulo':           { url: './a84ee81d-6354-4651-a8ac-912a7f8cddb0.webp',                    tipo: 'imagen', desc: 'Título oficial expedido por IUTV, Venezuela. 1990.' },
+    'notas-uni':        { url: './-certificado_notas_titulo_universitario.pdf',                  tipo: 'pdf',    desc: 'Constancia de notas certificadas — 37 asignaturas aprobadas, índice 15.2593.' },
+    'cert-prog':        { url: './Cert-Programaci%C3%B3n.pdf',                                  tipo: 'pdf',    desc: 'Certificado SENA — Metodología de la Programación de Sistemas Informáticos. 40h. Nov 2025.' },
+    'cert-bd':          { url: './Cert-Bases_de_Datos.pdf',                                     tipo: 'pdf',    desc: 'Certificado SENA — Bases de Datos Generalidades y Sistemas de Gestión. 40h. Dic 2025.' },
+    'cert-mysql':       { url: './Cert-BD_MYSQL.pdf',                                           tipo: 'pdf',    desc: 'Certificado SENA — Construcción de Bases de Datos con MySQL. 48h. Dic 2025.' },
+    'cert-html':        { url: './CertificadoHTML_CSS.pdf',                                     tipo: 'pdf',    desc: 'Certificado Fundación Telefónica — Diseño Web con HTML5 + CSS. 30h. Oct 2025.' },
+    'cert-dw':          { url: './Cert-DreamWeaver.pdf',                                        tipo: 'pdf',    desc: 'Certificado SENA — Diseño Web con Adobe Dreamweaver. 40h. Dic 2025.' },
+    'cert-analitica':   { url: './CertificadoAnal%C3%ADticaWeb.pdf',                            tipo: 'pdf',    desc: 'Certificado Fundación Telefónica — Analítica Web. 30h. Oct 2025.' },
+    'cert-wp':          { url: './CertificadoWordpress.pdf',                                    tipo: 'pdf',    desc: 'Certificado Fundación Telefónica — Aprende WordPress de forma sencilla. 30h. Nov 2025.' },
+    'cert-ia':          { url: './Cert-IA.pdf',                                                 tipo: 'pdf',    desc: 'Certificado SENA — IA en la Integración de Datos. 48h. Mar 2026.' },
+    'cert-blockchain':  { url: './Cert-Blockchain.pdf',                                         tipo: 'pdf',    desc: 'Certificado SENA — Blockchain: Contratos Inteligentes. 48h. Abr 2026.' },
+    'cert-auto':        { url: './Cert-Automatizaci%C3%B3n.pdf',                                tipo: 'pdf',    desc: 'Certificado SENA — Automatización de Procesos. 48h. Mar 2026.' },
+    'notas-prog':       { url: './Notas-Programaci%C3%B3n.pdf',                                 tipo: 'pdf',    desc: 'Registro de notas — Programación de Sistemas. Apto 4.5.' },
+    'notas-bd':         { url: './Notas-Bases%20de%20Datos.pdf',                                tipo: 'pdf',    desc: 'Registro de notas — Bases de Datos. Apto 4.5.' },
+    'notas-mysql':      { url: './Notas-BD%20MYSQL.pdf',                                        tipo: 'pdf',    desc: 'Registro de notas — MySQL. Apto 4.5.' },
+    'notas-dw':         { url: './Notas-DreamWeaver.pdf',                                       tipo: 'pdf',    desc: 'Registro de notas — Dreamweaver. Apto 4.5.' },
+    'notas-auto':       { url: './Notas-Automatizaci%C3%B3n.pdf',                               tipo: 'pdf',    desc: 'Registro de notas — Automatización. Apto 4.5.' },
+    'notas-ia':         { url: './Notas-IA.pdf',                                                tipo: 'pdf',    desc: 'Registro de notas — IA Integración de Datos. Apto 4.5.' },
+    'notas-blockchain': { url: './Notas-Blockchain.pdf',                                        tipo: 'pdf',    desc: 'Registro de notas — Blockchain. Apto 4.5.' },
   };
 
   function openModal(id, titulo) {
