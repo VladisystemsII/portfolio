@@ -40,3 +40,11 @@ git add .
 git commit -m "página GITHUB"
 
 git push
+
+
+
+git add .
+
+git commit -m "página CV"
+
+git push

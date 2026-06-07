@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+  MÓDULO INDEPENDIENTE: CREDENCIALES
+  Archivo: credenciales.html
+  Parte del sistema VLADISYSTEMS PORTFOLIO
+  Muestra el título universitario, certificaciones tecnológicas
+  y calificaciones con sistema de modal/lightbox.
+============================================================ -->
+<title>VLADISYSTEMS | CREDENCIALES</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     MODAL / LIGHTBOX
+     Overlay negro semitransparente + caja centrada con
+     la imagen del certificado. Cierre con ESC o clic fuera.
+  ============================================================ */
+  #modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+  }
+
+  #modal-overlay.active {
+    display: flex;
+  }
+
+  #modal-box {
+    position: relative;
+    max-width: 860px;
+    width: 100%;
+    background: #f5f5f2;
+    border: 2px solid #111;
+  }
+
+  #modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 2px solid #111;
+    background: #111;
+    color: #f5f5f2;
+  }
+
+  #modal-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  #modal-close {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    border: 1px solid #444;
+    padding: 4px 12px;
+    background: transparent;
+    color: #f5f5f2;
+    transition: all 0.15s;
+  }
+
+  #modal-close:hover {
+    background: #f5f5f2;
+    color: #111;
+    border-color: #f5f5f2;
+  }
+
+  #modal-content {
+    padding: 24px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  #modal-content img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #ddd;
+  }
+
+  #modal-content .modal-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    opacity: 0.5;
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  /* Tarjeta hover: inversión completa */
+  .cred-card {
+    border: 2px solid #111;
+    padding: 28px;
+    background: #f5f5f2;
+    transition: background 0.15s, color 0.15s;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cred-card:hover {
+    background: #111;
+    color: #f5f5f2;
+  }
+
+  .cred-card:hover .cred-inst,
+  .cred-card:hover .cred-year,
+  .cred-card:hover .cred-tag {
+    opacity: 0.5;
+    color: #f5f5f2;
+  }
+
+  .cred-card:hover .cred-btn {
+    border-color: #f5f5f2;
+    color: #f5f5f2;
+  }
+
+  .cred-card:hover .cred-btn:hover {
+    background: #f5f5f2;
+    color: #111;
+  }
+
+  .cred-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #9d3d22;
+    margin-bottom: 12px;
+  }
+
+  .cred-name {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    flex-grow: 1;
+  }
+
+  .cred-inst {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    opacity: 0.55;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .cred-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    opacity: 0.35;
+    margin-bottom: 20px;
+  }
+
+  .cred-btn {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid #111;
+    padding: 8px 16px;
+    cursor: pointer;
+    background: transparent;
+    color: #111;
+    transition: background 0.15s, color 0.15s;
+    align-self: flex-start;
+    margin-top: auto;
+  }
+
+  .cred-btn:hover {
+    background: #111;
+    color: #f5f5f2;
+  }
+
+  /* Contador hero */
+  .stat-num {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- CUADRÍCULA DE FONDO -->
+<div class="grid-lines"></div>
+
+<!-- ============================================================
+  MODAL LIGHTBOX
+  Se activa al hacer clic en "Ver credencial".
+  La imagen se inyecta dinámicamente via JS.
+============================================================ -->
+<div id="modal-overlay" onclick="closeModal(event)">
+  <div id="modal-box">
+    <div id="modal-header">
+      <span id="modal-title">CREDENCIAL</span>
+      <button id="modal-close" onclick="closeModalDirect()">ESC / CERRAR ✕</button>
+    </div>
+    <div id="modal-content">
+      <!-- contenido inyectado por JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+  HEADER
+============================================================ -->
+<header class="border-b-2 border-black">
+  <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
+    <h1 class="text-2xl md:text-4xl font-bold tracking-tight">
+      VLADISYSTEMS
+    </h1>
+    <a href="index.html" class="btn-back">
+      ← PORTFOLIO
+    </a>
+  </div>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div style="position:relative; z-index:1;" class="content-offset">
+
+  <!-- ============================================================
+    HERO
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-24">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+
+        <!-- IZQUIERDA -->
+        <div class="lg:col-span-8 order-2 lg:order-1">
+
+          <div class="mono text-xs tracking-[0.4em] mb-6 rust">
+            TÍTULO / CERTIFICACIONES / CALIFICACIONES
+          </div>
+
+          <h2 class="uppercase font-bold leading-none"
+              style="font-size:clamp(3rem,8vw,7rem); letter-spacing:-0.04em;">
+            CREDEN<br>CIALES
+          </h2>
+
+          <p class="mt-8 text-xl max-w-2xl leading-relaxed font-light">
+            Registro verificable de formación académica, certificaciones
+            tecnológicas y calificaciones obtenidas por Vladimir Alba
+            en instituciones reconocidas de Colombia y Venezuela.
+          </p>
+
+          <div class="mono text-xs tracking-[0.3em] mt-6 opacity-60">
+            IUTV · SENA · FUNDACIÓN TELEFÓNICA · 2025–2026
+          </div>
+
+        </div>
+
+        <!-- DERECHA: widget stats -->
+        <div class="lg:col-span-4 order-2 lg:order-last">
+          <div class="border-2 border-black p-8 bg-black text-white">
+
+            <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+              RESUMEN
+            </div>
+
+            <div class="space-y-6">
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Título universitario</span>
+                  <span class="mono text-xs rust">1</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[100%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Certificaciones tech</span>
+                  <span class="mono text-xs rust">10</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[90%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Registros de notas</span>
+                  <span class="mono text-xs rust">7</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[70%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Horas certificadas</span>
+                  <span class="mono text-xs rust">402h</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[80%]"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 01 — TÍTULO UNIVERSITARIO
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 01</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">DEGREE</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            TÍTULO<br>UNIVERSITARIO
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- TARJETA: TÍTULO -->
+            <div class="cred-card">
+              <div class="cred-tag">TÍTULO OFICIAL</div>
+              <div class="cred-name">Técnico Superior en Informática</div>
+              <div class="cred-inst">Instituto Universitario de Tecnología Venezuela — IUTV</div>
+              <div class="cred-year">1987 — 1990 · Caracas, Venezuela</div>
+              <button class="cred-btn"
+                onclick="openModal('titulo', 'Técnico Superior en Informática — IUTV')">
+                Ver credencial ↗
+              </button>
+            </div>
+
+            <!-- TARJETA: NOTAS UNIVERSITARIAS -->
+            <div class="cred-card">
+              <div class="cred-tag">CERTIFICACIÓN DE NOTAS</div>
+              <div class="cred-name">Constancia de Notas Certificadas — Carrera Informática</div>
+              <div class="cred-inst">Instituto Universitario de Tecnología Venezuela — IUTV</div>
+              <div class="cred-year">Expedida: 18 de abril de 2012 · Índice: 15.2593</div>
+              <button class="cred-btn"
+                onclick="openModal('notas-uni', 'Certificación de Notas — IUTV')">
+                Ver credencial ↗
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 02 — CERTIFICACIONES TECNOLÓGICAS
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">SECCIÓN 02</div>
+        <h3 class="uppercase font-bold leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); letter-spacing:-0.03em;">
+          Certificaciones<br>Tecnológicas
+        </h3>
+        <div class="mono text-xs tracking-[0.3em] mt-4 opacity-50">SENA · FUNDACIÓN TELEFÓNICA · 2025–2026</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- 01 PROGRAMACIÓN -->
+        <div class="cred-card">
+          <div class="cred-tag">SENA · 40H · 2025</div>
+          <div class="cred-name">Metodología de la Programación de Sistemas Informáticos</div>
+          <div class="cred-inst">Centro de Electricidad, Electrónica y Telecomunicaciones</div>
+          <div class="cred-year">Regional Distrito Capital · Nov 2025 · Nota: 4.5</div>
+          <button class="cred-btn"
+            onclick="openModal('cert-prog', 'Programación de Sistemas Informáticos — SENA')">
+            Ver credencial ↗
+          </button>
+        </div>
+
+        <!-- 02 BASES DE DATOS -->
+        <div class="cred-card">
+          <div class="cred-tag">SENA · 40H · 2025</div>
+          <div class="cred-name">Bases de Datos — Generalidades y Sistemas de Gestión</div>
+          <div class="cred-inst">Centro de Servicios y Gestión Empresarial</div>
+          <div class="cred-year">Regional Antioquia · Dic 2025 · Nota: 4.5</div>
+          <button class="cred-btn"
+            onclick="openModal('cert-bd', 'Bases de Datos — SENA')">
+            Ver credencial ↗
+          </button>
+        </div>
+
+        <!-- 03 MYSQL -->
+        <div class="cred-card">
+          <div class="cred-tag">SENA · 48H · 2025</div>
+          <div class="cred-name">Construcción de Bases de Datos con MySQL</div>
+          <div class="cred-inst">Centro de Biotecnología Industrial</div>
+          <div class="cred-year">Regional Valle · Dic 2025 · Nota: 4.5</div>
+          <button class="cred-btn"
+            onclick="openModal('cert-mysql', 'Bases de Datos MySQL — SENA')">
+            Ver credencial ↗
+          </button>
+        </div>
+
+        <!-- 04 HTML5 + CSS -->
+        <div class="cred-card">
+          <div class="cred-tag">FUND. TELEFÓNICA · 30H · 2025</div>
+          <div class="cred-name">Diseño Web con HTML5 + CSS</div>
+          <div class="cred-inst">Fundación Telefónica Movistar — Conecta Empleo</div>
+          <div class="cred-year">Oct 2025</div>
+          <button class="cred-btn"
+            onclick="openModal('cert-html', 'HTML5 + CSS — Fundación Telefónica')">
+            Ver credencial ↗
+          </button>
+        </div>
+
+        <!-- 05 DREAMWEAVER -->
+        <div class="cred-card">
+          <div class="cred-tag">SENA · 40H · 2025</div>
+          <div class="cred-name">Diseño Web con Adobe Dreamweaver</div>
+          <div class="cred-inst">Centro de Electricidad y Automatización Industrial — CEAI</div>
+          <div class="cred-year">Regional Valle · Dic 2025 · Nota: 4.5</div>
+          <button class="cred-btn"
+            onclick="openModal('cert-dw', 'Dreamweaver — SENA')">
+            Ver credencial ↗
+          </button>
+        </div>
+
+        <!-- 06 ANALÍTICA WEB -->
+        <div class="cred-card">
+          <div class="cred-tag">FUND. TELEFÓNICA · 30H · 2025</div>
+          <div class="cred-name">Analítica Web</div>
+          <div class="cred-inst">Fundación Telefónica Movistar — Conecta Empleo</div>
+          <div class="cred-year">Oct 2025</div>
+          <button class="cred-btn"
+            onclick="openModal('cert-analitica', 'Analítica Web — Fundación Telefónica')">
+            Ver credencial ↗
+          </button>
+        </div>
+
+        <!-- 07 WORDPRESS -->
+        <div class="cred-card">
+          <div class="cred-tag">FUND. TELEFÓNICA · 30H · 2025</div>
+          <div class="cred-name">WordPress Básico — Aprende WordPress de forma sencilla</div>
+          <div class="cred-inst">Fundación Telefónica Movistar — Conecta Empleo</div>
+          <div class="cred-year">Nov 2025</div>
+          <button class="cred-btn"
+            onclick="openModal('cert-wp', 'WordPress — Fundación Telefónica')">
+            Ver credencial ↗
+          </button>
+        </div>
+
+        <!-- 08 IA -->
+        <div class="cred-card">
+          <div class="cred-tag">SENA · 48H · 2026</div>
+          <div class="cred-name">Aplicación de la Inteligencia Artificial en la Integración de Datos</div>
+          <div class="cred-inst">Centro de Tecnologías Agroindustriales</div>
+          <div class="cred-year">Regional Valle · Mar 2026 · Nota: 4.5</div>
+          <button class="cred-btn"
+            onclick="openModal('cert-ia', 'IA en Integración de Datos — SENA')">
+            Ver credencial ↗
+          </button>
+        </div>
+
+        <!-- 09 BLOCKCHAIN -->
+        <div class="cred-card">
+          <div class="cred-tag">SENA · 48H · 2026</div>
+          <div class="cred-name">Blockchain: Contratos Inteligentes</div>
+          <div class="cred-inst">Centro Industrial y de Desarrollo Empresarial de Soacha</div>
+          <div class="cred-year">Regional Cundinamarca · Abr 2026 · Nota: 4.5</div>
+          <button class="cred-btn"
+            onclick="openModal('cert-blockchain', 'Blockchain — SENA')">
+            Ver credencial ↗
+          </button>
+        </div>
+
+        <!-- 10 AUTOMATIZACIÓN -->
+        <div class="cred-card">
+          <div class="cred-tag">SENA · 48H · 2026</div>
+          <div class="cred-name">Automatización de Procesos para la Eficiencia Organizacional</div>
+          <div class="cred-inst">Centro de la Innovación, la Tecnología y los Servicios</div>
+          <div class="cred-year">Regional Sucre · Mar 2026 · Nota: 4.5</div>
+          <button class="cred-btn"
+            onclick="openModal('cert-auto', 'Automatización de Procesos — SENA')">
+            Ver credencial ↗
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 03 — CALIFICACIONES Y RECONOCIMIENTOS
+    Los 7 registros de notas de los cursos SENA
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">SECCIÓN 03</div>
+        <h3 class="uppercase font-bold leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); letter-spacing:-0.03em;">
+          Calificaciones<br>y Reconocimientos
+        </h3>
+        <div class="mono text-xs tracking-[0.3em] mt-4 opacity-50">REGISTROS OFICIALES DE NOTAS · SENA 2025–2026</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+        <!-- NOTA 01 -->
+        <div class="cred-card">
+          <div class="cred-tag">NOTAS OFICIALES</div>
+          <div class="cred-name">Programación de Sistemas Informáticos</div>
+          <div class="cred-inst">SENA · Regional Distrito Capital</div>
+          <div class="cred-year">Nov 2025 · Equivalencia: 4.5 / Apto</div>
+          <button class="cred-btn"
+            onclick="openModal('notas-prog', 'Notas — Programación de Sistemas')">
+            Ver notas ↗
+          </button>
+        </div>
+
+        <!-- NOTA 02 -->
+        <div class="cred-card">
+          <div class="cred-tag">NOTAS OFICIALES</div>
+          <div class="cred-name">Bases de Datos — Generalidades</div>
+          <div class="cred-inst">SENA · Regional Antioquia</div>
+          <div class="cred-year">Dic 2025 · Equivalencia: 4.5 / Apto</div>
+          <button class="cred-btn"
+            onclick="openModal('notas-bd', 'Notas — Bases de Datos')">
+            Ver notas ↗
+          </button>
+        </div>
+
+        <!-- NOTA 03 -->
+        <div class="cred-card">
+          <div class="cred-tag">NOTAS OFICIALES</div>
+          <div class="cred-name">Construcción de Bases de Datos MySQL</div>
+          <div class="cred-inst">SENA · Regional Valle</div>
+          <div class="cred-year">Dic 2025 · Equivalencia: 4.5 / Apto</div>
+          <button class="cred-btn"
+            onclick="openModal('notas-mysql', 'Notas — MySQL')">
+            Ver notas ↗
+          </button>
+        </div>
+
+        <!-- NOTA 04 -->
+        <div class="cred-card">
+          <div class="cred-tag">NOTAS OFICIALES</div>
+          <div class="cred-name">Diseño Web con Adobe Dreamweaver</div>
+          <div class="cred-inst">SENA · Regional Valle</div>
+          <div class="cred-year">Dic 2025 · Equivalencia: 4.5 / Apto</div>
+          <button class="cred-btn"
+            onclick="openModal('notas-dw', 'Notas — Dreamweaver')">
+            Ver notas ↗
+          </button>
+        </div>
+
+        <!-- NOTA 05 -->
+        <div class="cred-card">
+          <div class="cred-tag">NOTAS OFICIALES</div>
+          <div class="cred-name">Automatización de Procesos Organizacionales</div>
+          <div class="cred-inst">SENA · Regional Sucre</div>
+          <div class="cred-year">Mar 2026 · Equivalencia: 4.5 / Apto</div>
+          <button class="cred-btn"
+            onclick="openModal('notas-auto', 'Notas — Automatización')">
+            Ver notas ↗
+          </button>
+        </div>
+
+        <!-- NOTA 06 -->
+        <div class="cred-card">
+          <div class="cred-tag">NOTAS OFICIALES</div>
+          <div class="cred-name">IA en la Integración de Datos</div>
+          <div class="cred-inst">SENA · Regional Valle</div>
+          <div class="cred-year">Mar 2026 · Equivalencia: 4.5 / Apto</div>
+          <button class="cred-btn"
+            onclick="openModal('notas-ia', 'Notas — IA Integración de Datos')">
+            Ver notas ↗
+          </button>
+        </div>
+
+        <!-- NOTA 07 -->
+        <div class="cred-card">
+          <div class="cred-tag">NOTAS OFICIALES</div>
+          <div class="cred-name">Blockchain: Contratos Inteligentes</div>
+          <div class="cred-inst">SENA · Regional Cundinamarca</div>
+          <div class="cred-year">Abr 2026 · Equivalencia: 4.5 / Apto</div>
+          <button class="cred-btn"
+            onclick="openModal('notas-blockchain', 'Notas — Blockchain')">
+            Ver notas ↗
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    FOOTER — igual al sistema VLADISYSTEMS
+  ============================================================ -->
+  <footer class="bg-black text-white">
+    <div class="max-w-[1800px] mx-auto px-6 py-10 grid grid-cols-3 items-center">
+
+      <div class="mono text-xs tracking-[0.3em] opacity-60 text-left">
+        VLADISYSTEMS / RAW DIGITAL STRUCTURE
+      </div>
+
+      <div class="flex justify-center">
+        <img
+          src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
+          style="height:90px; width:auto;"
+          alt="VLADISYSTEMS"
+        >
+      </div>
+
+      <div class="flex justify-end gap-4 flex-wrap">
+        <a href="cv.html"
+           class="mono text-xs tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition"
+           style="color:#fff;">
+          CV ↗
+        </a>
+        <a href="index.html" class="btn-back" style="border-color:#fff; color:#fff;">
+          ← PORTFOLIO
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+</div><!-- end content-offset -->
+
+<!-- ============================================================
+  JAVASCRIPT — SISTEMA DE MODAL
+  Cada credencial tiene un ID que mapea a su archivo PDF/imagen.
+  Cuando el PDF esté subido a Cloudinary, se reemplaza el '#'
+  por la URL real del archivo.
+  Por ahora muestra un placeholder con el nombre del documento.
+============================================================ -->
+<script>
+
+  // MAPA DE CREDENCIALES
+  // key: id del modal → value: { url, tipo, descripcion }
+  // Cuando subas los PDFs a Cloudinary, reemplaza las URLs '#'
+  const credenciales = {
+    'titulo':           { url: '#', tipo: 'imagen',      desc: 'Título oficial expedido por IUTV, Venezuela. 1990.' },
+    'notas-uni':        { url: '#', tipo: 'pdf',         desc: 'Constancia de notas certificadas — 37 asignaturas aprobadas, índice 15.2593.' },
+    'cert-prog':        { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Metodología de la Programación de Sistemas Informáticos. 40h. Nov 2025.' },
+    'cert-bd':          { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Bases de Datos Generalidades y Sistemas de Gestión. 40h. Dic 2025.' },
+    'cert-mysql':       { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Construcción de Bases de Datos con MySQL. 48h. Dic 2025.' },
+    'cert-html':        { url: '#', tipo: 'pdf',         desc: 'Certificado Fundación Telefónica — Diseño Web con HTML5 + CSS. 30h. Oct 2025.' },
+    'cert-dw':          { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Diseño Web con Adobe Dreamweaver. 40h. Dic 2025.' },
+    'cert-analitica':   { url: '#', tipo: 'pdf',         desc: 'Certificado Fundación Telefónica — Analítica Web. 30h. Oct 2025.' },
+    'cert-wp':          { url: '#', tipo: 'pdf',         desc: 'Certificado Fundación Telefónica — Aprende WordPress de forma sencilla. 30h. Nov 2025.' },
+    'cert-ia':          { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — IA en la Integración de Datos. 48h. Mar 2026.' },
+    'cert-blockchain':  { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Blockchain: Contratos Inteligentes. 48h. Abr 2026.' },
+    'cert-auto':        { url: '#', tipo: 'pdf',         desc: 'Certificado SENA — Automatización de Procesos. 48h. Mar 2026.' },
+    'notas-prog':       { url: '#', tipo: 'pdf',         desc: 'Registro de notas — Programación de Sistemas. Apto 4.5.' },
+    'notas-bd':         { url: '#', tipo: 'pdf',         desc: 'Registro de notas — Bases de Datos. Apto 4.5.' },
+    'notas-mysql':      { url: '#', tipo: 'pdf',         desc: 'Registro de notas — MySQL. Apto 4.5.' },
+    'notas-dw':         { url: '#', tipo: 'pdf',         desc: 'Registro de notas — Dreamweaver. Apto 4.5.' },
+    'notas-auto':       { url: '#', tipo: 'pdf',         desc: 'Registro de notas — Automatización. Apto 4.5.' },
+    'notas-ia':         { url: '#', tipo: 'pdf',         desc: 'Registro de notas — IA Integración de Datos. Apto 4.5.' },
+    'notas-blockchain': { url: '#', tipo: 'pdf',         desc: 'Registro de notas — Blockchain. Apto 4.5.' },
+  };
+
+  function openModal(id, titulo) {
+    const cred = credenciales[id];
+    const overlay = document.getElementById('modal-overlay');
+    const content = document.getElementById('modal-content');
+    const modalTitle = document.getElementById('modal-title');
+
+    modalTitle.textContent = titulo.toUpperCase();
+
+    if (cred.url === '#') {
+      // PLACEHOLDER — cuando no hay URL aún
+      content.innerHTML = `
+        <div style="padding:40px 20px; text-align:center; border:2px dashed #ccc;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:0.65rem; letter-spacing:0.3em; opacity:0.4; margin-bottom:16px; text-transform:uppercase;">
+            PENDIENTE DE CARGA
+          </div>
+          <div style="font-weight:700; font-size:1.1rem; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">
+            ${titulo}
+          </div>
+          <p style="font-size:0.85rem; opacity:0.6; line-height:1.6; max-width:400px; margin:0 auto;">
+            ${cred.desc}
+          </p>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; opacity:0.3; margin-top:24px; text-transform:uppercase;">
+            El archivo se conecta cuando el PDF esté disponible en Cloudinary.
+          </div>
+        </div>
+      `;
+    } else if (cred.tipo === 'pdf') {
+      content.innerHTML = `
+        <iframe src="${cred.url}" width="100%" height="600px" style="border:none; display:block;"></iframe>
+        <div class="modal-note">Documento oficial verificable · ${titulo}</div>
+      `;
+    } else {
+      content.innerHTML = `
+        <img src="${cred.url}" alt="${titulo}">
+        <div class="modal-note">Documento oficial · ${titulo}</div>
+      `;
+    }
+
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModalDirect() {
+    document.getElementById('modal-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+    document.getElementById('modal-content').innerHTML = '';
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modal-overlay')) {
+      closeModalDirect();
+    }
+  }
+
+  // Cierre con ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModalDirect();
+  });
+
+</script>
+
+</body>
+</html>
