@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+  MÓDULO INDEPENDIENTE: PROYECTO VLADCRM-COBOL
+  Archivo: p-vladcrm.html
+  Parte del sistema VLADISYSTEMS PORTFOLIO
+  Ficha resumida del proyecto. Caso de estudio completo
+  disponible en el repo VladCRM-COBOL (Netlify).
+============================================================ -->
+<title>VLADISYSTEMS | VladCRM-COBOL</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- CUADRÍCULA DE FONDO -->
+<div class="grid-lines"></div>
+
+<!-- ============================================================
+  HEADER
+============================================================ -->
+<header class="border-b-2 border-black">
+  <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
+    <h1 class="text-2xl md:text-4xl font-bold tracking-tight">
+      VLADISYSTEMS
+    </h1>
+    <a href="index.html" class="btn-back">
+      ← PORTFOLIO
+    </a>
+  </div>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div style="position:relative; z-index:1;" class="content-offset">
+
+  <!-- ============================================================
+    HERO DEL PROYECTO
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-24">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+
+        <!-- IZQUIERDA -->
+        <div class="lg:col-span-8 order-2 lg:order-1">
+
+          <div class="mono text-xs tracking-[0.4em] mb-6 rust">
+            PROYECTO 04 / CRM EN COBOL / LEGACY MODERNIZATION
+          </div>
+
+          <h2 class="uppercase font-bold leading-none"
+              style="font-size:clamp(3rem,8vw,7rem); letter-spacing:-0.04em;">
+            VLADCRM<br>COBOL
+          </h2>
+
+          <p class="mt-8 text-xl max-w-2xl leading-relaxed font-light">
+            Sistema CRM con motor de lógica de negocio en COBOL,
+            conectado a un API Bridge en Python/Flask, base de datos
+            MySQL y un frontend web. Un caso de modernización
+            de sistemas legacy.
+          </p>
+
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a href="https://vladcrm-cobol.netlify.app/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="inline-flex items-center gap-3 border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+               style="font-family:'IBM Plex Mono',monospace;">
+              Ver caso de estudio ↗
+            </a>
+          </div>
+
+        </div>
+
+        <!-- DERECHA: widget stats -->
+        <div class="lg:col-span-4 order-2 lg:order-last">
+          <div class="border-2 border-black p-8 bg-black text-white">
+
+            <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+              FICHA DEL PROYECTO
+            </div>
+
+            <div class="space-y-6">
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Lenguaje</span>
+                  <span class="mono text-xs rust">COBOL</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[100%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Módulos</span>
+                  <span class="mono text-xs rust">7</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[85%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Arquitectura</span>
+                  <span class="mono text-xs rust">COBOL + API + DB</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[95%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Estado</span>
+                  <span class="mono text-xs rust">EN DESARROLLO</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[80%]"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 01 — RESUMEN EJECUTIVO
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 01</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">OVERVIEW</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            RESUMEN<br>EJECUTIVO
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+
+          <p class="text-xl leading-relaxed font-light max-w-3xl mb-6">
+            VladCRM-COBOL es un sistema de gestión de clientes
+            cuya lógica de negocio central — registro, actualización,
+            etiquetado, historial y reportes — está implementada
+            en COBOL bajo formato libre (GnuCOBOL).
+          </p>
+
+          <p class="text-lg leading-relaxed font-light max-w-3xl opacity-80">
+            El proyecto conecta esa lógica COBOL con un API Bridge
+            en Python/Flask, una base de datos MySQL y un frontend
+            web — demostrando cómo un sistema legacy puede integrarse
+            a una arquitectura moderna sin reescribirlo desde cero.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 02 — MÓDULOS PRINCIPALES
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">SECCIÓN 02</div>
+        <h3 class="uppercase font-bold leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); letter-spacing:-0.03em;">
+          Módulos<br>Principales
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-2 border-black">
+
+        <div class="raw-card border-b-2 lg:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">01</div>
+          <div class="font-bold uppercase text-lg mb-2">Gestión de clientes</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            Registro y actualización de clientes con validación
+            de teléfono, correo y categoría.
+          </p>
+        </div>
+
+        <div class="raw-card border-b-2 lg:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">02</div>
+          <div class="font-bold uppercase text-lg mb-2">Historial de interacciones</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            Consulta del historial de contacto asociado
+            a cada cliente por teléfono.
+          </p>
+        </div>
+
+        <div class="raw-card border-b-2 lg:border-b-0 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">03</div>
+          <div class="font-bold uppercase text-lg mb-2">Reportes batch</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            Generación de reportes filtrados por categoría
+            y estado, listos para análisis.
+          </p>
+        </div>
+
+        <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">04</div>
+          <div class="font-bold uppercase text-lg mb-2">Etiquetado administrativo</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            Clasificación de clientes en cliente, prospecto,
+            proveedor, inactivo o prioritario.
+          </p>
+        </div>
+
+        <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">05</div>
+          <div class="font-bold uppercase text-lg mb-2">Ciclo de importación / exportación VCF</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            Importa y exporta contactos en formato vCard
+            entre el celular y el sistema.
+          </p>
+        </div>
+
+        <div class="raw-card">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">06</div>
+          <div class="font-bold uppercase text-lg mb-2">API Bridge</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            Capa Flask que expone cada programa COBOL
+            como endpoint REST para el frontend.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 03 — STACK TECNOLÓGICO
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 03</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">STACK</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            TECNO<br>LOGÍAS
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">NÚCLEO</div>
+              <div class="text-2xl font-bold uppercase">COBOL</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                GnuCOBOL, formato libre, 7 programas de negocio.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">BASE DE DATOS</div>
+              <div class="text-2xl font-bold uppercase">MySQL</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                Esquema relacional: Clientes, Interacciones, Etiquetas.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">API BRIDGE</div>
+              <div class="text-2xl font-bold uppercase">Python / Flask</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                Expone cada módulo COBOL como endpoint REST.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">FRONTEND</div>
+              <div class="text-2xl font-bold uppercase">HTML / CSS / JS</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                Dashboard con sidebar, contactos, historial y ciclo VCF.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">PLATAFORMA</div>
+              <div class="text-2xl font-bold uppercase">z/OS (conceptual)</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                Entorno mainframe simulado como contexto del sistema.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">VERSIONADO</div>
+              <div class="text-2xl font-bold uppercase">GitHub</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                Repositorio público con código fuente y documentación.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 04 — RESULTADOS
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 04</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">RESULTS</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            RESUL<br>TADOS
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">RESULTADO 01</div>
+              <div class="text-xl font-bold uppercase mb-2">Sistema estructurado</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                7 programas COBOL independientes, cada uno con sus
+                cuatro divisiones estándar y secciones numeradas.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">RESULTADO 02</div>
+              <div class="text-xl font-bold uppercase mb-2">Lógica batch funcional</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                Validación, persistencia en CSV y generación
+                de reportes operativos de extremo a extremo.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">RESULTADO 03</div>
+              <div class="text-xl font-bold uppercase mb-2">Base para modernización</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                Esquema relacional y API Bridge listos para
+                reemplazar CSV por una base de datos en producción.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">RESULTADO 04</div>
+              <div class="text-xl font-bold uppercase mb-2">Workflow mainframe documentado</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                Flujo input → job → compilación → ejecución batch
+                → reporte, replicable en futuros proyectos legacy.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 05 — ENLACES
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 05</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">LINKS</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            ENLACES
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9 flex flex-wrap gap-4">
+
+          <a href="https://vladcrm-cobol.netlify.app/"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex items-center gap-3 border-2 border-black px-8 py-5 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+             style="font-family:'IBM Plex Mono',monospace;">
+            Ver caso de estudio completo ↗
+          </a>
+
+          <a href="https://github.com/VladisystemsII/VladCRM-COBOL"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex items-center gap-3 border-2 border-black px-8 py-5 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+             style="font-family:'IBM Plex Mono',monospace;">
+            GitHub ↗
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 06 — CONCLUSIÓN
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 06</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">CONCLUSION</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            CONCLU<br>SIÓN
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+
+          <p class="text-xl leading-relaxed font-light max-w-3xl mb-6">
+            VladCRM-COBOL combina disciplina de sistemas legacy
+            con visión de modernización: la lógica de negocio
+            crítica permanece en COBOL, mientras una capa moderna
+            la conecta con bases de datos, APIs e interfaces actuales.
+          </p>
+
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-12 opacity-80">
+            El detalle técnico completo — arquitectura, código COBOL,
+            flujo operativo y roadmap — está disponible en el caso
+            de estudio del proyecto.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="index.html"
+               class="inline-flex items-center gap-3 border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+               style="font-family:'IBM Plex Mono',monospace;">
+              ← Ver todos los proyectos
+            </a>
+            <a href="https://vladcrm-cobol.netlify.app/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="inline-flex items-center gap-3 bg-black text-white border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-[#9d3d22] hover:border-[#9d3d22]"
+               style="font-family:'IBM Plex Mono',monospace;">
+              Ver caso de estudio ↗
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    FOOTER
+  ============================================================ -->
+  <footer class="bg-black text-white">
+    <div class="max-w-[1800px] mx-auto px-6 py-10 grid grid-cols-3 items-center">
+
+      <div class="mono text-xs tracking-[0.3em] opacity-60 text-left">
+        VLADISYSTEMS / RAW DIGITAL STRUCTURE
+      </div>
+
+      <div class="flex justify-center">
+        <img
+          src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
+          style="height:90px; width:auto;"
+          alt="VLADISYSTEMS"
+        >
+      </div>
+
+      <div class="flex justify-end gap-4 flex-wrap">
+        <a href="https://vladcrm-cobol.netlify.app/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="mono text-xs tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition"
+           style="color:#fff;">
+          VLADCRM ↗
+        </a>
+        <a href="index.html" class="btn-back" style="border-color:#fff; color:#fff;">
+          ← PORTFOLIO
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+</div><!-- end content-offset -->
+
+</body>
+</html>

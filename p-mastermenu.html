@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+  MÓDULO INDEPENDIENTE: PROYECTO MASTERMENU
+  Archivo: p-mastermenu.html
+  Parte del sistema VLADISYSTEMS PORTFOLIO
+  Documentación del proyecto MasterMenu.
+  Prototipo desarrollado por Vladimir Alba — portal digital
+  para restaurantes: menú, reservas, pedidos, blog y opiniones.
+============================================================ -->
+<title>VLADISYSTEMS | MasterMenu</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- CUADRÍCULA DE FONDO -->
+<div class="grid-lines"></div>
+
+<!-- ============================================================
+  HEADER
+============================================================ -->
+<header class="border-b-2 border-black">
+  <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
+    <h1 class="text-2xl md:text-4xl font-bold tracking-tight">
+      VLADISYSTEMS
+    </h1>
+    <a href="index.html" class="btn-back">
+      ← PORTFOLIO
+    </a>
+  </div>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div style="position:relative; z-index:1;" class="content-offset">
+
+  <!-- ============================================================
+    HERO DEL PROYECTO
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-24">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+
+        <!-- IZQUIERDA -->
+        <div class="lg:col-span-8 order-2 lg:order-1">
+
+          <div class="mono text-xs tracking-[0.4em] mb-6 rust">
+            PROYECTO 07 / PORTAL RESTAURANTES / PROTOTIPO
+          </div>
+
+          <h2 class="uppercase font-bold leading-none"
+              style="font-size:clamp(3rem,8vw,7rem); letter-spacing:-0.04em;">
+            MASTER<br>MENU
+          </h2>
+
+          <p class="mt-8 text-xl max-w-2xl leading-relaxed font-light">
+            Prototipo de portal digital multi-página para restaurantes:
+            carta interactiva, detalle de platos, reservas y pedidos,
+            captación, blog gastronómico y sistema de opiniones.
+            Plantilla reutilizable para la línea de restaurantes colombianos.
+          </p>
+
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a href="https://mastermenuvs.netlify.app/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="inline-flex items-center gap-3 bg-black text-white border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-[#9d3d22] hover:border-[#9d3d22]"
+               style="font-family:'IBM Plex Mono',monospace;">
+              Ver demo en vivo ↗
+            </a>
+            <a href="https://github.com/VladisystemsII"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="inline-flex items-center gap-3 border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+               style="font-family:'IBM Plex Mono',monospace;">
+              Ver repositorio ↗
+            </a>
+          </div>
+
+        </div>
+
+        <!-- DERECHA: widget stats -->
+        <div class="lg:col-span-4 order-2 lg:order-last">
+          <div class="border-2 border-black p-8 bg-black text-white">
+
+            <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+              FICHA DEL PROTOTIPO
+            </div>
+
+            <div class="space-y-6">
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Tipo</span>
+                  <span class="mono text-xs rust">PROTOTIPO</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[100%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Sector</span>
+                  <span class="mono text-xs rust">RESTAURANTES</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[90%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Páginas</span>
+                  <span class="mono text-xs rust">8</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[80%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Deploy</span>
+                  <span class="mono text-xs rust">NETLIFY</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[100%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="uppercase text-sm tracking-[0.15em]">Estado</span>
+                  <span class="mono text-xs rust">DISPONIBLE</span>
+                </div>
+                <div class="h-[2px] bg-[#333]">
+                  <div class="h-full bg-white w-[100%]"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 01 — RESUMEN EJECUTIVO
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 01</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">OVERVIEW</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            RESUMEN<br>EJECUTIVO
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+
+          <p class="text-xl leading-relaxed font-light max-w-3xl mb-6">
+            MasterMenu es un prototipo de portal digital multi-página
+            para restaurantes, construido como plantilla reutilizable
+            para negocios de comida que quieren presencia digital
+            propia sin depender de plataformas de terceros.
+          </p>
+
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-6 opacity-80">
+            El portal cubre el recorrido completo del cliente: desde
+            descubrir el restaurante en el inicio, explorar la carta
+            con detalle de cada plato, hacer su reserva o pedido
+            (mesa, domicilio o pickup), hasta dejar su opinión y
+            compartir el restaurante con amigos y familiares.
+          </p>
+
+          <p class="text-lg leading-relaxed font-light max-w-3xl opacity-80">
+            Incluye además un blog gastronómico con artículos individuales,
+            una página de captación para nuevos clientes, y header y
+            footer modulares cargados dinámicamente en todas las páginas.
+            Fue desarrollado por Vladimir Alba (Vladisystems) como base
+            estructural para la línea de restaurantes del portafolio.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 02 — EL PROBLEMA
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 02</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">PROBLEM</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            EL<br>PROBLEMA
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-10 opacity-80">
+            La mayoría de restaurantes pequeños y medianos en Colombia
+            gestionan sus pedidos y reservas por WhatsApp de forma manual,
+            sin un sistema estructurado, sin registro automático y sin
+            una carta digital actualizable. Esto genera fricciones para
+            el cliente y carga operativa innecesaria para el negocio.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-2 border-black">
+
+            <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+              <div class="mono text-xs rust tracking-[0.3em] mb-4">PROBLEMA 01</div>
+              <h4 class="font-bold uppercase text-lg mb-3">Sin carta digital propia</h4>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                El restaurante depende de imágenes en WhatsApp o PDFs
+                desactualizados para mostrar sus platos y precios.
+              </p>
+            </div>
+
+            <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+              <div class="mono text-xs rust tracking-[0.3em] mb-4">PROBLEMA 02</div>
+              <h4 class="font-bold uppercase text-lg mb-3">Pedidos sin registro</h4>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                Los pedidos llegan por mensajes dispersos, sin un
+                sistema que los capture, organice ni confirme de forma
+                automática.
+              </p>
+            </div>
+
+            <div class="raw-card">
+              <div class="mono text-xs rust tracking-[0.3em] mb-4">PROBLEMA 03</div>
+              <h4 class="font-bold uppercase text-lg mb-3">Base no reutilizable</h4>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                Cada restaurante requiere construir desde cero, repitiendo
+                la misma estructura de carta, pedidos y marca cada vez.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 03 — SOLUCIÓN DESARROLLADA
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 03</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">SOLUTION</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            SOLUCIÓN<br>DESARRO<br>LLADA
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-10 opacity-80">
+            Se construyó un sistema multi-página completo y modular,
+            con header y footer cargados dinámicamente, que cubre
+            todo el recorrido del cliente: desde la carta hasta
+            la opinión post-visita, listo para personalizar por marca.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-4 tracking-[0.3em]">01</div>
+              <div class="text-xl font-bold uppercase mb-3">Inicio con posicionamiento</div>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                index.html con mensaje de marca ("Donde el sabor casero
+                encuentra tu mesa"), filosofía del restaurante con citas
+                editoriales, mapa de ubicación y llamado a la acción
+                para reservar o pedir.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-4 tracking-[0.3em]">02</div>
+              <div class="text-xl font-bold uppercase mb-3">Carta y detalle de plato</div>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                menu.html lista los platos por categoría con carrito
+                acumulable; detalle-plato.html muestra la ficha completa
+                de cada plato: foto, descripción, precio, disponibilidad
+                y botón directo para pedir por WhatsApp.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-4 tracking-[0.3em]">03</div>
+              <div class="text-xl font-bold uppercase mb-3">Reservas y pedidos</div>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                reservas.html con revisión del carrito, datos del cliente,
+                selección de servicio (mesa, domicilio o pickup) y
+                confirmación automática vía WhatsApp y Google Sheets.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-4 tracking-[0.3em]">04</div>
+              <div class="text-xl font-bold uppercase mb-3">Captación de clientes</div>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                captacion.html permite captar nuevos clientes directamente
+                desde el portal, con formulario de contacto e integración
+                con el sistema de registro del restaurante.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-4 tracking-[0.3em]">05</div>
+              <div class="text-xl font-bold uppercase mb-3">Blog gastronómico</div>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                blog.html con tabla de artículos y articulo.html para
+                el detalle individual de cada publicación: recetas, tips
+                culinarios y novedades de la cocina del restaurante.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-4 tracking-[0.3em]">06</div>
+              <div class="text-xl font-bold uppercase mb-3">Opiniones y referidos</div>
+              <p class="text-sm font-light leading-relaxed opacity-70">
+                opiniones.html con calificación por estrellas, tipo de
+                comentario (felicitación, sugerencia o reclamo) y botón
+                para compartir el restaurante por WhatsApp con amigos
+                y familiares.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 04 — TECNOLOGÍAS
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 04</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">STACK</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            TECNO<br>LOGÍAS
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">FRONTEND</div>
+              <div class="text-2xl font-bold uppercase">HTML</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                Estructura semántica multi-página, lista para personalizar
+                por marca y escalar fácilmente.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">ESTILOS</div>
+              <div class="text-2xl font-bold uppercase">CSS</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                Sistema visual responsive con identidad propia y tokens
+                adaptables por restaurante.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">INTERACCIÓN</div>
+              <div class="text-2xl font-bold uppercase">JavaScript</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                Carrito de pedido, filtros de carta, header y footer
+                modulares cargados dinámicamente en cada página.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">NOTIFICACIÓN</div>
+              <div class="text-2xl font-bold uppercase">WhatsApp</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                Envío automático del pedido al restaurante al confirmar,
+                y botón de referidos para compartir el portal.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">REGISTRO</div>
+              <div class="text-2xl font-bold uppercase">G. Sheets</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                Cada pedido y opinión queda registrado automáticamente
+                en Google Sheets como respaldo operativo.
+              </p>
+            </div>
+
+            <div class="raw-box p-6">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">DEPLOY</div>
+              <div class="text-2xl font-bold uppercase">Netlify</div>
+              <p class="text-xs font-light opacity-60 mt-2 leading-relaxed">
+                Despliegue continuo del prototipo en vivo para demos
+                y revisión del cliente.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 05 — CARACTERÍSTICAS PRINCIPALES
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">SECCIÓN 05</div>
+        <h3 class="uppercase font-bold leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); letter-spacing:-0.03em;">
+          Características<br>Principales
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-2 border-black">
+
+        <div class="raw-card border-b-2 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">01</div>
+          <div class="font-bold uppercase text-lg mb-2">Diseño Responsive</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            Adaptado a móvil, tablet y escritorio en las 8 páginas
+            del portal, priorizado para uso desde celular.
+          </p>
+        </div>
+
+        <div class="raw-card border-b-2 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">02</div>
+          <div class="font-bold uppercase text-lg mb-2">Header y footer modulares</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            Cargados dinámicamente vía JavaScript, manteniendo
+            consistencia en todas las páginas del portal.
+          </p>
+        </div>
+
+        <div class="raw-card border-b-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">03</div>
+          <div class="font-bold uppercase text-lg mb-2">Carta con carrito</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            El cliente navega la carta por categorías, ve el detalle
+            de cada plato y acumula su pedido antes de confirmar.
+          </p>
+        </div>
+
+        <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">04</div>
+          <div class="font-bold uppercase text-lg mb-2">Tres tipos de servicio</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            El cliente elige entre reservar mesa, pedir a domicilio
+            o hacer pickup desde el mismo flujo de confirmación.
+          </p>
+        </div>
+
+        <div class="raw-card border-b-2 md:border-b-0 md:border-r-2 border-black">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">05</div>
+          <div class="font-bold uppercase text-lg mb-2">Blog gastronómico</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            Sección de artículos con recetas, tips culinarios y
+            novedades para posicionamiento de contenido y marca.
+          </p>
+        </div>
+
+        <div class="raw-card">
+          <div class="mono text-xs rust tracking-[0.3em] mb-3">06</div>
+          <div class="font-bold uppercase text-lg mb-2">Opiniones y referidos</div>
+          <p class="text-sm font-light opacity-70 leading-relaxed">
+            Sistema de calificación por estrellas, comentarios y
+            botón para compartir el restaurante por WhatsApp.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 06 — CAPTURAS DEL PROYECTO
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="mb-16">
+        <div class="mono text-xs tracking-[0.4em] rust mb-4">SECCIÓN 06</div>
+        <h3 class="uppercase font-bold leading-none"
+            style="font-size:clamp(2.5rem,6vw,5rem); letter-spacing:-0.03em;">
+          Capturas del<br>Proyecto
+        </h3>
+        <div class="mono text-xs tracking-[0.3em] mt-4 opacity-50">SCREENSHOTS PENDIENTES DE CARGA</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <div class="border-2 border-black border-dashed p-16 flex flex-col items-center justify-center gap-4 opacity-40">
+          <div class="mono text-xs tracking-[0.3em] uppercase">Captura 01</div>
+          <div class="font-bold uppercase">Inicio — Hero y filosofía</div>
+          <div class="mono text-xs opacity-60">Pendiente</div>
+        </div>
+
+        <div class="border-2 border-black border-dashed p-16 flex flex-col items-center justify-center gap-4 opacity-40">
+          <div class="mono text-xs tracking-[0.3em] uppercase">Captura 02</div>
+          <div class="font-bold uppercase">Carta y detalle de plato</div>
+          <div class="mono text-xs opacity-60">Pendiente</div>
+        </div>
+
+        <div class="border-2 border-black border-dashed p-16 flex flex-col items-center justify-center gap-4 opacity-40">
+          <div class="mono text-xs tracking-[0.3em] uppercase">Captura 03</div>
+          <div class="font-bold uppercase">Reservas y pedidos</div>
+          <div class="mono text-xs opacity-60">Pendiente</div>
+        </div>
+
+        <div class="border-2 border-black border-dashed p-16 flex flex-col items-center justify-center gap-4 opacity-40">
+          <div class="mono text-xs tracking-[0.3em] uppercase">Captura 04</div>
+          <div class="font-bold uppercase">Blog / Opiniones</div>
+          <div class="mono text-xs opacity-60">Pendiente</div>
+        </div>
+
+      </div>
+
+      <div class="mt-6 mono text-xs tracking-[0.2em] opacity-40 text-center">
+        Reemplazar los placeholders con screenshots reales del sitio cuando estén disponibles.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 07 — RESULTADOS
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 07</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">RESULTS</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            RESUL<br>TADOS
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">RESULTADO 01</div>
+              <div class="text-xl font-bold uppercase mb-2">Portal funcional completo</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                8 páginas operativas: inicio, carta, detalle de plato,
+                reservas, captación, blog, artículo y opiniones.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">RESULTADO 02</div>
+              <div class="text-xl font-bold uppercase mb-2">Integración operativa real</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                Los pedidos y opiniones llegan automáticamente por
+                WhatsApp y quedan registrados en Google Sheets
+                sin intervención manual.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">RESULTADO 03</div>
+              <div class="text-xl font-bold uppercase mb-2">Arquitectura reutilizable</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                Header y footer modulares más sistema de páginas
+                listo para personalizar y escalar hacia distintos
+                restaurantes sin repetir el desarrollo base.
+              </p>
+            </div>
+
+            <div class="raw-box p-8">
+              <div class="mono text-xs rust mb-3 tracking-[0.2em]">RESULTADO 04</div>
+              <div class="text-xl font-bold uppercase mb-2">Producto disponible</div>
+              <p class="text-sm font-light opacity-70 leading-relaxed">
+                MasterMenu queda disponible como base comercializable
+                para restaurantes que buscan presencia digital propia.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 08 — ENLACES
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 08</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">LINKS</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            ENLACES
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9 flex flex-wrap gap-4">
+
+          <a href="https://mastermenuvs.netlify.app/"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex items-center gap-3 bg-black text-white border-2 border-black px-8 py-5 uppercase tracking-[0.2em] text-sm transition hover:bg-[#9d3d22] hover:border-[#9d3d22]"
+             style="font-family:'IBM Plex Mono',monospace;">
+            Ver demo en vivo ↗
+          </a>
+
+          <a href="https://github.com/VladisystemsII"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex items-center gap-3 border-2 border-black px-8 py-5 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+             style="font-family:'IBM Plex Mono',monospace;">
+            Ver repositorio GitHub ↗
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECCIÓN 09 — CONCLUSIÓN
+  ============================================================ -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-3">
+          <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 09</div>
+          <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">CONCLUSION</div>
+          <h3 class="text-4xl font-bold uppercase leading-tight">
+            CONCLU<br>SIÓN
+          </h3>
+        </div>
+
+        <div class="lg:col-span-9">
+
+          <p class="text-xl leading-relaxed font-light max-w-3xl mb-6">
+            MasterMenu demostró que es posible construir, desde cero,
+            un portal de restaurante completo y modular que cubre todo
+            el recorrido del cliente: presentación, carta, pedido,
+            captación, contenido editorial y postventa con opiniones.
+          </p>
+
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-6 opacity-80">
+            El proyecto reforzó la estrategia de construir bases
+            reutilizables por sector: así como Portal33 es la base
+            para portales inmobiliarios, MasterMenu es la base para
+            la línea de restaurantes dentro del portafolio Vladisystems.
+          </p>
+
+          <p class="text-lg leading-relaxed font-light max-w-3xl mb-12 opacity-80">
+            Como próximas mejoras: incorporar un panel de administración
+            para que el restaurante gestione su carta sin tocar código,
+            integración con un CMS o base de datos en la nube, sistema
+            de seguimiento de pedido en tiempo real para el cliente,
+            y versión multi-restaurante bajo una misma infraestructura.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="index.html"
+               class="inline-flex items-center gap-3 border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+               style="font-family:'IBM Plex Mono',monospace;">
+              ← Ver todos los proyectos
+            </a>
+            <a href="https://mastermenuvs.netlify.app/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="inline-flex items-center gap-3 bg-black text-white border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-[#9d3d22] hover:border-[#9d3d22]"
+               style="font-family:'IBM Plex Mono',monospace;">
+              Ver demo en vivo ↗
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    FOOTER
+  ============================================================ -->
+  <footer class="bg-black text-white">
+    <div class="max-w-[1800px] mx-auto px-6 py-10 grid grid-cols-3 items-center">
+
+      <div class="mono text-xs tracking-[0.3em] opacity-60 text-left">
+        VLADISYSTEMS / RAW DIGITAL STRUCTURE
+      </div>
+
+      <div class="flex justify-center">
+        <img
+          src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
+          style="height:90px; width:auto;"
+          alt="VLADISYSTEMS"
+        >
+      </div>
+
+      <div class="flex justify-end gap-4 flex-wrap">
+        <a href="https://mastermenuvs.netlify.app/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="mono text-xs tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition"
+           style="color:#fff;">
+          MASTERMENU ↗
+        </a>
+        <a href="index.html" class="btn-back" style="border-color:#fff; color:#fff;">
+          ← PORTFOLIO
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+</div><!-- end content-offset -->
+
+</body>
+</html>
