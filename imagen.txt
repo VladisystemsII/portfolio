@@ -77,3 +77,10 @@ git add .
 git commit -m "CRM MASTERMENU"
 
 git push
+
+
+git add .
+
+git commit -m "PULIR 1"
+
+git push

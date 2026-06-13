@@ -1,0 +1,80 @@
+/* ============================================================
+  VLADISYSTEMS — BADGE DE PROYECTO EN HEADER
+  Archivo: project-tab.css
+  Versión: 2.0
+
+  Inyectado al centro del header fijo existente.
+  Una sola línea: Proyecto · BC1166
+  Coherente con el sistema de tipografía VLADISYSTEMS.
+============================================================ */
+
+.project-badge {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #111;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.project-badge__label {
+  color: #888;
+}
+
+.project-badge__sep {
+  color: #bbb;
+}
+
+.project-badge__code {
+  color: #111;
+  font-weight: 600;
+}
+
+/* El header necesita position relative para que
+   el absolute del badge funcione correctamente */
+header {
+  position: fixed; /* ya era fixed, se mantiene */
+}
+
+header > div {
+  position: relative;
+}
+
+/* ============================================================
+  RESPONSIVE
+============================================================ */
+
+/* En tablet el nav desaparece y aparece el hamburger,
+   el badge sigue visible en el centro */
+@media (max-width: 1024px) {
+  .project-badge {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    gap: 0.5rem;
+  }
+}
+
+/* En mobile se achica un poco más */
+@media (max-width: 768px) {
+  .project-badge {
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    gap: 0.4rem;
+  }
+}
+
+/* Small mobile: mínimo legible */
+@media (max-width: 480px) {
+  .project-badge {
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    gap: 0.3rem;
+  }
+}
