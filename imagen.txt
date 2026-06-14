@@ -84,3 +84,11 @@ git add .
 git commit -m "PULIR 1"
 
 git push
+
+
+
+git add .
+
+git commit -m "reorganicar mapa del sitio"
+
+git push

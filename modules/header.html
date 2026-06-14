@@ -1,0 +1,46 @@
+<!-- header.html — Módulo de Header reutilizable | Portfolio Vladisystems -->
+<header class="border-b-2 border-black">
+
+  <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
+
+    <!-- MARCA -->
+    <!-- LOGO (descomentar si se reemplaza el texto por imagen) -->
+    <!--
+    <a href="/" class="flex items-center">
+      <img
+        src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
+        style="height:48px; width:auto;"
+        alt="VLADISYSTEMS"
+      >
+    </a>
+    -->
+    <h1 class="text-3xl md:text-5xl font-bold tracking-tight">
+      VLADISYSTEMS
+    </h1>
+
+    <!-- MENÚ DESKTOP — oculto en tablet/mobile (1024px) via styles.css -->
+    <nav class="hidden lg:flex gap-10 uppercase text-sm tracking-[0.25em]">
+      <a href="/#inicio"    data-section="inicio">Inicio</a>
+      <a href="/#links"     data-section="links">Links</a>
+      <a href="/#proyectos" data-section="proyectos">Proyectos</a>
+      <a href="/#contacto"  data-section="contacto">Contacto</a>
+    </nav>
+
+    <!-- BOTÓN HAMBURGUESA — visible en tablet/mobile via styles.css -->
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+</header>
+
+<!-- PANEL MÓVIL — sale del header para no afectar su estructura -->
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="/#inicio"    data-section="inicio">Inicio</a>
+  <a href="/#links"     data-section="links">Links</a>
+  <a href="/#proyectos" data-section="proyectos">Proyectos</a>
+  <a href="/#contacto"  data-section="contacto">Contacto</a>
+</nav>

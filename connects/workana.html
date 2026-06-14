@@ -23,12 +23,13 @@
   Archivo CSS compartido por todos los módulos del portfolio.
   Contiene variables, componentes, utilidades y responsive.
 ============================================================ -->
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/css/styles.css">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
+  <div id="header-container"></div>
 
 <!-- CUADRÍCULA DE FONDO -->
 <div class="grid-lines"></div>
@@ -38,7 +39,7 @@
   Sticky + blur. Mismo sistema que index.html y linkedin.html.
   Izquierda: marca VLADISYSTEMS.
   Derecha: botón ← PORTFOLIO para volver al index.html.
-============================================================ -->
+============================================================ 
 <header class="border-b-2 border-black">
   <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
 
@@ -51,7 +52,7 @@
     </a>
 
   </div>
-</header>
+</header>-->
 
 <!-- ============================================================
   CONTENIDO PRINCIPAL
@@ -600,6 +601,18 @@
   </footer>
 
 </div>
+
+<script src="../js/header-loader.js"></script>
+<script src="../js/header.js"></script>
+<script src="../js/menu-mobile.js"></script>
+
+<script>
+  document.addEventListener('headerListo', function () {
+    document.querySelector('header > div').insertAdjacentHTML('beforeend',
+      '<div style="position:absolute;left:50%;transform:translateX(-50%);font-family:\'IBM Plex Mono\',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:none;white-space:nowrap;pointer-events:none;display:flex;gap:.6rem"><span style="color:#888">Perfil</span><span style="color:#bbb">·</span><span style="color:#111;font-weight:600">WORKANA</span></div>'
+    );
+  });
+</script>
 
 </body>
 </html>

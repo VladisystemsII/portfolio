@@ -1,0 +1,70 @@
+<!--
+  ══════════════════════════════════════════════════════════════
+  SNIPPET PARA PÁGINAS INTERNAS — Portfolio Vladisystems
+  Pega esto en connects/ y projects/p-xxx/
+  ══════════════════════════════════════════════════════════════
+
+  ── PASO 1: en el <head> ─────────────────────────────────────
+  Ya debes tener styles.css y Tailwind. Solo agrega los JS
+  (el header NO necesita CSS adicional, usa styles.css existente)
+-->
+
+<!-- ANTES del cierre </head> — scripts en orden exacto -->
+<script src="PREFIJO/js/header-loader.js"></script>
+<script src="PREFIJO/js/header.js"></script>
+<script src="PREFIJO/js/menu-mobile.js"></script>
+
+<!--
+  ── PASO 2: al inicio del <body> ─────────────────────────────
+  Reemplaza el header hardcodeado (si existe) por este div:
+-->
+<div id="header-container"></div>
+
+<!--
+  ── PASO 3: ajusta el PREFIJO según la carpeta ───────────────
+
+  REGLA: una carpeta = un "../"
+
+  ┌──────────────────────────────────────────────┬────────────┐
+  │ Archivo                                      │ PREFIJO    │
+  ├──────────────────────────────────────────────┼────────────┤
+  │ connects/cv.html                             │ ..         │
+  │ connects/github.html                         │ ..         │
+  │ connects/linkedin.html                       │ ..         │
+  │ connects/workana.html                        │ ..         │
+  │ connects/credenciales/certificados.html      │ ../..      │
+  │ projects/p-bc1166/p-bc1166.html             │ ../..      │
+  │ projects/p-datastudio/p-datastudio.html      │ ../..      │
+  │ projects/p-mastermenu/p-mastermenu.html      │ ../..      │
+  │ projects/p-portal33/p-portal33.html          │ ../..      │
+  │ projects/p-teamrealty/p-teamrealty.html      │ ../..      │
+  │ projects/p-vladcrm/p-vladcrm.html           │ ../..      │
+  │ projects/p-vladibot/p-vladibot.html          │ ../..      │
+  └──────────────────────────────────────────────┴────────────┘
+
+  EJEMPLO para connects/cv.html:
+    <script src="../js/header-loader.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/menu-mobile.js"></script>
+
+  EJEMPLO para projects/p-teamrealty/p-teamrealty.html:
+    <script src="../../js/header-loader.js"></script>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/menu-mobile.js"></script>
+
+  ── PASO 4: elimina esto del index.html ──────────────────────
+  Ya no lo necesitas (el módulo lo reemplaza):
+    · <nav class="mobile-menu" id="mobileMenu">...</nav>
+    · <header class="border-b-2 border-black">...</header>
+    · El bloque <script> con toggleMobileMenu/closeMobileMenu
+
+  ── PASO 5: en index.html agrega ─────────────────────────────
+  Al inicio del <body> (antes de .grid-lines):
+    <div id="header-container"></div>
+
+  Scripts antes del </body>:
+    <script src="/js/header-loader.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/menu-mobile.js"></script>
+  (el index usa / como prefijo porque está en la raíz)
+-->

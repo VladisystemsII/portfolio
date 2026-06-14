@@ -1,0 +1,10 @@
+📁 PLANTILLA BASE DE UN PROYECTO
+proyecto/
+  index.html
+  css/
+    styles.css
+  js/
+    main.js
+  assets/
+    images/
+    icons/

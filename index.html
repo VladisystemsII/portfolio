@@ -34,12 +34,14 @@ LinkedIn
   Archivo CSS compartido por todos los módulos del portfolio.
   Contiene variables, componentes, utilidades y responsive.
 ============================================================ -->
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/css/styles.css">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
+
+  <div id="header-container"></div>
 
 <!-- GRID -->
 <div class="grid-lines"></div>
@@ -53,13 +55,13 @@ LinkedIn
   Contiene los mismos 4 links de navegación del header desktop.
   Al hacer clic en cualquier link, el menú se cierra automáticamente
   (manejado por el JavaScript al final del documento).
-============================================================ -->
+============================================================ 
 <nav class="mobile-menu" id="mobileMenu">
   <a href="#inicio"    onclick="closeMobileMenu()">Inicio</a>
   <a href="#links"     onclick="closeMobileMenu()">Links</a>
   <a href="#proyectos" onclick="closeMobileMenu()">Proyectos</a>
   <a href="#contacto"  onclick="closeMobileMenu()">Contacto</a>
-</nav>
+</nav>-->
 
 <!-- ============================================================
   CONTENIDO
@@ -84,7 +86,7 @@ LinkedIn
   El botón hamburger llama a toggleMobileMenu() en JavaScript
   para abrir y cerrar el panel de navegación mobile.
 ============================================================ -->
-<header class="border-b-2 border-black">
+<!-- <header class="border-b-2 border-black">
 
 <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
 
@@ -101,7 +103,7 @@ VLADISYSTEMS
 
 </nav>
 
-<!-- ============================================================
+============================================================
   [NUEVO] BOTÓN HAMBURGER
   Botón con 3 líneas (<span>) que representa el ícono ☰.
   Solo visible en tablet y mobile (display:flex desde 1024px).
@@ -111,7 +113,7 @@ VLADISYSTEMS
   mediante las transformaciones CSS definidas arriba.
   aria-label="Menú" es importante para accesibilidad:
   lectores de pantalla lo anuncian como "botón Menú".
-============================================================ -->
+============================================================ 
 <button class="hamburger-btn" id="hamburgerBtn"
         onclick="toggleMobileMenu()"
         aria-label="Menú">
@@ -122,7 +124,7 @@ VLADISYSTEMS
 
 </div>
 
-</header>
+</header>  -->
 
 <!-- ============================================================
   SECCIÓN: HERO (#inicio)
@@ -180,15 +182,19 @@ Sin relleno visual.
 Ver proyectos
 </a>
 
-<a href="#links" class="border-2 border-black px-10 py-5 uppercase tracking-[0.2em] text-sm inline-block">
+<!-- <a href="#links" class="border-2 border-black px-10 py-5 uppercase tracking-[0.2em] text-sm inline-block">
 Ver perfiles
+</a> -->
+
+<a href="#links" class="border-2 border-black px-10 py-5 uppercase tracking-[0.2em] text-sm inline-block hover:bg-black hover:text-white transition">
+  Ver perfiles
 </a>
 
 </div>
 
 </div>
 
-<!-- RIGHT -->
+<!-- RIGHT 
 <div class="lg:col-span-4">
 
 <div class="border-2 border-black p-8 bg-black text-white">
@@ -197,9 +203,9 @@ Ver perfiles
 LIVE PORTFOLIO
 </div>
 
-<div class="space-y-8">
+<div class="space-y-8">-->
 
-<div>
+<!-- <div>
 <div class="flex justify-between items-center mb-2">
 <h3 class="uppercase text-sm tracking-[0.2em]">LinkedIn</h3>
 <span class="mono text-xs">01</span>
@@ -232,11 +238,72 @@ LIVE PORTFOLIO
 <div>
 <div class="flex justify-between items-center mb-2">
 <h3 class="uppercase text-sm tracking-[0.2em]">Projects</h3>
-<span class="mono text-xs">04</span>
+<span class="mono text-xs">07</span>
 </div>
 <div class="h-[2px] bg-[#333]">
 <div class="h-full bg-white w-[92%]"></div>
 </div>
+</div> -->
+
+<!-- RIGHT PANEL - VLADISYSTEM DASHBOARD -->
+<div class="lg:col-span-4">
+
+  <div class="border-2 border-black p-8 bg-black text-white">
+
+    <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+      LIVE SYSTEM STATUS
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- 01 LINKEDIN -->
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="uppercase text-sm tracking-[0.2em]">LinkedIn</h3>
+          <span class="mono text-xs">01 | ENCENDIDO</span>
+        </div>
+        <div class="h-[2px] bg-[#333]">
+          <div class="h-full bg-white w-[100%]"></div>
+        </div>
+      </div>
+
+      <!-- 02 WORKANA -->
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="uppercase text-sm tracking-[0.2em]">Workana</h3>
+          <span class="mono text-xs">02 | ACTIVO</span>
+        </div>
+        <div class="h-[2px] bg-[#333]">
+          <div class="h-full bg-white w-[0%]"></div>
+        </div>
+      </div>
+
+      <!-- 03 GITHUB -->
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="uppercase text-sm tracking-[0.2em]">GitHub</h3>
+          <span class="mono text-xs">03 | 7/12 ACTIVOS</span>
+        </div>
+        <div class="h-[2px] bg-[#333]">
+          <div class="h-full bg-white w-[58%]"></div>
+        </div>
+      </div>
+
+      <!-- 04 NETLIFY -->
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="uppercase text-sm tracking-[0.2em]">Netlify</h3>
+          <span class="mono text-xs">04 | 6 DEPLOY</span>
+        </div>
+        <div class="h-[2px] bg-[#333]">
+          <div class="h-full bg-white w-[50%]"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
 
 </div>
@@ -289,7 +356,7 @@ Perfiles
 
 
 
-<a href="linkedin.html"
+<a href="/connects/linkedin.html"
    class="border-b-2 md:border-r-2 border-black p-10 raw-box"
    target="_blank"
    rel="noopener noreferrer">
@@ -306,7 +373,8 @@ Perfiles
 
 </a>
 
-<a href="workana.html" class="border-b-2 xl:border-r-2 border-black p-10 raw-box">
+<a href="/connects/workana.html" 
+   class="border-b-2 xl:border-r-2 border-black p-10 raw-box">
 <div class="text-6xl font-bold mb-8">02</div>
 <h4 class="uppercase text-2xl mb-4">Workana</h4>
 <p class="font-light text-lg">
@@ -314,7 +382,8 @@ Servicios y proyectos freelance.
 </p>
 </a>
 
-<a href="github.html" class="border-b-2 md:border-r-2 xl:border-r-0 border-black p-10 raw-box">
+<a href="/connects/github.html" 
+   class="border-b-2 md:border-r-2 xl:border-r-0 border-black p-10 raw-box">
 <div class="text-6xl font-bold mb-8">03</div>
 <h4 class="uppercase text-2xl mb-4">Github</h4>
 <p class="font-light text-lg">
@@ -322,7 +391,8 @@ Repositorios y desarrollo técnico.
 </p>
 </a>
 
-<a href="cv.html" class="md:border-r-2 border-b-2 xl:border-b-0 border-black p-10 raw-box">
+<a href="/connects/cv.html" 
+   class="md:border-r-2 border-b-2 xl:border-b-0 border-black p-10 raw-box">
 <div class="text-6xl font-bold mb-8">04</div>
 <h4 class="uppercase text-2xl mb-4">CV Profesional</h4>
 <p class="font-light text-lg">
@@ -330,7 +400,8 @@ Currículum y experiencia laboral.
 </p>
 </a>
 
-<a href="credenciales.html" class="xl:border-r-2 border-b-2 xl:border-b-0 border-black p-10 raw-box">
+<a href="/connects/credenciales/credenciales.html" 
+   class="xl:border-r-2 border-b-2 xl:border-b-0 border-black p-10 raw-box">
 <div class="text-6xl font-bold mb-8">05</div>
 <h4 class="uppercase text-2xl mb-4">Credenciales</h4>
 <p class="font-light text-lg">
@@ -392,7 +463,7 @@ Destacados
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 border-2 border-black">
 
 <!-- PROJECT -->
-<a href="p-bc1166.html"
+<a href="/projects/p-bc1166/p-bc1166.html"
    class="project-card border-b-2 lg:border-r-2 border-black p-12 block">
 
     <div class="mono text-xs tracking-[0.3em] mb-6">
@@ -412,7 +483,7 @@ Destacados
 
 
 <!-- PROJECT -->
-<a href="p-datastudio.html"
+<a href="/projects/p-datastudio/p-datastudio.html"
    class="project-card border-b-2 border-black p-12 block">
 
     <div class="mono text-xs tracking-[0.3em] mb-6">
@@ -432,7 +503,7 @@ Destacados
 
 
 <!-- PROJECT -->
-<a href="p-portal33.html"
+<a href="/projects/p-portal33/p-portal33.html"
    class="project-card border-b-2 lg:border-r-2 border-black p-12 block">
 
     <div class="mono text-xs tracking-[0.3em] mb-6">
@@ -451,7 +522,7 @@ Destacados
 </a>
 
 <!-- PROJECT -->
- <a href="p-vladibot.html"
+ <a href="/projects/p-vladibot/p-vladibot.html"
          class="project-card border-b-2 border-black p-12 block">
         <div class="mono text-xs tracking-[0.3em] mb-6">
             04 / AUTOMATION · PYTHON</div>
@@ -463,7 +534,7 @@ Destacados
   </a>
 
 <!-- PROJECT -->
-  <a href="p-vladcrm.html"
+  <a href="/projects/p-vladcrm/p-vladcrm.html"
    class="project-card border-b-2 lg:border-r-2 border-black p-12 block">
   <div class="mono text-xs tracking-[0.3em] mb-6">
     05 / CRM · AUTOMATION</div>
@@ -483,7 +554,7 @@ Destacados
 
 
 <!-- PROJECT -->
-<a href="p-teamrealty.html"
+<a href="/projects/p-teamrealty/p-teamrealty.html"
    class="project-card border-b-2 lg:border-r-2 border-black p-12 block">
 
     <div class="mono text-xs tracking-[0.3em] mb-6">
@@ -502,7 +573,7 @@ Destacados
 
 
 <!-- PROJECT -->
-<a href="p-mastermenu.html"
+<a href="/projects/p-mastermenu/p-mastermenu.html"
    class="project-card border-b-2 border-black p-12 block">
 
     <div class="mono text-xs tracking-[0.3em] mb-6">
@@ -662,7 +733,7 @@ Contacto directo
      Esto es importante para que después de navegar a una
      sección, el menú no quede abierto encima del contenido.
 ============================================================ -->
-<script>
+<!-- <script>
 
 function toggleMobileMenu(){
   document.getElementById('hamburgerBtn').classList.toggle('open');
@@ -674,7 +745,11 @@ function closeMobileMenu(){
   document.getElementById('mobileMenu').classList.remove('open');
 }
 
-</script>
+</script>-->
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/menu-mobile.js"></script>
 
 </body>
 </html>

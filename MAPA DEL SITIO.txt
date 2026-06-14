@@ -1,0 +1,81 @@
+
+PORTFOLIO VLADISYSTEMS
+
+
+├── index.html                                                           ✅
+|   
+├── .vscode                                                              ✅
+├──  ├── settings.json                                                   ✅
+|
+├── connects                                                             ✅
+|    | 
+|    ├── credenciales                                                    ✅
+|    |   |
+|    |   ├── certificados                                                ✅
+|    |   |    ├── Título IUTV.webp                                       ✅
+│    |   |    ├── Cert-Automatización.pdf                                ✅
+│    |   |    ├── Cert-Bases de Datos.pdf                                ✅
+│    |   |    ├── Cert-BD MYSQL.pdf                                      ✅
+|    |   |    ├── Cert-Blockchain.pdf                                    ✅
+│    |   |    ├── Cert-DreamWeaver.pdf                                   ✅
+│    |   |    ├── Cert-IA.pdf                                            ✅
+│    |   |    ├── certificado notas titulo universitario.pdf             ✅
+│    |   |    ├── CertificadoAnalíticaWeb.pdf                            ✅
+│    |   |    ├── CertificadoHTML+CSS.pdf                                ✅
+│    |   |    ├── CertificadoWordpress.pdf                               ✅
+│    |   |    ├── Cert-Programación.pdf                                  ✅
+│    |   |    ├── Notas-Automatización.pdf                               ✅
+│    |   |    ├── Notas-Bases de Datos.pdf                               ✅
+│    |   |    ├── Notas-BD MYSQL.pdf                                     ✅
+│    |   |    ├── Notas-Blockchain.pdf                                   ✅
+│    |   |    ├── Notas-DreamWeaver.pdf                                  ✅
+│    |   |    ├── Notas-IA.pdf                                           ✅
+│    |   |    ├── Notas-Programación.pdf                                 ✅
+|    |   |
+|    |   ├── certificados.html                                           ✅
+|    |   
+|    ├── cv.html                                                         ✅
+|    ├── github.html                                                     ✅
+|    ├── linkedin.html                                                   ✅
+|    ├── workana.html                                                    ✅
+|
+├── css                                                                  ✅
+|    |
+|    ├── project-tab.css                                                 ✅
+│    ├── styles.css                                                      ✅
+│    ├── styles1.css                                                     ✅
+|    
+├── js                                                                   ✅
+|    |
+|    ├── project-tab.js                                                  ✅
+|    ├── header-loader.js                                                ✅
+|    ├── header.js                                                       ✅
+|    ├── menu-mobile.js                                                  ✅
+|
+├── modules                                                              ✅
+|    |
+|    ├── header.html                                                     ✅
+|
+├── projects                                                             ✅
+|    |
+|    ├── p-bc1166                                                        ✅
+|    |   ├── p-bc1166.html                                               ✅
+│    ├── p-datastudio                                                    ✅
+|    |   ├── documentacion                                               ✅
+│    |   |    ├── index.html                                             ✅
+|    |   ├── p-datastudio.html                                           ✅
+│    ├── p-mastermenu                                                    ✅
+|    |   ├── p-mastermenu.html                                           ✅
+|    ├── p-portal33                                                      ✅
+|    |   ├── p-portal33.html                                             ✅
+│    ├── p-teamrealty                                                    ✅
+|    |   ├── p-teamrealty.html                                           ✅
+│    ├── p-vladcrm                                                       ✅
+|    |   ├── p-vladcrm.html                                              ✅
+│    ├── p-vladibot                                                      ✅
+|    |   ├── p-vladibot.html                                             ✅
+|
+├── Logo Vladisystems portfolio.png                                      ✅
+
+
+
