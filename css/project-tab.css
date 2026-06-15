@@ -51,30 +51,49 @@ header > div {
   RESPONSIVE
 ============================================================ */
 
-/* En tablet el nav desaparece y aparece el hamburger,
-   el badge sigue visible en el centro */
+/* --- TABLET (hasta 1024px) ---
+   El hamburger aparece. El badge permanece centrado y
+   se achica para no chocar con logo ni hamburger. */
 @media (max-width: 1024px) {
   .project-badge {
     font-size: 0.6rem;
     letter-spacing: 0.15em;
     gap: 0.5rem;
+    /* Limita el ancho para no superponerse con los extremos */
+    max-width: 40%;
   }
 }
 
-/* En mobile se achica un poco más */
+/* --- MOBILE (hasta 768px) ---
+   Badge más pequeño; el header tiene logo + hamburger
+   a los lados, así que el badge debe ser muy compacto. */
 @media (max-width: 768px) {
-  .project-badge {
-    font-size: 0.55rem;
-    letter-spacing: 0.12em;
-    gap: 0.4rem;
-  }
-}
-
-/* Small mobile: mínimo legible */
-@media (max-width: 480px) {
   .project-badge {
     font-size: 0.5rem;
     letter-spacing: 0.1em;
-    gap: 0.3rem;
+    gap: 0.35rem;
+    max-width: 36%;
+  }
+
+  /* Oculta el separador · para ahorrar espacio */
+  .project-badge__sep {
+    display: none;
+  }
+}
+
+/* --- SMALL MOBILE (hasta 480px) ---
+   En pantallas muy pequeñas el badge puede ser confuso.
+   Se muestra solo el código del proyecto, sin label. */
+@media (max-width: 480px) {
+  .project-badge {
+    font-size: 0.48rem;
+    letter-spacing: 0.08em;
+    gap: 0.25rem;
+    max-width: 30%;
+  }
+
+  /* Oculta la etiqueta "Proyecto" para reducir al mínimo */
+  .project-badge__label {
+    display: none;
   }
 }

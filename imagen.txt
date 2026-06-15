@@ -92,3 +92,10 @@ git add .
 git commit -m "reorganicar mapa del sitio"
 
 git push
+
+
+git add .
+
+git commit -m "responsive"
+
+git push
