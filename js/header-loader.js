@@ -1,21 +1,24 @@
 // header-loader.js — Carga modules/header.html de forma dinámica.
-// Detecta la profundidad de la página para calcular la ruta correcta.
+// Detecta la profundidad REAL de la página ignorando el prefijo del repo
+// de GitHub Pages (/portfolio/).
 // Al terminar emite "headerListo" para que header.js y menu-mobile.js
 // se inicialicen con el DOM del header ya disponible.
-// Orden de carga: header-loader.js → header.js → menu-mobile.js
 
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('header-container');
   if (!container) return;
 
-  // Calcula el prefijo de ruta según profundidad de la página:
-  // index.html                              → depth 0 → ""
-  // connects/cv.html                        → depth 1 → "../"
-  // connects/credenciales/certificados.html → depth 2 → "../../"
-  // projects/p-xxx/p-xxx.html              → depth 2 → "../../"
-  const depth = window.location.pathname
-    .split('/')
-    .filter(Boolean).length - 1;
+  // Base del repo en GitHub Pages
+  const repoBase = '/portfolio';
+
+  // Ruta relativa al repo (sin el prefijo /portfolio)
+  const pathSinRepo = window.location.pathname.replace(repoBase, '') || '/';
+
+  // Calcula profundidad real (segmentos de carpeta, sin contar el archivo)
+  const partes = pathSinRepo.split('/').filter(Boolean);
+  // Si el último segmento tiene punto (es un archivo .html), no cuenta como carpeta
+  const esArchivo = partes.length > 0 && partes[partes.length - 1].includes('.');
+  const depth = esArchivo ? partes.length - 1 : partes.length;
 
   const prefix = depth > 0 ? '../'.repeat(depth) : '';
   const headerPath = prefix + 'modules/header.html';
@@ -29,12 +32,14 @@ document.addEventListener('DOMContentLoaded', function () {
       container.innerHTML = html;
 
       // Ajustar href de todos los links según profundidad
-      if (depth > 0) {
-        container.querySelectorAll('[data-section]').forEach(function (link) {
-          const section = link.getAttribute('data-section');
+      container.querySelectorAll('[data-section]').forEach(function (link) {
+        const section = link.getAttribute('data-section');
+        if (depth > 0) {
           link.setAttribute('href', prefix + 'index.html#' + section);
-        });
-      }
+        } else {
+          link.setAttribute('href', '#' + section);
+        }
+      });
 
       document.dispatchEvent(new CustomEvent('headerListo'));
     })
