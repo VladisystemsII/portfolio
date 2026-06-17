@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VladCRM-COBOL — CRM con motor de lógica en COBOL, API Bridge en Python/Flask, base de datos MySQL y frontend web. Proyecto de modernización de sistemas legacy por Vladisystems.">
+<title>VladCRM-COBOL | VLADISYSTEMS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     RESET Y BASE
+  ============================================================ */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --bg: #f5f5f2;
+    --black: #111111;
+    --rust: #9d3d22;
+    --white: #ffffff;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Oswald', sans-serif;
+    --border: 2px solid #111;
+    --max: 1400px;
+    --pad: clamp(20px, 5vw, 80px);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--black);
+    line-height: 1.5;
+  }
+
+  /* ============================================================
+     CUADRÍCULA DE FONDO
+  ============================================================ */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(17,17,17,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(17,17,17,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* ============================================================
+     UTILIDADES
+  ============================================================ */
+  .mono {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .rust { color: var(--rust); }
+
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+    position: relative;
+    z-index: 1;
+  }
+
+  .section {
+    border-bottom: var(--border);
+    padding: clamp(60px, 8vw, 120px) 0;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--rust);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-sub {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    opacity: 0.4;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 48px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: var(--border);
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: var(--border);
+  }
+
+  .grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  /* ============================================================
+     RAW BOX — tarjeta brutalista
+  ============================================================ */
+  .raw-box {
+    border: var(--border);
+    padding: clamp(20px, 3vw, 32px);
+    background: var(--bg);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .raw-box:hover {
+    background: var(--black);
+    color: var(--bg);
+  }
+
+  .raw-box:hover .mono,
+  .raw-box:hover .box-inst {
+    color: var(--bg);
+    opacity: 0.5;
+  }
+
+  .raw-box:hover .rust {
+    color: var(--rust);
+    opacity: 1;
+  }
+
+  /* Celdas internas de grid */
+  .cell {
+    padding: clamp(20px, 3vw, 36px);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .cell:hover {
+    background: var(--black);
+    color: var(--bg);
+  }
+
+  .cell-border-r { border-right: var(--border); }
+  .cell-border-b { border-bottom: var(--border); }
+
+  /* ============================================================
+     BOTONES
+  ============================================================ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: var(--border);
+    padding: 14px 28px;
+    text-decoration: none;
+    color: var(--black);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: var(--black);
+    color: var(--bg);
+  }
+
+  .btn-solid {
+    background: var(--black);
+    color: var(--bg);
+  }
+
+  .btn-solid:hover {
+    background: var(--rust);
+    border-color: var(--rust);
+    color: var(--white);
+  }
+
+  .btn-rust {
+    background: var(--rust);
+    border-color: var(--rust);
+    color: var(--white);
+  }
+
+  .btn-rust:hover {
+    background: var(--black);
+    border-color: var(--black);
+  }
+
+  /* ============================================================
+     HEADER
+  ============================================================ */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-bottom: var(--border);
+    background: rgba(245,245,242,0.88);
+    backdrop-filter: blur(8px);
+  }
+
+  .header-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 20px var(--pad);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--black);
+  }
+
+  .back-btn {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: var(--border);
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--black);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .back-btn:hover {
+    background: var(--black);
+    color: var(--bg);
+  }
+
+  /* ============================================================
+     HERO
+  ============================================================ */
+  .hero {
+    border-bottom: var(--border);
+    padding: clamp(60px, 10vw, 140px) 0;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: end;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    border: 1px solid var(--rust);
+    color: var(--rust);
+    padding: 6px 14px;
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 9vw, 8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin-bottom: 28px;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    opacity: 0.8;
+  }
+
+  .hero-meta {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    opacity: 0.45;
+    margin-top: 20px;
+  }
+
+  /* Widget hero derecha */
+  .hero-widget {
+    min-width: 260px;
+    border: var(--border);
+    padding: 32px;
+    background: var(--black);
+    color: var(--bg);
+  }
+
+  .widget-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: #888;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+
+  .widget-row {
+    margin-bottom: 20px;
+  }
+
+  .widget-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .widget-key {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .widget-val {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--rust);
+  }
+
+  .widget-bar {
+    height: 2px;
+    background: #333;
+  }
+
+  .widget-fill {
+    height: 100%;
+    background: var(--bg);
+  }
+
+  /* ============================================================
+     LAYOUT 3 COLUMNAS SECCIÓN
+  ============================================================ */
+  .layout-3 {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: clamp(30px, 5vw, 80px);
+  }
+
+  /* ============================================================
+     HALLAZGOS / FINDINGS
+  ============================================================ */
+  .finding {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(17,17,17,0.12);
+  }
+
+  .finding:last-child { border-bottom: none; }
+
+  .finding-num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--rust);
+    letter-spacing: 0.2em;
+    flex-shrink: 0;
+    padding-top: 3px;
+  }
+
+  .finding-text {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    opacity: 0.85;
+  }
+
+  /* ============================================================
+     HERRAMIENTAS / TOOLS
+  ============================================================ */
+  .tool-card {
+    border: var(--border);
+    padding: 28px;
+    background: var(--bg);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .tool-card:hover {
+    background: var(--black);
+    color: var(--bg);
+  }
+
+  .tool-num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--rust);
+    letter-spacing: 0.3em;
+    margin-bottom: 12px;
+  }
+
+  .tool-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+  }
+
+  .tool-desc {
+    font-size: 0.8rem;
+    font-weight: 300;
+    opacity: 0.6;
+    line-height: 1.5;
+  }
+
+  /* ============================================================
+     RESULTADO DESTACADO
+  ============================================================ */
+  .result-block {
+    background: var(--black);
+    color: var(--bg);
+    padding: clamp(40px, 6vw, 80px);
+  }
+
+  .result-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .result-quote {
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    max-width: 700px;
+  }
+
+  /* ============================================================
+     RECURSOS
+  ============================================================ */
+  .resources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* ============================================================
+     CÓDIGO COBOL
+  ============================================================ */
+  .code-block {
+    border: var(--border);
+    background: var(--black);
+    color: #d8d8d2;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    line-height: 1.7;
+    padding: clamp(20px, 3vw, 36px);
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .code-block .c-rust  { color: var(--rust); }
+  .code-block .c-dim   { color: #777; }
+  .code-block .c-white { color: #fff; }
+
+  .code-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--rust);
+    border: 1px solid var(--rust);
+    padding: 4px 12px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  /* ============================================================
+     ARQUITECTURA / FLUJO
+  ============================================================ */
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    border: var(--border);
+  }
+
+  .flow-step {
+    padding: clamp(20px, 3vw, 32px);
+    border-right: var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    min-height: 140px;
+  }
+
+  .flow-step:last-child { border-right: none; }
+
+  .flow-num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--rust);
+    letter-spacing: 0.2em;
+  }
+
+  .flow-title {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .flow-desc {
+    font-size: 0.75rem;
+    font-weight: 300;
+    opacity: 0.6;
+    line-height: 1.4;
+  }
+
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 1.2rem;
+    color: var(--rust);
+    border-right: var(--border);
+    padding: 0 8px;
+    background: var(--bg);
+  }
+
+  /* ============================================================
+     MÓDULOS
+  ============================================================ */
+  .module-card {
+    border: var(--border);
+    padding: clamp(20px, 3vw, 32px);
+    background: var(--bg);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .module-card:hover {
+    background: var(--black);
+    color: var(--bg);
+  }
+
+  .module-card:hover .mono { opacity: 0.5; color: var(--bg); }
+  .module-card:hover .rust { color: var(--rust); opacity: 1; }
+
+  .module-file {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    opacity: 0.4;
+    margin-top: 12px;
+  }
+
+  /* ============================================================
+     ROADMAP
+  ============================================================ */
+  .roadmap-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(17,17,17,0.12);
+  }
+
+  .roadmap-item:last-child { border-bottom: none; }
+
+  .roadmap-num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--rust);
+    letter-spacing: 0.2em;
+    flex-shrink: 0;
+    padding-top: 3px;
+    min-width: 60px;
+  }
+
+  /* ============================================================
+     FOOTER
+  ============================================================ */
+  footer {
+    background: var(--black);
+    color: var(--bg);
+  }
+
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 36px var(--pad);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .footer-tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+
+  .footer-logo-img {
+    height: 80px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .footer-link {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bg);
+    opacity: 0.5;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .footer-link:hover { opacity: 1; }
+
+  /* ============================================================
+     RESPONSIVE
+  ============================================================ */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-widget { min-width: 100%; }
+    .layout-3 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .result-inner { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; text-align: center; }
+    .footer-links { justify-content: center; }
+    .flow { grid-template-columns: 1fr; }
+    .flow-step { border-right: none; border-bottom: var(--border); }
+    .flow-arrow { border-right: none; border-bottom: var(--border); padding: 8px 0; transform: rotate(90deg); }
+  }
+
+  @media (max-width: 640px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .cell-border-r { border-right: none; border-bottom: var(--border); }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- FONDO CUADRÍCULA -->
+<div class="grid-bg"></div>
+
+<!-- ============================================================
+  HEADER
+============================================================ -->
+<header>
+  <div class="header-inner">
+    <a href="https://vladisystemsii.github.io/portfolio/" class="logo">VLADISYSTEMS</a>
+    <a href="https://vladisystemsii.github.io/portfolio/" class="back-btn">← PORTFOLIO</a>
+  </div>
+</header>
+
+<!-- ============================================================
+  HERO
+============================================================ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- IZQUIERDA -->
+      <div>
+        <span class="hero-badge">COBOL · DB2 / MYSQL · LEGACY MODERNIZATION</span>
+
+        <h1 class="hero-title">
+          VLADCRM<br>COBOL
+        </h1>
+
+        <p class="hero-sub">
+          Sistema CRM con motor de lógica de negocio en COBOL,
+          orientado a gestión de clientes y procesos administrativos
+          en un entorno conceptual de mainframe — modernizado
+          mediante un API Bridge y una interfaz web moderna.
+        </p>
+
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="https://github.com/VladisystemsII/VladCRM-COBOL"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-solid">
+            GitHub ↗
+          </a>
+          <a href="https://vladisystemsii.github.io/portfolio/" class="btn">
+            Portfolio VLADISYSTEMS
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          VLADISYSTEMS · BOGOTÁ, COLOMBIA · 2026
+        </div>
+      </div>
+
+      <!-- DERECHA: WIDGET -->
+      <div class="hero-widget">
+        <div class="widget-label">FICHA TÉCNICA</div>
+
+        <div class="widget-row">
+          <div class="widget-row-top">
+            <span class="widget-key">Lenguaje</span>
+            <span class="widget-val">COBOL (GnuCOBOL)</span>
+          </div>
+          <div class="widget-bar"><div class="widget-fill" style="width:100%"></div></div>
+        </div>
+
+        <div class="widget-row">
+          <div class="widget-row-top">
+            <span class="widget-key">Plataforma</span>
+            <span class="widget-val">Mainframe (conceptual)</span>
+          </div>
+          <div class="widget-bar"><div class="widget-fill" style="width:90%"></div></div>
+        </div>
+
+        <div class="widget-row">
+          <div class="widget-row-top">
+            <span class="widget-key">Arquitectura</span>
+            <span class="widget-val">COBOL + API + DB</span>
+          </div>
+          <div class="widget-bar"><div class="widget-fill" style="width:95%"></div></div>
+        </div>
+
+        <div class="widget-row">
+          <div class="widget-row-top">
+            <span class="widget-key">Módulos COBOL</span>
+            <span class="widget-val">7</span>
+          </div>
+          <div class="widget-bar"><div class="widget-fill" style="width:85%"></div></div>
+        </div>
+
+        <div class="widget-row">
+          <div class="widget-row-top">
+            <span class="widget-key">Nivel de complejidad</span>
+            <span class="widget-val">ALTO</span>
+          </div>
+          <div class="widget-bar"><div class="widget-fill" style="width:100%"></div></div>
+        </div>
+
+        <div class="widget-row">
+          <div class="widget-row-top">
+            <span class="widget-key">Estado</span>
+            <span class="widget-val">EN DESARROLLO</span>
+          </div>
+          <div class="widget-bar"><div class="widget-fill" style="width:80%"></div></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECCIÓN 01 — RESUMEN DEL SISTEMA
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="layout-3">
+
+      <div>
+        <div class="section-label">SECCIÓN 01</div>
+        <div class="section-sub">OVERVIEW</div>
+        <h2 class="section-title">RESUMEN<br>DEL<br>SISTEMA</h2>
+      </div>
+
+      <div>
+        <p style="font-size:1.2rem; font-weight:300; line-height:1.7; max-width:640px; margin-bottom:24px;">
+          VladCRM-COBOL es un sistema de gestión de relaciones con
+          clientes (CRM) cuya lógica de negocio central — registro,
+          actualización, etiquetado, consulta de historial y reportes —
+          está implementada en COBOL bajo formato libre (GnuCOBOL).
+        </p>
+        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:640px; opacity:0.75; margin-bottom:24px;">
+          En términos de negocio, el sistema centraliza la información
+          de clientes, prospectos, proveedores y contactos prioritarios,
+          junto con el historial de interacciones de cada uno —
+          resolviendo el problema clásico de datos dispersos
+          en hojas de cálculo o agendas sueltas.
+        </p>
+        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:640px; opacity:0.75; margin-bottom:40px;">
+          El enfoque del proyecto es de <span class="rust" style="font-family:var(--mono); letter-spacing:0.05em;">COBOL legacy modernization</span>:
+          se conserva la lógica de negocio crítica escrita en COBOL —
+          el lenguaje histórico de los sistemas administrativos
+          empresariales — pero se la conecta con un API Bridge moderno
+          (Python/Flask), una base de datos relacional (MySQL)
+          y un frontend web, demostrando cómo un sistema legacy
+          puede integrarse a una arquitectura actual sin reescribirlo
+          desde cero.
+        </p>
+
+        <div class="grid-2">
+          <div class="cell cell-border-r">
+            <div class="mono rust" style="margin-bottom:8px;">NÚCLEO DE NEGOCIO</div>
+            <div style="font-weight:700; font-size:1.1rem; text-transform:uppercase;">7 programas COBOL</div>
+            <p style="font-size:0.8rem; opacity:0.6; margin-top:6px; font-weight:300;">
+              Registro, actualización, etiquetado, historial, reportes
+              e importación/exportación de contactos VCF.
+            </p>
+          </div>
+          <div class="cell">
+            <div class="mono rust" style="margin-bottom:8px;">CAPA DE INTEGRACIÓN</div>
+            <div style="font-weight:700; font-size:1.1rem; text-transform:uppercase;">API Bridge + Web UI</div>
+            <p style="font-size:0.8rem; opacity:0.6; margin-top:6px; font-weight:300;">
+              Flask expone cada programa COBOL como endpoint;
+              el frontend web consume la API y MySQL persiste los datos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECCIÓN 02 — PROBLEMA QUE RESUELVE
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="layout-3">
+
+      <div>
+        <div class="section-label">SECCIÓN 02</div>
+        <div class="section-sub">PROBLEM</div>
+        <h2 class="section-title">PROBLEMA<br>QUE<br>RESUELVE</h2>
+      </div>
+
+      <div>
+        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:640px; opacity:0.75; margin-bottom:40px;">
+          Muchas organizaciones — especialmente aquellas con procesos
+          heredados de sistemas administrativos antiguos — enfrentan
+          los mismos síntomas al gestionar su cartera de clientes.
+        </p>
+
+        <div class="grid-3">
+          <div class="cell cell-border-r cell-border-b">
+            <div class="mono rust" style="margin-bottom:10px;">01</div>
+            <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">CRM disperso</div>
+            <p style="font-size:0.8rem; opacity:0.6; font-weight:300; line-height:1.5;">
+              La información de clientes vive repartida entre hojas
+              de cálculo, contactos del celular y notas sueltas,
+              sin un sistema central que la unifique.
+            </p>
+          </div>
+          <div class="cell cell-border-b" style="grid-column: span 2;">
+            <div class="mono rust" style="margin-bottom:10px;">02</div>
+            <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">Procesos manuales</div>
+            <p style="font-size:0.8rem; opacity:0.6; font-weight:300; line-height:1.5;">
+              Registrar un cliente nuevo, actualizar su categoría
+              o consultar su historial requiere pasos manuales
+              repetitivos, propensos a errores e inconsistencias.
+            </p>
+          </div>
+          <div class="cell cell-border-r" style="grid-column: span 2;">
+            <div class="mono rust" style="margin-bottom:10px;">03</div>
+            <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">Sin centralización de datos</div>
+            <p style="font-size:0.8rem; opacity:0.6; font-weight:300; line-height:1.5;">
+              No existe una única fuente de verdad: clientes,
+              interacciones y etiquetas no están relacionados
+              entre sí ni disponibles para análisis o reportes.
+            </p>
+          </div>
+          <div class="cell">
+            <div class="mono rust" style="margin-bottom:10px;">04</div>
+            <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">Dependencia de sistemas legacy</div>
+            <p style="font-size:0.8rem; opacity:0.6; font-weight:300; line-height:1.5;">
+              La lógica crítica del negocio sigue escrita en COBOL,
+              pero sin un puente hacia interfaces modernas
+              que el equipo pueda usar día a día.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECCIÓN 03 — SOLUCIÓN IMPLEMENTADA
+============================================================ -->
+<section class="section">
+  <div class="container">
+
+    <div class="section-label">SECCIÓN 03</div>
+    <div class="section-sub">SOLUTION</div>
+    <h2 class="section-title">SOLUCIÓN<br>IMPLEMENTADA</h2>
+
+    <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:740px; opacity:0.75; margin-bottom:40px;">
+      Se diseñó una arquitectura COBOL estructurada por módulos
+      independientes, cada uno responsable de una operación
+      del negocio, con lógica batch / procesamiento secuencial
+      sobre archivos CSV — y una integración conceptual con
+      base de datos relacional (MySQL, equivalente a DB2)
+      mediante un esquema normalizado de Clientes, Interacciones
+      y Etiquetas.
+    </p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+
+      <div class="raw-box">
+        <div class="mono rust" style="margin-bottom:16px; display:block;">01 · ARQUITECTURA</div>
+        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:12px;">
+          COBOL Estructurado<br>por Módulos
+        </div>
+        <p style="font-size:0.85rem; font-weight:300; line-height:1.6; opacity:0.7;">
+          Cada programa sigue las cuatro divisiones estándar
+          (IDENTIFICATION, ENVIRONMENT, DATA, PROCEDURE) y secciones
+          numeradas (1000, 2000, 3000...) para inicialización,
+          captura, validación y persistencia de datos.
+        </p>
+      </div>
+
+      <div class="raw-box">
+        <div class="mono rust" style="margin-bottom:16px; display:block;">02 · MÓDULOS DE NEGOCIO</div>
+        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:12px;">
+          Clientes,<br>Transacciones, Reportes
+        </div>
+        <p style="font-size:0.85rem; font-weight:300; line-height:1.6; opacity:0.7;">
+          Registro y actualización de clientes, etiquetado por
+          categoría, registro de interacciones (historial)
+          y generación de reportes filtrados — cada uno
+          como un programa COBOL independiente.
+        </p>
+      </div>
+
+      <div class="raw-box">
+        <div class="mono rust" style="margin-bottom:16px; display:block;">03 · LÓGICA BATCH</div>
+        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:12px;">
+          Procesamiento<br>Secuencial sobre CSV
+        </div>
+        <p style="font-size:0.85rem; font-weight:300; line-height:1.6; opacity:0.7;">
+          Los programas leen y escriben archivos planos
+          (clientes_nuevos.csv, interacciones.csv, contactos_export.vcf)
+          con organización LINE SEQUENTIAL — el patrón clásico
+          de procesamiento batch en COBOL.
+        </p>
+      </div>
+
+      <div class="raw-box">
+        <div class="mono rust" style="margin-bottom:16px; display:block;">04 · INTEGRACIÓN CON BASE DE DATOS</div>
+        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:12px;">
+          Esquema Relacional<br>(MySQL / DB2-like)
+        </div>
+        <p style="font-size:0.85rem; font-weight:300; line-height:1.6; opacity:0.7;">
+          Tablas Clientes, Interacciones y Etiquetas con claves
+          foráneas — el equivalente conceptual a un esquema DB2
+          en mainframe, listo para que los módulos COBOL
+          persistan ahí su salida.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECCIÓN 04 — ARQUITECTURA DEL SISTEMA
+============================================================ -->
+<section class="section">
+  <div class="container">
+
+    <div class="section-label">SECCIÓN 04</div>
+    <div class="section-sub">ARCHITECTURE</div>
+    <h2 class="section-title">ARQUITECTURA<br>DEL SISTEMA</h2>
+
+    <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:740px; opacity:0.75; margin-bottom:40px;">
+      Flujo conceptual de un job en VladCRM-COBOL: el usuario
+      interactúa con la interfaz, una capa de orquestación
+      ejecuta el programa COBOL correspondiente, este procesa
+      o actualiza los datos en la base, y el resultado se devuelve
+      como reporte o respuesta.
+    </p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-title">Usuario</div>
+        <div class="flow-desc">Interfaz web (sidebar + dashboard) o terminal</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-title">JCL Job / API Bridge</div>
+        <div class="flow-desc">Flask invoca el ejecutable COBOL correspondiente</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-title">Programa COBOL</div>
+        <div class="flow-desc">Valida, procesa y escribe el resultado en CSV</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-title">DB2 / MySQL</div>
+        <div class="flow-desc">Persistencia de Clientes, Interacciones, Etiquetas</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">05</div>
+        <div class="flow-title">Reportes</div>
+        <div class="flow-desc">Salida CSV / dashboard listo para revisión</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+  SECCIÓN 05 — MÓDULOS DEL SISTEMA
+============================================================ -->
+<section class="section">
+  <div class="container">
+
+    <div class="section-label">SECCIÓN 05</div>
+    <div class="section-sub">MODULES</div>
+    <h2 class="section-title">MÓDULOS<br>DEL SISTEMA</h2>
+
+    <div class="grid-auto">
+
+      <div class="module-card">
+        <div class="mono rust">01 · GESTIÓN DE CLIENTES</div>
+        <div style="font-size:1.2rem; font-weight:700; text-transform:uppercase; margin:10px 0;">
+          Registrar / Actualizar Cliente
+        </div>
+        <p style="font-size:0.85rem; font-weight:300; opacity:0.7; line-height:1.5;">
+          Captura y valida nombre, teléfono, correo y categoría
+          (cliente, prospecto, proveedor, inactivo, prioritario),
+          y permite actualizar contactos existentes por teléfono.
+        </p>
+        <div class="module-file">REGISTRAR_CLIENTE.cbl · ACTUALIZAR_CLIENTE.cbl</div>
+      </div>
+
+      <div class="module-card">
+        <div class="mono rust">02 · REGISTRO DE TRANSACCIONES</div>
+        <div style="font-size:1.2rem; font-weight:700; text-transform:uppercase; margin:10px 0;">
+          Historial de Interacciones
+        </div>
+        <p style="font-size:0.85rem; font-weight:300; opacity:0.7; line-height:1.5;">
+          Consulta el historial de interacciones de un cliente
+          (tipo, nota, fecha, canal) a partir de interacciones.csv,
+          asociado por número de teléfono.
+        </p>
+        <div class="module-file">CONSULTAR_HISTORIAL.cbl</div>
+      </div>
+
+      <div class="module-card">
+        <div class="mono rust">03 · REPORTES BATCH</div>
+        <div style="font-size:1.2rem; font-weight:700; text-transform:uppercase; margin:10px 0;">
+          Generador de Reportes
+        </div>
+        <p style="font-size:0.85rem; font-weight:300; opacity:0.7; line-height:1.5;">
+          Genera un reporte CSV de clientes filtrado por categoría
+          y/o estado, listo para análisis en Power BI
+          o para alimentar la interfaz web.
+        </p>
+        <div class="module-file">GENERAR_REPORTE.cbl</div>
+      </div>
+
+      <div class="module-card">
+        <div class="mono rust">04 · CONTROL ADMINISTRATIVO</div>
+        <div style="font-size:1.2rem; font-weight:700; text-transform:uppercase; margin:10px 0;">
+          Etiquetado de Clientes
+        </div>
+        <p style="font-size:0.85rem; font-weight:300; opacity:0.7; line-height:1.5;">
+          Cambia la categoría administrativa de un cliente
+          en el CSV (cliente, prospecto, proveedor, inactivo,
+          prioritario), manteniendo la cartera clasificada.
+        </p>
+        <div class="module-file">ETIQUETAR_CLIENTE.cbl</div>
+      </div>
+
+      <div class="module-card">
+        <div class="mono rust">05 · INTERFACE MAINFRAME</div>
+        <div style="font-size:1.2rem; font-weight:700; text-transform:uppercase; margin:10px 0;">
+          Ciclo de Importación / Exportación VCF
+        </div>
+        <p style="font-size:0.85rem; font-weight:300; opacity:0.7; line-height:1.5;">
+          Importa contactos desde un archivo VCF (vCard)
+          hacia el CSV de clientes, y exporta clientes_nuevos.csv
+          de vuelta a formato VCF para reincorporarlos al celular.
+        </p>
+        <div class="module-file">IMPORTAR_VCF.cbl · EXPORTAR_VCF.cbl</div>
+      </div>
+
+      <div class="module-card">
+        <div class="mono rust">06 · API BRIDGE</div>
+        <div style="font-size:1.2rem; font-weight:700; text-transform:uppercase; margin:10px 0;">
+          Capa de Integración Flask
+        </div>
+        <p style="font-size:0.85rem; font-weight:300; opacity:0.7; line-height:1.5;">
+          Expone cada programa COBOL como endpoint REST
+          (/registrar, /actualizar, /consultar, /etiquetar,
+          /reporte, /importar, /exportar) para el frontend web.
+        </p>
+        <div class="module-file">app.py · Flask + Flask-CORS</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECCIÓN 06 — BLOQUE DE CÓDIGO COBOL
+============================================================ -->
+<section class="section">
+  <div class="container">
+
+    <div class="section-label">SECCIÓN 06</div>
+    <div class="section-sub">CODE</div>
+    <h2 class="section-title">CÓDIGO<br>COBOL REAL</h2>
+
+    <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:740px; opacity:0.75; margin-bottom:32px;">
+      Extracto real del módulo <span class="rust" style="font-family:var(--mono); font-size:0.85rem;">REGISTRAR-CLIENTE</span>,
+      formato libre para GnuCOBOL, mostrando las cuatro divisiones
+      estándar del lenguaje y la lógica de validación de datos.
+    </p>
+
+    <span class="code-tag">REGISTRAR_CLIENTE.cbl</span>
+
+    <div class="code-block"><span class="c-dim">*&gt; VladCRM-COBOL v1.0
+*&gt; Modulo  : REGISTRAR-CLIENTE v1.2
+*&gt; Autor   : Vladimir Alba - Vladisystems
+*&gt; Formato : FREE - GnuCOBOL
+*&gt; Salida  : clientes_nuevos.csv</span>
+
+<span class="c-rust">IDENTIFICATION DIVISION.</span>
+PROGRAM-ID. REGISTRAR-CLIENTE.
+AUTHOR. VLADISYSTEMS.
+
+<span class="c-rust">ENVIRONMENT DIVISION.</span>
+CONFIGURATION SECTION.
+SOURCE-COMPUTER. WINDOWS.
+OBJECT-COMPUTER. WINDOWS.
+INPUT-OUTPUT SECTION.
+FILE-CONTROL.
+    SELECT ARCHIVO-SALIDA
+        ASSIGN TO "clientes_nuevos.csv"
+        ORGANIZATION IS LINE SEQUENTIAL
+        FILE STATUS IS WS-FILE-STATUS.
+
+<span class="c-rust">DATA DIVISION.</span>
+FILE SECTION.
+FD ARCHIVO-SALIDA.
+01 FS-LINEA PIC X(500).
+
+WORKING-STORAGE SECTION.
+01 WS-CLIENTE.
+    05 WS-NOMBRE         PIC X(100).
+    05 WS-TELEFONO       PIC X(20).
+    05 WS-CORREO         PIC X(100).
+    05 WS-CATEGORIA      PIC X(30).
+    05 WS-FECHA-INGRESO  PIC X(10).
+    05 WS-ESTADO         PIC X(10).
+    05 WS-FUENTE         PIC X(10).
+
+01 WS-CONTROL.
+    05 WS-RESULTADO      PIC X(10).
+        88 RESULTADO-OK  VALUE "OK".
+    05 WS-MENSAJE        PIC X(80).
+    05 WS-FILE-STATUS    PIC XX.
+
+<span class="c-rust">PROCEDURE DIVISION.</span>
+
+0000-PRINCIPAL.
+    PERFORM 1000-INICIALIZAR
+    PERFORM 2000-CAPTURAR-DATOS
+    PERFORM 3000-VALIDAR-DATOS
+    IF RESULTADO-OK
+        PERFORM 5000-GUARDAR-CLIENTE
+    END-IF
+    PERFORM 9000-FINALIZAR
+    STOP RUN.
+
+3300-VALIDAR-CORREO.
+    MOVE 0 TO WS-ARROBA-POS
+    MOVE 0 TO WS-PUNTO-POS
+    PERFORM VARYING WS-INDEX FROM 1 BY 1
+        UNTIL WS-INDEX &gt; WS-CORREO-LEN
+        MOVE WS-CORREO(WS-INDEX:1) TO WS-CHAR
+        IF WS-CHAR = "@"
+            MOVE WS-INDEX TO WS-ARROBA-POS
+        END-IF
+        IF WS-CHAR = "." AND WS-ARROBA-POS &gt; 0
+            MOVE WS-INDEX TO WS-PUNTO-POS
+        END-IF
+    END-PERFORM
+    IF WS-ARROBA-POS = 0 OR WS-PUNTO-POS = 0
+        MOVE "ERROR" TO WS-RESULTADO
+        MOVE "ERROR: Correo invalido (falta @ o punto)."
+            TO WS-MENSAJE
+    END-IF.
+
+5000-GUARDAR-CLIENTE.
+    OPEN EXTEND ARCHIVO-SALIDA
+    STRING
+        FUNCTION TRIM(WS-NOMBRE)    DELIMITED SIZE ","
+        FUNCTION TRIM(WS-TELEFONO)  DELIMITED SIZE ","
+        FUNCTION TRIM(WS-CORREO)    DELIMITED SIZE ","
+        FUNCTION TRIM(WS-CATEGORIA) DELIMITED SIZE ","
+        WS-FECHA-INGRESO            DELIMITED SIZE ","
+        FUNCTION TRIM(WS-ESTADO)    DELIMITED SIZE ","
+        FUNCTION TRIM(WS-FUENTE)    DELIMITED SIZE
+        INTO WS-LINEA-CSV
+    END-STRING
+    WRITE FS-LINEA
+    CLOSE ARCHIVO-SALIDA.</span><span class="c-white"></span>
+
+  </div>
+</section>
+
+<!-- ============================================================
+  SECCIÓN 07 — STACK TECNOLÓGICO
+============================================================ -->
+<section class="section">
+  <div class="container">
+
+    <div class="section-label">SECCIÓN 07</div>
+    <div class="section-sub">STACK</div>
+    <h2 class="section-title">STACK<br>TECNOLÓGICO</h2>
+
+    <div class="grid-auto">
+
+      <div class="tool-card">
+        <div class="tool-num">01 · NÚCLEO</div>
+        <div class="tool-name">COBOL (GnuCOBOL)</div>
+        <p class="tool-desc">
+          Lenguaje de los 7 programas de negocio: registro, actualización,
+          etiquetado, historial, reportes e importación/exportación VCF.
+        </p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-num">02 · ORQUESTACIÓN</div>
+        <div class="tool-name">JCL (conceptual)</div>
+        <p class="tool-desc">
+          Representa el job control que en un mainframe real
+          encadenaría la ejecución de los programas COBOL como batch.
+        </p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-num">03 · BASE DE DATOS</div>
+        <div class="tool-name">MySQL (DB2-like)</div>
+        <p class="tool-desc">
+          Esquema relacional con tablas Clientes, Interacciones
+          y Etiquetas — equivalente conceptual a un esquema DB2.
+        </p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-num">04 · PLATAFORMA</div>
+        <div class="tool-name">z/OS (conceptual)</div>
+        <p class="tool-desc">
+          El proyecto simula el entorno mainframe z/OS como contexto
+          de ejecución objetivo de los programas COBOL.
+        </p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-num">05 · API BRIDGE</div>
+        <div class="tool-name">Python / Flask</div>
+        <p class="tool-desc">
+          app.py expone cada ejecutable COBOL como endpoint REST,
+          con Flask-CORS para conectarlo al frontend web.
+        </p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-num">06 · FRONTEND</div>
+        <div class="tool-name">HTML / CSS / JS</div>
+        <p class="tool-desc">
+          Dashboard con sidebar, contactos, historial y ciclo VCF,
+          consumiendo el API Bridge en localhost:5000.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECCIÓN 08 — FLUJO OPERATIVO
+============================================================ -->
+<section class="section">
+  <div class="container">
+
+    <div class="section-label">SECCIÓN 08</div>
+    <div class="section-sub">WORKFLOW</div>
+    <h2 class="section-title">FLUJO<br>OPERATIVO</h2>
+
+    <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:740px; opacity:0.75; margin-bottom:40px;">
+      Ciclo de vida de una operación, desde la entrada de datos
+      hasta el reporte final — el patrón clásico de procesamiento
+      batch en COBOL aplicado a un caso de CRM.
+    </p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-title">Input</div>
+        <div class="flow-desc">Datos de cliente, VCF o filtros de reporte</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-title">Job</div>
+        <div class="flow-desc">El API Bridge invoca el ejecutable correspondiente</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-title">COBOL Compile</div>
+        <div class="flow-desc">Programas compilados con GnuCOBOL a ejecutables .exe</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-title">Ejecución Batch</div>
+        <div class="flow-desc">Validación, procesamiento y escritura en CSV</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">05</div>
+        <div class="flow-title">Output Report</div>
+        <div class="flow-desc">CSV / VCF de salida o respuesta JSON al frontend</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+  SECCIÓN 09 — RESULTADOS
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="layout-3">
+
+      <div>
+        <div class="section-label">SECCIÓN 09</div>
+        <div class="section-sub">RESULTS</div>
+        <h2 class="section-title">RESUL<br>TADOS</h2>
+      </div>
+
+      <div>
+        <div class="finding">
+          <span class="finding-num">01</span>
+          <p class="finding-text">
+            Sistema estructurado: 7 programas COBOL independientes,
+            cada uno con sus cuatro divisiones estándar y secciones
+            numeradas siguiendo convenciones de programación COBOL
+            empresarial.
+          </p>
+        </div>
+        <div class="finding">
+          <span class="finding-num">02</span>
+          <p class="finding-text">
+            Lógica batch funcional: validación de datos
+            (teléfono, correo, categorías), persistencia en CSV
+            y generación de reportes filtrados, todo operativo
+            de extremo a extremo.
+          </p>
+        </div>
+        <div class="finding">
+          <span class="finding-num">03</span>
+          <p class="finding-text">
+            Base sólida para modernización: el esquema relacional
+            (Clientes, Interacciones, Etiquetas) y el API Bridge
+            en Flask dejan el camino preparado para reemplazar
+            CSV por DB2/MySQL en producción.
+          </p>
+        </div>
+        <div class="finding">
+          <span class="finding-num">04</span>
+          <p class="finding-text">
+            Comprensión aplicada de un workflow mainframe:
+            input → job → compilación → ejecución batch → reporte,
+            documentado y replicable para futuros sistemas legacy.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECCIÓN 10 — ROADMAP
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="layout-3">
+
+      <div>
+        <div class="section-label">SECCIÓN 10</div>
+        <div class="section-sub">ROADMAP</div>
+        <h2 class="section-title">PRÓXIMAS<br>MEJORAS</h2>
+      </div>
+
+      <div>
+        <div class="roadmap-item">
+          <span class="roadmap-num">01 ·</span>
+          <p class="finding-text">
+            Integración con APIs modernas: exponer los módulos COBOL
+            mediante una API REST documentada (OpenAPI/Swagger)
+            sobre el API Bridge ya existente.
+          </p>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-num">02 ·</span>
+          <p class="finding-text">
+            Migración parcial a microservicios: encapsular cada
+            módulo COBOL (clientes, historial, reportes, VCF)
+            como un servicio independiente desplegable por separado.
+          </p>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-num">03 ·</span>
+          <p class="finding-text">
+            Interfaz web de consulta ampliada: dashboard con
+            estadísticas en tiempo real, búsqueda avanzada
+            y edición directa de clientes desde el navegador.
+          </p>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-num">04 ·</span>
+          <p class="finding-text">
+            Automatización de reportes: jobs programados que generen
+            y envíen reportes periódicos (diarios/semanales)
+            sin intervención manual.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECCIÓN 11 — RECURSOS DEL PROYECTO
+============================================================ -->
+<section class="section" style="border-bottom:none;">
+  <div class="container">
+    <div class="result-block">
+      <div class="result-inner">
+        <div>
+          <div class="mono" style="color:#888; margin-bottom:20px; letter-spacing:0.3em;">RESULTADO</div>
+          <p class="result-quote">
+            Un sistema legacy en COBOL conectado a una arquitectura
+            moderna — la base de un proceso real de modernización empresarial.
+          </p>
+          <p style="margin-top:20px; font-weight:300; opacity:0.6; font-size:0.95rem; max-width:560px; line-height:1.6;">
+            7 módulos COBOL, 1 API Bridge en Flask, esquema relacional
+            con 3 tablas y un frontend web — demostrando disciplina
+            de sistemas legacy junto con una visión clara
+            de modernización.
+          </p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px; flex-shrink:0;">
+          <a href="https://github.com/VladisystemsII/VladCRM-COBOL"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-rust">
+            Ver Repositorio GitHub ↗
+          </a>
+          <a href="https://vladisystemsii.github.io/portfolio/"
+             class="btn" style="border-color:#444; color:var(--bg);">
+            ← Portfolio
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  FOOTER
+============================================================ -->
+<footer>
+  <div class="footer-inner">
+
+    <div class="footer-tag">
+      VLADISYSTEMS<br>Showcasing Our Tech Evolution
+    </div>
+
+    <img
+      src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
+      alt="VLADISYSTEMS"
+      class="footer-logo-img"
+    >
+
+    <div class="footer-links">
+      <a href="https://github.com/VladisystemsII/VladCRM-COBOL"
+         target="_blank" rel="noopener noreferrer"
+         class="footer-link">GitHub ↗</a>
+      <a href="https://vladisystemsii.github.io/portfolio/"
+         class="footer-link">← Portfolio</a>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
