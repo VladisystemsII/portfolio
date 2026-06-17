@@ -106,3 +106,12 @@ git add .
 git commit -m "linkedin new"
 
 git push
+
+
+
+
+git add .
+
+git commit -m "todos los connets news"
+
+git push
