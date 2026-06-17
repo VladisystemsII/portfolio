@@ -14,9 +14,10 @@
 
 <style>
 
-<!-- ============================================================
+/*  ============================================================
    RESET Y VARIABLES
-============================================================ -->
+============================================================ */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -45,9 +46,9 @@ body {
   overflow-x: hidden;
 }
 
-<!-- ============================================================
+/*  ============================================================
    CUADRÍCULA DE FONDO — fija, decorativa
-============================================================ -->
+============================================================ */
 .grid-bg {
   position: fixed;
   inset: 0;
@@ -241,6 +242,23 @@ header {
   color: var(--black);
 }
 
+.back-btn {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: var(--border);
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--black);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .back-btn:hover {
+    background: var(--black);
+    color: var(--bg);
+}
+
 /* ============================================================
    HERO
 ============================================================ */
@@ -349,6 +367,10 @@ header {
   height: 100%;
   background: var(--bg);
 }
+
+
+
+
 
 /* ============================================================
    BLOQUE DE CÓDIGO — fragmento real de bot.py
@@ -654,13 +676,16 @@ footer {
 <!-- CUADRÍCULA DE FONDO -->
 <div class="grid-bg"></div>
 
+
+
+
 <!-- ============================================================
   HEADER — sticky con blur
 ============================================================ -->
 <header>
   <div class="header-inner">
     <a href="https://vladisystemsii.github.io/portfolio/" class="logo">VLADISYSTEMS</a>
-    <a href="https://vladisystemsii.github.io/portfolio/" class="btn">← PORTFOLIO</a>
+    <a href="../p-vladibot.html" class="back-btn">← Volver al Proyecto</a>
   </div>
 </header>
 
@@ -691,9 +716,11 @@ footer {
              class="btn btn-solid">
             Ver en GitHub ↗
           </a>
-          <a href="https://vladisystemsii.github.io/portfolio/"
-             class="btn">
-            ← Portfolio
+          <a href="documentacion/index.html"
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-3 border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+             style="font-family:'IBM Plex Mono',monospace;">
+            Documentación BOT ↗
           </a>
         </div>
 
@@ -1379,6 +1406,12 @@ footer {
 
   </div>
 </footer>
+
+<script>
+  document.querySelector('header > div').insertAdjacentHTML('beforeend',
+    '<div style="position:absolute;left:50%;transform:translateX(-50%);font-family:\'IBM Plex Mono\',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;pointer-events:none;display:flex;gap:.6rem"><span style="color:#888">Proyecto</span><span style="color:#bbb">·</span><span style="color:#111;font-weight:600">Documentación  BOT</span></div>'
+  );
+</script>
 
 </body>
 </html>

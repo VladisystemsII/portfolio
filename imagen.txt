@@ -115,3 +115,10 @@ git add .
 git commit -m "todos los connets news"
 
 git push
+
+
+git add .
+
+git commit -m "documentación de proyectos"
+
+git push
