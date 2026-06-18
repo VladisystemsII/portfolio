@@ -139,3 +139,14 @@ git add .
 git commit -m "REVISION GENERAL I"
 
 git push
+
+
+
+git add .
+
+git commit -m "integracion de footer"
+
+git push
+
+
+
