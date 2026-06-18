@@ -70,59 +70,6 @@
 <div style="position:relative; z-index:1;" class="content-offset">
 
 <!-- ============================================================
-  SECCIÓN: HEADER (Cabecera)
-  [NUEVO] Ahora es STICKY (position:fixed via CSS).
-  Queda fijo en la parte superior al hacer scroll.
-  Contiene:
-    · Logo/nombre de marca (VLADISYSTEMS) a la izquierda
-    · Menú de navegación desktop a la derecha
-      (visible solo en pantallas mayores a 1024px)
-    · [NUEVO] Botón hamburger a la derecha
-      (visible solo en tablet/mobile, oculto en desktop)
-  El botón hamburger llama a toggleMobileMenu() en JavaScript
-  para abrir y cerrar el panel de navegación mobile.
-============================================================ -->
-<!-- <header class="border-b-2 border-black">
-
-<div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
-
-<h1 class="text-3xl md:text-5xl font-bold tracking-tight">
-VLADISYSTEMS
-</h1>
-
-<nav class="hidden lg:flex gap-10 uppercase text-sm tracking-[0.25em]">
-
-<a href="#inicio">Inicio</a>
-<a href="#links">Links</a>
-<a href="#proyectos">Proyectos</a>
-<a href="#contacto">Contacto</a>
-
-</nav>
-
-============================================================
-  [NUEVO] BOTÓN HAMBURGER
-  Botón con 3 líneas (<span>) que representa el ícono ☰.
-  Solo visible en tablet y mobile (display:flex desde 1024px).
-  Al hacer clic llama a toggleMobileMenu() en JavaScript.
-  Cuando el menú está abierto, el JS agrega la clase .open
-  a este botón, transformando las 3 líneas en una X (✕)
-  mediante las transformaciones CSS definidas arriba.
-  aria-label="Menú" es importante para accesibilidad:
-  lectores de pantalla lo anuncian como "botón Menú".
-============================================================ 
-<button class="hamburger-btn" id="hamburgerBtn"
-        onclick="toggleMobileMenu()"
-        aria-label="Menú">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
-
-</div>
-
-</header>  -->
-
-<!-- ============================================================
   SECCIÓN: HERO (#inicio)
   Primera sección visible del sitio. Ocupa el 100% del viewport.
   Está dividida en dos columnas (grid de 12 columnas en desktop):
@@ -190,56 +137,6 @@ Ver perfiles
 
 </div>
 
-<!-- RIGHT 
-<div class="lg:col-span-4">
-
-<div class="border-2 border-black p-8 bg-black text-white">
-
-<div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
-LIVE PORTFOLIO
-</div>
-
-<div class="space-y-8">-->
-
-<!-- <div>
-<div class="flex justify-between items-center mb-2">
-<h3 class="uppercase text-sm tracking-[0.2em]">LinkedIn</h3>
-<span class="mono text-xs">01</span>
-</div>
-<div class="h-[2px] bg-[#333]">
-<div class="h-full bg-white w-[95%]"></div>
-</div>
-</div>
-
-<div>
-<div class="flex justify-between items-center mb-2">
-<h3 class="uppercase text-sm tracking-[0.2em]">Workana</h3>
-<span class="mono text-xs">02</span>
-</div>
-<div class="h-[2px] bg-[#333]">
-<div class="h-full bg-white w-[82%]"></div>
-</div>
-</div>
-
-<div>
-<div class="flex justify-between items-center mb-2">
-<h3 class="uppercase text-sm tracking-[0.2em]">Github</h3>
-<span class="mono text-xs">03</span>
-</div>
-<div class="h-[2px] bg-[#333]">
-<div class="h-full bg-white w-[75%]"></div>
-</div>
-</div>
-
-<div>
-<div class="flex justify-between items-center mb-2">
-<h3 class="uppercase text-sm tracking-[0.2em]">Projects</h3>
-<span class="mono text-xs">07</span>
-</div>
-<div class="h-[2px] bg-[#333]">
-<div class="h-full bg-white w-[92%]"></div>
-</div>
-</div> -->
 
 <!-- RIGHT PANEL - VLADISYSTEM DASHBOARD -->
 <div class="lg:col-span-4">
@@ -299,12 +196,6 @@ LIVE PORTFOLIO
     </div>
 
   </div>
-
-</div>
-
-</div>
-
-</div>
 
 </div>
 
@@ -530,21 +421,16 @@ Destacados
   </a>
 
 <!-- PROJECT -->
-  <a href="projects/p-vladcrm/p-vladcrm.html"
-   class="project-card border-b-2 lg:border-r-2 border-black p-12 block">
-  <div class="mono text-xs tracking-[0.3em] mb-6">
-    05 / CRM · AUTOMATION</div>
-  <h4 class="text-4xl uppercase mb-8">VladCRM</h4>
-  <p class="text-xl leading-relaxed font-light mb-10 max-w-xl">
-    Sistema de gestión de contactos y automatización
-    de seguimiento comercial para negocios locales.
-  </p>
-</a>
-
-
-
-<!-- PROJECT -->
-
+ <a href="projects/p-vladcrm/p-vladcrm.html"
+          class="project-card border-b-2 lg:border-r-2 border-black p-12 block">
+          <div class="mono text-xs tracking-[0.3em] mb-6">
+               05 / CRM · AUTOMATION</div>
+          <h4 class="text-4xl uppercase mb-8">VladCRM</h4>
+          <p class="text-xl leading-relaxed font-light mb-10 max-w-xl">
+           Sistema de gestión de contactos y automatización
+           de seguimiento comercial para negocios locales.
+          </p>
+ </a>
 
 
 
@@ -658,55 +544,14 @@ Contacto directo
 </section>
 
 <!-- ============================================================
-  SECCIÓN: FOOTER
-  Barra inferior de fondo negro con 3 columnas:
-
-  IZQUIERDA:
-    · Tagline en fuente mono con baja opacidad
-    · Texto: "VLADISYSTEMS / RAW DIGITAL STRUCTURE"
-
-  CENTRO:
-    · Logo del sitio cargado desde Cloudinary (CDN externo)
-    · Altura fija de 90px, ancho automático
-
-  DERECHA:
-    · 4 links de navegación: LinkedIn, Github, Workana, Contacto
-    · Todos con href="#" como placeholders
-
-  En mobile, el footer colapsa a una sola columna centrada
-  (controlado en el breakpoint 768px del sistema responsive).
+  SECCIÓN: FOOTER  
 ============================================================ -->
-<footer class="bg-black text-white">
+<div id="footer-container"></div>
 
-<div class="max-w-[1800px] mx-auto px-6 py-10 grid grid-cols-3 items-center">
 
-  <!-- IZQUIERDA -->
-  <div class="mono text-xs tracking-[0.3em] opacity-60 text-left">
-    VLADISYSTEMS / RAW DIGITAL STRUCTURE
-  </div>
 
-  <!-- CENTRO -->
-  <div class="flex justify-center">
-    <img 
-      src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
-      style="height:90px; width:auto;"
-      alt="VLADISYSTEMS"
-    >
-  </div>
 
-  <!-- DERECHA -->
-  <div class="flex gap-6 uppercase text-sm tracking-[0.2em] justify-end">
-    <a href="#">LinkedIn</a>
-    <a href="#">Github</a>
-    <a href="#">Workana</a>
-    <a href="#">Contacto</a>
-  </div>
-
-</div>
-
-</footer>
-
-</div>
+</div><!-- end content-offset -->
 
 <!-- ============================================================
   [NUEVO] JAVASCRIPT — LÓGICA DEL HAMBURGER MENU
@@ -729,22 +574,11 @@ Contacto directo
      Esto es importante para que después de navegar a una
      sección, el menú no quede abierto encima del contenido.
 ============================================================ -->
-<!-- <script>
 
-function toggleMobileMenu(){
-  document.getElementById('hamburgerBtn').classList.toggle('open');
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-
-function closeMobileMenu(){
-  document.getElementById('hamburgerBtn').classList.remove('open');
-  document.getElementById('mobileMenu').classList.remove('open');
-}
-
-</script>-->
 
 <script src="js/header-loader.js"></script>
 <script src="js/header.js"></script>
+<script src="js/footer-loader.js"></script>
 <script src="js/menu-mobile.js"></script>
 
 </body>
