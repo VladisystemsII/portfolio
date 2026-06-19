@@ -149,4 +149,8 @@ git commit -m "integracion de footer"
 git push
 
 
+git add .
 
+git commit -m "ORDEN DEL HEAD EN RESPONSIVE"
+
+git push

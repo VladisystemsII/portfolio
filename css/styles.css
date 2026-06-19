@@ -109,7 +109,9 @@ header{
   background:rgba(245,245,242,0.75);
   backdrop-filter:blur(8px);
   border-bottom:none;
+  display:block;
 }
+
 
 
 /* ============================================================

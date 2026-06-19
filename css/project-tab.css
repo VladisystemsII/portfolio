@@ -81,19 +81,49 @@ header > div {
   }
 }
 
-/* --- SMALL MOBILE (hasta 480px) ---
-   En pantallas muy pequeñas el badge puede ser confuso.
-   Se muestra solo el código del proyecto, sin label. */
-@media (max-width: 480px) {
-  .project-badge {
-    font-size: 0.48rem;
-    letter-spacing: 0.08em;
-    gap: 0.25rem;
-    max-width: 30%;
+
+
+
+  @media (max-width: 480px) {
+  /* El header necesita espacio extra abajo para alojar
+     la segunda línea (badge) dentro del fondo blanco */
+  header > div {
+    padding-bottom: 2.4rem;
   }
 
-  /* Oculta la etiqueta "Proyecto" para reducir al mínimo */
-  .project-badge__label {
+  .project-badge {
+    position: absolute;
+    left: 1.5rem;
+    bottom: 0.6rem;
+    top: auto;
+    transform: none;
+
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+
+    max-width: none;
+  }
+
+  /* .project-badge__label {
     display: none;
+  }*/
+}
+
+
+
+@media (max-width: 480px) {
+  .content-offset {
+    padding-top: 130px;
   }
 }
+
+
+
+
+
+
+
+  /* Oculta la etiqueta "Proyecto" para reducir al mínimo 
+  .project-badge__label {
+    display: none;
+  }*/
