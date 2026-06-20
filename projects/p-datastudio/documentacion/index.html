@@ -4,1073 +4,581 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Dashboard de Ventas 2025 — Análisis de ventas por vendedor, evolución mensual y participación porcentual. Proyecto de Data Analytics por Vladisystems.">
+
+<!-- ============================================================
+  DOCUMENTACIÓN: PROYECTO DASHBOARD DE VENTAS 2025
+  Archivo: p-datastudio/documentacion/index.html
+  Parte del sistema VLADISYSTEMS PORTFOLIO.
+  Migrado a la estructura base compartida (header, grid, footer,
+  tipografía, componentes) — ya no usa CSS propio independiente.
+============================================================ -->
 <title>Dashboard de Ventas 2025 | VLADISYSTEMS</title>
 
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="../../../css/styles.css">
+<link rel="stylesheet" href="../../../css/project-tab.css">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
-<style>
-  /* ============================================================
-     RESET Y BASE
-  ============================================================ */
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  :root {
-    --bg: #f5f5f2;
-    --black: #111111;
-    --rust: #9d3d22;
-    --white: #ffffff;
-    --mono: 'IBM Plex Mono', monospace;
-    --sans: 'Oswald', sans-serif;
-    --border: 2px solid #111;
-    --max: 1400px;
-    --pad: clamp(20px, 5vw, 80px);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--black);
-    line-height: 1.5;
-  }
-
-  /* ============================================================
-     CUADRÍCULA DE FONDO
-  ============================================================ */
-  .grid-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(rgba(17,17,17,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(17,17,17,0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-
-  /* ============================================================
-     UTILIDADES
-  ============================================================ */
-  .mono {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-  }
-
-  .rust { color: var(--rust); }
-
-  .container {
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 0 var(--pad);
-    position: relative;
-    z-index: 1;
-  }
-
-  .section {
-    border-bottom: var(--border);
-    padding: clamp(60px, 8vw, 120px) 0;
-  }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.4em;
-    color: var(--rust);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .section-sub {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    opacity: 0.4;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-
-  .section-title {
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin-bottom: 48px;
-  }
-
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: var(--border);
-  }
-
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: var(--border);
-  }
-
-  .grid-auto {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-  }
-
-  /* ============================================================
-     RAW BOX — tarjeta brutalista
-  ============================================================ */
-  .raw-box {
-    border: var(--border);
-    padding: clamp(20px, 3vw, 32px);
-    background: var(--bg);
-    transition: background 0.15s, color 0.15s;
-  }
-
-  .raw-box:hover {
-    background: var(--black);
-    color: var(--bg);
-  }
-
-  .raw-box:hover .mono,
-  .raw-box:hover .box-inst {
-    color: var(--bg);
-    opacity: 0.5;
-  }
-
-  .raw-box:hover .rust {
-    color: var(--rust);
-    opacity: 1;
-  }
-
-  /* Celdas internas de grid */
-  .cell {
-    padding: clamp(20px, 3vw, 36px);
-    transition: background 0.15s, color 0.15s;
-  }
-
-  .cell:hover {
-    background: var(--black);
-    color: var(--bg);
-  }
-
-  .cell-border-r { border-right: var(--border); }
-  .cell-border-b { border-bottom: var(--border); }
-
-  /* ============================================================
-     BOTONES
-  ============================================================ */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: var(--border);
-    padding: 14px 28px;
-    text-decoration: none;
-    color: var(--black);
-    background: transparent;
-    transition: background 0.15s, color 0.15s;
-    cursor: pointer;
-  }
-
-  .btn:hover {
-    background: var(--black);
-    color: var(--bg);
-  }
-
-  .btn-solid {
-    background: var(--black);
-    color: var(--bg);
-  }
-
-  .btn-solid:hover {
-    background: var(--rust);
-    border-color: var(--rust);
-    color: var(--white);
-  }
-
-  .btn-rust {
-    background: var(--rust);
-    border-color: var(--rust);
-    color: var(--white);
-  }
-
-  .btn-rust:hover {
-    background: var(--black);
-    border-color: var(--black);
-  }
-
-  /* ============================================================
-     HEADER
-  ============================================================ */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    border-bottom: var(--border);
-    background: rgba(245,245,242,0.88);
-    backdrop-filter: blur(8px);
-  }
-
-  .header-inner {
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 20px var(--pad);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--black);
-  }
-
-  .back-btn {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: var(--border);
-    padding: 10px 20px;
-    text-decoration: none;
-    color: var(--black);
-    transition: background 0.15s, color 0.15s;
-  }
-
-  .back-btn:hover {
-    background: var(--black);
-    color: var(--bg);
-  }
-
-  /* ============================================================
-     HERO
-  ============================================================ */
-  .hero {
-    border-bottom: var(--border);
-    padding: clamp(60px, 10vw, 140px) 0;
-  }
-
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 40px;
-    align-items: end;
-  }
-
-  .hero-badge {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    border: 1px solid var(--rust);
-    color: var(--rust);
-    padding: 6px 14px;
-    margin-bottom: 24px;
-  }
-
-  .hero-title {
-    font-size: clamp(3rem, 9vw, 8rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: -0.04em;
-    line-height: 0.95;
-    margin-bottom: 28px;
-  }
-
-  .hero-sub {
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    font-weight: 300;
-    max-width: 540px;
-    line-height: 1.6;
-    margin-bottom: 36px;
-    opacity: 0.8;
-  }
-
-  .hero-meta {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    opacity: 0.45;
-    margin-top: 20px;
-  }
-
-  /* Widget hero derecha */
-  .hero-widget {
-    min-width: 260px;
-    border: var(--border);
-    padding: 32px;
-    background: var(--black);
-    color: var(--bg);
-  }
-
-  .widget-label {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    color: #888;
-    margin-bottom: 28px;
-    text-transform: uppercase;
-  }
-
-  .widget-row {
-    margin-bottom: 20px;
-  }
-
-  .widget-row-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4px;
-  }
-
-  .widget-key {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-
-  .widget-val {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--rust);
-  }
-
-  .widget-bar {
-    height: 2px;
-    background: #333;
-  }
-
-  .widget-fill {
-    height: 100%;
-    background: var(--bg);
-  }
-
-  /* ============================================================
-     LAYOUT 3 COLUMNAS SECCIÓN
-  ============================================================ */
-  .layout-3 {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: clamp(30px, 5vw, 80px);
-  }
-
-  /* ============================================================
-     HALLAZGOS
-  ============================================================ */
-  .finding {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 24px 0;
-    border-bottom: 1px solid rgba(17,17,17,0.12);
-  }
-
-  .finding:last-child { border-bottom: none; }
-
-  .finding-num {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--rust);
-    letter-spacing: 0.2em;
-    flex-shrink: 0;
-    padding-top: 3px;
-  }
-
-  .finding-text {
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    opacity: 0.85;
-  }
-
-  /* ============================================================
-     HERRAMIENTAS
-  ============================================================ */
-  .tool-card {
-    border: var(--border);
-    padding: 28px;
-    background: var(--bg);
-    transition: background 0.15s, color 0.15s;
-  }
-
-  .tool-card:hover {
-    background: var(--black);
-    color: var(--bg);
-  }
-
-  .tool-num {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--rust);
-    letter-spacing: 0.3em;
-    margin-bottom: 12px;
-  }
-
-  .tool-name {
-    font-size: 1.3rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    margin-bottom: 8px;
-  }
-
-  .tool-desc {
-    font-size: 0.8rem;
-    font-weight: 300;
-    opacity: 0.6;
-    line-height: 1.5;
-  }
-
-  /* ============================================================
-     RESULTADO DESTACADO
-  ============================================================ */
-  .result-block {
-    background: var(--black);
-    color: var(--bg);
-    padding: clamp(40px, 6vw, 80px);
-  }
-
-  .result-inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 40px;
-    align-items: center;
-  }
-
-  .result-quote {
-    font-size: clamp(1.3rem, 3vw, 2rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    max-width: 700px;
-  }
-
-  /* ============================================================
-     RECURSOS
-  ============================================================ */
-  .resources {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  /* ============================================================
-     FOOTER
-  ============================================================ */
-  footer {
-    background: var(--black);
-    color: var(--bg);
-  }
-
-  .footer-inner {
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 36px var(--pad);
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 24px;
-  }
-
-  .footer-tag {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    opacity: 0.5;
-    text-transform: uppercase;
-  }
-
-  .footer-logo-img {
-    height: 80px;
-    width: auto;
-    display: block;
-    margin: 0 auto;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 20px;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-  }
-
-  .footer-link {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--bg);
-    opacity: 0.5;
-    text-decoration: none;
-    transition: opacity 0.15s;
-  }
-
-  .footer-link:hover { opacity: 1; }
-
-  /* ============================================================
-     RESPONSIVE
-  ============================================================ */
-  @media (max-width: 1024px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-widget { min-width: 100%; }
-    .layout-3 { grid-template-columns: 1fr; }
-    .grid-3 { grid-template-columns: 1fr; }
-    .result-inner { grid-template-columns: 1fr; }
-    .footer-inner { grid-template-columns: 1fr; text-align: center; }
-    .footer-links { justify-content: center; }
-  }
-
-  @media (max-width: 640px) {
-    .grid-2 { grid-template-columns: 1fr; }
-    .cell-border-r { border-right: none; border-bottom: var(--border); }
-  }
-</style>
 </head>
 
-<body>
+<body data-project-id="DOCUMENTACIÓN · DATASTUDIO">
 
-<!-- FONDO CUADRÍCULA -->
-<div class="grid-bg"></div>
+  <div id="header-container"></div>
 
-<!-- ============================================================
-  HEADER
-============================================================ -->
-<header>
-  <div class="header-inner">
-    <a href="https://vladisystemsii.github.io/portfolio/" class="logo">VLADISYSTEMS</a>
-    <a href="../p-datastudio.html" class="back-btn">← Volver al Proyecto</a>
-  </div>
-</header>
+  <!-- CUADRÍCULA DE FONDO -->
+  <div class="grid-lines"></div>
 
-<!-- ============================================================
-  HERO
-============================================================ -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-inner">
+  <!-- ============================================================
+    CONTENIDO PRINCIPAL
+  ============================================================ -->
+  <div style="position:relative; z-index:1;" class="content-offset">
 
-      <!-- IZQUIERDA -->
-      <div>
-        <span class="hero-badge">DATA ANALYTICS PROJECT</span>
+    <!-- ============================================================
+      HERO
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-24">
 
-        <h1 class="hero-title">
-          DASHBOARD<br>DE VENTAS<br>2025
-        </h1>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
 
-        <p class="hero-sub">
-          Análisis de ventas por vendedor, evolución mensual
-          y participación porcentual. Datos operativos convertidos
-          en información visual para la toma de decisiones.
-        </p>
+          <!-- IZQUIERDA -->
+          <div class="lg:col-span-8 order-2 lg:order-1">
 
-        <div style="display:flex; gap:16px; flex-wrap:wrap;">
-          <a href="https://datastudio.google.com/reporting/587268cc-7ee7-4b68-815d-519d6cdd4273"
-             target="_blank" rel="noopener noreferrer"
-             class="btn btn-solid">
-            Ver Dashboard ↗
-          </a>
-          <a href="https://github.com/VladisystemsII/Proyecto-Ventas-en-Data-Studio"
-             target="_blank" rel="noopener noreferrer"
-             class="btn">
-            GitHub ↗
-          </a>
-        </div>
-
-        <div class="hero-meta">
-          VLADISYSTEMS · BOGOTÁ, COLOMBIA · 2025
-        </div>
-      </div>
-
-      <!-- DERECHA: WIDGET -->
-      <div class="hero-widget">
-        <div class="widget-label">FICHA DEL PROYECTO</div>
-
-        <div class="widget-row">
-          <div class="widget-row-top">
-            <span class="widget-key">Tipo</span>
-            <span class="widget-val">DATA ANALYTICS</span>
-          </div>
-          <div class="widget-bar"><div class="widget-fill" style="width:100%"></div></div>
-        </div>
-
-        <div class="widget-row">
-          <div class="widget-row-top">
-            <span class="widget-key">Vendedores analizados</span>
-            <span class="widget-val">10</span>
-          </div>
-          <div class="widget-bar"><div class="widget-fill" style="width:100%"></div></div>
-        </div>
-
-        <div class="widget-row">
-          <div class="widget-row-top">
-            <span class="widget-key">Meses cubiertos</span>
-            <span class="widget-val">12</span>
-          </div>
-          <div class="widget-bar"><div class="widget-fill" style="width:100%"></div></div>
-        </div>
-
-        <div class="widget-row">
-          <div class="widget-row-top">
-            <span class="widget-key">Total analizado</span>
-            <span class="widget-val">$133.6M</span>
-          </div>
-          <div class="widget-bar"><div class="widget-fill" style="width:95%"></div></div>
-        </div>
-
-        <div class="widget-row">
-          <div class="widget-row-top">
-            <span class="widget-key">Estado</span>
-            <span class="widget-val">PUBLICADO</span>
-          </div>
-          <div class="widget-bar"><div class="widget-fill" style="width:100%"></div></div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-  SECCIÓN 01 — RESUMEN DEL PROYECTO
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="layout-3">
-
-      <div>
-        <div class="section-label">SECCIÓN 01</div>
-        <div class="section-sub">OVERVIEW</div>
-        <h2 class="section-title">RESUMEN<br>DEL<br>PROYECTO</h2>
-      </div>
-
-      <div>
-        <p style="font-size:1.2rem; font-weight:300; line-height:1.7; max-width:640px; margin-bottom:24px;">
-          Dashboard interactivo de análisis comercial desarrollado
-          con Google Sheets como fuente de datos y Looker Studio
-          (Data Studio) como motor de visualización.
-        </p>
-        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:640px; opacity:0.75; margin-bottom:40px;">
-          El proyecto transforma datos planos de ventas en reportes
-          visuales dinámicos que permiten identificar patrones,
-          comparar desempeño por vendedor y detectar oportunidades
-          estratégicas en tiempo real.
-        </p>
-
-        <div class="grid-2">
-          <div class="cell cell-border-r">
-            <div class="mono rust" style="margin-bottom:8px;">FUENTE DE DATOS</div>
-            <div style="font-weight:700; font-size:1.1rem; text-transform:uppercase;">Google Sheets</div>
-            <p style="font-size:0.8rem; opacity:0.6; margin-top:6px; font-weight:300;">
-              Datos de ventas por vendedor, mes y monto en pesos colombianos.
-            </p>
-          </div>
-          <div class="cell">
-            <div class="mono rust" style="margin-bottom:8px;">VISUALIZACIÓN</div>
-            <div style="font-weight:700; font-size:1.1rem; text-transform:uppercase;">Looker Studio</div>
-            <p style="font-size:0.8rem; opacity:0.6; margin-top:6px; font-weight:300;">
-              Dashboards interactivos con filtros dinámicos y actualización en tiempo real.
-            </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-  SECCIÓN 02 — PROBLEMA DE NEGOCIO
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="layout-3">
-
-      <div>
-        <div class="section-label">SECCIÓN 02</div>
-        <div class="section-sub">PROBLEM</div>
-        <h2 class="section-title">PROBLEMA<br>DE<br>NEGOCIO</h2>
-      </div>
-
-      <div>
-        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:640px; opacity:0.75; margin-bottom:40px;">
-          La organización comercial contaba con datos de ventas
-          dispersos en hojas de cálculo sin estructura visual
-          que facilitara la toma de decisiones rápidas y fundamentadas.
-        </p>
-
-        <div class="grid-3">
-          <div class="cell cell-border-r cell-border-b">
-            <div class="mono rust" style="margin-bottom:10px;">01</div>
-            <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">Identificar top performers</div>
-            <p style="font-size:0.8rem; opacity:0.6; font-weight:300; line-height:1.5;">
-              Sin visibilidad clara de qué vendedores generaban mayor volumen ni por qué.
-            </p>
-          </div>
-          <div class="cell cell-border-r cell-border-b">
-            <div class="mono rust" style="margin-bottom:10px;">02</div>
-            <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">Analizar tendencias</div>
-            <p style="font-size:0.8rem; opacity:0.6; font-weight:300; line-height:1.5;">
-              Imposible detectar estacionalidad, picos o caídas sin gráficos de evolución mensual.
-            </p>
-          </div>
-          <div class="cell cell-border-b">
-            <div class="mono rust" style="margin-bottom:10px;">03</div>
-            <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">Evaluar participación</div>
-            <p style="font-size:0.8rem; opacity:0.6; font-weight:300; line-height:1.5;">
-              La cuota individual de cada vendedor no era visible para planificar incentivos.
-            </p>
-          </div>
-          <div class="cell cell-border-r" style="grid-column: span 1;">
-            <div class="mono rust" style="margin-bottom:10px;">04</div>
-            <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">Decisiones basadas en datos</div>
-            <p style="font-size:0.8rem; opacity:0.6; font-weight:300; line-height:1.5;">
-              Las decisiones comerciales se tomaban sin soporte visual ni análisis estructurado.
-            </p>
-          </div>
-          <div class="cell" style="grid-column: span 2;">
-            <div class="mono rust" style="margin-bottom:10px;">NECESIDAD</div>
-            <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px; font-size:1.1rem;">
-              Un sistema de reporting visual, dinámico e interactivo
+            <div class="mono text-xs tracking-[0.4em] mb-6 rust">
+              DOCUMENTACIÓN / DATA ANALYTICS / LOOKER STUDIO
             </div>
-            <p style="font-size:0.85rem; opacity:0.6; font-weight:300; line-height:1.5;">
-              Que cualquier persona del equipo pudiera consultar sin conocimientos técnicos,
-              con filtros por vendedor y mes, actualizable en tiempo real.
+
+            <h2 class="uppercase font-bold leading-none"
+                style="font-size:clamp(3rem,9vw,8rem); letter-spacing:-0.04em;">
+              DASHBOARD<br>DE VENTAS<br>2025
+            </h2>
+
+            <p class="mt-8 text-xl max-w-2xl leading-relaxed font-light">
+              Dashboard interactivo de análisis comercial desarrollado
+              con Google Sheets como fuente de datos y Looker Studio
+              (Data Studio) como motor de visualización.
             </p>
+
+            <div class="mt-10 flex flex-wrap gap-4">
+              <a href="https://datastudio.google.com/reporting/587268cc-7ee7-4b68-815d-519d6cdd4273"
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-3 bg-black text-white border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-[#9d3d22] hover:border-[#9d3d22]"
+                 style="font-family:'IBM Plex Mono',monospace;">
+                Ver Dashboard ↗
+              </a>
+              <a href="https://github.com/VladisystemsII/Proyecto-Ventas-en-Data-Studio"
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-3 border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+                 style="font-family:'IBM Plex Mono',monospace;">
+                GitHub ↗
+              </a>
+            </div>
+
+            <div class="mono text-xs tracking-[0.3em] opacity-45 mt-6">
+              VLADISYSTEMS · BOGOTÁ, COLOMBIA · 2025
+            </div>
+
+          </div>
+
+          <!-- DERECHA: widget -->
+          <div class="lg:col-span-4 order-2 lg:order-last">
+            <div class="border-2 border-black p-8 bg-black text-white">
+
+              <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+                FICHA DEL PROYECTO
+              </div>
+
+              <div class="space-y-6">
+
+                <div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="uppercase text-sm tracking-[0.15em]">Tipo</span>
+                    <span class="mono text-xs rust">DATA ANALYTICS</span>
+                  </div>
+                  <div class="h-[2px] bg-[#333]">
+                    <div class="h-full bg-white w-[100%]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="uppercase text-sm tracking-[0.15em]">Vendedores analizados</span>
+                    <span class="mono text-xs rust">10</span>
+                  </div>
+                  <div class="h-[2px] bg-[#333]">
+                    <div class="h-full bg-white w-[100%]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="uppercase text-sm tracking-[0.15em]">Meses cubiertos</span>
+                    <span class="mono text-xs rust">12</span>
+                  </div>
+                  <div class="h-[2px] bg-[#333]">
+                    <div class="h-full bg-white w-[100%]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="uppercase text-sm tracking-[0.15em]">Total analizado</span>
+                    <span class="mono text-xs rust">$133.6M</span>
+                  </div>
+                  <div class="h-[2px] bg-[#333]">
+                    <div class="h-full bg-white w-[95%]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="uppercase text-sm tracking-[0.15em]">Estado</span>
+                    <span class="mono text-xs rust">PUBLICADO</span>
+                  </div>
+                  <div class="h-[2px] bg-[#333]">
+                    <div class="h-full bg-white w-[100%]"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+      SECCIÓN 01 — RESUMEN DEL PROYECTO
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+          <div class="lg:col-span-3">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 01</div>
+            <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">OVERVIEW</div>
+            <h3 class="text-4xl font-bold uppercase leading-tight">
+              RESUMEN<br>DEL<br>PROYECTO
+            </h3>
+          </div>
+
+          <div class="lg:col-span-9">
+
+            <p class="text-xl leading-relaxed font-light max-w-3xl mb-6">
+              Dashboard interactivo de análisis comercial desarrollado
+              con Google Sheets como fuente de datos y Looker Studio
+              (Data Studio) como motor de visualización.
+            </p>
+
+            <p class="text-lg leading-relaxed font-light max-w-3xl mb-10 opacity-80">
+              El proyecto transforma datos planos de ventas en reportes
+              visuales dinámicos que permiten identificar patrones,
+              comparar desempeño por vendedor y detectar oportunidades
+              estratégicas en tiempo real.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 border-2 border-black">
+              <div class="p-8 md:border-r-2 border-black">
+                <div class="mono text-xs rust mb-2">FUENTE DE DATOS</div>
+                <div class="font-bold text-lg uppercase">Google Sheets</div>
+                <p class="text-sm opacity-60 mt-2 font-light">
+                  Datos de ventas por vendedor, mes y monto en pesos colombianos.
+                </p>
+              </div>
+              <div class="p-8">
+                <div class="mono text-xs rust mb-2">VISUALIZACIÓN</div>
+                <div class="font-bold text-lg uppercase">Looker Studio</div>
+                <p class="text-sm opacity-60 mt-2 font-light">
+                  Dashboards interactivos con filtros dinámicos y actualización en tiempo real.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- ============================================================
+      SECCIÓN 02 — PROBLEMA DE NEGOCIO
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
 
-<!-- ============================================================
-  SECCIÓN 03 — DASHBOARDS Y ANÁLISIS
-============================================================ -->
-<section class="section">
-  <div class="container">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-    <div class="section-label">SECCIÓN 03</div>
-    <div class="section-sub">DASHBOARDS</div>
-    <h2 class="section-title">DASHBOARDS<br>Y ANÁLISIS</h2>
+          <div class="lg:col-span-3">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 02</div>
+            <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">PROBLEM</div>
+            <h3 class="text-4xl font-bold uppercase leading-tight">
+              PROBLEMA<br>DE<br>NEGOCIO
+            </h3>
+          </div>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+          <div class="lg:col-span-9">
 
-      <div class="raw-box">
-        <div class="mono rust" style="margin-bottom:16px; display:block;">DASHBOARD 01</div>
-        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:12px;">
-          Ventas Totales<br>por Vendedor
-        </div>
-        <p style="font-size:0.85rem; font-weight:300; line-height:1.6; opacity:0.7; margin-bottom:16px;">
-          Gráfico de barras que identifica los vendedores con mayor
-          volumen total acumulado. Permite comparar desempeño global
-          y fijar metas individuales basadas en datos reales.
-        </p>
-        <div class="mono" style="opacity:0.4;">Ejercicios 1 y 3 · Gráfico de barras</div>
-      </div>
+            <p class="text-lg leading-relaxed font-light max-w-3xl mb-10 opacity-80">
+              La organización comercial contaba con datos de ventas
+              dispersos en hojas de cálculo sin estructura visual
+              que facilitara la toma de decisiones rápidas y fundamentadas.
+            </p>
 
-      <div class="raw-box">
-        <div class="mono rust" style="margin-bottom:16px; display:block;">DASHBOARD 02</div>
-        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:12px;">
-          Evolución de<br>Ventas por Mes
-        </div>
-        <p style="font-size:0.85rem; font-weight:300; line-height:1.6; opacity:0.7; margin-bottom:16px;">
-          Gráfico de líneas y barras verticales que muestra la tendencia
-          mensual del año completo. Detecta picos (septiembre) y caídas
-          (julio) para planificación de inventario y campañas.
-        </p>
-        <div class="mono" style="opacity:0.4;">Ejercicios 2 y 7 · Líneas + barras</div>
-      </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 border-2 border-black">
+              <div class="p-6 md:border-r-2 border-b-2 border-black">
+                <div class="mono text-xs rust mb-2">01</div>
+                <div class="font-bold uppercase mb-2">Identificar top performers</div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  Sin visibilidad clara de qué vendedores generaban mayor volumen ni por qué.
+                </p>
+              </div>
+              <div class="p-6 md:border-r-2 border-b-2 border-black">
+                <div class="mono text-xs rust mb-2">02</div>
+                <div class="font-bold uppercase mb-2">Analizar tendencias</div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  Imposible detectar estacionalidad, picos o caídas sin gráficos de evolución mensual.
+                </p>
+              </div>
+              <div class="p-6 border-b-2 border-black">
+                <div class="mono text-xs rust mb-2">03</div>
+                <div class="font-bold uppercase mb-2">Evaluar participación</div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  La cuota individual de cada vendedor no era visible para planificar incentivos.
+                </p>
+              </div>
+              <div class="p-6 md:border-r-2 border-black">
+                <div class="mono text-xs rust mb-2">04</div>
+                <div class="font-bold uppercase mb-2">Decisiones basadas en datos</div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  Las decisiones comerciales se tomaban sin soporte visual ni análisis estructurado.
+                </p>
+              </div>
+              <div class="p-6 md:col-span-2">
+                <div class="mono text-xs rust mb-2">NECESIDAD</div>
+                <div class="font-bold uppercase text-lg mb-2">
+                  Un sistema de reporting visual, dinámico e interactivo
+                </div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  Que cualquier persona del equipo pudiera consultar sin conocimientos técnicos,
+                  con filtros por vendedor y mes, actualizable en tiempo real.
+                </p>
+              </div>
+            </div>
 
-      <div class="raw-box">
-        <div class="mono rust" style="margin-bottom:16px; display:block;">DASHBOARD 03</div>
-        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:12px;">
-          Ranking y<br>Participación
-        </div>
-        <p style="font-size:0.85rem; font-weight:300; line-height:1.6; opacity:0.7; margin-bottom:16px;">
-          Tabla de ranking + gráfico de torta (pie chart) con la cuota
-          de mercado de cada vendedor sobre el total de $133.620.000.
-          Resalta líderes y detecta áreas de refuerzo.
-        </p>
-        <div class="mono" style="opacity:0.4;">Ejercicios 6 y 8 · Ranking + Pie chart</div>
-      </div>
-
-    </div>
-
-    <!-- TOP 3 VENDEDORES -->
-    <div style="margin-top:40px; border:var(--border); padding:clamp(24px,4vw,48px); background:var(--black); color:var(--bg);">
-      <div class="mono" style="color:#888; margin-bottom:24px; letter-spacing:0.3em;">TOP VENDEDORES — RANKING REAL DEL DASHBOARD</div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:24px;">
-        <div>
-          <div class="mono rust" style="margin-bottom:6px;">01 · LÍDER</div>
-          <div style="font-size:1.3rem; font-weight:700; text-transform:uppercase;">Sofía Torres</div>
-          <div class="mono" style="opacity:0.5; margin-top:4px;">$17.320.000 · 13%</div>
-        </div>
-        <div>
-          <div class="mono rust" style="margin-bottom:6px;">02</div>
-          <div style="font-size:1.3rem; font-weight:700; text-transform:uppercase;">Juan Rodríguez</div>
-          <div class="mono" style="opacity:0.5; margin-top:4px;">$15.680.000 · 11.7%</div>
-        </div>
-        <div>
-          <div class="mono rust" style="margin-bottom:6px;">03</div>
-          <div style="font-size:1.3rem; font-weight:700; text-transform:uppercase;">Pedro Martínez</div>
-          <div class="mono" style="opacity:0.5; margin-top:4px;">$14.280.000 · 10.7%</div>
-        </div>
-        <div>
-          <div class="mono rust" style="margin-bottom:6px;">TOTAL ANUAL</div>
-          <div style="font-size:1.3rem; font-weight:700;">$133.620.000</div>
-          <div class="mono" style="opacity:0.5; margin-top:4px;">10 vendedores · 12 meses</div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
+    <!-- ============================================================
+      SECCIÓN 03 — DASHBOARDS Y ANÁLISIS
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
 
-<!-- ============================================================
-  SECCIÓN 04 — HALLAZGOS PRINCIPALES
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="layout-3">
+        <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 03</div>
+        <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">DASHBOARDS</div>
+        <h3 class="text-4xl font-bold uppercase leading-tight mb-10">
+          DASHBOARDS Y ANÁLISIS
+        </h3>
 
-      <div>
-        <div class="section-label">SECCIÓN 04</div>
-        <div class="section-sub">INSIGHTS</div>
-        <h2 class="section-title">HALLAZ<br>GOS<br>CLAVE</h2>
-      </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-      <div>
-        <div class="finding">
-          <span class="finding-num">01</span>
-          <p class="finding-text">
-            Los top performers concentran la mayor parte de las ventas.
-            Identificarlos permite reconocer y replicar buenas prácticas
-            en el resto del equipo comercial.
-          </p>
+          <div class="raw-box p-8">
+            <div class="mono text-xs rust mb-4 tracking-[0.2em]">DASHBOARD 01</div>
+            <div class="text-2xl font-bold uppercase mb-3 leading-tight">
+              Ventas Totales<br>por Vendedor
+            </div>
+            <p class="text-sm font-light opacity-70 leading-relaxed mb-4">
+              Gráfico de barras que identifica los vendedores con mayor
+              volumen total acumulado. Permite comparar desempeño global
+              y fijar metas individuales basadas en datos reales.
+            </p>
+            <div class="mono text-xs opacity-40">Ejercicios 1 y 3 · Gráfico de barras</div>
+          </div>
+
+          <div class="raw-box p-8">
+            <div class="mono text-xs rust mb-4 tracking-[0.2em]">DASHBOARD 02</div>
+            <div class="text-2xl font-bold uppercase mb-3 leading-tight">
+              Evolución de<br>Ventas por Mes
+            </div>
+            <p class="text-sm font-light opacity-70 leading-relaxed mb-4">
+              Gráfico de líneas y barras verticales que muestra la tendencia
+              mensual del año completo. Detecta picos (septiembre) y caídas
+              (julio) para planificación de inventario y campañas.
+            </p>
+            <div class="mono text-xs opacity-40">Ejercicios 2 y 7 · Líneas + barras</div>
+          </div>
+
+          <div class="raw-box p-8">
+            <div class="mono text-xs rust mb-4 tracking-[0.2em]">DASHBOARD 03</div>
+            <div class="text-2xl font-bold uppercase mb-3 leading-tight">
+              Ranking y<br>Participación
+            </div>
+            <p class="text-sm font-light opacity-70 leading-relaxed mb-4">
+              Tabla de ranking + gráfico de torta (pie chart) con la cuota
+              de mercado de cada vendedor sobre el total de $133.620.000.
+              Resalta líderes y detecta áreas de refuerzo.
+            </p>
+            <div class="mono text-xs opacity-40">Ejercicios 6 y 8 · Ranking + Pie chart</div>
+          </div>
+
         </div>
-        <div class="finding">
-          <span class="finding-num">02</span>
-          <p class="finding-text">
-            Existe estacionalidad clara — septiembre como mes pico
-            y julio como mes de menor actividad. Esto abre oportunidades
-            para campañas estratégicas focalizadas.
-          </p>
+
+        <!-- TOP VENDEDORES -->
+        <div class="mt-10 border-2 border-black p-8 md:p-12 bg-black text-white">
+          <div class="mono text-xs tracking-[0.3em] text-[#888] mb-6">
+            TOP VENDEDORES — RANKING REAL DEL DASHBOARD
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div>
+              <div class="mono text-xs rust mb-2">01 · LÍDER</div>
+              <div class="text-xl font-bold uppercase">Sofía Torres</div>
+              <div class="mono text-xs opacity-50 mt-1">$17.320.000 · 13%</div>
+            </div>
+            <div>
+              <div class="mono text-xs rust mb-2">02</div>
+              <div class="text-xl font-bold uppercase">Juan Rodríguez</div>
+              <div class="mono text-xs opacity-50 mt-1">$15.680.000 · 11.7%</div>
+            </div>
+            <div>
+              <div class="mono text-xs rust mb-2">03</div>
+              <div class="text-xl font-bold uppercase">Pedro Martínez</div>
+              <div class="mono text-xs opacity-50 mt-1">$14.280.000 · 10.7%</div>
+            </div>
+            <div>
+              <div class="mono text-xs rust mb-2">TOTAL ANUAL</div>
+              <div class="text-xl font-bold">$133.620.000</div>
+              <div class="mono text-xs opacity-50 mt-1">10 vendedores · 12 meses</div>
+            </div>
+          </div>
         </div>
-        <div class="finding">
-          <span class="finding-num">03</span>
-          <p class="finding-text">
-            El detalle granular por vendedor y mes confirma consistencia
-            y confiabilidad en los datos, permitiendo detectar
-            variaciones puntuales que requieren atención.
-          </p>
-        </div>
-        <div class="finding">
-          <span class="finding-num">04</span>
-          <p class="finding-text">
-            El análisis de participación porcentual muestra si las ventas
-            están equilibradas o concentradas en pocos vendedores,
-            ayudando a planificar incentivos y redistribución de cartera.
-          </p>
-        </div>
-        <div class="finding">
-          <span class="finding-num">05</span>
-          <p class="finding-text">
-            El total anual y la evolución mensual facilitan la planificación
-            estratégica, evaluación de objetivos y toma de decisiones
-            fundamentada en datos reales — no en percepciones.
-          </p>
-        </div>
+
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- ============================================================
+      SECCIÓN 04 — HALLAZGOS PRINCIPALES
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
 
-<!-- ============================================================
-  SECCIÓN 05 — HERRAMIENTAS UTILIZADAS
-============================================================ -->
-<section class="section">
-  <div class="container">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-    <div class="section-label">SECCIÓN 05</div>
-    <div class="section-sub">STACK</div>
-    <h2 class="section-title">HERRAMIENTAS<br>UTILIZADAS</h2>
+          <div class="lg:col-span-3">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 04</div>
+            <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">INSIGHTS</div>
+            <h3 class="text-4xl font-bold uppercase leading-tight">
+              HALLAZ<br>GOS<br>CLAVE
+            </h3>
+          </div>
 
-    <div class="grid-auto">
+          <div class="lg:col-span-9">
 
-      <div class="tool-card">
-        <div class="tool-num">01 · VISUALIZACIÓN</div>
-        <div class="tool-name">Looker Studio</div>
-        <p class="tool-desc">
-          Motor principal de dashboards interactivos con filtros
-          dinámicos, gráficos de barras, líneas, pie charts y tablas de ranking.
-        </p>
-      </div>
+            <div class="flex items-start gap-5 py-6 border-b border-black/10">
+              <span class="mono text-xs rust pt-1">01</span>
+              <p class="text-base opacity-85 leading-relaxed">
+                Los top performers concentran la mayor parte de las ventas.
+                Identificarlos permite reconocer y replicar buenas prácticas
+                en el resto del equipo comercial.
+              </p>
+            </div>
+            <div class="flex items-start gap-5 py-6 border-b border-black/10">
+              <span class="mono text-xs rust pt-1">02</span>
+              <p class="text-base opacity-85 leading-relaxed">
+                Existe estacionalidad clara — septiembre como mes pico
+                y julio como mes de menor actividad. Esto abre oportunidades
+                para campañas estratégicas focalizadas.
+              </p>
+            </div>
+            <div class="flex items-start gap-5 py-6 border-b border-black/10">
+              <span class="mono text-xs rust pt-1">03</span>
+              <p class="text-base opacity-85 leading-relaxed">
+                El detalle granular por vendedor y mes confirma consistencia
+                y confiabilidad en los datos, permitiendo detectar
+                variaciones puntuales que requieren atención.
+              </p>
+            </div>
+            <div class="flex items-start gap-5 py-6 border-b border-black/10">
+              <span class="mono text-xs rust pt-1">04</span>
+              <p class="text-base opacity-85 leading-relaxed">
+                El análisis de participación porcentual muestra si las ventas
+                están equilibradas o concentradas en pocos vendedores,
+                ayudando a planificar incentivos y redistribución de cartera.
+              </p>
+            </div>
+            <div class="flex items-start gap-5 py-6">
+              <span class="mono text-xs rust pt-1">05</span>
+              <p class="text-base opacity-85 leading-relaxed">
+                El total anual y la evolución mensual facilitan la planificación
+                estratégica, evaluación de objetivos y toma de decisiones
+                fundamentada en datos reales — no en percepciones.
+              </p>
+            </div>
 
-      <div class="tool-card">
-        <div class="tool-num">02 · DATOS</div>
-        <div class="tool-name">Google Sheets</div>
-        <p class="tool-desc">
-          Fuente de datos estructurada con registros de ventas
-          por vendedor, mes y monto. Conexión en tiempo real con el dashboard.
-        </p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-num">03 · PRESENTACIÓN</div>
-        <div class="tool-name">Canva</div>
-        <p class="tool-desc">
-          Diseño de la presentación ejecutiva del proyecto con identidad
-          visual VLADISYSTEMS para comunicar los hallazgos del análisis.
-        </p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-num">04 · VERSIONADO</div>
-        <div class="tool-name">GitHub</div>
-        <p class="tool-desc">
-          Repositorio público del proyecto con README, PDF de presentación
-          y enlace al dashboard interactivo en Looker Studio.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-  SECCIÓN 06 — RECURSOS DEL PROYECTO
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="layout-3">
-
-      <div>
-        <div class="section-label">SECCIÓN 06</div>
-        <div class="section-sub">RESOURCES</div>
-        <h2 class="section-title">RECURSOS<br>DEL<br>PROYECTO</h2>
-      </div>
-
-      <div>
-        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:600px; opacity:0.75; margin-bottom:36px;">
-          Todos los recursos del proyecto están disponibles públicamente.
-          El dashboard es interactivo y puede explorarse con filtros
-          por vendedor y período de tiempo.
-        </p>
-        <div class="resources">
-          <a href="https://datastudio.google.com/reporting/587268cc-7ee7-4b68-815d-519d6cdd4273"
-             target="_blank" rel="noopener noreferrer"
-             class="btn btn-solid">
-            Ver Dashboard ↗
-          </a>
-          <a href="./Presentacion Proyecto Ventas en Data Studio.pdf"
-             target="_blank" rel="noopener noreferrer"
-             class="btn">
-            Ver PDF de Presentación ↗
-          </a>
-          <a href="https://github.com/VladisystemsII/Proyecto-Ventas-en-Data-Studio"
-             target="_blank" rel="noopener noreferrer"
-             class="btn">
-            Ver Repositorio GitHub ↗
-          </a>
+          </div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- ============================================================
+      SECCIÓN 05 — HERRAMIENTAS UTILIZADAS
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
 
-<!-- ============================================================
-  SECCIÓN 07 — RESULTADO DESTACADO
-============================================================ -->
-<section class="section" style="border-bottom:none;">
-  <div class="container">
-    <div class="result-block">
-      <div class="result-inner">
-        <div>
-          <div class="mono" style="color:#888; margin-bottom:20px; letter-spacing:0.3em;">RESULTADO</div>
-          <p class="result-quote">
-            Proyecto orientado a convertir datos operativos en información
-            útil para la toma de decisiones comerciales.
-          </p>
-          <p style="margin-top:20px; font-weight:300; opacity:0.6; font-size:0.95rem; max-width:560px; line-height:1.6;">
-            $133.620.000 en ventas anuales analizados — 10 vendedores,
-            12 meses, 3 dashboards interactivos, insights accionables
-            para planificación estratégica del equipo comercial.
-          </p>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:12px; flex-shrink:0;">
-          <a href="https://datastudio.google.com/reporting/587268cc-7ee7-4b68-815d-519d6cdd4273"
-             target="_blank" rel="noopener noreferrer"
-             class="btn btn-rust">
-            Explorar Dashboard ↗
-          </a>
-          <a href="https://vladisystemsii.github.io/portfolio/"
-             class="btn" style="border-color:#444; color:var(--bg);">
-            ← Portfolio
-          </a>
+        <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 05</div>
+        <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">STACK</div>
+        <h3 class="text-4xl font-bold uppercase leading-tight mb-10">
+          HERRAMIENTAS UTILIZADAS
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3 tracking-[0.2em]">01 · VISUALIZACIÓN</div>
+            <div class="text-xl font-bold uppercase mb-2">Looker Studio</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Motor principal de dashboards interactivos con filtros
+              dinámicos, gráficos de barras, líneas, pie charts y tablas de ranking.
+            </p>
+          </div>
+
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3 tracking-[0.2em]">02 · DATOS</div>
+            <div class="text-xl font-bold uppercase mb-2">Google Sheets</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Fuente de datos estructurada con registros de ventas
+              por vendedor, mes y monto. Conexión en tiempo real con el dashboard.
+            </p>
+          </div>
+
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3 tracking-[0.2em]">03 · PRESENTACIÓN</div>
+            <div class="text-xl font-bold uppercase mb-2">Canva</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Diseño de la presentación ejecutiva del proyecto con identidad
+              visual VLADISYSTEMS para comunicar los hallazgos del análisis.
+            </p>
+          </div>
+
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3 tracking-[0.2em]">04 · VERSIONADO</div>
+            <div class="text-xl font-bold uppercase mb-2">GitHub</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Repositorio público del proyecto con README, PDF de presentación
+              y enlace al dashboard interactivo en Looker Studio.
+            </p>
+          </div>
+
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ============================================================
-  FOOTER
-============================================================ -->
-<footer>
-  <div class="footer-inner">
+    <!-- ============================================================
+      SECCIÓN 06 — RECURSOS DEL PROYECTO
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
 
-    <div class="footer-tag">
-      VLADISYSTEMS<br>Showcasing Our Tech Evolution
-    </div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-    <img
-      src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
-      alt="VLADISYSTEMS"
-      class="footer-logo-img"
-    >
+          <div class="lg:col-span-3">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 06</div>
+            <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">RESOURCES</div>
+            <h3 class="text-4xl font-bold uppercase leading-tight">
+              RECURSOS<br>DEL<br>PROYECTO
+            </h3>
+          </div>
 
-    <div class="footer-links">
-      <a href="https://datastudio.google.com/reporting/587268cc-7ee7-4b68-815d-519d6cdd4273"
-         target="_blank" rel="noopener noreferrer"
-         class="footer-link">Dashboard ↗</a>
-      <a href="https://github.com/VladisystemsII/Proyecto-Ventas-en-Data-Studio"
-         target="_blank" rel="noopener noreferrer"
-         class="footer-link">GitHub ↗</a>
-      <a href="https://vladisystemsii.github.io/portfolio/"
-         class="footer-link">← Portfolio</a>
-    </div>
+          <div class="lg:col-span-9">
+            <p class="text-lg font-light leading-relaxed max-w-2xl opacity-75 mb-9">
+              Todos los recursos del proyecto están disponibles públicamente.
+              El dashboard es interactivo y puede explorarse con filtros
+              por vendedor y período de tiempo.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href="https://datastudio.google.com/reporting/587268cc-7ee7-4b68-815d-519d6cdd4273"
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-3 bg-black text-white border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-[#9d3d22] hover:border-[#9d3d22]"
+                 style="font-family:'IBM Plex Mono',monospace;">
+                Ver Dashboard ↗
+              </a>
+              <a href="../../../Presentacion Proyecto Ventas en Data Studio.pdf"
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-3 border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+                 style="font-family:'IBM Plex Mono',monospace;">
+                Ver PDF de Presentación ↗
+              </a>
+              <a href="https://github.com/VladisystemsII/Proyecto-Ventas-en-Data-Studio"
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-3 border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+                 style="font-family:'IBM Plex Mono',monospace;">
+                Ver Repositorio GitHub ↗
+              </a>
+            </div>
+          </div>
 
-  </div>
-</footer>
+        </div>
+      </div>
+    </section>
 
-<script>
-  document.querySelector('header > div').insertAdjacentHTML('beforeend',
-    '<div style="position:absolute;left:50%;transform:translateX(-50%);font-family:\'IBM Plex Mono\',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;pointer-events:none;display:flex;gap:.6rem"><span style="color:#888">Proyecto</span><span style="color:#bbb">·</span><span style="color:#111;font-weight:600">Documentación DATA STUDIO</span></div>'
-  );
-</script>
+    <!-- ============================================================
+      SECCIÓN 07 — RESULTADO DESTACADO
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+        <div class="border-2 border-black bg-black text-white p-8 md:p-16">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+            <div class="lg:col-span-8">
+              <div class="mono text-xs tracking-[0.3em] text-[#888] mb-5">RESULTADO</div>
+              <p class="font-bold uppercase leading-tight"
+                 style="font-size:clamp(1.3rem,3vw,2rem); letter-spacing:-0.02em;">
+                Proyecto orientado a convertir datos operativos en información
+                útil para la toma de decisiones comerciales.
+              </p>
+              <p class="text-sm font-light opacity-60 leading-relaxed mt-5 max-w-xl">
+                $133.620.000 en ventas anuales analizados — 10 vendedores,
+                12 meses, 3 dashboards interactivos, insights accionables
+                para planificación estratégica del equipo comercial.
+              </p>
+            </div>
+
+            <div class="lg:col-span-4 flex flex-col gap-3">
+              <a href="https://datastudio.google.com/reporting/587268cc-7ee7-4b68-815d-519d6cdd4273"
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-3 bg-[#9d3d22] border-2 border-[#9d3d22] px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:border-black"
+                 style="font-family:'IBM Plex Mono',monospace;">
+                Explorar Dashboard ↗
+              </a>
+              <a href="../../../index.html"
+                 class="inline-flex items-center justify-center gap-3 border-2 border-[#444] text-white px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-white hover:text-black"
+                 style="font-family:'IBM Plex Mono',monospace;">
+                ← Portfolio
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+      FOOTER
+    ============================================================ -->
+    <div id="footer-container"></div>
+
+  </div><!-- end content-offset -->
+
+  <script src="../../../js/header-loader.js"></script>
+  <script src="../../../js/header.js"></script>
+  <script src="../../../js/menu-mobile.js"></script>
+  <script src="../../../js/footer-loader.js"></script>
+  <script src="../../../js/project-tab.js"></script>
 
 </body>
 </html>
