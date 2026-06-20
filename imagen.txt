@@ -151,6 +151,13 @@ git push
 
 git add .
 
-git commit -m "ORDEN DEL HEAD EN RESPONSIVE"
+git commit -m "ORDEN DEL HEAD EN RESPONSIVE II"
 
 git push
+
+git add .
+
+git commit -m "ORDEN DEL HEAD EN RESPONSIVE II"
+
+git push
+

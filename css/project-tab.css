@@ -75,13 +75,22 @@ header > div {
     max-width: 36%;
   }
 
-  /* Oculta el separador · para ahorrar espacio */
+  /* Oculta el separador · para ahorrar espacio 
   .project-badge__sep {
     display: none;
-  }
+  }*/
 }
 
-
+/* --- SMALL MOBILE (hasta 480px) ---
+   En pantallas muy pequeñas el badge puede ser confuso.
+   Se muestra solo el código del proyecto, sin label. 
+@media (max-width: 480px) {
+  .project-badge {
+    font-size: 0.48rem;
+    letter-spacing: 0.08em;
+    gap: 0.25rem;
+    max-width: 30%;
+  }*/
 
 
   @media (max-width: 480px) {
@@ -127,3 +136,65 @@ header > div {
   .project-badge__label {
     display: none;
   }*/
+
+
+/* ============================================================
+  VARIANTE: BADGE DE PERFIL (Linkedin, Workana, CV, Github...)
+  Mismo comportamiento responsive que .project-badge,
+  pero con label arriba y código abajo (apilado), en vez de
+  "label · code" en una sola línea.
+  Así reemplaza los <script> inline con estilos hardcodeados
+  que tenían cada perfil — ahora todos comparten este CSS único.
+============================================================ */
+.profile-badge {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: none;
+  color: #111;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.profile-badge__label {
+  color: #888;
+}
+
+.profile-badge__code {
+  color: #111;
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .profile-badge {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-badge {
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* Mismo criterio que .project-badge en mobile chico:
+   se va a la izquierda, dentro del header, en su propio
+   renglón debajo de VLADISYSTEMS, sin pisar nada. */
+@media (max-width: 480px) {
+  .profile-badge {
+    left: 1.5rem;
+    bottom: 0.6rem;
+    top: auto;
+    transform: none;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+  }
+}
