@@ -168,3 +168,12 @@ git commit -m "migracion a cascaroin del proyecto I"
 
 git push
 
+
+
+
+
+git add .
+
+git commit -m "documentacion real de cada proyect0 + md readme I"
+
+git push

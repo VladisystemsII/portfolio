@@ -4,1025 +4,518 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="VLADIBOT TELEGRAM — Bot de Telegram desarrollado en Python para automatización de mensajes e integración con la API oficial. Proyecto VLADISYSTEMS.">
-<title>VLADIBOT TELEGRAM | VLADISYSTEMS</title>
 
 <!-- ============================================================
-  TIPOGRAFÍAS — Oswald + IBM Plex Mono
-  Mismo sistema tipográfico del portfolio VLADISYSTEMS
+  DOCUMENTACIÓN: PROYECTO VLADIBOT TELEGRAM
+  Archivo: p-vladibot/documentacion/index.html
+  Parte del sistema VLADISYSTEMS PORTFOLIO.
+  Migrado a la estructura base compartida (header, grid, footer,
+  tipografía, componentes) — ya no usa CSS propio independiente.
 ============================================================ -->
+<title>VLADIBOT TELEGRAM | VLADISYSTEMS</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="../../../css/styles.css">
+<link rel="stylesheet" href="../../../css/project-tab.css">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
-/*  ============================================================
-   RESET Y VARIABLES
-============================================================ */
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --bg:     #f5f5f2;
-  --black:  #111111;
-  --rust:   #9d3d22;
-  --white:  #ffffff;
-  --mono:   'IBM Plex Mono', monospace;
-  --sans:   'Oswald', sans-serif;
-  --border: 2px solid #111111;
-  --max:    1400px;
-  --gap:    clamp(20px, 5vw, 80px);
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--sans);
-  background-color: var(--bg);
-  color: var(--black);
-  line-height: 1.5;
-  overflow-x: hidden;
-}
-
-/*  ============================================================
-   CUADRÍCULA DE FONDO — fija, decorativa
-============================================================ */
-.grid-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(17,17,17,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17,17,17,0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-/* ============================================================
-   UTILIDADES GLOBALES
-============================================================ */
-.mono {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
-.rust { color: var(--rust); }
-
-.container {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--gap);
-  position: relative;
-  z-index: 1;
-}
-
-/* ============================================================
-   SECCIONES
-============================================================ */
-.section {
-  border-bottom: var(--border);
-  padding: clamp(60px, 8vw, 120px) 0;
-}
-
-.section-label {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.4em;
-  color: var(--rust);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  display: block;
-}
-
-.section-sub {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  opacity: 0.4;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 24px;
-}
-
-.section-title {
-  font-size: clamp(2.2rem, 5vw, 4.2rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin-bottom: 48px;
-}
-
-/* Layout 2 columnas: label | contenido */
-.layout-2col {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: clamp(30px, 5vw, 80px);
-}
-
-/* ============================================================
-   BOTONES
-============================================================ */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  border: var(--border);
-  padding: 14px 28px;
-  text-decoration: none;
-  color: var(--black);
-  background: transparent;
-  transition: background 0.15s, color 0.15s;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.btn:hover {
-  background: var(--black);
-  color: var(--bg);
-}
-
-.btn-solid {
-  background: var(--black);
-  color: var(--bg);
-}
-
-.btn-solid:hover {
-  background: var(--rust);
-  border-color: var(--rust);
-}
-
-.btn-rust {
-  background: var(--rust);
-  border-color: var(--rust);
-  color: var(--white);
-}
-
-.btn-rust:hover {
-  background: var(--black);
-  border-color: var(--black);
-}
-
-/* ============================================================
-   TARJETAS BRUTALISTAS
-============================================================ */
-.raw-box {
-  border: var(--border);
-  padding: clamp(20px, 3vw, 32px);
-  background: var(--bg);
-  transition: background 0.15s, color 0.15s;
-}
-
-.raw-box:hover {
-  background: var(--black);
-  color: var(--bg);
-}
-
-.raw-box:hover .mono,
-.raw-box:hover .box-meta {
-  color: var(--bg);
-  opacity: 0.5;
-}
-
-.raw-box:hover .rust {
-  color: var(--rust);
-  opacity: 1;
-}
-
-/* Celda de grilla interna */
-.cell {
-  padding: clamp(20px, 3vw, 36px);
-  transition: background 0.15s, color 0.15s;
-}
-
-.cell:hover {
-  background: var(--black);
-  color: var(--bg);
-}
-
-.br { border-right: var(--border); }
-.bb { border-bottom: var(--border); }
-
-/* ============================================================
-   HEADER — sticky con blur
-============================================================ */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  border-bottom: var(--border);
-  background: rgba(245, 245, 242, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.header-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 20px var(--gap);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--black);
-}
-
-.back-btn {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: var(--border);
-    padding: 10px 20px;
-    text-decoration: none;
-    color: var(--black);
-    transition: background 0.15s, color 0.15s;
+  /* Bloque de código Python: estilo propio del contenido,
+     no del cascarón — se conserva porque es presentación
+     de código fuente con resaltado de sintaxis. */
+  .code-block {
+    background: #111;
+    color: #ddd;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    padding: clamp(20px, 3vw, 32px);
+    overflow-x: auto;
+    border: 2px solid #111;
   }
-
-  .back-btn:hover {
-    background: var(--black);
-    color: var(--bg);
-}
-
-/* ============================================================
-   HERO
-============================================================ */
-.hero {
-  border-bottom: var(--border);
-  padding: clamp(60px, 10vw, 140px) 0;
-}
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 48px;
-  align-items: end;
-}
-
-.hero-badge {
-  display: inline-block;
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  border: 1px solid var(--rust);
-  color: var(--rust);
-  padding: 6px 14px;
-  margin-bottom: 24px;
-}
-
-.hero-title {
-  font-size: clamp(3.5rem, 10vw, 9rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.05em;
-  line-height: 0.92;
-  margin-bottom: 32px;
-}
-
-.hero-sub {
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
-  font-weight: 300;
-  max-width: 520px;
-  line-height: 1.65;
-  margin-bottom: 36px;
-  opacity: 0.8;
-}
-
-.hero-meta {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
-  opacity: 0.4;
-  margin-top: 20px;
-}
-
-.hero-btns {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-/* Widget hero derecha */
-.hero-widget {
-  border: var(--border);
-  padding: 32px;
-  background: var(--black);
-  color: var(--bg);
-}
-
-.widget-header {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
-  color: #888;
-  margin-bottom: 28px;
-  text-transform: uppercase;
-}
-
-.widget-row {
-  margin-bottom: 20px;
-}
-
-.widget-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.widget-key {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.widget-val {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--rust);
-}
-
-.widget-bar {
-  height: 2px;
-  background: #333;
-}
-
-.widget-fill {
-  height: 100%;
-  background: var(--bg);
-}
-
-
-
-
-
-/* ============================================================
-   BLOQUE DE CÓDIGO — fragmento real de bot.py
-============================================================ */
-.code-block {
-  background: var(--black);
-  color: #e8e8e5;
-  padding: clamp(24px, 4vw, 40px);
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  line-height: 1.8;
-  overflow-x: auto;
-  border: var(--border);
-  position: relative;
-}
-
-.code-block .code-label {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 0.55rem;
-  letter-spacing: 0.3em;
-  color: #555;
-  text-transform: uppercase;
-}
-
-.code-kw  { color: #c792ea; }   /* keywords */
-.code-fn  { color: #82aaff; }   /* funciones */
-.code-str { color: #c3e88d; }   /* strings */
-.code-cm  { color: #546e7a; }   /* comentarios */
-.code-var { color: #f78c6c; }   /* variables */
-.code-imp { color: #89ddff; }   /* imports */
-
-/* ============================================================
-   ARQUITECTURA — diagrama de flujo visual
-============================================================ */
-.arch-flow {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0;
-  max-width: 480px;
-}
-
-.arch-node {
-  border: var(--border);
-  padding: 18px 28px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 1rem;
-  background: var(--bg);
-  width: 100%;
-  transition: background 0.15s;
-}
-
-.arch-node:hover {
-  background: var(--black);
-  color: var(--bg);
-}
-
-.arch-node.highlight {
-  background: var(--black);
-  color: var(--bg);
-}
-
-.arch-arrow {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--rust);
-  letter-spacing: 0.2em;
-  padding: 8px 28px;
-  opacity: 0.7;
-}
-
-/* ============================================================
-   FINDINGS — hallazgos con número
-============================================================ */
-.finding-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 22px 0;
-  border-bottom: 1px solid rgba(17,17,17,0.1);
-}
-
-.finding-row:last-child { border-bottom: none; }
-
-.finding-num {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--rust);
-  letter-spacing: 0.2em;
-  flex-shrink: 0;
-  padding-top: 3px;
-  min-width: 32px;
-}
-
-.finding-text {
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.6;
-  opacity: 0.85;
-}
-
-/* ============================================================
-   PRÓXIMAS MEJORAS — lista numerada
-============================================================ */
-.mejora-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-}
-
-.mejora-card {
-  border: var(--border);
-  padding: 24px;
-  background: var(--bg);
-  transition: background 0.15s, color 0.15s;
-}
-
-.mejora-card:hover {
-  background: var(--black);
-  color: var(--bg);
-}
-
-.mejora-num {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--rust);
-  letter-spacing: 0.3em;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.mejora-title {
-  font-size: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.mejora-desc {
-  font-size: 0.8rem;
-  font-weight: 300;
-  opacity: 0.65;
-  line-height: 1.5;
-}
-
-/* ============================================================
-   BLOQUE RESULTADO DESTACADO
-============================================================ */
-.result-block {
-  background: var(--black);
-  color: var(--bg);
-  padding: clamp(40px, 6vw, 80px);
-}
-
-.result-inner {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 40px;
-  align-items: center;
-}
-
-.result-quote {
-  font-size: clamp(1.3rem, 3vw, 2rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  max-width: 700px;
-}
-
-.result-sub {
-  font-weight: 300;
-  opacity: 0.6;
-  font-size: 0.95rem;
-  max-width: 580px;
-  line-height: 1.65;
-  margin-top: 16px;
-}
-
-/* ============================================================
-   PLACEHOLDERS DE CAPTURAS
-============================================================ */
-.capture-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
-.capture-ph {
-  border: var(--border);
-  border-style: dashed;
-  padding: clamp(40px, 6vw, 80px) 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  opacity: 0.35;
-  text-align: center;
-}
-
-.capture-ph .ph-num {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
-.capture-ph .ph-title {
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-}
-
-.capture-ph .ph-note {
-  font-family: var(--mono);
-  font-size: 0.55rem;
-  opacity: 0.6;
-  letter-spacing: 0.2em;
-}
-
-/* ============================================================
-   FOOTER
-============================================================ */
-footer {
-  background: var(--black);
-  color: var(--bg);
-}
-
-.footer-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 36px var(--gap);
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 24px;
-}
-
-.footer-tag {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
-  opacity: 0.5;
-  text-transform: uppercase;
-  line-height: 1.8;
-}
-
-.footer-logo {
-  height: 80px;
-  width: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-.footer-links {
-  display: flex;
-  gap: 20px;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.footer-link {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--bg);
-  opacity: 0.5;
-  text-decoration: none;
-  transition: opacity 0.15s;
-}
-
-.footer-link:hover { opacity: 1; }
-
-/* ============================================================
-   RESPONSIVE
-============================================================ */
-@media (max-width: 1024px) {
-  .hero-inner      { grid-template-columns: 1fr; }
-  .hero-widget     { width: 100%; }
-  .layout-2col     { grid-template-columns: 1fr; }
-  .result-inner    { grid-template-columns: 1fr; }
-  .footer-inner    { grid-template-columns: 1fr; text-align: center; }
-  .footer-links    { justify-content: center; }
-}
-
-@media (max-width: 640px) {
-  .capture-grid    { grid-template-columns: 1fr; }
-  .br              { border-right: none; border-bottom: var(--border); }
-}
-
+  .code-block pre { white-space: pre; }
+  .code-label {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .code-imp { color: #c4613d; }
+  .code-var { color: #9cdcfe; }
+  .code-fn  { color: #dcdcaa; }
+  .code-str { color: #ce9178; }
+  .code-kw  { color: #c4613d; }
 </style>
+
 </head>
 
-<body>
+<body data-project-id="DOCUMENTACIÓN · VLADIBOT">
 
-<!-- CUADRÍCULA DE FONDO -->
-<div class="grid-bg"></div>
+  <div id="header-container"></div>
 
+  <!-- CUADRÍCULA DE FONDO -->
+  <div class="grid-lines"></div>
 
+  <!-- ============================================================
+    CONTENIDO PRINCIPAL
+  ============================================================ -->
+  <div style="position:relative; z-index:1;" class="content-offset">
 
+    <!-- ============================================================
+      HERO
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-24">
 
-<!-- ============================================================
-  HEADER — sticky con blur
-============================================================ -->
-<header>
-  <div class="header-inner">
-    <a href="https://vladisystemsii.github.io/portfolio/" class="logo">VLADISYSTEMS</a>
-    <a href="../p-vladibot.html" class="back-btn">← Volver al Proyecto</a>
-  </div>
-</header>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
 
-<!-- ============================================================
-  HERO
-============================================================ -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-inner">
+          <!-- IZQUIERDA -->
+          <div class="lg:col-span-8 order-2 lg:order-1">
 
-      <!-- IZQUIERDA -->
-      <div>
-        <span class="hero-badge">PYTHON · TELEGRAM API · AUTOMATION</span>
-
-        <h1 class="hero-title">
-          VLADI<br>BOT
-        </h1>
-
-        <p class="hero-sub">
-          Bot de Telegram desarrollado en Python para automatización
-          de mensajes e integración con la API oficial de Telegram.
-          Polling continuo, comandos registrados, despliegue en la nube.
-        </p>
-
-        <div class="hero-btns">
-          <a href="https://github.com/VladisystemsII/telegram-bot-vladiblues"
-             target="_blank" rel="noopener noreferrer"
-             class="btn btn-solid">
-            Ver en GitHub ↗
-          </a>
-          <a href="documentacion/index.html"
-             target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-3 border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
-             style="font-family:'IBM Plex Mono',monospace;">
-            Documentación BOT ↗
-          </a>
-        </div>
-
-        <p class="hero-meta">
-          VLADISYSTEMS · BOGOTÁ, COLOMBIA · 2025
-        </p>
-      </div>
-
-      <!-- DERECHA: WIDGET FICHA TÉCNICA -->
-      <div class="hero-widget">
-        <p class="widget-header">FICHA TÉCNICA</p>
-
-        <div class="widget-row">
-          <div class="widget-top">
-            <span class="widget-key">Tipo</span>
-            <span class="widget-val">BOT / PYTHON</span>
-          </div>
-          <div class="widget-bar"><div class="widget-fill" style="width:100%"></div></div>
-        </div>
-
-        <div class="widget-row">
-          <div class="widget-top">
-            <span class="widget-key">Lenguaje</span>
-            <span class="widget-val">Python 3.12</span>
-          </div>
-          <div class="widget-bar"><div class="widget-fill" style="width:100%"></div></div>
-        </div>
-
-        <div class="widget-row">
-          <div class="widget-top">
-            <span class="widget-key">Librería</span>
-            <span class="widget-val">PTB 20.3</span>
-          </div>
-          <div class="widget-bar"><div class="widget-fill" style="width:90%"></div></div>
-        </div>
-
-        <div class="widget-row">
-          <div class="widget-top">
-            <span class="widget-key">Deploy</span>
-            <span class="widget-val">RENDER / REPLIT</span>
-          </div>
-          <div class="widget-bar"><div class="widget-fill" style="width:85%"></div></div>
-        </div>
-
-        <div class="widget-row">
-          <div class="widget-top">
-            <span class="widget-key">Estado</span>
-            <span class="widget-val">FUNCIONAL</span>
-          </div>
-          <div class="widget-bar"><div class="widget-fill" style="width:100%"></div></div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-  SECCIÓN 01 — RESUMEN DEL PROYECTO
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="layout-2col">
-
-      <div>
-        <span class="section-label">SECCIÓN 01</span>
-        <span class="section-sub">OVERVIEW</span>
-        <h2 class="section-title">RESUMEN<br>DEL<br>PROYECTO</h2>
-      </div>
-
-      <div>
-        <p style="font-size:1.2rem; font-weight:300; line-height:1.7; max-width:640px; margin-bottom:24px;">
-          VLADIBOT TELEGRAM es un bot funcional desarrollado en Python
-          que se conecta a la API oficial de Telegram para recibir mensajes,
-          responder comandos y ejecutar polling continuo sin intervención humana.
-        </p>
-        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:640px; opacity:0.75; margin-bottom:40px;">
-          El proyecto cubre el ciclo completo de desarrollo de un bot:
-          configuración del entorno, manejo seguro de tokens con variables
-          de entorno, registro de handlers, y despliegue en la nube
-          usando Render como plataforma de ejecución continua.
-        </p>
-        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:640px; opacity:0.75;">
-          Construido por Vladimir Alba (VLADISYSTEMS) como proyecto de
-          aprendizaje técnico orientado a dominar la integración con APIs
-          externas, automatización de procesos y despliegue en producción.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-  SECCIÓN 02 — PROBLEMA A RESOLVER
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="layout-2col">
-
-      <div>
-        <span class="section-label">SECCIÓN 02</span>
-        <span class="section-sub">PROBLEM</span>
-        <h2 class="section-title">PROBLEMA<br>A<br>RESOLVER</h2>
-      </div>
-
-      <div>
-        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:640px; opacity:0.75; margin-bottom:40px;">
-          Para poder construir automatizaciones más complejas —
-          notificaciones inmobiliarias, seguimiento de prospectos,
-          comunicación con CRM — primero es necesario dominar
-          los fundamentos de integración con APIs de mensajería.
-        </p>
-
-        <div style="border:var(--border);">
-          <div class="cell bb br" style="display:grid; grid-template-columns:1fr 1fr;">
-            <div class="cell br bb">
-              <div class="mono rust" style="margin-bottom:10px;">01</div>
-              <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">Sin conocimiento de APIs</div>
-              <p style="font-size:0.82rem; opacity:0.65; font-weight:300; line-height:1.5;">
-                Necesidad de entender cómo conectarse a servicios externos
-                mediante tokens, peticiones HTTP y JSON.
-              </p>
+            <div class="mono text-xs tracking-[0.4em] mb-6 rust">
+              PYTHON · TELEGRAM API · AUTOMATION
             </div>
-            <div class="cell bb">
-              <div class="mono rust" style="margin-bottom:10px;">02</div>
-              <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">Sin experiencia en bots</div>
-              <p style="font-size:0.82rem; opacity:0.65; font-weight:300; line-height:1.5;">
-                Los bots son la interfaz más directa para automatización
-                conversacional — aprender a construirlos es fundamental.
-              </p>
-            </div>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr;">
-            <div class="cell br">
-              <div class="mono rust" style="margin-bottom:10px;">03</div>
-              <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">Sin despliegue en la nube</div>
-              <p style="font-size:0.82rem; opacity:0.65; font-weight:300; line-height:1.5;">
-                Un bot que solo corre localmente no es útil.
-                Se requería aprender deploy y ejecución continua.
-              </p>
-            </div>
-            <div class="cell">
-              <div class="mono rust" style="margin-bottom:10px;">04</div>
-              <div style="font-weight:700; text-transform:uppercase; margin-bottom:8px;">Seguridad de credenciales</div>
-              <p style="font-size:0.82rem; opacity:0.65; font-weight:300; line-height:1.5;">
-                Manejar tokens y credenciales de forma segura
-                con variables de entorno es una práctica profesional esencial.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-    </div>
-  </div>
-</section>
+            <h2 class="uppercase font-bold leading-none"
+                style="font-size:clamp(3rem,9vw,8rem); letter-spacing:-0.04em;">
+              VLADI<br>BOT
+            </h2>
 
-<!-- ============================================================
-  SECCIÓN 03 — SOLUCIÓN IMPLEMENTADA
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="layout-2col">
-
-      <div>
-        <span class="section-label">SECCIÓN 03</span>
-        <span class="section-sub">SOLUTION</span>
-        <h2 class="section-title">SOLUCIÓN<br>IMPLE<br>MENTADA</h2>
-      </div>
-
-      <div>
-        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:640px; opacity:0.75; margin-bottom:40px;">
-          Se desarrolló un bot funcional usando <strong>python-telegram-bot v20.3</strong>
-          con arquitectura asíncrona, manejo de variables de entorno,
-          comando <code style="font-family:var(--mono); background:#e8e8e0; padding:2px 6px;">/start</code>
-          registrado y polling continuo activo.
-        </p>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:32px;">
-
-          <div class="raw-box">
-            <div class="mono rust" style="display:block; margin-bottom:14px;">01</div>
-            <div style="font-size:1.1rem; font-weight:700; text-transform:uppercase; margin-bottom:10px;">Conexión a API</div>
-            <p style="font-size:0.82rem; font-weight:300; line-height:1.5; opacity:0.7;">
-              Token seguro cargado desde <code style="font-family:var(--mono);">.env</code>
-              con python-dotenv. Nunca hardcodeado en el código fuente.
+            <p class="mt-8 text-xl max-w-2xl leading-relaxed font-light">
+              Bot de Telegram desarrollado en Python para automatización
+              de mensajes e integración con la API oficial de Telegram.
+              Polling continuo, comandos registrados, despliegue en la nube.
             </p>
-          </div>
 
-          <div class="raw-box">
-            <div class="mono rust" style="display:block; margin-bottom:14px;">02</div>
-            <div style="font-size:1.1rem; font-weight:700; text-transform:uppercase; margin-bottom:10px;">Handlers registrados</div>
-            <p style="font-size:0.82rem; font-weight:300; line-height:1.5; opacity:0.7;">
-              Comando <code style="font-family:var(--mono);">/start</code> con respuesta
-              automática. Arquitectura extensible para agregar más comandos.
-            </p>
-          </div>
-
-          <div class="raw-box">
-            <div class="mono rust" style="display:block; margin-bottom:14px;">03</div>
-            <div style="font-size:1.1rem; font-weight:700; text-transform:uppercase; margin-bottom:10px;">Polling continuo</div>
-            <p style="font-size:0.82rem; font-weight:300; line-height:1.5; opacity:0.7;">
-              <code style="font-family:var(--mono);">app.run_polling()</code> mantiene
-              el bot activo 24/7 consultando nuevos mensajes sin webhook.
-            </p>
-          </div>
-
-          <div class="raw-box">
-            <div class="mono rust" style="display:block; margin-bottom:14px;">04</div>
-            <div style="font-size:1.1rem; font-weight:700; text-transform:uppercase; margin-bottom:10px;">Deploy en Render</div>
-            <p style="font-size:0.82rem; font-weight:300; line-height:1.5; opacity:0.7;">
-              <code style="font-family:var(--mono);">Procfile</code> configurado para
-              ejecución como worker en Render. Entorno de producción real.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-  SECCIÓN 04 — FUNCIONAMIENTO DEL BOT (CÓDIGO REAL)
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="layout-2col">
-
-      <div>
-        <span class="section-label">SECCIÓN 04</span>
-        <span class="section-sub">HOW IT WORKS</span>
-        <h2 class="section-title">FUNCIO<br>NAMIENTO<br>DEL BOT</h2>
-      </div>
-
-      <div>
-
-        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:640px; opacity:0.75; margin-bottom:32px;">
-          El bot opera en 4 pasos secuenciales desde que un usuario
-          envía un mensaje hasta que recibe la respuesta automática.
-        </p>
-
-        <!-- FLUJO DE 4 PASOS -->
-        <div style="border:var(--border); margin-bottom:32px;">
-
-          <div class="cell bb" style="display:grid; grid-template-columns:60px 1fr; gap:20px; align-items:start;">
-            <div style="font-family:var(--mono); font-size:2rem; color:var(--rust); font-weight:700; line-height:1;">01</div>
-            <div>
-              <div style="font-weight:700; text-transform:uppercase; margin-bottom:6px;">Recepción de mensajes</div>
-              <p style="font-size:0.85rem; font-weight:300; opacity:0.7; line-height:1.5;">
-                El polling consulta a <code style="font-family:var(--mono);">api.telegram.org</code>
-                cada pocos segundos. Cualquier mensaje nuevo es capturado
-                como objeto <code style="font-family:var(--mono);">Update</code>.
-              </p>
+            <div class="mt-10 flex flex-wrap gap-4">
+              <a href="https://github.com/VladisystemsII/telegram-bot-vladiblues"
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-3 bg-black text-white border-2 border-black px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-[#9d3d22] hover:border-[#9d3d22]"
+                 style="font-family:'IBM Plex Mono',monospace;">
+                Ver en GitHub ↗
+              </a>
             </div>
-          </div>
 
-          <div class="cell bb" style="display:grid; grid-template-columns:60px 1fr; gap:20px; align-items:start;">
-            <div style="font-family:var(--mono); font-size:2rem; color:var(--rust); font-weight:700; line-height:1;">02</div>
-            <div>
-              <div style="font-weight:700; text-transform:uppercase; margin-bottom:6px;">Comando /start</div>
-              <p style="font-size:0.85rem; font-weight:300; opacity:0.7; line-height:1.5;">
-                El <code style="font-family:var(--mono);">CommandHandler("start", start)</code>
-                intercepta el comando y ejecuta la función asíncrona <code style="font-family:var(--mono);">start()</code>
-                con el contexto del mensaje recibido.
-              </p>
+            <div class="mono text-xs tracking-[0.3em] opacity-45 mt-6">
+              VLADISYSTEMS · BOGOTÁ, COLOMBIA · 2025
             </div>
+
           </div>
 
-          <div class="cell bb" style="display:grid; grid-template-columns:60px 1fr; gap:20px; align-items:start;">
-            <div style="font-family:var(--mono); font-size:2rem; color:var(--rust); font-weight:700; line-height:1;">03</div>
-            <div>
-              <div style="font-weight:700; text-transform:uppercase; margin-bottom:6px;">Respuesta automática</div>
-              <p style="font-size:0.85rem; font-weight:300; opacity:0.7; line-height:1.5;">
-                <code style="font-family:var(--mono);">update.message.reply_text()</code>
-                envía la respuesta de vuelta al mismo chat.
-                Sin intervención humana — completamente automatizado.
-              </p>
-            </div>
-          </div>
+          <!-- DERECHA: widget -->
+          <div class="lg:col-span-4 order-2 lg:order-last">
+            <div class="border-2 border-black p-8 bg-black text-white">
 
-          <div class="cell" style="display:grid; grid-template-columns:60px 1fr; gap:20px; align-items:start;">
-            <div style="font-family:var(--mono); font-size:2rem; color:var(--rust); font-weight:700; line-height:1;">04</div>
-            <div>
-              <div style="font-weight:700; text-transform:uppercase; margin-bottom:6px;">Polling continuo</div>
-              <p style="font-size:0.85rem; font-weight:300; opacity:0.7; line-height:1.5;">
-                <code style="font-family:var(--mono);">app.run_polling()</code>
-                mantiene el ciclo activo indefinidamente.
-                El Procfile en Render lo reinicia si cae.
-              </p>
+              <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+                FICHA TÉCNICA
+              </div>
+
+              <div class="space-y-6">
+
+                <div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="uppercase text-sm tracking-[0.15em]">Tipo</span>
+                    <span class="mono text-xs rust">BOT / PYTHON</span>
+                  </div>
+                  <div class="h-[2px] bg-[#333]">
+                    <div class="h-full bg-white w-[100%]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="uppercase text-sm tracking-[0.15em]">Lenguaje</span>
+                    <span class="mono text-xs rust">Python 3.12</span>
+                  </div>
+                  <div class="h-[2px] bg-[#333]">
+                    <div class="h-full bg-white w-[100%]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="uppercase text-sm tracking-[0.15em]">Librería</span>
+                    <span class="mono text-xs rust">PTB 20.3</span>
+                  </div>
+                  <div class="h-[2px] bg-[#333]">
+                    <div class="h-full bg-white w-[90%]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="uppercase text-sm tracking-[0.15em]">Deploy</span>
+                    <span class="mono text-xs rust">RENDER / REPLIT</span>
+                  </div>
+                  <div class="h-[2px] bg-[#333]">
+                    <div class="h-full bg-white w-[85%]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="uppercase text-sm tracking-[0.15em]">Estado</span>
+                    <span class="mono text-xs rust">FUNCIONAL</span>
+                  </div>
+                  <div class="h-[2px] bg-[#333]">
+                    <div class="h-full bg-white w-[100%]"></div>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
 
         </div>
+      </div>
+    </section>
 
-        <!-- CÓDIGO REAL -->
-        <div class="code-block">
-          <span class="code-label">bot.py — código real</span>
+    <!-- ============================================================
+      SECCIÓN 01 — RESUMEN DEL PROYECTO
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+          <div class="lg:col-span-3">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 01</div>
+            <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">OVERVIEW</div>
+            <h3 class="text-4xl font-bold uppercase leading-tight">
+              RESUMEN<br>DEL<br>PROYECTO
+            </h3>
+          </div>
+
+          <div class="lg:col-span-9">
+
+            <p class="text-xl leading-relaxed font-light max-w-3xl mb-6">
+              VLADIBOT TELEGRAM es un bot funcional desarrollado en Python
+              que se conecta a la API oficial de Telegram para recibir mensajes,
+              responder comandos y ejecutar polling continuo sin intervención humana.
+            </p>
+
+            <p class="text-lg leading-relaxed font-light max-w-3xl mb-6 opacity-80">
+              El proyecto cubre el ciclo completo de desarrollo de un bot:
+              configuración del entorno, manejo seguro de tokens con variables
+              de entorno, registro de handlers, y despliegue en la nube
+              usando Render como plataforma de ejecución continua.
+            </p>
+
+            <p class="text-lg leading-relaxed font-light max-w-3xl opacity-80">
+              Construido por Vladimir Alba (VLADISYSTEMS) como proyecto de
+              aprendizaje técnico orientado a dominar la integración con APIs
+              externas, automatización de procesos y despliegue en producción.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+      SECCIÓN 02 — PROBLEMA A RESOLVER
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+          <div class="lg:col-span-3">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 02</div>
+            <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">PROBLEM</div>
+            <h3 class="text-4xl font-bold uppercase leading-tight">
+              PROBLEMA<br>A<br>RESOLVER
+            </h3>
+          </div>
+
+          <div class="lg:col-span-9">
+
+            <p class="text-lg leading-relaxed font-light max-w-3xl mb-10 opacity-80">
+              Para poder construir automatizaciones más complejas —
+              notificaciones inmobiliarias, seguimiento de prospectos,
+              comunicación con CRM — primero es necesario dominar
+              los fundamentos de integración con APIs de mensajería.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 border-2 border-black">
+              <div class="p-6 md:border-r-2 border-b-2 border-black">
+                <div class="mono text-xs rust mb-2">01</div>
+                <div class="font-bold uppercase mb-2">Sin conocimiento de APIs</div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  Necesidad de entender cómo conectarse a servicios externos
+                  mediante tokens, peticiones HTTP y JSON.
+                </p>
+              </div>
+              <div class="p-6 border-b-2 border-black">
+                <div class="mono text-xs rust mb-2">02</div>
+                <div class="font-bold uppercase mb-2">Sin experiencia en bots</div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  Los bots son la interfaz más directa para automatización
+                  conversacional — aprender a construirlos es fundamental.
+                </p>
+              </div>
+              <div class="p-6 md:border-r-2 border-black">
+                <div class="mono text-xs rust mb-2">03</div>
+                <div class="font-bold uppercase mb-2">Sin despliegue en la nube</div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  Un bot que solo corre localmente no es útil.
+                  Se requería aprender deploy y ejecución continua.
+                </p>
+              </div>
+              <div class="p-6">
+                <div class="mono text-xs rust mb-2">04</div>
+                <div class="font-bold uppercase mb-2">Seguridad de credenciales</div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  Manejar tokens y credenciales de forma segura
+                  con variables de entorno es una práctica profesional esencial.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+      SECCIÓN 03 — PROCESO DE ANÁLISIS
+      (antecedente real con WhatsApp, aprendizaje sobre políticas
+      de plataforma, y el caso de uso real con una empresa
+      de viajes y turismo)
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+          <div class="lg:col-span-3">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 03</div>
+            <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">ANALYSIS</div>
+            <h3 class="text-4xl font-bold uppercase leading-tight">
+              PROCESO<br>DE<br>ANÁLISIS
+            </h3>
+          </div>
+
+          <div class="lg:col-span-9">
+
+            <p class="text-lg leading-relaxed font-light max-w-3xl mb-6 opacity-80">
+              VladiBot Telegram es la segunda fase de una necesidad real
+              de automatización de comunicación. La primera fase se
+              construyó en Python para WhatsApp, con el objetivo de
+              ahorrar el tiempo de enviar mensajes uno a uno a una base
+              de datos de agentes inmobiliarios, ofreciéndoles un servicio
+              de arreglos locativos.
+            </p>
+
+            <p class="text-lg leading-relaxed font-light max-w-3xl mb-10 opacity-80">
+              Ese primer bot funcionó y tuvo resultados reales — pero la
+              mensajería masiva no autorizada va contra las políticas de
+              uso de WhatsApp, y la plataforma sancionó la línea telefónica,
+              bloqueando temporalmente el envío de mensajes. Ahí terminó
+              ese proyecto, pero no el aprendizaje: la experiencia dejó
+              clara la importancia de conocer y respetar las reglas
+              de cada plataforma antes de construir sobre ella.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 border-2 border-black mb-10">
+              <div class="p-6 md:border-r-2 border-b-2 border-black">
+                <div class="mono text-xs rust mb-2">CRITERIO 01</div>
+                <div class="font-bold uppercase mb-2">Pivote informado, no improvisado</div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  La sanción de WhatsApp llevó a investigar Telegram
+                  como alternativa con políticas más flexibles para
+                  automatización legítima de mensajería.
+                </p>
+              </div>
+              <div class="p-6 border-b-2 border-black md:col-span-2">
+                <div class="mono text-xs rust mb-2">CRITERIO 02</div>
+                <div class="font-bold uppercase mb-2">Caso de uso real, no solo ejercicio técnico</div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  VladiBot se implementó como primera fase de colaboración
+                  con una empresa de viajes y turismo. El objetivo no era
+                  vender tickets, sino dar respuesta inmediata y orientación
+                  clara a personas interesadas en tramitar visas — resolver
+                  la demanda de información rápida y bien dirigida sobre
+                  el servicio de acompañamiento en ese trámite.
+                </p>
+              </div>
+              <div class="p-6 md:col-span-3">
+                <div class="mono text-xs rust mb-2">RESULTADO DEL ANÁLISIS</div>
+                <div class="font-bold uppercase text-lg mb-2">
+                  Prueba de concepto validada, sin avance a segunda fase
+                </div>
+                <p class="text-sm opacity-60 font-light leading-relaxed">
+                  El bot se probó y cumplió su objetivo técnico de respuesta
+                  automática e inmediata. El proyecto no avanzó a una
+                  segunda fase de implementación con la empresa, pero deja
+                  una base técnica sólida y validada para automatizaciones
+                  de atención e información en tiempo real.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+      SECCIÓN 04 — SOLUCIÓN IMPLEMENTADA
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+          <div class="lg:col-span-3">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 04</div>
+            <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">SOLUTION</div>
+            <h3 class="text-4xl font-bold uppercase leading-tight">
+              SOLUCIÓN<br>IMPLE<br>MENTADA
+            </h3>
+          </div>
+
+          <div class="lg:col-span-9">
+
+            <p class="text-lg leading-relaxed font-light max-w-3xl mb-10 opacity-80">
+              Se desarrolló un bot funcional usando
+              <strong>python-telegram-bot v20.3</strong>
+              con arquitectura asíncrona, manejo de variables de entorno,
+              comando <code class="mono" style="background:#e8e8e0; padding:2px 6px; letter-spacing:normal; text-transform:none;">/start</code>
+              registrado y polling continuo activo.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+              <div class="raw-box p-7">
+                <div class="mono text-xs rust mb-3">01</div>
+                <div class="text-lg font-bold uppercase mb-2">Conexión a API</div>
+                <p class="text-sm font-light opacity-70 leading-relaxed">
+                  Token seguro cargado desde
+                  <code class="mono" style="letter-spacing:normal; text-transform:none;">.env</code>
+                  con python-dotenv. Nunca hardcodeado en el código fuente.
+                </p>
+              </div>
+
+              <div class="raw-box p-7">
+                <div class="mono text-xs rust mb-3">02</div>
+                <div class="text-lg font-bold uppercase mb-2">Handlers registrados</div>
+                <p class="text-sm font-light opacity-70 leading-relaxed">
+                  Comando
+                  <code class="mono" style="letter-spacing:normal; text-transform:none;">/start</code>
+                  con respuesta automática. Arquitectura extensible para agregar más comandos.
+                </p>
+              </div>
+
+              <div class="raw-box p-7">
+                <div class="mono text-xs rust mb-3">03</div>
+                <div class="text-lg font-bold uppercase mb-2">Polling continuo</div>
+                <p class="text-sm font-light opacity-70 leading-relaxed">
+                  <code class="mono" style="letter-spacing:normal; text-transform:none;">app.run_polling()</code>
+                  mantiene el bot activo 24/7 consultando nuevos mensajes sin webhook.
+                </p>
+              </div>
+
+              <div class="raw-box p-7">
+                <div class="mono text-xs rust mb-3">04</div>
+                <div class="text-lg font-bold uppercase mb-2">Deploy en Render</div>
+                <p class="text-sm font-light opacity-70 leading-relaxed">
+                  <code class="mono" style="letter-spacing:normal; text-transform:none;">Procfile</code>
+                  configurado para ejecución como worker en Render. Entorno de producción real.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+      SECCIÓN 05 — FUNCIONAMIENTO DEL BOT (CÓDIGO REAL)
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+          <div class="lg:col-span-3">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 05</div>
+            <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">HOW IT WORKS</div>
+            <h3 class="text-4xl font-bold uppercase leading-tight">
+              FUNCIO<br>NAMIENTO<br>DEL BOT
+            </h3>
+          </div>
+
+          <div class="lg:col-span-9">
+
+            <p class="text-lg leading-relaxed font-light max-w-3xl mb-8 opacity-80">
+              El bot opera en 4 pasos secuenciales desde que un usuario
+              envía un mensaje hasta que recibe la respuesta automática.
+            </p>
+
+            <!-- FLUJO DE 4 PASOS -->
+            <div class="border-2 border-black mb-10">
+
+              <div class="grid grid-cols-[60px_1fr] gap-5 p-6 border-b-2 border-black">
+                <div class="mono text-3xl rust font-bold leading-none">01</div>
+                <div>
+                  <div class="font-bold uppercase mb-2">Recepción de mensajes</div>
+                  <p class="text-sm font-light opacity-70 leading-relaxed">
+                    El polling consulta a
+                    <code class="mono" style="letter-spacing:normal; text-transform:none;">api.telegram.org</code>
+                    cada pocos segundos. Cualquier mensaje nuevo es capturado
+                    como objeto <code class="mono" style="letter-spacing:normal; text-transform:none;">Update</code>.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-[60px_1fr] gap-5 p-6 border-b-2 border-black">
+                <div class="mono text-3xl rust font-bold leading-none">02</div>
+                <div>
+                  <div class="font-bold uppercase mb-2">Comando /start</div>
+                  <p class="text-sm font-light opacity-70 leading-relaxed">
+                    El <code class="mono" style="letter-spacing:normal; text-transform:none;">CommandHandler("start", start)</code>
+                    intercepta el comando y ejecuta la función asíncrona
+                    <code class="mono" style="letter-spacing:normal; text-transform:none;">start()</code>
+                    con el contexto del mensaje recibido.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-[60px_1fr] gap-5 p-6 border-b-2 border-black">
+                <div class="mono text-3xl rust font-bold leading-none">03</div>
+                <div>
+                  <div class="font-bold uppercase mb-2">Respuesta automática</div>
+                  <p class="text-sm font-light opacity-70 leading-relaxed">
+                    <code class="mono" style="letter-spacing:normal; text-transform:none;">update.message.reply_text()</code>
+                    envía la respuesta de vuelta al mismo chat.
+                    Sin intervención humana — completamente automatizado.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-[60px_1fr] gap-5 p-6">
+                <div class="mono text-3xl rust font-bold leading-none">04</div>
+                <div>
+                  <div class="font-bold uppercase mb-2">Polling continuo</div>
+                  <p class="text-sm font-light opacity-70 leading-relaxed">
+                    <code class="mono" style="letter-spacing:normal; text-transform:none;">app.run_polling()</code>
+                    mantiene el ciclo activo indefinidamente.
+                    El Procfile en Render lo reinicia si cae.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- CÓDIGO REAL -->
+            <div class="code-block">
+              <span class="code-label">bot.py — código real</span>
 <pre><span class="code-imp">import</span> <span class="code-var">os</span>
 <span class="code-imp">from</span> <span class="code-var">dotenv</span> <span class="code-imp">import</span> <span class="code-fn">load_dotenv</span>
 <span class="code-imp">from</span> <span class="code-var">telegram</span> <span class="code-imp">import</span> <span class="code-fn">Update</span>
@@ -1040,378 +533,387 @@ footer {
     <span class="code-var">app</span> = <span class="code-fn">ApplicationBuilder</span>().<span class="code-fn">token</span>(<span class="code-var">BOT_TOKEN</span>).<span class="code-fn">build</span>()
     <span class="code-var">app</span>.<span class="code-fn">add_handler</span>(<span class="code-fn">CommandHandler</span>(<span class="code-str">"start"</span>, <span class="code-fn">start</span>))
     <span class="code-var">app</span>.<span class="code-fn">run_polling</span>()</pre>
+            </div>
+
+          </div>
         </div>
-
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- ============================================================
+      SECCIÓN 06 — TECNOLOGÍAS UTILIZADAS
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
 
-<!-- ============================================================
-  SECCIÓN 05 — TECNOLOGÍAS UTILIZADAS
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <span class="section-label">SECCIÓN 05</span>
-    <span class="section-sub">STACK</span>
-    <h2 class="section-title">TECNOLOGÍAS<br>UTILIZADAS</h2>
+        <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 06</div>
+        <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">STACK</div>
+        <h3 class="text-4xl font-bold uppercase leading-tight mb-10">
+          TECNOLOGÍAS UTILIZADAS
+        </h3>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-      <div class="raw-box">
-        <div class="mono rust" style="display:block; margin-bottom:12px;">LENGUAJE</div>
-        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:8px;">Python 3.12</div>
-        <p style="font-size:0.8rem; font-weight:300; opacity:0.65; line-height:1.5;">
-          Lenguaje principal. Async/await para el manejo asíncrono
-          de mensajes entrantes y salientes.
-        </p>
-      </div>
-
-      <div class="raw-box">
-        <div class="mono rust" style="display:block; margin-bottom:12px;">LIBRERÍA</div>
-        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:8px;">python-telegram-bot</div>
-        <p style="font-size:0.8rem; font-weight:300; opacity:0.65; line-height:1.5;">
-          Versión 20.3. Wrapper oficial de la API de Telegram.
-          ApplicationBuilder, CommandHandler, polling.
-        </p>
-      </div>
-
-      <div class="raw-box">
-        <div class="mono rust" style="display:block; margin-bottom:12px;">SEGURIDAD</div>
-        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:8px;">python-dotenv</div>
-        <p style="font-size:0.8rem; font-weight:300; opacity:0.65; line-height:1.5;">
-          Manejo seguro del BOT_TOKEN mediante variables de entorno.
-          Protege credenciales del repositorio público.
-        </p>
-      </div>
-
-      <div class="raw-box">
-        <div class="mono rust" style="display:block; margin-bottom:12px;">PLATAFORMA</div>
-        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:8px;">Telegram Bot API</div>
-        <p style="font-size:0.8rem; font-weight:300; opacity:0.65; line-height:1.5;">
-          API oficial de Telegram. Long polling para recepción
-          de updates en tiempo real.
-        </p>
-      </div>
-
-      <div class="raw-box">
-        <div class="mono rust" style="display:block; margin-bottom:12px;">DEPLOY</div>
-        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:8px;">Render / Replit</div>
-        <p style="font-size:0.8rem; font-weight:300; opacity:0.65; line-height:1.5;">
-          Procfile configurado para worker en Render.
-          Ejecución continua en la nube sin servidor propio.
-        </p>
-      </div>
-
-      <div class="raw-box">
-        <div class="mono rust" style="display:block; margin-bottom:12px;">VERSIONADO</div>
-        <div style="font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:8px;">GitHub</div>
-        <p style="font-size:0.8rem; font-weight:300; opacity:0.65; line-height:1.5;">
-          Repositorio público con historial de commits,
-          .gitignore configurado para excluir .env.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-  SECCIÓN 06 — ARQUITECTURA DEL SISTEMA
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="layout-2col">
-
-      <div>
-        <span class="section-label">SECCIÓN 06</span>
-        <span class="section-sub">ARCHITECTURE</span>
-        <h2 class="section-title">ARQUI<br>TECTURA</h2>
-      </div>
-
-      <div>
-
-        <p style="font-size:1rem; font-weight:300; line-height:1.7; max-width:580px; opacity:0.75; margin-bottom:40px;">
-          Flujo completo desde el usuario hasta la respuesta automática,
-          pasando por la API de Telegram y el motor del bot en Python.
-        </p>
-
-        <div class="arch-flow">
-
-          <div class="arch-node" style="background:var(--black); color:var(--bg);">
-            Usuario Telegram
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">LENGUAJE</div>
+            <div class="text-xl font-bold uppercase mb-2">Python 3.12</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Lenguaje principal. Async/await para el manejo asíncrono
+              de mensajes entrantes y salientes.
+            </p>
           </div>
-          <div class="arch-arrow">↓ envía /start</div>
 
-          <div class="arch-node">
-            Telegram API<br>
-            <span style="font-family:var(--mono); font-size:0.6rem; opacity:0.5; letter-spacing:0.2em;">api.telegram.org/bot{TOKEN}/getUpdates</span>
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">LIBRERÍA</div>
+            <div class="text-xl font-bold uppercase mb-2">python-telegram-bot</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Versión 20.3. Wrapper oficial de la API de Telegram.
+              ApplicationBuilder, CommandHandler, polling.
+            </p>
           </div>
-          <div class="arch-arrow">↓ HTTP long polling</div>
 
-          <div class="arch-node">
-            ApplicationBuilder + polling<br>
-            <span style="font-family:var(--mono); font-size:0.6rem; opacity:0.5; letter-spacing:0.2em;">app.run_polling()</span>
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">SEGURIDAD</div>
+            <div class="text-xl font-bold uppercase mb-2">python-dotenv</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Manejo seguro del BOT_TOKEN mediante variables de entorno.
+              Protege credenciales del repositorio público.
+            </p>
           </div>
-          <div class="arch-arrow">↓ CommandHandler detecta /start</div>
 
-          <div class="arch-node">
-            Función start() asíncrona<br>
-            <span style="font-family:var(--mono); font-size:0.6rem; opacity:0.5; letter-spacing:0.2em;">async def start(update, context)</span>
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">PLATAFORMA</div>
+            <div class="text-xl font-bold uppercase mb-2">Telegram Bot API</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              API oficial de Telegram. Long polling para recepción
+              de updates en tiempo real.
+            </p>
           </div>
-          <div class="arch-arrow">↓ reply_text()</div>
 
-          <div class="arch-node" style="background:var(--rust); color:var(--white);">
-            Respuesta automática<br>
-            <span style="font-family:var(--mono); font-size:0.6rem; opacity:0.7; letter-spacing:0.2em;">"¡Hola tigre! 🐅"</span>
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">DEPLOY</div>
+            <div class="text-xl font-bold uppercase mb-2">Render / Replit</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Procfile configurado para worker en Render.
+              Ejecución continua en la nube sin servidor propio.
+            </p>
+          </div>
+
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">VERSIONADO</div>
+            <div class="text-xl font-bold uppercase mb-2">GitHub</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Repositorio público con historial de commits,
+              .gitignore configurado para excluir .env.
+            </p>
           </div>
 
         </div>
-
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- ============================================================
+      SECCIÓN 07 — ARQUITECTURA DEL SISTEMA
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
 
-<!-- ============================================================
-  SECCIÓN 07 — CAPTURAS DEL PROYECTO
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <span class="section-label">SECCIÓN 07</span>
-    <span class="section-sub">SCREENSHOTS</span>
-    <h2 class="section-title">CAPTURAS<br>DEL PROYECTO</h2>
-    <p style="font-family:var(--mono); font-size:0.65rem; letter-spacing:0.2em; opacity:0.4; margin-bottom:40px; text-transform:uppercase;">
-      Pendientes de carga — reemplazar con screenshots reales
-    </p>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-    <div class="capture-grid">
+          <div class="lg:col-span-3">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 07</div>
+            <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">ARCHITECTURE</div>
+            <h3 class="text-4xl font-bold uppercase leading-tight">
+              ARQUI<br>TECTURA
+            </h3>
+          </div>
 
-      <div class="capture-ph">
-        <span class="ph-num">Captura 01</span>
-        <span class="ph-title">Chat en Telegram — comando /start</span>
-        <span class="ph-note">Pendiente</span>
-      </div>
+          <div class="lg:col-span-9">
 
-      <div class="capture-ph">
-        <span class="ph-num">Captura 02</span>
-        <span class="ph-title">Código bot.py en VS Code</span>
-        <span class="ph-note">Pendiente</span>
-      </div>
+            <p class="text-lg leading-relaxed font-light max-w-2xl mb-10 opacity-80">
+              Flujo completo desde el usuario hasta la respuesta automática,
+              pasando por la API de Telegram y el motor del bot en Python.
+            </p>
 
-      <div class="capture-ph">
-        <span class="ph-num">Captura 03</span>
-        <span class="ph-title">Dashboard Render — worker activo</span>
-        <span class="ph-note">Pendiente</span>
-      </div>
+            <div class="flex flex-col gap-3 max-w-xl">
 
-      <div class="capture-ph">
-        <span class="ph-num">Captura 04</span>
-        <span class="ph-title">Consola — logs de ejecución</span>
-        <span class="ph-note">Pendiente</span>
-      </div>
+              <div class="bg-black text-white text-center font-bold uppercase py-4 px-6">
+                Usuario Telegram
+              </div>
+              <div class="text-center mono text-xs rust">↓ envía /start</div>
 
-    </div>
-  </div>
-</section>
+              <div class="border-2 border-black text-center font-bold uppercase py-4 px-6">
+                Telegram API
+                <div class="mono text-[0.6rem] opacity-50 mt-1" style="letter-spacing:0.1em;">
+                  api.telegram.org/bot{TOKEN}/getUpdates
+                </div>
+              </div>
+              <div class="text-center mono text-xs rust">↓ HTTP long polling</div>
 
-<!-- ============================================================
-  SECCIÓN 08 — RESULTADOS OBTENIDOS
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="layout-2col">
+              <div class="border-2 border-black text-center font-bold uppercase py-4 px-6">
+                ApplicationBuilder + polling
+                <div class="mono text-[0.6rem] opacity-50 mt-1" style="letter-spacing:0.1em;">
+                  app.run_polling()
+                </div>
+              </div>
+              <div class="text-center mono text-xs rust">↓ CommandHandler detecta /start</div>
 
-      <div>
-        <span class="section-label">SECCIÓN 08</span>
-        <span class="section-sub">RESULTS</span>
-        <h2 class="section-title">RESUL<br>TADOS</h2>
-      </div>
+              <div class="border-2 border-black text-center font-bold uppercase py-4 px-6">
+                Función start() asíncrona
+                <div class="mono text-[0.6rem] opacity-50 mt-1" style="letter-spacing:0.1em;">
+                  async def start(update, context)
+                </div>
+              </div>
+              <div class="text-center mono text-xs rust">↓ reply_text()</div>
 
-      <div>
-        <div class="finding-row">
-          <span class="finding-num">01</span>
-          <p class="finding-text">
-            Bot funcional respondiendo al comando <code style="font-family:var(--mono); font-size:0.85em; background:#e8e8e0; padding:1px 5px;">/start</code>
-            con mensaje automático en tiempo real desde Telegram.
-          </p>
-        </div>
-        <div class="finding-row">
-          <span class="finding-num">02</span>
-          <p class="finding-text">
-            Token manejado de forma segura con variables de entorno.
-            Credenciales protegidas del repositorio público en GitHub.
-          </p>
-        </div>
-        <div class="finding-row">
-          <span class="finding-num">03</span>
-          <p class="finding-text">
-            Polling continuo activo en la nube con Render como
-            plataforma de despliegue. Ejecución 24/7 sin intervención local.
-          </p>
-        </div>
-        <div class="finding-row">
-          <span class="finding-num">04</span>
-          <p class="finding-text">
-            Comprensión del ciclo completo: API → token → handlers →
-            respuesta → polling → deploy. Base técnica para bots más complejos.
-          </p>
-        </div>
-        <div class="finding-row">
-          <span class="finding-num">05</span>
-          <p class="finding-text">
-            Arquitectura asíncrona con Python 3.12 implementada correctamente.
-            Manejo de <code style="font-family:var(--mono); font-size:0.85em; background:#e8e8e0; padding:1px 5px;">async/await</code>
-            para operaciones no bloqueantes.
-          </p>
+              <div class="bg-[#9d3d22] text-white border-2 border-[#9d3d22] text-center font-bold uppercase py-4 px-6">
+                Respuesta automática
+                <div class="mono text-[0.6rem] opacity-70 mt-1" style="letter-spacing:0.1em;">
+                  "¡Hola tigre! 🐅"
+                </div>
+              </div>
+
+            </div>
+
+          </div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- ============================================================
+      SECCIÓN 08 — CAPTURAS DEL PROYECTO
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
 
-<!-- ============================================================
-  SECCIÓN 09 — PRÓXIMAS MEJORAS
-============================================================ -->
-<section class="section">
-  <div class="container">
-    <span class="section-label">SECCIÓN 09</span>
-    <span class="section-sub">ROADMAP</span>
-    <h2 class="section-title">PRÓXIMAS<br>MEJORAS</h2>
-
-    <div class="mejora-grid">
-
-      <div class="mejora-card">
-        <span class="mejora-num">MEJORA 01</span>
-        <div class="mejora-title">IA Conversacional</div>
-        <p class="mejora-desc">
-          Integración con OpenAI API para respuestas inteligentes
-          y conversación natural basada en contexto.
+        <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 08</div>
+        <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">SCREENSHOTS</div>
+        <h3 class="text-4xl font-bold uppercase leading-tight mb-2">
+          CAPTURAS DEL PROYECTO
+        </h3>
+        <p class="mono text-xs tracking-[0.2em] opacity-40 mb-10">
+          Pendientes de carga — reemplazar con screenshots reales
         </p>
-      </div>
 
-      <div class="mejora-card">
-        <span class="mejora-num">MEJORA 02</span>
-        <div class="mejora-title">Integración CRM</div>
-        <p class="mejora-desc">
-          Conexión con sistema de gestión de contactos para
-          registrar prospectos y hacer seguimiento automático.
-        </p>
-      </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-      <div class="mejora-card">
-        <span class="mejora-num">MEJORA 03</span>
-        <div class="mejora-title">Base de datos</div>
-        <p class="mejora-desc">
-          Persistencia con SQLite o Firebase para guardar
-          historial de conversaciones y datos de usuarios.
-        </p>
-      </div>
+          <div class="border-2 border-black border-dashed p-12 flex flex-col items-center justify-center gap-3 opacity-40 text-center">
+            <div class="mono text-xs tracking-[0.3em] uppercase">Captura 01</div>
+            <div class="font-bold uppercase">Chat en Telegram — comando /start</div>
+            <div class="mono text-xs opacity-60">Pendiente</div>
+          </div>
 
-      <div class="mejora-card">
-        <span class="mejora-num">MEJORA 04</span>
-        <div class="mejora-title">Automatización inmobiliaria</div>
-        <p class="mejora-desc">
-          Bot especializado en responder consultas de propiedades,
-          enviar fichas técnicas y agendar visitas vía Telegram.
-        </p>
-      </div>
+          <div class="border-2 border-black border-dashed p-12 flex flex-col items-center justify-center gap-3 opacity-40 text-center">
+            <div class="mono text-xs tracking-[0.3em] uppercase">Captura 02</div>
+            <div class="font-bold uppercase">Código bot.py en VS Code</div>
+            <div class="mono text-xs opacity-60">Pendiente</div>
+          </div>
 
-      <div class="mejora-card">
-        <span class="mejora-num">MEJORA 05</span>
-        <div class="mejora-title">Comandos avanzados</div>
-        <p class="mejora-desc">
-          Menú interactivo con inline keyboards, callbacks
-          y flujos de conversación multi-paso con ConversationHandler.
-        </p>
-      </div>
+          <div class="border-2 border-black border-dashed p-12 flex flex-col items-center justify-center gap-3 opacity-40 text-center">
+            <div class="mono text-xs tracking-[0.3em] uppercase">Captura 03</div>
+            <div class="font-bold uppercase">Dashboard Render — worker activo</div>
+            <div class="mono text-xs opacity-60">Pendiente</div>
+          </div>
 
-      <div class="mejora-card">
-        <span class="mejora-num">MEJORA 06</span>
-        <div class="mejora-title">Webhook en lugar de polling</div>
-        <p class="mejora-desc">
-          Migración de long polling a webhook para mayor
-          eficiencia y menor latencia en producción.
-        </p>
-      </div>
+          <div class="border-2 border-black border-dashed p-12 flex flex-col items-center justify-center gap-3 opacity-40 text-center">
+            <div class="mono text-xs tracking-[0.3em] uppercase">Captura 04</div>
+            <div class="font-bold uppercase">Consola — logs de ejecución</div>
+            <div class="mono text-xs opacity-60">Pendiente</div>
+          </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-  SECCIÓN 10 — ENLACES
-============================================================ -->
-<section class="section" style="border-bottom:none;">
-  <div class="container">
-
-    <div class="result-block">
-      <div class="result-inner">
-        <div>
-          <p style="font-family:var(--mono); font-size:0.6rem; letter-spacing:0.3em; color:#888; margin-bottom:20px; text-transform:uppercase;">RESULTADO</p>
-          <p class="result-quote">
-            Bot funcional integrado a la API de Telegram,
-            desplegado en la nube y respondiendo en tiempo real.
-          </p>
-          <p class="result-sub">
-            Base técnica para construir automatizaciones más complejas:
-            notificaciones, seguimiento de prospectos, IA conversacional
-            y conexión con sistemas de gestión comercial.
-          </p>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:12px; flex-shrink:0;">
-          <a href="https://github.com/VladisystemsII/telegram-bot-vladiblues"
-             target="_blank" rel="noopener noreferrer"
-             class="btn btn-rust">
-            GitHub ↗
-          </a>
-          <a href="https://vladisystemsii.github.io/portfolio/"
-             class="btn" style="border-color:#444; color:var(--bg);">
-            ← Portfolio
-          </a>
         </div>
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
+    <!-- ============================================================
+      SECCIÓN 09 — RESULTADOS OBTENIDOS
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
 
-<!-- ============================================================
-  FOOTER — corporativo VLADISYSTEMS
-============================================================ -->
-<footer>
-  <div class="footer-inner">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-    <div class="footer-tag">
-      VLADISYSTEMS<br>
-      Showcasing Our Tech Evolution
-    </div>
+          <div class="lg:col-span-3">
+            <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 09</div>
+            <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">RESULTS</div>
+            <h3 class="text-4xl font-bold uppercase leading-tight">
+              RESUL<br>TADOS
+            </h3>
+          </div>
 
-    <img
-      src="https://res.cloudinary.com/diifewvvs/image/upload/v1779333321/Logo_Vladisystems_portfolio_rx8exe.png"
-      alt="VLADISYSTEMS"
-      class="footer-logo"
-    >
+          <div class="lg:col-span-9">
 
-    <div class="footer-links">
-      <a href="https://github.com/VladisystemsII/telegram-bot-vladiblues"
-         target="_blank" rel="noopener noreferrer"
-         class="footer-link">GitHub ↗</a>
-      <a href="https://vladisystemsii.github.io/portfolio/"
-         class="footer-link">← Portfolio</a>
-    </div>
+            <div class="flex items-start gap-5 py-6 border-b border-black/10">
+              <span class="mono text-xs rust pt-1">01</span>
+              <p class="text-base opacity-85 leading-relaxed">
+                Bot funcional respondiendo al comando
+                <code class="mono" style="letter-spacing:normal; text-transform:none; background:#e8e8e0; padding:1px 5px;">/start</code>
+                con mensaje automático en tiempo real desde Telegram.
+              </p>
+            </div>
+            <div class="flex items-start gap-5 py-6 border-b border-black/10">
+              <span class="mono text-xs rust pt-1">02</span>
+              <p class="text-base opacity-85 leading-relaxed">
+                Token manejado de forma segura con variables de entorno.
+                Credenciales protegidas del repositorio público en GitHub.
+              </p>
+            </div>
+            <div class="flex items-start gap-5 py-6 border-b border-black/10">
+              <span class="mono text-xs rust pt-1">03</span>
+              <p class="text-base opacity-85 leading-relaxed">
+                Polling continuo activo en la nube con Render como
+                plataforma de despliegue. Ejecución 24/7 sin intervención local.
+              </p>
+            </div>
+            <div class="flex items-start gap-5 py-6 border-b border-black/10">
+              <span class="mono text-xs rust pt-1">04</span>
+              <p class="text-base opacity-85 leading-relaxed">
+                Comprensión del ciclo completo: API → token → handlers →
+                respuesta → polling → deploy. Base técnica para bots más complejos.
+              </p>
+            </div>
+            <div class="flex items-start gap-5 py-6">
+              <span class="mono text-xs rust pt-1">05</span>
+              <p class="text-base opacity-85 leading-relaxed">
+                Arquitectura asíncrona con Python 3.12 implementada correctamente.
+                Manejo de
+                <code class="mono" style="letter-spacing:normal; text-transform:none; background:#e8e8e0; padding:1px 5px;">async/await</code>
+                para operaciones no bloqueantes.
+              </p>
+            </div>
 
-  </div>
-</footer>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<script>
-  document.querySelector('header > div').insertAdjacentHTML('beforeend',
-    '<div style="position:absolute;left:50%;transform:translateX(-50%);font-family:\'IBM Plex Mono\',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;pointer-events:none;display:flex;gap:.6rem"><span style="color:#888">Proyecto</span><span style="color:#bbb">·</span><span style="color:#111;font-weight:600">Documentación  BOT</span></div>'
-  );
-</script>
+    <!-- ============================================================
+      SECCIÓN 10 — PRÓXIMAS MEJORAS
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+        <div class="mono text-xs tracking-[0.4em] rust mb-2">SECCIÓN 10</div>
+        <div class="mono text-xs tracking-[0.2em] opacity-40 mb-6">ROADMAP</div>
+        <h3 class="text-4xl font-bold uppercase leading-tight mb-10">
+          PRÓXIMAS MEJORAS
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">MEJORA 01</div>
+            <div class="text-xl font-bold uppercase mb-2">IA Conversacional</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Integración con OpenAI API para respuestas inteligentes
+              y conversación natural basada en contexto.
+            </p>
+          </div>
+
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">MEJORA 02</div>
+            <div class="text-xl font-bold uppercase mb-2">Integración CRM</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Conexión con sistema de gestión de contactos para
+              registrar prospectos y hacer seguimiento automático.
+            </p>
+          </div>
+
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">MEJORA 03</div>
+            <div class="text-xl font-bold uppercase mb-2">Base de datos</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Persistencia con SQLite o Firebase para guardar
+              historial de conversaciones y datos de usuarios.
+            </p>
+          </div>
+
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">MEJORA 04</div>
+            <div class="text-xl font-bold uppercase mb-2">Automatización inmobiliaria</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Bot especializado en responder consultas de propiedades,
+              enviar fichas técnicas y agendar visitas vía Telegram.
+            </p>
+          </div>
+
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">MEJORA 05</div>
+            <div class="text-xl font-bold uppercase mb-2">Comandos avanzados</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Menú interactivo con inline keyboards, callbacks
+              y flujos de conversación multi-paso con ConversationHandler.
+            </p>
+          </div>
+
+          <div class="raw-box p-7">
+            <div class="mono text-xs rust mb-3">MEJORA 06</div>
+            <div class="text-xl font-bold uppercase mb-2">Webhook en lugar de polling</div>
+            <p class="text-sm font-light opacity-65 leading-relaxed">
+              Migración de long polling a webhook para mayor
+              eficiencia y menor latencia en producción.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+      SECCIÓN 11 — ENLACES / RESULTADO DESTACADO
+    ============================================================ -->
+    <section class="border-b-2 border-black">
+      <div class="max-w-[1800px] mx-auto px-6 py-20">
+
+        <div class="border-2 border-black bg-black text-white p-8 md:p-16">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+            <div class="lg:col-span-8">
+              <div class="mono text-xs tracking-[0.3em] text-[#888] mb-5">RESULTADO</div>
+              <p class="font-bold uppercase leading-tight"
+                 style="font-size:clamp(1.3rem,3vw,2rem); letter-spacing:-0.02em;">
+                Bot funcional integrado a la API de Telegram,
+                desplegado en la nube y respondiendo en tiempo real.
+              </p>
+              <p class="text-sm font-light opacity-60 leading-relaxed mt-5 max-w-xl">
+                Base técnica para construir automatizaciones más complejas:
+                notificaciones, seguimiento de prospectos, IA conversacional
+                y conexión con sistemas de gestión comercial.
+              </p>
+            </div>
+
+            <div class="lg:col-span-4 flex flex-col gap-3">
+              <a href="https://github.com/VladisystemsII/telegram-bot-vladiblues"
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-3 bg-[#9d3d22] border-2 border-[#9d3d22] px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:border-black"
+                 style="font-family:'IBM Plex Mono',monospace;">
+                GitHub ↗
+              </a>
+              <a href="../../../index.html"
+                 class="inline-flex items-center justify-center gap-3 border-2 border-[#444] text-white px-8 py-4 uppercase tracking-[0.2em] text-sm transition hover:bg-white hover:text-black"
+                 style="font-family:'IBM Plex Mono',monospace;">
+                ← Portfolio
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+      FOOTER
+    ============================================================ -->
+    <div id="footer-container"></div>
+
+  </div><!-- end content-offset -->
+
+  <script src="../../../js/header-loader.js"></script>
+  <script src="../../../js/header.js"></script>
+  <script src="../../../js/menu-mobile.js"></script>
+  <script src="../../../js/footer-loader.js"></script>
+  <script src="../../../js/project-tab.js"></script>
 
 </body>
 </html>
