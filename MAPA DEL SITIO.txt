@@ -32,7 +32,7 @@ PORTFOLIO VLADISYSTEMS
 │    |   |    ├── Notas-IA.pdf                                           ✅
 │    |   |    ├── Notas-Programación.pdf                                 ✅
 |    |   |
-|    |   ├── certificados.html                                           ✅
+|    |   ├── credenciales.html                                           ✅
 |    |   
 |    ├── cv.html                                                         ✅
 |    ├── github.html                                                     ✅
@@ -43,11 +43,13 @@ PORTFOLIO VLADISYSTEMS
 |    |
 |    ├── project-tab.css                                                 ✅
 │    ├── styles.css                                                      ✅
-│    ├── styles1.css                                                     ✅
+│    ├──                                                                 ✅
 |    
 ├── js                                                                   ✅
 |    |
+|    ├── footer-loader.js                                                ✅
 |    ├── project-tab.js                                                  ✅
+|    ├── profile-tab.js                                                  ✅
 |    ├── header-loader.js                                                ✅
 |    ├── header.js                                                       ✅
 |    ├── menu-mobile.js                                                  ✅
@@ -55,6 +57,7 @@ PORTFOLIO VLADISYSTEMS
 ├── modules                                                              ✅
 |    |
 |    ├── header.html                                                     ✅
+|    ├── footer.html                                                     ✅
 |
 ├── projects                                                             ✅
 |    |

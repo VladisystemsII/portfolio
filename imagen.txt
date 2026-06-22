@@ -170,10 +170,8 @@ git push
 
 
 
-
-
 git add .
 
-git commit -m "documentacion real de cada proyect0 + md readme I"
+git commit -m "AJUSTES  de proyectos fotos y enlaces"
 
 git push

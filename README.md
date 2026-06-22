@@ -32,8 +32,8 @@ El sitio combina tres tipos de contenido:
 ├── index.html                  Página principal del portfolio
 ├── connects/                   Perfiles externos y credenciales
 │   ├── credenciales/
-│   │   └── certificados/       PDFs y certificados (servidos por certificados.html)
-│   ├── certificados.html       Vista que centraliza todos los certificados
+│   │   └── certificados/       PDFs y certificados (servidos por credenciales.html)
+│   ├── credenciales.html       Vista que centraliza todos los certificados
 │   ├── cv.html
 │   ├── github.html
 │   ├── linkedin.html
@@ -45,10 +45,12 @@ El sitio combina tres tipos de contenido:
 │   ├── header-loader.js        Inyecta modules/header.html dinámicamente
 │   ├── header.js                Marca el link activo del menú (solo en index)
 │   ├── menu-mobile.js           Lógica del menú hamburguesa
+│   ├── footer-loader.js         Inyecta modules/footer.html dinámicamente
 │   ├── project-tab.js           Genera el badge en páginas de Proyecto/Documentación
 │   └── profile-tab.js           Genera el badge en páginas de Perfil
 ├── modules/
-│   └── header.html              Header reutilizable, cargado por header-loader.js
+│   ├── header.html              Header reutilizable, cargado por header-loader.js
+│   └── footer.html              Footer reutilizable, cargado por footer-loader.js
 └── projects/
     └── p-<nombre>/
         ├── p-<nombre>.html       Página del proyecto (si tiene demo/producto en vivo)
@@ -150,9 +152,9 @@ Cada `documentacion/index.html` sigue el mismo orden de secciones:
 
 ## 7. Próximos pasos pendientes (mantenimiento)
 
-- [ ] Confirmar que `footer.html` y `footer-loader.js` existen y están
-      correctamente referenciados en las páginas de documentación nuevas.
+- [x] Confirmado: `footer.html` y `footer-loader.js` existen y están
+      registrados en el mapa del sitio actualizado.
 - [ ] Verificar que ningún PDF en `connects/credenciales/certificados/`
-      quedó sin enlazar desde `certificados.html`.
+      quedó sin enlazar desde `credenciales.html`.
 - [ ] Mantener este README actualizado cada vez que se agregue un nuevo
       proyecto, tipo de badge, o regla de decisión estructural.
