@@ -175,3 +175,10 @@ git add .
 git commit -m "AJUSTES  de proyectos fotos y enlaces"
 
 git push
+
+
+git add .
+
+git commit -m "AJUSTES  de proyectos fotos y enlaces  II"
+
+git push
