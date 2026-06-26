@@ -200,3 +200,10 @@ git add .
 git commit -m "glosario , corrección ruta"
 
 git push
+
+
+git add .
+
+git commit -m "INTEGRACIÓN LUPA TODO EL PROYECTO"
+
+git push

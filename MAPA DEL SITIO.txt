@@ -53,6 +53,8 @@ PORTFOLIO VLADISYSTEMS
 |    ├── header-loader.js                                                ✅
 |    ├── header.js                                                       ✅
 |    ├── menu-mobile.js                                                  ✅
+|    ├── glosario-data.js                                                ✅
+|    ├── toolips.js                                                      ✅
 │    └── header-doc-loader.js                                            ✅
 |
 ├── modules                                                              ✅
@@ -83,6 +85,10 @@ PORTFOLIO VLADISYSTEMS
 |    |   ├── p-vladibot.html                                             ✅
 |    |   ├── documentacion                                               ✅
 │    |   |    ├── index.html                                             ✅
+|
+├── glosario                                                             ✅
+|    |
+|    ├── glosario.html                                                   ✅
 |
 ├── Logo Vladisystems portfolio.png                                      ✅
 

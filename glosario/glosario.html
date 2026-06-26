@@ -6,6 +6,7 @@
 <title>VLADISYSTEMS | GLOSARIO TÉCNICO</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/search-fab.css">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -139,7 +140,7 @@
     line-height: 1;
   }
 
-  /* FAB — LUPITA FLOTANTE */
+  /* FAB — LUPITA FLOTANTE 
   #searchFab {
     position: fixed;
     bottom: 7rem;
@@ -165,7 +166,47 @@
   #searchFab.open {
     background: var(--rust);
     border-color: var(--rust);
-  }
+  }*/
+
+
+
+  #searchFab {
+    position: fixed;
+    bottom: 7rem;
+    right: 2rem;
+    z-index: 200;
+
+    width: 54px;
+    height: 54px;
+
+    background: transparent;
+    color: #111;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: .25s;
+
+    box-shadow: none;
+}
+
+#searchFab:hover {
+    color: var(--rust);
+    transform: scale(1.08);
+}
+
+#searchFab.open {
+    color: var(--rust);
+}
+
+
+
+
+
+
 
   /* PANEL DE BÚSQUEDA */
   #searchPanel {
@@ -550,26 +591,23 @@
 </section>
 
 
+
+
 <!-- ============================================================
-  BÚSQUEDA FLOTANTE — LUPITA
+  LUPA
 ============================================================ -->
+
+
 <div id="searchFab" title="Buscar término">
-  <svg id="searchIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <svg id="searchIcon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
   </svg>
-  <svg id="closeIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+  <svg id="closeIcon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
     <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
   </svg>
 </div>
-
 <div id="searchPanel">
-  <input
-    type="text"
-    id="searchInput"
-    class="search-input"
-    placeholder="BUSCAR TÉRMINO, DEFINICIÓN..."
-    autocomplete="off"
-  />
+  <input type="text" id="searchInput" class="search-input" placeholder="BUSCAR TÉRMINO, DEFINICIÓN..." autocomplete="off"/>
   <div id="searchSuggestions"></div>
 </div>
 
@@ -642,7 +680,9 @@
 <script src="../js/header.js"></script>
 <script src="../js/footer-loader.js"></script>
 <script src="../js/menu-mobile.js"></script>
-<script src="../js/glosario-data.js"></script> 
+<script src="../js/glosario-data.js"></script>
+
+
 
 <script>
 /* ============================================================
@@ -971,8 +1011,6 @@ document.querySelectorAll('[data-lvl]').forEach(btn => {
 });
 
 /* --- Init --- */
-// Número real de términos y categorías (se calculan desde GLOSARIO,
-// nunca quedan desactualizados aunque se agreguen más fichas)
 document.getElementById('stat-total').textContent = GLOSARIO.length;
 document.getElementById('totalCount').textContent = GLOSARIO.length;
 const categoriasUnicas = new Set(GLOSARIO.map(t => t['CATEGORÍA']));
@@ -980,6 +1018,21 @@ document.getElementById('stat-categorias').textContent = categoriasUnicas.size;
 
 buildAlphaIndex();
 renderCards();
+
+/* --- Leer ?term=xxx de la URL y abrir ficha directo --- */
+(function checkURLTerm() {
+  const params = new URLSearchParams(window.location.search);
+  const termParam = params.get('term');
+  if (!termParam) return;
+
+  const q = normalize(decodeURIComponent(termParam));
+  const found = GLOSARIO.find(t => normalize(t['TÉRMINO']) === q);
+
+  if (found) {
+    /* Pequeño delay para que el DOM esté listo */
+    setTimeout(() => openModal(found), 200);
+  }
+})();
 </script>
 
 </body>
