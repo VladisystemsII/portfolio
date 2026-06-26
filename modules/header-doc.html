@@ -1,0 +1,42 @@
+<!-- header-doc.html — Módulo de Header para páginas de DOCUMENTACIÓN
+     Portfolio Vladisystems
+
+     Variante reducida del header.html principal: mantiene el logo
+     y el badge de proyecto (inyectado por project-tab.js), pero
+     reemplaza el menú completo de navegación por una única acción
+     de regreso al proyecto padre.
+
+     Criterio de UX: una página de documentación es una extensión
+     de un proyecto específico, no un destino de navegación general.
+     A mayor profundidad de navegación, menos opciones — no las mismas.
+
+     USO: en cada documentacion/index.html, reemplazar el script
+     header-loader.js (que carga modules/header.html) por uno que
+     cargue este archivo en su lugar — o usar header-doc-loader.js
+     si se mantiene como módulo separado.
+
+     El atributo href del botón de regreso debe completarse en cada
+     página con la ruta real al proyecto padre (ver comentario abajo).
+-->
+<header class="border-b-2 border-black">
+
+  <div class="max-w-[1800px] mx-auto px-6 py-6 flex justify-between items-center">
+
+    <!-- MARCA -->
+    <h1 class="text-3xl md:text-5xl font-bold tracking-tight">
+      VLADISYSTEMS
+    </h1>
+
+    <!-- ÚNICA ACCIÓN DE NAVEGACIÓN: volver al proyecto padre.
+         El href se completa automáticamente vía JS (ver
+         header-doc-loader.js), calculado desde la URL actual.
+         No requiere edición manual en ninguna documentación. -->
+    <a href="#" id="volverProyectoBtn"
+       class="inline-flex items-center gap-3 border-2 border-black px-6 py-3 uppercase tracking-[0.2em] text-sm transition hover:bg-black hover:text-white"
+       style="font-family:'IBM Plex Mono',monospace;">
+      ← Volver al proyecto
+    </a>
+
+  </div>
+
+</header>

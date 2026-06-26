@@ -42,50 +42,11 @@
 <!-- GRID -->
 <div class="grid-lines"></div>
 
-<!-- ============================================================
-  [NUEVO] MENÚ MOBILE (HAMBURGER PANEL)
-  Panel de navegación que se despliega en tablet/mobile.
-  Está posicionado FUERA del header para no afectar su estructura.
-  Por defecto invisible (max-height:0 via CSS).
-  Se activa con la clase .open que agrega el JavaScript.
-  Contiene los mismos 4 links de navegación del header desktop.
-  Al hacer clic en cualquier link, el menú se cierra automáticamente
-  (manejado por el JavaScript al final del documento).
-============================================================ 
-<nav class="mobile-menu" id="mobileMenu">
-  <a href="#inicio"    onclick="closeMobileMenu()">Inicio</a>
-  <a href="#links"     onclick="closeMobileMenu()">Links</a>
-  <a href="#proyectos" onclick="closeMobileMenu()">Proyectos</a>
-  <a href="#contacto"  onclick="closeMobileMenu()">Contacto</a>
-</nav>-->
+
 
 <!-- ============================================================
   CONTENIDO
-  Envuelve todo el contenido visible con z-index:1 para
-  que quede encima de la cuadrícula de fondo (z-index:0).
-  [NUEVO] La clase .content-offset agrega padding-top:90px
-  para compensar el espacio que ocupa el header fijo (sticky),
-  evitando que el contenido quede tapado debajo de él.
-============================================================ -->
-<div style="position:relative; z-index:1;" class="content-offset">
-
-<!-- ============================================================
-  SECCIÓN: HERO (#inicio)
-  Primera sección visible del sitio. Ocupa el 100% del viewport.
-  Está dividida en dos columnas (grid de 12 columnas en desktop):
-
-  COLUMNA IZQUIERDA (8/12):
-    · Etiqueta de ubicación/categoría en mono rojo óxido
-    · Título principal gigante con .massive y .stroke-text
-    · Párrafo descriptivo de los servicios
-    · Dos botones CTA: "Ver proyectos" y "Ver perfiles"
-
-  COLUMNA DERECHA (4/12):
-    · Caja negra tipo "widget" llamada "LIVE PORTFOLIO"
-    · Muestra 4 plataformas (LinkedIn, Workana, Github, Projects)
-      cada una con una barra de progreso visual que indica
-      el nivel de actividad/relevancia de cada perfil
-============================================================ -->
+ -->
 <section id="inicio" class="min-h-screen flex items-center">
 
 <div class="max-w-[1800px] mx-auto px-6 w-full">
@@ -138,7 +99,7 @@ Ver perfiles
 </div>
 
 
-<!-- RIGHT PANEL - VLADISYSTEM DASHBOARD -->
+<!-- RIGHT PANEL - VLADISYSTEM DASHBOARD 
 <div class="lg:col-span-4">
 
   <div class="border-2 border-black p-8 bg-black text-white">
@@ -149,7 +110,7 @@ Ver perfiles
 
     <div class="space-y-8">
 
-      <!-- 01 LINKEDIN -->
+      <!-- 01 LINKEDIN 
       <div>
         <div class="flex justify-between items-center mb-2">
           <h3 class="uppercase text-sm tracking-[0.2em]">LinkedIn</h3>
@@ -160,7 +121,7 @@ Ver perfiles
         </div>
       </div>
 
-      <!-- 02 WORKANA -->
+      <!-- 02 WORKANA 
       <div>
         <div class="flex justify-between items-center mb-2">
           <h3 class="uppercase text-sm tracking-[0.2em]">Workana</h3>
@@ -171,7 +132,7 @@ Ver perfiles
         </div>
       </div>
 
-      <!-- 03 GITHUB -->
+      <!-- 03 GITHUB
       <div>
         <div class="flex justify-between items-center mb-2">
           <h3 class="uppercase text-sm tracking-[0.2em]">GitHub</h3>
@@ -182,7 +143,7 @@ Ver perfiles
         </div>
       </div>
 
-      <!-- 04 NETLIFY -->
+      <!-- 04 NETLIFY 
       <div>
         <div class="flex justify-between items-center mb-2">
           <h3 class="uppercase text-sm tracking-[0.2em]">Netlify</h3>
@@ -197,7 +158,258 @@ Ver perfiles
 
   </div>
 
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- RIGHT PANEL — NAVEGACIÓN / MAPA DEL SITIO
+     Reemplaza el bloque comentado de LIVE SYSTEM STATUS.
+     Este botón es el que abre el overlay #overlayMapaSitio. -->
+<div class="lg:col-span-4">
+
+  <div class="border-2 border-black p-8 bg-black text-white">
+
+    <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+      NAVEGACIÓN
+    </div>
+
+    <button id="btnMapaSitio"
+            class="w-full flex items-center justify-between border-2 border-white px-6 py-5 uppercase tracking-[0.2em] text-sm transition hover:bg-white hover:text-black">
+      <span>Mapa del Sitio</span>
+      <span class="mono text-lg">⊕</span>
+    </button>
+
+    <p class="mt-6 text-sm font-light opacity-60 leading-relaxed">
+      Toca para ver la estructura completa del portfolio:
+      proyectos, documentación, perfiles y credenciales.
+    </p>
+
+  </div>
+
 </div>
+
+
+
+
+
+<!-- ============================================================
+  OVERLAY — MAPA DEL SITIO (versión final, 3 columnas)
+  Oculto por defecto. Se abre con el botón "Mapa del Sitio"
+  del panel NAVEGACIÓN. Se cierra solo a los 10s, o antes
+  si se toca de nuevo.
+
+  PEGAR ESTO: justo después del </section> que cierra
+  la sección id="inicio" del hero.
+============================================================ -->
+<div id="overlayMapaSitio"
+     style="position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.95);
+            display:none; align-items:center; justify-content:center;
+            padding:24px; cursor:pointer; overflow-y:auto;">
+
+  <div style="max-width:680px; width:100%; cursor:default;"
+       onclick="event.stopPropagation();">
+
+    <div class="mono text-xs tracking-[0.3em] mb-6" style="color:#9d3d22; text-align:center;">
+      MAPA DEL SITIO · VLADISYSTEMS
+    </div>
+
+
+      
+    <svg width="100%" viewBox="0 0 680 680" style="display:block; max-width:400px; margin:0 auto;">
+
+    <defs>
+    <marker id="arrowMapa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    </defs>
+
+    <style>
+      .nb { stroke-width:0.5; cursor:pointer; }
+      .nb:hover { opacity:0.85; }
+      .head { fill:none; stroke:#555; stroke-width:0.5; }
+      .t-head { font-family:'IBM Plex Mono',monospace; font-size:14px; fill:#fff; }
+      .t-th   { font-family:'IBM Plex Mono',monospace; font-size:13px; fill:#fff; font-weight:600; }
+      .t-ts   { font-family:'IBM Plex Mono',monospace; font-size:11px; fill:#aaa; }
+      .ln     { stroke:#555; stroke-width:0.5; }
+    </style>
+
+    <rect class="nb" x="270" y="16" width="140" height="40" rx="8" fill="#1a1a1a" stroke="#fff"/>
+    <text class="t-head" x="340" y="40" text-anchor="middle">Portfolio</text>
+
+    <line x1="340" y1="56" x2="340" y2="76" class="ln"/>
+    <line x1="120" y1="76" x2="560" y2="76" class="ln"/>
+    <line x1="120" y1="76" x2="120" y2="96" class="ln" marker-end="url(#arrowMapa)"/>
+    <line x1="340" y1="76" x2="340" y2="96" class="ln" marker-end="url(#arrowMapa)"/>
+    <line x1="560" y1="76" x2="560" y2="96" class="ln" marker-end="url(#arrowMapa)"/>
+
+    <rect class="head" x="50" y="96" width="140" height="36" rx="6"/>
+    <text class="t-head" x="120" y="118" text-anchor="middle">Proyectos</text>
+
+    <rect class="head" x="270" y="96" width="140" height="36" rx="6"/>
+    <text class="t-head" x="340" y="118" text-anchor="middle">Perfiles</text>
+
+    <a href="connects/credenciales/credenciales.html">
+    <rect class="nb" x="490" y="96" width="140" height="36" rx="6" fill="#3a2a14" stroke="#f0a830"/>
+    <text class="t-th" x="560" y="118" text-anchor="middle">Credenciales</text>
+    </a>
+
+    <line x1="120" y1="132" x2="120" y2="148" class="ln"/>
+    <line x1="340" y1="132" x2="340" y2="148" class="ln"/>
+    <line x1="560" y1="132" x2="560" y2="148" class="ln"/>
+
+    <a href="projects/p-bc1166/p-bc1166.html">
+    <rect class="nb" x="50" y="148" width="140" height="36" rx="6" fill="#0c2840" stroke="#3a8fd0"/>
+    <text class="t-th" x="120" y="170" text-anchor="middle">BC1166</text>
+    </a>
+
+    <a href="projects/p-portal33/p-portal33.html">
+    <rect class="nb" x="50" y="192" width="140" height="36" rx="6" fill="#0c2840" stroke="#3a8fd0"/>
+    <text class="t-th" x="120" y="214" text-anchor="middle">Portal33</text>
+    </a>
+
+    <a href="projects/p-teamrealty/p-teamrealty.html">
+    <rect class="nb" x="50" y="236" width="140" height="36" rx="6" fill="#0c2840" stroke="#3a8fd0"/>
+    <text class="t-th" x="120" y="258" text-anchor="middle">Team Realty</text>
+    </a>
+
+    <a href="projects/p-mastermenu/p-mastermenu.html">
+    <rect class="nb" x="50" y="280" width="140" height="36" rx="6" fill="#0c2840" stroke="#3a8fd0"/>
+    <text class="t-th" x="120" y="302" text-anchor="middle">Master Menu</text>
+    </a>
+
+    <a href="projects/p-vladibot/p-vladibot.html">
+    <rect class="nb" x="50" y="324" width="100" height="36" rx="6" fill="#3a1c10" stroke="#d05a30"/>
+    <text class="t-th" x="100" y="346" text-anchor="middle">VladiBot</text>
+    </a>
+    <line x1="150" y1="342" x2="170" y2="342" class="ln" marker-end="url(#arrowMapa)"/>
+    <a href="projects/p-vladibot/documentacion/index.html">
+    <rect class="nb" x="172" y="324" width="120" height="36" rx="6" fill="#3a1c10" stroke="#d05a30"/>
+    <text class="t-ts" x="232" y="346" text-anchor="middle">Documentación</text>
+    </a>
+
+    <a href="projects/p-vladcrm/p-vladcrm.html">
+    <rect class="nb" x="50" y="368" width="100" height="36" rx="6" fill="#3a1c10" stroke="#d05a30"/>
+    <text class="t-th" x="100" y="390" text-anchor="middle">VladCRM</text>
+    </a>
+    <line x1="150" y1="386" x2="170" y2="386" class="ln" marker-end="url(#arrowMapa)"/>
+    <a href="projects/p-vladcrm/documentacion/index.html">
+    <rect class="nb" x="172" y="368" width="120" height="36" rx="6" fill="#3a1c10" stroke="#d05a30"/>
+    <text class="t-ts" x="232" y="390" text-anchor="middle">Documentación</text>
+    </a>
+
+    <a href="projects/p-datastudio/p-datastudio.html">
+    <rect class="nb" x="50" y="412" width="100" height="36" rx="6" fill="#3a1c10" stroke="#d05a30"/>
+    <text class="t-th" x="100" y="434" text-anchor="middle">Dashboard</text>
+    </a>
+    <line x1="150" y1="430" x2="170" y2="430" class="ln" marker-end="url(#arrowMapa)"/>
+    <a href="projects/p-datastudio/documentacion/index.html">
+    <rect class="nb" x="172" y="412" width="120" height="36" rx="6" fill="#3a1c10" stroke="#d05a30"/>
+    <text class="t-ts" x="232" y="434" text-anchor="middle">Documentación</text>
+    </a>
+
+    <a href="connects/linkedin.html">
+    <rect class="nb" x="270" y="148" width="140" height="36" rx="6" fill="#0c2e2a" stroke="#2fa890"/>
+    <text class="t-th" x="340" y="170" text-anchor="middle">LinkedIn</text>
+    </a>
+
+    <a href="connects/github.html">
+    <rect class="nb" x="270" y="192" width="140" height="36" rx="6" fill="#0c2e2a" stroke="#2fa890"/>
+    <text class="t-th" x="340" y="214" text-anchor="middle">GitHub</text>
+    </a>
+
+    <a href="connects/workana.html">
+    <rect class="nb" x="270" y="236" width="140" height="36" rx="6" fill="#0c2e2a" stroke="#2fa890"/>
+    <text class="t-th" x="340" y="258" text-anchor="middle">Workana</text>
+    </a>
+
+    <a href="connects/cv.html">
+    <rect class="nb" x="270" y="280" width="140" height="36" rx="6" fill="#0c2e2a" stroke="#2fa890"/>
+    <text class="t-th" x="340" y="302" text-anchor="middle">CV</text>
+    </a>
+
+    <rect class="head" x="490" y="148" width="140" height="36" rx="6" opacity="0.7"/>
+    <text class="t-ts" x="560" y="170" text-anchor="middle">Certificados técnicos</text>
+
+    <rect class="head" x="490" y="192" width="140" height="36" rx="6" opacity="0.7"/>
+    <text class="t-ts" x="560" y="214" text-anchor="middle">Notas de formación</text>
+
+    <rect class="head" x="490" y="236" width="140" height="36" rx="6" opacity="0.7"/>
+    <text class="t-ts" x="560" y="258" text-anchor="middle">Título universitario</text>
+
+    <text class="t-ts" x="560" y="296" text-anchor="middle" opacity="0.6">+ 16 documentos más</text>
+
+    <rect x="20" y="600" width="640" height="64" rx="12" fill="none" stroke="#444" stroke-width="0.5"/>
+    <rect x="40" y="618" width="14" height="14" rx="4" fill="#0c2840" stroke="#3a8fd0" stroke-width="0.5"/>
+    <text class="t-ts" x="60" y="630">Demo en vivo</text>
+    <rect x="200" y="618" width="14" height="14" rx="4" fill="#3a1c10" stroke="#d05a30" stroke-width="0.5"/>
+    <text class="t-ts" x="220" y="630">Sin demo, con documentación</text>
+    <rect x="440" y="618" width="14" height="14" rx="4" fill="#0c2e2a" stroke="#2fa890" stroke-width="0.5"/>
+    <text class="t-ts" x="460" y="630">Perfil externo</text>
+    <text class="t-ts" x="40" y="650" opacity="0.6">Proyectos / Perfiles son encabezados — toca las cajas individuales</text>
+
+    </svg>
+
+
+    <div style="text-align:right; margin-top:1rem;">
+  <button onclick="document.getElementById('overlayMapaSitio').style.display='none';"
+          class="mono text-xs border border-white px-4 py-2 uppercase tracking-[0.2em]"
+          style="color:#fff; background:transparent;">
+    Salir ✕
+  </button>
+</div>
+
+    <div class="mono text-xs mt-6 opacity-40" style="text-align:center; color:#fff;">
+      Toca fuera del mapa para cerrar
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('btnMapaSitio');
+    var overlay = document.getElementById('overlayMapaSitio');
+    var autoCloseTimer = null;
+
+    function abrirMapa() {
+      overlay.style.display = 'flex';
+      //clearTimeout(autoCloseTimer);
+      //autoCloseTimer = setTimeout(cerrarMapa, 10000);
+    }
+
+    function cerrarMapa() {
+      overlay.style.display = 'none';
+      clearTimeout(autoCloseTimer);
+    }
+
+    if (btn && overlay) {
+      btn.addEventListener('click', abrirMapa);
+      overlay.addEventListener('click', cerrarMapa);
+    }
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
 
@@ -361,8 +573,11 @@ Destacados
     </h4>
 
     <p class="text-xl leading-relaxed font-light mb-10 max-w-xl">
-        Sistema web orientado a captación de clientes,
-        estructura digital y automatización operativa.
+        Sitio web de captación para empresa de reparaciones
+        locativas en Bogotá — electricidad, carpintería, enchapes,
+        plomería, pintura y drywall. Conversión directa vía
+        WhatsApp, sin formularios ni fricción. En producción,
+        con HTTPS y SEO local activo.
     </p>
 
 </a>
@@ -447,8 +662,11 @@ Destacados
     </h4>
 
     <p class="text-xl leading-relaxed font-light mb-10 max-w-xl">
-        Sistema web orientado a captación de clientes,
-        estructura digital y automatización operativa.
+        Portal inmobiliario con identidad editorial propia para un
+        agente independiente en el norte de Bogotá. Concepto central:
+        "No vendo propiedades, cuento historias". Primer proyecto
+        entregado y vendido a un cliente externo — en producción
+        bajo dominio propio.
     </p>
 </a>
 
@@ -521,18 +739,83 @@ Destacados
 
 
 
+</div>
+
+</div>
+
+</section>
 
 
 
 
 
+<!-- ============================================================
+  SECCIÓN: BASE DE CONOCIMIENTO (#glosario)
+  Sección que enlaza al glosario de términos del proyecto.
+  Dividida en dos columnas en desktop (grid de 12), igual
+  estructura que la sección de Contacto:
 
+  COLUMNA IZQUIERDA (8/12):
+    · Título gigante "BASE DE CONOCIMIENTO" con .massive
+    · "DE" usa .stroke-text (texto vacío con solo borde)
+
+  COLUMNA DERECHA (4/12):
+    · Párrafo descriptivo del glosario
+    · Botón CTA "Abrir Glosario" con efecto .raw-box
+    · El href apunta a /glosario/glosario.html
+============================================================ -->
+
+
+
+<section id="glosario" class="border-t-2 border-black">
+
+<div class="max-w-[1800px] mx-auto px-6 py-32">
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+<div class="lg:col-span-8">
+
+<div class="mono text-xs tracking-[0.4em] rust mb-6">
+KNOWLEDGE / GLOSARIO
+</div>
+
+<h3 class="massive uppercase">
+
+BASE<br>
+
+<span class="stroke-text">DE</span>
+
+CONOCIMIENTO
+
+</h3>
+
+</div>
+
+<div class="lg:col-span-4">
+
+<p class="text-xl leading-relaxed font-light mb-10">
+Más de 101 conceptos técnicos,
+negocio digital, CRM, UI/UX,
+desarrollo y sistemas.
+</p>
+
+<a href="/glosario/glosario.html"
+   class="raw-box px-10 py-5 uppercase tracking-[0.2em] text-sm inline-block">
+Abrir Glosario
+</a>
+
+</div>
 
 </div>
 
 </div>
 
 </section>
+
+
+
+
+
 
 <!-- ============================================================
   SECCIÓN: CONTACTO (#contacto)
@@ -633,6 +916,9 @@ Contacto directo
 <script src="js/header.js"></script>
 <script src="js/footer-loader.js"></script>
 <script src="js/menu-mobile.js"></script>
+<script src="js/glosario-data.js"></script>
+<script src="js/tooltips.js"></script>
+
 
 </body>
 </html>

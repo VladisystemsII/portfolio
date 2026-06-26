@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VLADISYSTEMS | GLOSARIO TÉCNICO</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="../css/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     GLOSARIO — ESTILOS PROPIOS
+     Complementa styles.css sin sobreescribir variables globales
+  ============================================================ */
+
+  /* HERO STATS BAR */
+  .glosario-stat {
+    border-left: 2px solid var(--rust);
+    padding-left: 1rem;
+  }
+
+  /* BARRA DE BÚSQUEDA */
+  .search-input {
+    width: 100%;
+    border: 2px solid #111;
+    padding: 1rem 1.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    background: transparent;
+    color: #111;
+    outline: none;
+    letter-spacing: 0.05em;
+    transition: .3s;
+  }
+  .search-input:focus {
+    border-color: var(--rust);
+    background: #fff;
+  }
+  .search-input::placeholder {
+    color: #999;
+    letter-spacing: 0.1em;
+  }
+
+  /* FILTROS */
+  .filter-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 2px solid #111;
+    padding: 0.5rem 1.1rem;
+    cursor: pointer;
+    background: transparent;
+    color: #111;
+    transition: .25s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: #111;
+    color: #fff;
+  }
+  .filter-btn.active-cat {
+    background: var(--rust);
+    border-color: var(--rust);
+    color: #fff;
+  }
+
+  /* ÍNDICE ALFABÉTICO */
+  .alpha-index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .alpha-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background: transparent;
+    color: #555;
+    transition: .2s;
+    text-transform: uppercase;
+  }
+  .alpha-btn:hover,
+  .alpha-btn.active {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+  }
+  .alpha-btn.has-terms {
+    border-color: #999;
+    color: #111;
+    font-weight: 600;
+  }
+  .alpha-btn.disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* TARJETA DE TÉRMINO */
+  .term-card {
+    border: 2px solid #111;
+    transition: .25s;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(158,174,169,0.5);
+  }
+  .term-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.18);
+  }
+  .term-card.expanded {
+    background: #111;
+    color: #fff;
+  }
+
+  .term-header {
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  /* NOMBRE DEL TÉRMINO — MÁS GRANDE */
+  .term-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  /* FAB — LUPITA FLOTANTE */
+  #searchFab {
+    position: fixed;
+    bottom: 7rem;
+    right: 2rem;
+    z-index: 200;
+    width: 54px;
+    height: 54px;
+    background: #111;
+    color: #fff;
+    border: 2px solid #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .25s;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  #searchFab:hover {
+    background: var(--rust);
+    border-color: var(--rust);
+    transform: scale(1.08);
+  }
+  #searchFab.open {
+    background: var(--rust);
+    border-color: var(--rust);
+  }
+
+  /* PANEL DE BÚSQUEDA */
+  #searchPanel {
+    position: fixed;
+    bottom: 7rem;
+    right: 2rem;
+    z-index: 199;
+    width: 360px;
+    max-width: calc(100vw - 2rem);
+    background: #fff;
+    border: 2px solid #111;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+    display: none;
+    flex-direction: column;
+  }
+  #searchPanel.open {
+    display: flex;
+  }
+
+  /* SUGERENCIAS */
+  #searchSuggestions {
+    max-height: 320px;
+    overflow-y: auto;
+    border-top: 1px solid #ddd;
+  }
+  .suggestion-item {
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    transition: .15s;
+  }
+  .suggestion-item:hover {
+    background: #111;
+    color: #fff;
+  }
+  .suggestion-term {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .suggestion-cat {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--rust);
+    margin-top: 2px;
+  }
+  .suggestion-item:hover .suggestion-cat {
+    color: #c4613d;
+  }
+  .suggestion-empty {
+    padding: 1rem 1.2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 480px) {
+    #searchPanel { right: 1rem; bottom: 6rem; }
+    #searchFab   { right: 1rem; bottom: 1.5rem; }
+    .term-name   { font-size: 1.4rem; }
+  }
+
+  .term-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid currentColor;
+  }
+  .badge-cat  { color: var(--rust); }
+  .badge-lvl  { color: var(--steel); }
+  .term-card.expanded .badge-cat { color: #c4613d; }
+  .term-card.expanded .badge-lvl { color: #aaa; }
+
+  .term-toggle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.3rem;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform .3s;
+    color: var(--steel);
+    margin-top: 4px;
+  }
+  .term-card.expanded .term-toggle {
+    transform: rotate(45deg);
+    color: #fff;
+  }
+
+  /* DETALLE — oculto en card, solo se usa en modal */
+  .term-body { display: none; }
+
+  /* ============================================================
+     MODAL OVERLAY — FICHA COMPLETA
+  ============================================================ */
+  #termModal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    cursor: pointer;
+    overflow-y: auto;
+  }
+  #termModal.open {
+    display: flex;
+  }
+
+  .modal-inner {
+    background: #111;
+    color: #fff;
+    width: 100%;
+    max-width: 1100px;
+    cursor: default;
+    position: relative;
+    animation: modalIn .25s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0)   scale(1); }
+  }
+
+  /* CABECERA DEL MODAL */
+  .modal-head {
+    padding: 2.5rem 3rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .modal-term-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #fff;
+  }
+  .modal-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+  }
+  .modal-close {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.4rem;
+    color: #666;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    line-height: 1;
+    padding: 4px;
+    transition: color .2s;
+  }
+  .modal-close:hover { color: var(--rust); }
+
+  /* CUERPO HORIZONTAL DEL MODAL */
+  .modal-body {
+    padding: 2.5rem 3rem;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 2rem 3rem;
+  }
+
+  .modal-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .modal-item.span2 {
+    grid-column: span 2;
+  }
+  .modal-item.span3 {
+    grid-column: span 3;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .modal-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--rust);
+  }
+  .modal-value {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: #ccc;
+  }
+  .modal-value.definicion {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #eee;
+    line-height: 1.6;
+  }
+  .modal-value.traduccion {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+    color: #888;
+    line-height: 1.7;
+  }
+
+  /* DIVIDER VERTICAL entre columnas */
+  .modal-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.08);
+    align-self: stretch;
+  }
+
+  /* RESPONSIVE MODAL */
+  @media (max-width: 900px) {
+    .modal-body { grid-template-columns: 1fr 1fr; }
+    .modal-item.span2 { grid-column: span 2; }
+    .modal-item.span3 { grid-column: span 2; }
+  }
+  @media (max-width: 600px) {
+    .modal-head { padding: 1.5rem 1.5rem 1.2rem; }
+    .modal-body { grid-template-columns: 1fr; padding: 1.5rem; gap: 1.5rem; }
+    .modal-item.span2,
+    .modal-item.span3 { grid-column: span 1; }
+    .modal-term-name { font-size: 1.8rem; }
+  }
+
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+  .detail-item { display: flex; flex-direction: column; gap: 6px; }
+  .detail-item.full-width { grid-column: 1 / -1; }
+  .detail-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rust);
+  }
+  .detail-value {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #111;
+  }
+
+  /* FLUJO E/P/S */
+  .eps-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border: 1px solid;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+  .eps-entrada  { border-color: #2fa890; color: #2fa890; }
+  .eps-proceso  { border-color: #3a8fd0; color: #3a8fd0; }
+  .eps-salida   { border-color: #f0a830; color: #f0a830; }
+  .eps-otro     { border-color: #888;    color: #888; }
+
+  /* CONTEO DE RESULTADOS */
+  .results-count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: #888;
+    letter-spacing: 0.15em;
+  }
+
+  /* SIN RESULTADOS */
+  .no-results {
+    display: none;
+    padding: 4rem 2rem;
+    text-align: center;
+    border: 2px dashed #ccc;
+  }
+  .no-results.visible {
+    display: block;
+  }
+
+  /* LETTER DIVIDER */
+  .letter-divider {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--rust);
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(157,61,34,0.2);
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .detail-grid { grid-template-columns: 1fr; }
+    .term-header { padding: 1.2rem 1.2rem; }
+    .term-body   { padding: 0 1.2rem 1.5rem; }
+    .term-name   { font-size: 1.1rem; }
+  }
+  @media (max-width: 480px) {
+    .filter-btn  { font-size: 0.6rem; padding: 0.4rem 0.8rem; }
+    .alpha-btn   { width: 26px; height: 26px; font-size: 0.6rem; }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="header-container"></div>
+<div class="grid-lines"></div>
+
+<div class="content-offset">
+
+<!-- ============================================================
+  HERO DE SECCIÓN
+============================================================ -->
+<section class="border-b-2 border-black">
+  <div class="max-w-[1800px] mx-auto px-6 py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+
+      <div class="lg:col-span-8">
+        <div class="mono text-xs tracking-[0.4em] rust mb-6">
+          VLADISYSTEMS / GLOSARIO / TÉRMINOS TÉCNICOS
+        </div>
+        <h1 class="massive uppercase">
+          GLOSARIO<br>
+          <span class="stroke-text">DE</span><br>
+          TÉRMINOS
+        </h1>
+        <p class="mt-8 text-xl max-w-2xl leading-relaxed font-light">
+          Vocabulario técnico y conceptual del sistema Vladisystems.
+          Cada término documentado con definición, características,
+          entorno de uso y equivalencias en inglés y español.
+        </p>
+      </div>
+
+      <div class="lg:col-span-4">
+        <div class="border-2 border-black p-8 bg-black text-white">
+          <div class="mono text-xs mb-8 tracking-[0.3em] text-[#888]">
+            ÍNDICE · ESTADÍSTICAS
+          </div>
+          <div class="space-y-6">
+            <div class="glosario-stat">
+              <div class="mono text-xs text-[#888] mb-1">TÉRMINOS TOTALES</div>
+              <div class="text-4xl font-bold" id="stat-total">60</div>
+            </div>
+            <div class="glosario-stat">
+              <div class="mono text-xs text-[#888] mb-1">CATEGORÍAS</div>
+              <div class="text-4xl font-bold" id="stat-categorias">7</div>
+            </div>
+            <div class="glosario-stat">
+              <div class="mono text-xs text-[#888] mb-1">NIVELES</div>
+              <div class="mono text-sm text-white opacity-70 leading-relaxed">
+                Básico · Intermedio · Avanzado
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+  BÚSQUEDA FLOTANTE — LUPITA
+============================================================ -->
+<div id="searchFab" title="Buscar término">
+  <svg id="searchIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+  </svg>
+  <svg id="closeIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+    <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
+  </svg>
+</div>
+
+<div id="searchPanel">
+  <input
+    type="text"
+    id="searchInput"
+    class="search-input"
+    placeholder="BUSCAR TÉRMINO, DEFINICIÓN..."
+    autocomplete="off"
+  />
+  <div id="searchSuggestions"></div>
+</div>
+
+
+<!-- ============================================================
+  ÍNDICE ALFABÉTICO
+============================================================ -->
+<section class="border-b-2 border-black">
+  <div class="max-w-[1800px] mx-auto px-6 py-4">
+    <div class="flex items-center gap-4 flex-wrap">
+      <span class="mono text-xs text-[#888] tracking-[0.2em]">IR A:</span>
+      <div class="alpha-index" id="alphaIndex"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+  CUERPO: TARJETAS DE TÉRMINOS
+============================================================ -->
+<section>
+  <div class="max-w-[1800px] mx-auto px-6 py-12">
+
+    <div class="flex justify-between items-center mb-8">
+      <div class="results-count" id="resultsCount">Mostrando <span id="visibleCount">60</span> de <span id="totalCount">60</span> términos</div>
+      <div class="mono text-xs text-[#888] tracking-[0.2em]">A → Z</div>
+    </div>
+
+    <div id="glossaryGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <!-- Cards inyectadas por JS -->
+    </div>
+
+    <div class="no-results" id="noResults">
+      <div class="mono text-xs tracking-[0.3em] rust mb-4">SIN RESULTADOS</div>
+      <p class="text-xl font-light text-[#888]">No se encontraron términos con ese criterio.<br>Intenta con otra palabra o limpia los filtros.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+  MODAL — FICHA DE TÉRMINO
+============================================================ -->
+<div id="termModal" onclick="closeModal()">
+  <div class="modal-inner" onclick="event.stopPropagation()">
+
+    <div class="modal-head">
+      <div>
+        <div class="modal-term-name" id="modalTermName"></div>
+        <div class="modal-badges" id="modalBadges"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+
+    <div class="modal-body" id="modalBody"></div>
+
+  </div>
+</div>
+
+<!-- ============================================================
+  FOOTER
+============================================================ -->
+<div id="footer-container"></div>
+
+</div><!-- end content-offset -->
+
+
+<script src="../js/header-loader.js"></script>
+<script src="../js/header.js"></script>
+<script src="../js/footer-loader.js"></script>
+<script src="../js/menu-mobile.js"></script>
+<script src="../js/glosario-data.js"></script> 
+
+<script>
+/* ============================================================
+   GLOSARIO — LÓGICA PRINCIPAL
+============================================================ */
+
+
+
+/* --- Estado --- */
+let activeCat = 'all';
+let activeLvl = 'all';
+let searchTerm = '';
+let activeAlpha = 'all';
+
+/* --- Helpers --- */
+function normalize(str) {
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function getEPSClass(eps) {
+  const e = eps.toLowerCase();
+  if (e.includes('entrada')) return 'eps-entrada';
+  if (e.includes('proceso')) return 'eps-proceso';
+  if (e.includes('salida')) return 'eps-salida';
+  return 'eps-otro';
+}
+
+function renderEPS(eps) {
+  const parts = eps.split(/[→·\/]/);
+  return parts.map(p => p.trim()).filter(Boolean).map(p =>
+    `<span class="eps-badge ${getEPSClass(p)}">${p}</span>`
+  ).join('');
+}
+
+/* --- Construir índice alfabético --- */
+function buildAlphaIndex() {
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const usedLetters = new Set(
+    GLOSARIO.map(t => normalize(t['TÉRMINO'])[0].toUpperCase())
+  );
+  const container = document.getElementById('alphaIndex');
+  container.innerHTML = '';
+
+  const allBtn = document.createElement('button');
+  allBtn.className = 'alpha-btn active has-terms';
+  allBtn.textContent = 'Todos';
+  allBtn.style.width = 'auto';
+  allBtn.style.padding = '0 8px';
+  allBtn.addEventListener('click', () => {
+    activeAlpha = 'all';
+    document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+    allBtn.classList.add('active');
+    renderCards();
+  });
+  container.appendChild(allBtn);
+
+  letters.forEach(l => {
+    const btn = document.createElement('button');
+    btn.className = usedLetters.has(l) ? 'alpha-btn has-terms' : 'alpha-btn disabled';
+    btn.textContent = l;
+    btn.dataset.letter = l;
+    if (usedLetters.has(l)) {
+      btn.addEventListener('click', () => {
+        activeAlpha = l;
+        document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderCards();
+        // scroll to first match
+        setTimeout(() => {
+          const first = document.querySelector(`[data-first-letter="${l}"]`);
+          if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      });
+    }
+    container.appendChild(btn);
+  });
+}
+
+/* --- Render cards --- */
+function renderCards() {
+  const grid = document.getElementById('glossaryGrid');
+  const noRes = document.getElementById('noResults');
+  const countEl = document.getElementById('visibleCount');
+
+  const filtered = GLOSARIO.filter(t => {
+    const matchCat = activeCat === 'all' || t['CATEGORÍA'] === activeCat;
+    const matchLvl = activeLvl === 'all' || t['NIVEL TÉCNICO'] === activeLvl;
+    const matchAlpha = activeAlpha === 'all' ||
+      normalize(t['TÉRMINO'])[0].toUpperCase() === activeAlpha;
+    const matchSearch = !searchTerm ||
+      normalize(t['TÉRMINO']).includes(searchTerm) ||
+      normalize(t['DEFINICIÓN']).includes(searchTerm) ||
+      normalize(t['TRADUCCIÓN / EQUIVALENCIA']).includes(searchTerm) ||
+      normalize(t['CARACTERÍSTICAS']).includes(searchTerm);
+    return matchCat && matchLvl && matchAlpha && matchSearch;
+  });
+
+  // Orden alfabético por TÉRMINO (sin acentos, sin distinguir mayúsculas),
+  // así no importa el orden en que vengan los datos en glosario-data.js
+  filtered.sort((a, b) => normalize(a['TÉRMINO']).localeCompare(normalize(b['TÉRMINO']), 'es'));
+
+  countEl.textContent = filtered.length;
+  noRes.classList.toggle('visible', filtered.length === 0);
+  grid.innerHTML = '';
+
+  let lastLetter = '';
+
+  filtered.forEach((t, i) => {
+    const firstLetter = normalize(t['TÉRMINO'])[0].toUpperCase();
+
+    // Letter divider (solo cuando no hay búsqueda activa y no hay filtro alpha)
+    if (activeAlpha === 'all' && !searchTerm && firstLetter !== lastLetter) {
+      lastLetter = firstLetter;
+      // Insert divider spanning full grid
+      const divider = document.createElement('div');
+      divider.className = 'letter-divider col-span-full';
+      divider.style.gridColumn = '1 / -1';
+      divider.textContent = `— ${firstLetter} —`;
+      divider.dataset.firstLetter = firstLetter;
+      grid.appendChild(divider);
+    }
+
+    const card = document.createElement('div');
+    card.className = 'term-card';
+    if (i === 0 && activeAlpha !== 'all') card.dataset.firstLetter = activeAlpha;
+
+    card.innerHTML = `
+      <div class="term-header">
+        <div>
+          <div class="term-name">${t['TÉRMINO']}</div>
+          <div class="term-badges">
+            <span class="badge badge-cat">${t['CATEGORÍA']}</span>
+            <span class="badge badge-lvl">${t['NIVEL TÉCNICO']}</span>
+          </div>
+        </div>
+        <span class="term-toggle">⊕</span>
+      </div>
+      <div class="term-body">
+        <div class="detail-grid">
+          <div class="detail-item full-width">
+            <div class="detail-label">Definición</div>
+            <div class="detail-value definicion">${t['DEFINICIÓN']}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Características</div>
+            <div class="detail-value">${t['CARACTERÍSTICAS']}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Entorno</div>
+            <div class="detail-value">${t['ENTORNO']}</div>
+          </div>
+          <div class="detail-item full-width">
+            <div class="detail-label">Flujo · Entrada / Proceso / Salida</div>
+            <div class="detail-value">${renderEPS(t['ENTRADA / PROCESO / SALIDA'])}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Traducción / Equivalencia</div>
+            <div class="detail-value traduccion">${t['TRADUCCIÓN / EQUIVALENCIA']}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Ejemplos en Vladisystems</div>
+            <div class="detail-value">${t['EJEMPLOS']}</div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    card.addEventListener('click', () => openModal(t));
+    grid.appendChild(card);
+  });
+}
+
+/* --- MODAL --- */
+function openModal(t) {
+  document.getElementById('modalTermName').textContent = t['TÉRMINO'];
+  document.getElementById('modalBadges').innerHTML = `
+    <span class="badge badge-cat" style="color:#c4613d;border-color:#c4613d">${t['CATEGORÍA']}</span>
+    <span class="badge badge-lvl" style="color:#888;border-color:#888">${t['NIVEL TÉCNICO']}</span>
+  `;
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-item span3">
+      <div class="modal-label">Definición</div>
+      <div class="modal-value definicion">${t['DEFINICIÓN']}</div>
+    </div>
+    <div class="modal-item">
+      <div class="modal-label">Características</div>
+      <div class="modal-value">${t['CARACTERÍSTICAS']}</div>
+    </div>
+    <div class="modal-item">
+      <div class="modal-label">Entorno</div>
+      <div class="modal-value">${t['ENTORNO']}</div>
+    </div>
+    <div class="modal-item">
+      <div class="modal-label">Ejemplos en Vladisystems</div>
+      <div class="modal-value">${t['EJEMPLOS']}</div>
+    </div>
+    <div class="modal-item span2">
+      <div class="modal-label">Flujo · Entrada / Proceso / Salida</div>
+      <div class="modal-value">${renderEPS(t['ENTRADA / PROCESO / SALIDA'])}</div>
+    </div>
+    <div class="modal-item">
+      <div class="modal-label">Traducción / Equivalencia</div>
+      <div class="modal-value traduccion">${t['TRADUCCIÓN / EQUIVALENCIA']}</div>
+    </div>
+  `;
+  document.getElementById('termModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('termModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Cerrar con ESC
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* --- FAB + Panel de búsqueda --- */
+const fab       = document.getElementById('searchFab');
+const panel     = document.getElementById('searchPanel');
+const searchIn  = document.getElementById('searchInput');
+const suggestions = document.getElementById('searchSuggestions');
+const searchIcon = document.getElementById('searchIcon');
+const closeIcon  = document.getElementById('closeIcon');
+
+fab.addEventListener('click', () => {
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open');
+  fab.classList.toggle('open');
+  searchIcon.style.display = isOpen ? 'block' : 'none';
+  closeIcon.style.display  = isOpen ? 'none'  : 'block';
+  if (!isOpen) {
+    setTimeout(() => searchIn.focus(), 50);
+  } else {
+    // cerrar: limpiar búsqueda
+    searchIn.value = '';
+    searchTerm = '';
+    suggestions.innerHTML = '';
+    renderCards();
+  }
+});
+
+// Cerrar panel si se toca fuera
+document.addEventListener('click', e => {
+  if (!fab.contains(e.target) && !panel.contains(e.target)) {
+    panel.classList.remove('open');
+    fab.classList.remove('open');
+    searchIcon.style.display = 'block';
+    closeIcon.style.display  = 'none';
+  }
+});
+
+searchIn.addEventListener('input', e => {
+  searchTerm = normalize(e.target.value.trim());
+  renderCards();
+  renderSuggestions(e.target.value.trim());
+});
+
+function renderSuggestions(raw) {
+  if (!raw) { suggestions.innerHTML = ''; return; }
+  const q = normalize(raw);
+  const matches = GLOSARIO.filter(t =>
+    normalize(t['TÉRMINO']).includes(q) ||
+    normalize(t['DEFINICIÓN']).includes(q) ||
+    normalize(t['TRADUCCIÓN / EQUIVALENCIA']).includes(q)
+  ).slice(0, 8);
+
+  if (!matches.length) {
+    suggestions.innerHTML = `<div class="suggestion-empty">Sin resultados para "${raw}"</div>`;
+    return;
+  }
+  suggestions.innerHTML = matches.map(t => `
+    <div class="suggestion-item" data-term="${t['TÉRMINO']}">
+      <div class="suggestion-term">${t['TÉRMINO']}</div>
+      <div class="suggestion-cat">${t['CATEGORÍA']} · ${t['NIVEL TÉCNICO']}</div>
+    </div>
+  `).join('');
+
+  suggestions.querySelectorAll('.suggestion-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const termName = item.dataset.term;
+      // Limpiar búsqueda y cerrar panel
+      searchIn.value = '';
+      searchTerm = '';
+      suggestions.innerHTML = '';
+      panel.classList.remove('open');
+      fab.classList.remove('open');
+      searchIcon.style.display = 'block';
+      closeIcon.style.display  = 'none';
+      renderCards();
+      // Scroll y expandir la card
+      setTimeout(() => {
+        const cards = document.querySelectorAll('.term-card');
+        cards.forEach(card => {
+          if (card.querySelector('.term-name')?.textContent === termName) {
+            document.querySelectorAll('.term-card.expanded').forEach(c => c.classList.remove('expanded'));
+            card.classList.add('expanded');
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      }, 100);
+    });
+  });
+}
+
+/* --- Event listeners --- */
+document.querySelectorAll('[data-cat]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    activeCat = btn.dataset.cat;
+    document.querySelectorAll('[data-cat]').forEach(b => b.classList.remove('active-cat'));
+    btn.classList.add('active-cat');
+    renderCards();
+  });
+});
+
+document.querySelectorAll('[data-lvl]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    activeLvl = btn.dataset.lvl;
+    document.querySelectorAll('[data-lvl]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCards();
+  });
+});
+
+/* --- Init --- */
+// Número real de términos y categorías (se calculan desde GLOSARIO,
+// nunca quedan desactualizados aunque se agreguen más fichas)
+document.getElementById('stat-total').textContent = GLOSARIO.length;
+document.getElementById('totalCount').textContent = GLOSARIO.length;
+const categoriasUnicas = new Set(GLOSARIO.map(t => t['CATEGORÍA']));
+document.getElementById('stat-categorias').textContent = categoriasUnicas.size;
+
+buildAlphaIndex();
+renderCards();
+</script>
+
+</body>
+</html>

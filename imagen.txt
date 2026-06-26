@@ -182,3 +182,13 @@ git add .
 git commit -m "AJUSTES  de proyectos fotos y enlaces  II"
 
 git push
+
+
+
+
+
+git add .
+
+git commit -m "glosario , varios"
+
+git push
