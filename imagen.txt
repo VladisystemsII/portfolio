@@ -191,4 +191,12 @@ git add .
 
 git commit -m "glosario , varios"
 
+git pushcorrección ruta
+
+
+
+git add .
+
+git commit -m "glosario , corrección ruta"
+
 git push
