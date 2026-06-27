@@ -17,10 +17,25 @@
 
     const badge = document.createElement('div');
     badge.classList.add('profile-badge');
-    badge.innerHTML =
-      '<span class="profile-badge__label">Perfil</span>' +
-      '<span class="profile-badge__sep">·</span>' +
-      '<span class="profile-badge__code">' + profileId + '</span>';
+    //badge.innerHTML =
+    //  '<span class="profile-badge__label">Perfil</span>' +
+    //  '<span class="profile-badge__sep">·</span>' +
+    //  '<span class="profile-badge__code">' + profileId + '</span>';
+  
+
+
+    if (profileId === 'GLOSARIO') {
+  badge.innerHTML =
+    '<span class="profile-badge__code">GLOSARIO</span>';
+} else {
+  badge.innerHTML =
+    '<span class="profile-badge__label">Perfil</span>' +
+    '<span class="profile-badge__sep">·</span>' +
+    '<span class="profile-badge__code">' + profileId + '</span>';
+}
+
+
+
 
     const headerInner = document.querySelector('header > div');
     if (headerInner) {

@@ -85,10 +85,16 @@
         .sf-col.s3,.sf-col.s2{grid-column:span 2;}
       }
       @media(max-width:600px){
+        #sf-modal{align-items:flex-start;}
         #sf-modal-head{padding:1.5rem;}
         #sf-modal-body{grid-template-columns:1fr;padding:1.5rem;gap:1.5rem;}
         .sf-col.s3,.sf-col.s2{grid-column:span 1;}
-        #sf-modal-name{font-size:1.8rem;}
+        #sf-modal-name{font-size:1.7rem;}
+      }
+      @media (max-width: 480px) {
+        #searchFabPanel { right: 1rem; bottom: 6rem; width: calc(100vw - 2rem); }
+        #searchFab      { right: 1rem; bottom: 1.5rem; }
+        #sf-modal       { align-items: flex-start; }
       }
     `;
     document.head.appendChild(s);

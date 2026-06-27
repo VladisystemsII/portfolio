@@ -7,6 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="../css/styles.css">
 <link rel="stylesheet" href="../css/search-fab.css">
+<link rel="stylesheet" href="../css/project-tab.css">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -140,33 +141,6 @@
     line-height: 1;
   }
 
-  /* FAB — LUPITA FLOTANTE 
-  #searchFab {
-    position: fixed;
-    bottom: 7rem;
-    right: 2rem;
-    z-index: 200;
-    width: 54px;
-    height: 54px;
-    background: #111;
-    color: #fff;
-    border: 2px solid #111;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: .25s;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
-  }
-  #searchFab:hover {
-    background: var(--rust);
-    border-color: var(--rust);
-    transform: scale(1.08);
-  }
-  #searchFab.open {
-    background: var(--rust);
-    border-color: var(--rust);
-  }*/
 
 
 
@@ -532,12 +506,13 @@
 </style>
 </head>
 
-<body>
+
+<body data-profile="GLOSARIO">
 
 <div id="header-container"></div>
 <div class="grid-lines"></div>
 
-<div class="content-offset">
+<div style="position:relative; z-index:1;" class="content-offset">
 
 <!-- ============================================================
   HERO DE SECCIÓN
@@ -680,7 +655,10 @@
 <script src="../js/header.js"></script>
 <script src="../js/footer-loader.js"></script>
 <script src="../js/menu-mobile.js"></script>
+<script src="../js/profile-tab.js"></script>
 <script src="../js/glosario-data.js"></script>
+
+
 
 
 
