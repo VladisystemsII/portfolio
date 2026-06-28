@@ -35,8 +35,8 @@
       opacity: 0;
       transform: translateY(6px);
       transition: opacity .18s ease, transform .18s ease;
-      max-width: 420px;
-      min-width: 280px;
+      max-width: 340px;
+      min-width: 300px;
     }
     #vlad-tooltip.visible {
       opacity: 1;

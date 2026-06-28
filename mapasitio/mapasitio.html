@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VLADISYSTEMS · MAPA DEL SITIO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  body { background: #0e0e0e; color: #fff; }
+
+  .ms-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 6rem 2rem 4rem;
+  }
+
+  .ms-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: #9d3d22;
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  /* SVG container */
+  .ms-svg-wrap {
+    width: 100%;
+    max-width: 1100px;
+    overflow-x: auto;
+  }
+
+  /* NODE STYLES — defined here so SVG text is always crisp */
+  .n-root   { fill: #1a1a1a; stroke: #fff;     stroke-width: 1.5; }
+  .n-head   { fill: none;    stroke: #555;     stroke-width: 1;   }
+  .n-demo   { fill: #0c2840; stroke: #3a8fd0;  stroke-width: 1.5; cursor: pointer; }
+  .n-doc    { fill: #1c0e08; stroke: #9d3d22;  stroke-width: 1.5; cursor: pointer; }
+  .n-sub    { fill: #1c0e08; stroke: #9d3d22;  stroke-width: 1;   cursor: pointer; opacity: 0.85; }
+  .n-perfil { fill: #051f1a; stroke: #2fa890;  stroke-width: 1.5; cursor: pointer; }
+  .n-cred   { fill: #1f1608; stroke: #f0a830;  stroke-width: 1.5; cursor: pointer; }
+  .n-empty  { fill: none;    stroke: #333;     stroke-width: 1;   }
+
+  .n-demo:hover, .n-doc:hover, .n-sub:hover,
+  .n-perfil:hover, .n-cred:hover { opacity: 0.8; }
+
+  /* CONNECTOR LINES */
+  .ln { stroke: #444; stroke-width: 1; fill: none; }
+  .ln-demo   { stroke: #3a8fd0; stroke-width: 0.75; fill: none; }
+  .ln-doc    { stroke: #9d3d22; stroke-width: 0.75; fill: none; }
+  .ln-perfil { stroke: #2fa890; stroke-width: 0.75; fill: none; }
+  .ln-cred   { stroke: #f0a830; stroke-width: 0.75; fill: none; }
+
+  /* LEGEND */
+  .ms-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2.5rem;
+    margin-top: 3rem;
+    justify-content: center;
+  }
+  .ms-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+  }
+  .ms-legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* CLOSE / BACK BTN */
+  .ms-back {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    border: 1px solid #444;
+    padding: 0.6rem 1.4rem;
+    color: #888;
+    text-decoration: none;
+    transition: .2s;
+    margin-top: 2.5rem;
+    display: inline-block;
+  }
+  .ms-back:hover { border-color: #fff; color: #fff; }
+
+  @media (max-width: 640px) {
+    .ms-page { padding: 5rem 1rem 3rem; }
+  }
+</style>
+</head>
+
+<body>
+<div class="grid-lines" style="opacity:0.3;"></div>
+
+<!-- mini header -->
+<header>
+  <div style="max-width:1100px; margin:0 auto; padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between;">
+    <a href="../index.html" style="font-family:'IBM Plex Mono',monospace; font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:#9d3d22; text-decoration:none;">← VLADISYSTEMS</a>
+    <span style="font-family:'IBM Plex Mono',monospace; font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:#444;">MAPA DEL SITIO</span>
+  </div>
+</header>
+
+<div class="ms-page content-offset">
+
+  <p class="ms-eyebrow">PORTFOLIO VLADISYSTEMS · ARQUITECTURA DE CONTENIDOS</p>
+
+  <div class="ms-svg-wrap">
+  <!--
+    COORDENADAS DEL MAPA
+    viewBox: 0 0 1100 900
+    Nodos: rx=6, h=44, w varía por contenido
+    3 columnas: Proyectos x=80, Perfiles x=420, Credenciales x=760
+    Root: x=440 y=30
+    Cabeceras col: y=130
+    Nodos desde y=210 bajando cada 66px
+  -->
+  <svg viewBox="0 0 1100 940" width="100%" xmlns="http://www.w3.org/2000/svg"
+       style="display:block; min-width:700px;">
+
+    <defs>
+      <marker id="arr" viewBox="0 0 8 8" refX="6" refY="4"
+              markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M1 1 L6 4 L1 7" fill="none" stroke="#444" stroke-width="1.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+      <marker id="arr-demo" viewBox="0 0 8 8" refX="6" refY="4"
+              markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M1 1 L6 4 L1 7" fill="none" stroke="#3a8fd0" stroke-width="1.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+      <marker id="arr-doc" viewBox="0 0 8 8" refX="6" refY="4"
+              markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M1 1 L6 4 L1 7" fill="none" stroke="#9d3d22" stroke-width="1.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+      <marker id="arr-perfil" viewBox="0 0 8 8" refX="6" refY="4"
+              markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M1 1 L6 4 L1 7" fill="none" stroke="#2fa890" stroke-width="1.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+      <marker id="arr-cred" viewBox="0 0 8 8" refX="6" refY="4"
+              markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M1 1 L6 4 L1 7" fill="none" stroke="#f0a830" stroke-width="1.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+    </defs>
+
+    <!-- ═══════════════════════════════════════════
+         ROOT NODE — PORTFOLIO
+    ═══════════════════════════════════════════ -->
+    <rect class="n-root" x="400" y="28" width="200" height="44" rx="6"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="13" fill="#fff"
+          text-anchor="middle" x="500" y="55">PORTFOLIO</text>
+
+    <!-- TRUNK LINE down from root -->
+    <line class="ln" x1="500" y1="72" x2="500" y2="100"/>
+    <!-- HORIZONTAL BRANCH spanning 3 columns -->
+    <line class="ln" x1="155" y1="100" x2="845" y2="100"/>
+
+    <!-- DROPS to column headers -->
+    <line class="ln" x1="155" y1="100" x2="155" y2="118" marker-end="url(#arr)"/>
+    <line class="ln" x1="500" y1="100" x2="500" y2="118" marker-end="url(#arr)"/>
+    <line class="ln" x1="845" y1="100" x2="845" y2="118" marker-end="url(#arr)"/>
+
+
+    <!-- ═══════════════════════════════════════════
+         COL HEADERS
+    ═══════════════════════════════════════════ -->
+    <!-- Proyectos -->
+    <rect class="n-head" x="55" y="118" width="200" height="44" rx="6"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="12" fill="#fff"
+          text-anchor="middle" x="155" y="145">PROYECTOS</text>
+
+    <!-- Perfiles -->
+    <rect class="n-head" x="400" y="118" width="200" height="44" rx="6"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="12" fill="#fff"
+          text-anchor="middle" x="500" y="145">PERFILES</text>
+
+    <!-- Credenciales -->
+    <rect class="n-cred" x="745" y="118" width="200" height="44" rx="6"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="12" fill="#f0a830"
+          font-weight="600" text-anchor="middle" x="845" y="145">CREDENCIALES</text>
+
+
+    <!-- ═══════════════════════════════════════════
+         PROYECTOS COLUMN — x center = 155
+         Demos: y = 210, 276, 342, 408
+         Docs (with subdoc): y = 490, 556+sub, 622+sub, 688+sub
+    ═══════════════════════════════════════════ -->
+
+    <!-- vertical spine from col header -->
+    <line class="ln" x1="155" y1="162" x2="155" y2="210"/>
+
+    <!-- BC1166 -->
+    <line class="ln-demo" x1="155" y1="210" x2="155" y2="232" marker-end="url(#arr-demo)"/>
+    <a href="../projects/p-bc1166/p-bc1166.html">
+      <rect class="n-demo" x="55" y="232" width="200" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="155" y="249">BC1166</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#6aaee8" text-anchor="middle" x="155" y="264">demo en vivo</text>
+    </a>
+
+    <!-- Portal33 -->
+    <line class="ln-demo" x1="155" y1="276" x2="155" y2="298" marker-end="url(#arr-demo)"/>
+    <a href="../projects/p-portal33/p-portal33.html">
+      <rect class="n-demo" x="55" y="298" width="200" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="155" y="315">PORTAL33</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#6aaee8" text-anchor="middle" x="155" y="330">demo en vivo</text>
+    </a>
+
+    <!-- Team Realty -->
+    <line class="ln-demo" x1="155" y1="342" x2="155" y2="364" marker-end="url(#arr-demo)"/>
+    <a href="../projects/p-teamrealty/p-teamrealty.html">
+      <rect class="n-demo" x="55" y="364" width="200" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="155" y="381">TEAM REALTY</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#6aaee8" text-anchor="middle" x="155" y="396">demo en vivo</text>
+    </a>
+
+    <!-- Master Menu -->
+    <line class="ln-demo" x1="155" y1="408" x2="155" y2="430" marker-end="url(#arr-demo)"/>
+    <a href="../projects/p-mastermenu/p-mastermenu.html">
+      <rect class="n-demo" x="55" y="430" width="200" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="155" y="447">MASTER MENU</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#6aaee8" text-anchor="middle" x="155" y="462">demo en vivo</text>
+    </a>
+
+    <!-- spacer spine continues -->
+    <line class="ln" x1="155" y1="474" x2="155" y2="496"/>
+
+    <!-- VladiBot -->
+    <line class="ln-doc" x1="155" y1="496" x2="155" y2="518" marker-end="url(#arr-doc)"/>
+    <a href="../projects/p-vladibot/p-vladibot.html">
+      <rect class="n-doc" x="55" y="518" width="160" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="135" y="535">VLADIBOT</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#c4613d" text-anchor="middle" x="135" y="550">con doc.</text>
+    </a>
+    <!-- subdoc branch -->
+    <line class="ln-doc" x1="215" y1="540" x2="240" y2="540"/>
+    <a href="../projects/p-vladibot/documentacion/index.html">
+      <rect class="n-sub" x="240" y="518" width="130" height="44" rx="4"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#c4613d" text-anchor="middle" x="305" y="535">DOC</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8"
+            fill="#aaa" text-anchor="middle" x="305" y="550">documentación</text>
+    </a>
+
+    <!-- VladCRM -->
+    <line class="ln-doc" x1="155" y1="562" x2="155" y2="584" marker-end="url(#arr-doc)"/>
+    <a href="../projects/p-vladcrm/p-vladcrm.html">
+      <rect class="n-doc" x="55" y="584" width="160" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="135" y="601">VLADCRM</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#c4613d" text-anchor="middle" x="135" y="616">con doc.</text>
+    </a>
+    <line class="ln-doc" x1="215" y1="606" x2="240" y2="606"/>
+    <a href="../projects/p-vladcrm/documentacion/index.html">
+      <rect class="n-sub" x="240" y="584" width="130" height="44" rx="4"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#c4613d" text-anchor="middle" x="305" y="601">DOC</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8"
+            fill="#aaa" text-anchor="middle" x="305" y="616">documentación</text>
+    </a>
+
+    <!-- Dashboard -->
+    <line class="ln-doc" x1="155" y1="628" x2="155" y2="650" marker-end="url(#arr-doc)"/>
+    <a href="../projects/p-datastudio/p-datastudio.html">
+      <rect class="n-doc" x="55" y="650" width="160" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="135" y="667">DASHBOARD</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#c4613d" text-anchor="middle" x="135" y="682">con doc.</text>
+    </a>
+    <line class="ln-doc" x1="215" y1="672" x2="240" y2="672"/>
+    <a href="../projects/p-datastudio/documentacion/index.html">
+      <rect class="n-sub" x="240" y="650" width="130" height="44" rx="4"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#c4613d" text-anchor="middle" x="305" y="667">DOC</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8"
+            fill="#aaa" text-anchor="middle" x="305" y="682">documentación</text>
+    </a>
+
+
+    <!-- ═══════════════════════════════════════════
+         PERFILES COLUMN — x center = 500
+    ═══════════════════════════════════════════ -->
+    <line class="ln" x1="500" y1="162" x2="500" y2="232"/>
+
+    <!-- LinkedIn -->
+    <line class="ln-perfil" x1="500" y1="232" x2="500" y2="254" marker-end="url(#arr-perfil)"/>
+    <a href="../connects/linkedin.html">
+      <rect class="n-perfil" x="400" y="254" width="200" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="500" y="271">LINKEDIN</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#2fa890" text-anchor="middle" x="500" y="286">perfil externo</text>
+    </a>
+
+    <!-- GitHub -->
+    <line class="ln-perfil" x1="500" y1="298" x2="500" y2="320" marker-end="url(#arr-perfil)"/>
+    <a href="../connects/github.html">
+      <rect class="n-perfil" x="400" y="320" width="200" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="500" y="337">GITHUB</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#2fa890" text-anchor="middle" x="500" y="352">perfil externo</text>
+    </a>
+
+    <!-- Workana -->
+    <line class="ln-perfil" x1="500" y1="364" x2="500" y2="386" marker-end="url(#arr-perfil)"/>
+    <a href="../connects/workana.html">
+      <rect class="n-perfil" x="400" y="386" width="200" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="500" y="403">WORKANA</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#2fa890" text-anchor="middle" x="500" y="418">perfil externo</text>
+    </a>
+
+    <!-- CV -->
+    <line class="ln-perfil" x1="500" y1="430" x2="500" y2="452" marker-end="url(#arr-perfil)"/>
+    <a href="../connects/cv.html">
+      <rect class="n-perfil" x="400" y="452" width="200" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="500" y="469">CV</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#2fa890" text-anchor="middle" x="500" y="484">documento</text>
+    </a>
+
+
+    <!-- ═══════════════════════════════════════════
+         CREDENCIALES COLUMN — x center = 845
+    ═══════════════════════════════════════════ -->
+    <line class="ln-cred" x1="845" y1="162" x2="845" y2="232"/>
+
+    <!-- Hub credenciales -->
+    <line class="ln-cred" x1="845" y1="232" x2="845" y2="254" marker-end="url(#arr-cred)"/>
+    <a href="../connects/credenciales/credenciales.html">
+      <rect class="n-cred" x="745" y="254" width="200" height="44" rx="6"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="#fff" text-anchor="middle" x="845" y="271">VER CREDENCIALES</text>
+      <text font-family="IBM Plex Mono, monospace" font-size="8.5"
+            fill="#f0a830" text-anchor="middle" x="845" y="286">hub de documentos</text>
+    </a>
+
+    <!-- sub-items -->
+    <line class="ln-cred" x1="845" y1="298" x2="845" y2="320"/>
+
+    <!-- Certificados técnicos -->
+    <rect class="n-empty" x="745" y="320" width="200" height="44" rx="4"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="10"
+          fill="#888" text-anchor="middle" x="845" y="337">Certificados técnicos</text>
+    <text font-family="IBM Plex Mono, monospace" font-size="8"
+          fill="#555" text-anchor="middle" x="845" y="352">8 archivos PDF</text>
+
+    <line class="ln-cred" x1="845" y1="364" x2="845" y2="386"/>
+
+    <!-- Notas de formación -->
+    <rect class="n-empty" x="745" y="386" width="200" height="44" rx="4"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="10"
+          fill="#888" text-anchor="middle" x="845" y="403">Notas de formación</text>
+    <text font-family="IBM Plex Mono, monospace" font-size="8"
+          fill="#555" text-anchor="middle" x="845" y="418">7 archivos PDF</text>
+
+    <line class="ln-cred" x1="845" y1="430" x2="845" y2="452"/>
+
+    <!-- Título universitario -->
+    <rect class="n-empty" x="745" y="452" width="200" height="44" rx="4"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="10"
+          fill="#888" text-anchor="middle" x="845" y="469">Título universitario</text>
+    <text font-family="IBM Plex Mono, monospace" font-size="8"
+          fill="#555" text-anchor="middle" x="845" y="484">IUTV · Ingeniería</text>
+
+    <!-- count -->
+    <text font-family="IBM Plex Mono, monospace" font-size="8"
+          fill="#444" text-anchor="middle" x="845" y="516">+ 16 documentos más</text>
+
+
+    <!-- ═══════════════════════════════════════════
+         LEYENDA INFERIOR
+    ═══════════════════════════════════════════ -->
+    <rect x="30" y="740" width="1040" height="70" rx="8"
+          fill="none" stroke="#2a2a2a" stroke-width="1"/>
+
+    <!-- Demo en vivo -->
+    <rect x="60" y="762" width="12" height="12" rx="3" fill="#0c2840" stroke="#3a8fd0" stroke-width="1"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="9" fill="#666" x="80" y="773">Demo en vivo</text>
+
+    <!-- Con doc -->
+    <rect x="240" y="762" width="12" height="12" rx="3" fill="#1c0e08" stroke="#9d3d22" stroke-width="1"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="9" fill="#666" x="260" y="773">Sin demo · con documentación</text>
+
+    <!-- Perfil externo -->
+    <rect x="530" y="762" width="12" height="12" rx="3" fill="#051f1a" stroke="#2fa890" stroke-width="1"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="9" fill="#666" x="550" y="773">Perfil externo</text>
+
+    <!-- Credenciales -->
+    <rect x="700" y="762" width="12" height="12" rx="3" fill="#1f1608" stroke="#f0a830" stroke-width="1"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="9" fill="#666" x="720" y="773">Credenciales</text>
+
+    <!-- Sin link -->
+    <rect x="870" y="762" width="12" height="12" rx="3" fill="none" stroke="#444" stroke-width="1"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="9" fill="#666" x="890" y="773">Sin link directo</text>
+
+    <!-- nota footer -->
+    <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#333"
+          text-anchor="middle" x="550" y="798">
+      Proyectos / Perfiles / Credenciales son secciones — toca los nodos individuales para navegar
+    </text>
+
+  </svg>
+  </div>
+
+  <a href="../index.html" class="ms-back">← volver al portfolio</a>
+
+</div><!-- /ms-page -->
+</body>
+</html>

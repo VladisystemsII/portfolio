@@ -207,3 +207,10 @@ git add .
 git commit -m "INTEGRACIÓN LUPA TODO EL PROYECTO ii"
 
 git push
+
+
+git add .
+
+git commit -m "ajustes minimos links"
+
+git push

@@ -43,7 +43,7 @@ PORTFOLIO VLADISYSTEMS
 |    |
 |    ├── project-tab.css                                                 ✅
 │    ├── styles.css                                                      ✅
-│    ├──                                                                 ✅
+│    ├── search.css                                                      ✅
 |    
 ├── js                                                                   ✅
 |    |
@@ -55,6 +55,7 @@ PORTFOLIO VLADISYSTEMS
 |    ├── menu-mobile.js                                                  ✅
 |    ├── glosario-data.js                                                ✅
 |    ├── toolips.js                                                      ✅
+|    ├── searchfab.js                                                    ✅
 │    └── header-doc-loader.js                                            ✅
 |
 ├── modules                                                              ✅
@@ -89,6 +90,9 @@ PORTFOLIO VLADISYSTEMS
 ├── glosario                                                             ✅
 |    |
 |    ├── glosario.html                                                   ✅
+|
+├── mapasitio
+│    └── mapasitio.html
 |
 ├── Logo Vladisystems portfolio.png                                      ✅
 
