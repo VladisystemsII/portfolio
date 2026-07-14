@@ -211,6 +211,6 @@ git push
 
 git add .
 
-git commit -m "ajustes minimos links"
+git commit -m "ajustes minimos links II"
 
 git push
