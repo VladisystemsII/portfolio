@@ -3930,5 +3930,226 @@ const GLOSARIO = [
     "CATEGORÍA": "Tecnología Web",
     "NIVEL TÉCNICO": "Intermedio"
   },
+    {
+    "TÉRMINO": "Entidad",
+    "DEFINICIÓN": "El negocio, marca, persona o proyecto sobre el cual se construye un sistema digital. Es la unidad central del modelo de información. Antes de diseñar o codificar cualquier cosa, se documenta qué es y qué hace realmente la entidad — no cómo se quiere que se vea, sino cómo opera en la realidad.",
+    "CARACTERÍSTICAS": "Puede ser una empresa, un profesional, un proyecto o un producto. Define el alcance de todo el sistema digital que la representa. Limitación: si la entidad no está bien documentada antes de construir, el sistema resultante puede ser visualmente correcto pero semánticamente pobre — es decir, bonito pero incapaz de ser comprendido en profundidad por buscadores o motores de IA.",
+    "ENTORNO": "Arquitectura de información, diseño de sistemas, desarrollo web, SEO",
+    "ENTRADA / PROCESO / SALIDA": "Entrada (realidad del negocio documentada) → Proceso (modelado de la entidad con sus servicios, cobertura, problemas y evidencias) → Salida (modelo de información que guía todo el desarrollo posterior)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Entidad / Entity / Business entity / Unidad de información",
+    "EJEMPLOS": "BC1166 Remodelaciones, Portal33, Vladisystems y TeamRealtyHistory son entidades del ecosistema digital de Vladisystems",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Intermedio"
+  },
+  {
+    "TÉRMINO": "Modelo de información",
+    "DEFINICIÓN": "Estructura que define qué entidades, servicios, relaciones, problemas y evidencias existen alrededor de una entidad digital, antes de decidir cómo se presentan visualmente. Es el mapa completo de la realidad del negocio: Entidad → Ubicación/cobertura → Servicios → Elementos específicos → Problemas que resuelve → Evidencia → Conversión.",
+    "CARACTERÍSTICAS": "Es el paso previo obligatorio al diseño y desarrollo; convierte la realidad del negocio en una estructura navegable y comprensible. Limitación: un modelo de información incompleto produce sistemas que existen digitalmente pero representan mal al negocio — cada nodo del modelo debe tener al menos un dato real vinculado, nunca suposiciones.",
+    "ENTORNO": "Arquitectura de información, UX, diseño de sistemas, SEO semántico",
+    "ENTRADA / PROCESO / SALIDA": "Entrada (matriz de levantamiento de la realidad del negocio) → Proceso (construcción del árbol de entidades, servicios y relaciones) → Salida (modelo documentado que guía arquitectura, contenido y desarrollo)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Modelo de información / Information model / Data model / Mapa de información",
+    "EJEMPLOS": "El modelo de BC1166 incluye: empresa → Bogotá → remodelaciones → tipos de trabajo → problemas de humedad → evidencias en fotos → conversión por WhatsApp",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Avanzado"
+  },
+  {
+    "TÉRMINO": "Arquitectura de información",
+    "DEFINICIÓN": "La organización jerárquica del modelo de información: qué existe y cómo se agrupa. Define qué va junto, qué se separa y cuál es la jerarquía de secciones de un sistema digital. Es diferente a la arquitectura de navegación — la arquitectura de información decide qué existe; la navegación decide cómo se recorre.",
+    "CARACTERÍSTICAS": "Garantiza que el sistema sea coherente, escalable y comprensible para personas y rastreadores. Todo elemento del modelo de información debe tener una ubicación asignada — no puede haber elementos sueltos sin ubicación. Limitación: una arquitectura mal diseñada es difícil y costosa de corregir una vez que el sistema está en producción.",
+    "ENTORNO": "UX, diseño de sistemas, desarrollo web, SEO, contenido digital",
+    "ENTRADA / PROCESO / SALIDA": "Entrada (modelo de información completo) → Proceso (organización jerárquica: qué va en fachada, qué en capa profunda, cómo se agrupa) → Salida (esquema de arquitectura que guía navegación, contenido y desarrollo)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Arquitectura de información / Information Architecture / IA / Organización de contenidos",
+    "EJEMPLOS": "La arquitectura del portfolio Vladisystems define: inicio → proyectos → documentación → glosario → perfiles — cada sección con su jerarquía clara",
+    "CATEGORÍA": "UI / UX",
+    "NIVEL TÉCNICO": "Avanzado"
+  },
+  {
+    "TÉRMINO": "Arquitectura de navegación",
+    "DEFINICIÓN": "Define cómo una persona y un rastreador (crawler) recorren la arquitectura de información de un sistema digital. Establece los menús, rutas, puntos de entrada y la cantidad máxima de pasos para llegar a cualquier nodo del modelo. Es complementaria a la arquitectura de información: una decide qué existe, la otra decide cómo se accede.",
+    "CARACTERÍSTICAS": "Debe garantizar que desde cualquier punto de entrada exista una ruta trazable hasta cualquier nodo del modelo en un máximo de pasos definido. Limitación: una navegación sobrecargada o poco clara pierde al usuario en segundos y dificulta la indexación por rastreadores.",
+    "ENTORNO": "UX, diseño web, SEO técnico, desarrollo frontend",
+    "ENTRADA / PROCESO / SALIDA": "Entrada (arquitectura de información definida) → Proceso (diseño del mapa de navegación: menús, rutas, puntos de entrada) → Salida (mapa de navegación documentado y verificable)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Arquitectura de navegación / Navigation architecture / Navigation design / Diseño de navegación",
+    "EJEMPLOS": "El menú principal del portfolio Vladisystems y el mapa SVG interactivo son elementos de la arquitectura de navegación",
+    "CATEGORÍA": "UI / UX",
+    "NIVEL TÉCNICO": "Intermedio"
+  },
+  {
+    "TÉRMINO": "Estrategia de descubrimiento",
+    "DEFINICIÓN": "Conjunto de mecanismos por los cuales un sistema digital puede ser encontrado: buscadores tradicionales (SEO), motores de IA, redes sociales, perfiles externos y evidencia vinculada. Va más allá del SEO clásico porque incluye la visibilidad ante sistemas de inteligencia artificial que razonan sobre el contenido.",
+    "CARACTERÍSTICAS": "Requiere verificación real del estado de indexación — nunca se asume que algo está indexado, se comprueba con herramientas como Search Console. Incluye señales para doble audiencia: buscador tradicional + motor de IA. Limitación: sin estrategia de descubrimiento, un sistema puede estar técnicamente perfecto pero invisible para quien lo busca.",
+    "ENTORNO": "SEO, marketing digital, arquitectura de información, contenido digital",
+    "ENTRADA / PROCESO / SALIDA": "Entrada (sistema digital publicado) → Proceso (verificación de indexación, optimización para buscadores y motores de IA, vinculación de evidencia externa) → Salida (sistema encontrable por personas, buscadores y motores de IA)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Estrategia de descubrimiento / Discovery strategy / Findability strategy / Estrategia de visibilidad",
+    "EJEMPLOS": "El SEO local de BC1166 en Bogotá, el perfil LinkedIn de Vladisystems y los repositorios de GitHub son parte de la estrategia de descubrimiento",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Intermedio"
+  },
+  {
+    "TÉRMINO": "Capa semántica",
+    "DEFINICIÓN": "La declaración explícita, en código y estructura, de qué significa cada parte del contenido de un sistema digital. Incluye el uso correcto de encabezados HTML (H1, H2, H3), datos estructurados (Schema.org), metadatos y etiquetas semánticas que permiten a buscadores y motores de IA comprender el significado del contenido, no solo su apariencia.",
+    "CARACTERÍSTICAS": "Invisible para el usuario final pero crítica para buscadores y motores de IA; mejora el posicionamiento SEO y la comprensión del contenido por sistemas automatizados. Limitación: muchos sitios web están visualmente completos pero semánticamente vacíos — sin capa semántica, el sistema existe pero no comunica su profundidad a buscadores ni a IA.",
+    "ENTORNO": "SEO técnico, desarrollo web, HTML semántico, datos estructurados",
+    "ENTRADA / PROCESO / SALIDA": "Proceso (implementación de HTML semántico, Schema.org, metadatos y estructura de encabezados) → Salida (sistema interpretable en profundidad por buscadores y motores de IA)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Capa semántica / Semantic layer / Semantic markup / HTML semántico",
+    "EJEMPLOS": "El uso correcto de etiquetas H1-H3, atributos alt en imágenes y Schema.org en las páginas de proyectos de Vladisystems",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Avanzado"
+  },
+  {
+    "TÉRMINO": "Evidencia externa",
+    "DEFINICIÓN": "Todo rastro digital que existe fuera del sistema web propio y que respalda, valida o amplifica la presencia digital de una entidad: redes sociales, perfiles profesionales, reseñas, menciones en medios, repositorios de código, directorios de negocio y cualquier referencia externa verificable.",
+    "CARACTERÍSTICAS": "Aumenta la autoridad y credibilidad de la entidad ante buscadores y motores de IA; una entidad con muchas evidencias externas coherentes es interpretada como más relevante y confiable. Limitación: evidencia externa desactualizada o contradictoria puede dañar la reputación digital; requiere gestión activa y consistencia con la información del sitio propio.",
+    "ENTORNO": "SEO off-page, marketing digital, reputación online, arquitectura de información",
+    "ENTRADA / PROCESO / SALIDA": "Proceso (gestión y vinculación de perfiles externos, reseñas y menciones) → Salida (ecosistema digital coherente que respalda la entidad desde múltiples fuentes)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Evidencia externa / External evidence / Off-page signals / Autoridad externa",
+    "EJEMPLOS": "El perfil LinkedIn, GitHub, Workana y las reseñas de clientes de Vladisystems son evidencia externa del ecosistema digital",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Básico"
+  },
+  {
+    "TÉRMINO": "Doble audiencia",
+    "DEFINICIÓN": "Principio de diseño de contenido según el cual todo texto, estructura y código de un sistema digital debe ser comprensible simultáneamente por tres audiencias: la persona humana que navega, el buscador tradicional (Google) y el motor de búsqueda basado en IA. No significa escribir como robot — significa estructurar la información con suficiente claridad y profundidad para que los tres tipos de lectores la entiendan.",
+    "CARACTERÍSTICAS": "Obliga a traducir cada servicio o concepto en términos de: qué es → qué problema resuelve → cómo lo busca una persona real. Limitación: contenido genérico o superficial falla ante motores de IA modernos que razonan sobre entidades y relaciones, no solo palabras clave.",
+    "ENTORNO": "SEO, contenido digital, arquitectura de información, IA generativa",
+    "ENTRADA / PROCESO / SALIDA": "Proceso (redacción y estructuración del contenido siguiendo el principio de doble audiencia) → Salida (contenido legible por humanos e interpretable en profundidad por buscadores y motores de IA)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Doble audiencia / Dual audience / Human + machine readability / Contenido para humanos e IA",
+    "EJEMPLOS": "Las descripciones de proyectos del portfolio Vladisystems describen: qué es el proyecto, qué problema resuelve y con qué tecnologías — legible por personas, Google y Claude",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Intermedio"
+  },
+  {
+    "TÉRMINO": "Autorregulación",
+    "DEFINICIÓN": "Capacidad de un sistema digital de verificar periódicamente su propio estado real frente al estado esperado y señalar desviaciones, sin depender de que alguien lo recuerde. Un sistema autorregulado tiene incorporado un ciclo de verificación: medir → comparar contra el modelo → detectar brecha → corregir → registrar → volver a medir.",
+    "CARACTERÍSTICAS": "Requiere definir métricas, frecuencia de revisión y mecanismo de registro; convierte la auditoría de un evento esporádico en un proceso continuo. Limitación: sin un ciclo de verificación formal y con registro obligatorio, la autorregulación es solo un concepto — un sistema que nadie revisa no se autorregula, simplemente se deteriora en silencio.",
+    "ENTORNO": "Arquitectura de sistemas, gestión de proyectos digitales, DevOps, SEO",
+    "ENTRADA / PROCESO / SALIDA": "Proceso (ciclo periódico: medir estado real → comparar contra modelo → detectar brechas → corregir → registrar) → Salida (sistema que mantiene coherencia con la realidad sin intervención esporádica)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Autorregulación / Self-regulation / Self-monitoring system / Sistema de verificación continua",
+    "EJEMPLOS": "El ciclo de verificación de indexación de Vladisystems: revisar Search Console periódicamente, detectar páginas no indexadas y corregirlas",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Avanzado"
+  },
+  {
+    "TÉRMINO": "Autogestión",
+    "DEFINICIÓN": "Capacidad del dueño de un negocio de mantener y alimentar su sistema digital con información real, mediante instrumentos definidos (matrices, plantillas), sin depender de reinterpretación técnica externa en cada actualización. Se logra entregando al cliente una matriz de levantamiento editable que funciona como fuente de verdad del sistema.",
+    "CARACTERÍSTICAS": "Reduce la dependencia del cliente del desarrollador para cambios de contenido; la matriz de levantamiento actúa como puente entre la realidad del negocio y el sistema digital. Limitación: requiere que el cliente comprenda y use la matriz disciplinadamente; sin esa disciplina, la autogestión colapsa y el sistema queda desactualizado.",
+    "ENTORNO": "Gestión de proyectos digitales, CRM, arquitectura de información, consultoría",
+    "ENTRADA / PROCESO / SALIDA": "Entrada (cambio en la realidad del negocio: nuevo servicio, nueva zona, nueva evidencia) → Proceso (registro en la matriz de levantamiento) → Salida (actualización del sistema en el siguiente ciclo de verificación)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Autogestión / Self-management / Content self-management / Gestión autónoma del sistema",
+    "EJEMPLOS": "El dueño de BC1166 puede agregar un nuevo servicio de remodelación a la matriz sin necesitar al desarrollador para cada cambio",
+    "CATEGORÍA": "Negocio / CRM",
+    "NIVEL TÉCNICO": "Básico"
+  },
+  {
+    "TÉRMINO": "Escalabilidad metodológica",
+    "DEFINICIÓN": "Capacidad de un método o proceso de aplicarse a un nuevo proyecto sin rediseñar el proceso desde cero. En el contexto de Vladisystems, significa que el mismo método de 9 fases (realidad → modelo → arquitectura → navegación → descubrimiento → contenido → diseño → implementación → verificación) aplica igual para un proyecto pequeño que para uno grande, ajustando la profundidad de ejecución pero sin omitir fases.",
+    "CARACTERÍSTICAS": "El método es el activo reutilizable, no el entregable individual; cada proyecto nuevo es una aplicación del método, no una reinvención. Limitación: la tentación de saltarse fases en proyectos urgentes o pequeños es el mayor riesgo — ningún proyecto puede empezar en la Fase 8 (implementación) sin evidencia de las fases anteriores.",
+    "ENTORNO": "Consultoría digital, gestión de proyectos, arquitectura de sistemas, Vladisystems",
+    "ENTRADA / PROCESO / SALIDA": "Proceso (aplicación del método estándar a cada nuevo proyecto) → Salida (sistema construido con coherencia metodológica, auditable y escalable)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Escalabilidad metodológica / Methodological scalability / Process scalability / Método estandarizado",
+    "EJEMPLOS": "El mismo método de 9 fases aplica tanto a BC1166 como al SPA o a cualquier nuevo cliente de Vladisystems",
+    "CATEGORÍA": "Negocio / CRM",
+    "NIVEL TÉCNICO": "Intermedio"
+  },
+  {
+    "TÉRMINO": "Punto de entrada no destructivo",
+    "DEFINICIÓN": "Elemento de navegación que añade profundidad a un sistema digital existente sin requerir su reconstrucción. Permite evolucionar el sistema agregando una nueva capa de acceso (como un botón 'Explorar' o una sección de documentación) sin tocar ni romper lo que ya funciona. Es la alternativa a rediseñar desde cero.",
+    "CARACTERÍSTICAS": "Permite crecer el sistema en profundidad semántica sin riesgo de romper lo existente; reduce el costo y el tiempo de evolución del sistema. Limitación: mal implementado puede generar ruido de navegación o confusión si el nuevo punto de entrada no está claramente diferenciado del contenido existente.",
+    "ENTORNO": "UX, arquitectura de información, desarrollo web, SEO",
+    "ENTRADA / PROCESO / SALIDA": "Proceso (adición de nuevo punto de entrada al sistema existente) → Salida (sistema con mayor profundidad de información sin reconstrucción de la fachada existente)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Punto de entrada no destructivo / Non-destructive entry point / Additive navigation / Expansión progresiva",
+    "EJEMPLOS": "El botón 'Documentación CRM ↗' en p-vladcrm.html es un punto de entrada no destructivo que añade profundidad sin modificar la ficha del proyecto",
+    "CATEGORÍA": "UI / UX",
+    "NIVEL TÉCNICO": "Intermedio"
+  },
+  {
+    "TÉRMINO": "Brecha",
+    "DEFINICIÓN": "Diferencia detectada entre el estado real verificado de un sistema digital y el estado que el modelo de información establece como correcto. Identificar brechas es el objetivo central del ciclo de verificación: no se corrige lo que no se ha medido, y no se declara cerrado ningún ciclo sin haber registrado las brechas encontradas.",
+    "CARACTERÍSTICAS": "Las brechas deben registrarse antes de corregirse — corregir sin registrar impide que el ciclo sea auditable; pueden ser de contenido, indexación, navegación, semántica o evidencia externa. Limitación: sin un proceso formal de detección, las brechas se acumulan silenciosamente hasta que el sistema pierde coherencia con la realidad del negocio.",
+    "ENTORNO": "Gestión de sistemas digitales, SEO, auditoría web, ciclo de verificación",
+    "ENTRADA / PROCESO / SALIDA": "Entrada (medición del estado real del sistema) → Proceso (comparación contra el modelo de información) → Salida (lista de brechas documentadas, priorizadas y asignadas para corrección)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Brecha / Gap / Performance gap / Desviación / Discrepancia",
+    "EJEMPLOS": "Una página de proyecto sin descripción completa, un servicio no listado o una imagen sin etiqueta alt son brechas detectables en el ciclo de verificación",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Básico"
+  },
+  {
+    "TÉRMINO": "Matriz de levantamiento",
+    "DEFINICIÓN": "Instrumento documental mediante el cual el dueño de un negocio traslada su realidad operativa al modelo de información, en su propio lenguaje. No es un cuestionario — es un formato libre por bloques que captura: qué hace el negocio, en qué zonas, para qué clientes, qué problemas resuelve, qué evidencias tiene y cómo se convierte un interesado en cliente.",
+    "CARACTERÍSTICAS": "Es la fuente de verdad del sistema digital; se entrega al cliente en formato editable para autogestión; cualquier novedad del negocio se registra primero aquí antes de actualizarse en el sistema. Limitación: si el cliente no la usa disciplinadamente o la considera un trámite, pierde su utilidad como instrumento de autogestión y el sistema queda desconectado de la realidad.",
+    "ENTORNO": "Consultoría digital, arquitectura de información, gestión de proyectos, CRM",
+    "ENTRADA / PROCESO / SALIDA": "Entrada (conversación directa con el dueño del negocio) → Proceso (documentación de la realidad operativa en la matriz) → Salida (fuente de verdad que alimenta el modelo de información y todo el desarrollo posterior)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Matriz de levantamiento / Discovery matrix / Business reality document / Documento de levantamiento",
+    "EJEMPLOS": "Antes de construir el portal de BC1166, se completa la matriz: qué remodelaciones hace, en qué zonas de Bogotá, para qué tipo de clientes, con qué garantías",
+    "CATEGORÍA": "Negocio / CRM",
+    "NIVEL TÉCNICO": "Básico"
+  },
+  {
+    "TÉRMINO": "Ciclo de verificación",
+    "DEFINICIÓN": "Secuencia repetible y obligatoria de: medir → comparar contra el modelo de información → detectar brecha → priorizar → corregir → registrar → volver a medir. Es el mecanismo operativo de la autorregulación. No es una fase única sino un proceso continuo que se repite con frecuencia definida después del lanzamiento del sistema.",
+    "CARACTERÍSTICAS": "Cada ciclo deja constancia escrita de qué se midió, qué brecha se encontró y qué se hizo; ninguna brecha se corrige sin primero registrarse. Limitación: sin frecuencia definida ('cuando se recuerde' no es frecuencia), el ciclo de verificación nunca ocurre y el sistema se deteriora progresivamente.",
+    "ENTORNO": "Gestión de sistemas digitales, DevOps, SEO continuo, consultoría",
+    "ENTRADA / PROCESO / SALIDA": "Entrada (estado actual del sistema en producción) → Proceso (medición, comparación, detección y corrección de brechas) → Salida (sistema actualizado + registro del ciclo para auditoría futura)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Ciclo de verificación / Verification cycle / Audit cycle / Review cycle / Ciclo de auditoría",
+    "EJEMPLOS": "Revisión mensual del portfolio Vladisystems: ¿están todas las páginas indexadas?, ¿hay imágenes sin alt?, ¿el sitemap está actualizado?",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Intermedio"
+  },
+  {
+    "TÉRMINO": "Crawler",
+    "DEFINICIÓN": "Programa automatizado usado por buscadores como Google para explorar sistemáticamente páginas web, seguir enlaces y recopilar información sobre el contenido de los sitios. También llamado spider o bot de búsqueda. El crawler es el que descubre, lee e indexa las páginas — si el crawler no puede acceder o entender una página, el buscador no la mostrará en resultados.",
+    "CARACTERÍSTICAS": "Sigue enlaces automáticamente desde una página a otra; respeta las instrucciones del archivo robots.txt; indexa el contenido que encuentra en el HTML visible y en los metadatos. Limitación: no ejecuta JavaScript por defecto (aunque Googlebot tiene capacidad limitada); no puede acceder a contenido detrás de login; puede no indexar páginas con contenido duplicado o de baja calidad.",
+    "ENTORNO": "SEO técnico, desarrollo web, indexación, arquitectura de navegación",
+    "ENTRADA / PROCESO / SALIDA": "Entrada (URL de un sitio web) → Proceso (exploración sistemática de enlaces, lectura de HTML y metadatos) → Salida (datos recopilados enviados al índice del buscador para su posicionamiento)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Crawler / Spider / Bot de búsqueda / Rastreador web / Googlebot",
+    "EJEMPLOS": "Googlebot rastrea el portfolio Vladisystems siguiendo los enlaces del sitemap.xml y del menú de navegación",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Intermedio"
+  },
+  {
+    "TÉRMINO": "Sitemap",
+    "DEFINICIÓN": "Archivo XML que lista todas las URLs de un sitio web y proporciona metadatos sobre cada una: fecha de última modificación, frecuencia de cambio y prioridad relativa. Facilita a los crawlers de buscadores descubrir y rastrear todas las páginas del sitio, especialmente las que no están enlazadas desde la navegación principal.",
+    "CARACTERÍSTICAS": "Acelera la indexación de páginas nuevas o actualizadas; esencial para sitios con muchas páginas o estructura de navegación compleja; se envía a Google Search Console para verificar cobertura. Limitación: un sitemap desactualizado o con URLs rotas puede confundir al crawler y perjudicar la indexación; tener sitemap no garantiza indexación — Google decide qué indexar.",
+    "ENTORNO": "SEO técnico, indexación, arquitectura de navegación, desarrollo web",
+    "ENTRADA / PROCESO / SALIDA": "Proceso (generación automática o manual del archivo sitemap.xml con todas las URLs del sitio) → Salida (archivo disponible para crawlers que facilita el descubrimiento completo del sitio)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Sitemap / XML sitemap / Mapa del sitio XML / Mapa de URLs",
+    "EJEMPLOS": "El sitemap.xml de vladisystems.com lista todas las páginas del portfolio para que Google las indexe correctamente",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Básico"
+  },
+  {
+    "TÉRMINO": "Schema.org",
+    "DEFINICIÓN": "Vocabulario estandarizado de datos estructurados, creado por Google, Microsoft, Yahoo y Yandex, que permite a los desarrolladores describir explícitamente el significado del contenido de una página web mediante etiquetas especiales en el HTML. Le dice al buscador no solo qué dice el contenido sino qué significa: esto es una empresa, este es su horario, este es un producto, esta es una reseña.",
+    "CARACTERÍSTICAS": "Permite aparecer en resultados enriquecidos de Google (rich snippets): estrellas de reseñas, precios, horarios, FAQs; mejora la comprensión del contenido por motores de IA. Limitación: implementación incorrecta puede ser penalizada por Google; no garantiza resultados enriquecidos — Google decide si mostrarlos.",
+    "ENTORNO": "SEO técnico, datos estructurados, desarrollo web, capa semántica",
+    "ENTRADA / PROCESO / SALIDA": "Proceso (implementación de marcado Schema.org en el HTML de la página) → Salida (contenido interpretable por buscadores como entidades con atributos definidos, no solo texto plano)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Schema.org / Structured data / Datos estructurados / Marcado semántico",
+    "EJEMPLOS": "Marcar BC1166 con Schema tipo LocalBusiness incluye: nombre, dirección, teléfono, horario y área de cobertura en Bogotá",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Avanzado"
+  },
+  {
+    "TÉRMINO": "Search Console",
+    "DEFINICIÓN": "Herramienta gratuita de Google que permite a los propietarios de sitios web monitorear y gestionar la presencia de su sitio en los resultados de búsqueda de Google. Muestra qué páginas están indexadas, qué errores de rastreo existen, qué consultas generan impresiones y clics, y permite enviar sitemaps y solicitar reindexación de páginas.",
+    "CARACTERÍSTICAS": "Fuente de verdad para verificar el estado real de indexación — no se asume que una página está indexada, se verifica aquí; identifica errores técnicos de SEO antes de que afecten el posicionamiento. Limitación: los datos tienen entre 24-48 horas de latencia; solo cubre Google (no Bing, Yandex u otros buscadores).",
+    "ENTORNO": "SEO técnico, monitoreo de indexación, auditoría web, estrategia de descubrimiento",
+    "ENTRADA / PROCESO / SALIDA": "Entrada (sitio web con acceso verificado) → Proceso (monitoreo continuo de indexación, errores y rendimiento en búsqueda) → Salida (datos accionables sobre estado real del sitio en Google)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Search Console / Google Search Console / GSC / Consola de búsqueda",
+    "EJEMPLOS": "Verificar en Search Console que todas las páginas del portfolio Vladisystems están indexadas es parte del ciclo de verificación",
+    "CATEGORÍA": "Plataformas y Servicios",
+    "NIVEL TÉCNICO": "Intermedio"
+  },
+  {
+    "TÉRMINO": "Metadatos",
+    "DEFINICIÓN": "Información sobre la información — datos que describen y dan contexto a un documento o página web sin aparecer necesariamente en el contenido visible para el usuario. Incluyen el título de la página (title tag), la descripción (meta description), las etiquetas de idioma, autor, robots y Open Graph para redes sociales. Son clave para el SEO y la comprensión del contenido por sistemas automatizados.",
+    "CARACTERÍSTICAS": "El title tag es el factor de SEO on-page más importante; la meta description influye en el CTR (tasa de clics) desde los resultados de búsqueda aunque no en el ranking directo; Open Graph controla cómo se ve el enlace cuando se comparte en redes sociales. Limitación: metadatos genéricos, duplicados o vacíos perjudican el SEO; Google puede reescribir el title y la descripción si no los considera relevantes.",
+    "ENTORNO": "SEO, desarrollo web, HTML, capa semántica, marketing digital",
+    "ENTRADA / PROCESO / SALIDA": "Proceso (implementación de etiquetas meta en el head del HTML) → Salida (página con contexto declarado para buscadores, redes sociales y motores de IA)",
+    "TRADUCCIÓN / EQUIVALENCIA": "Metadatos / Metadata / Meta tags / Etiquetas meta",
+    "EJEMPLOS": "El title 'VLADISYSTEMS | Portfolio Digital' y la meta description de cada página del portfolio son metadatos críticos para el SEO",
+    "CATEGORÍA": "Tecnología Web",
+    "NIVEL TÉCNICO": "Básico"
+  },
+
 
 ]

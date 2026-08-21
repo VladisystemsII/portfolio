@@ -213,4 +213,19 @@ git add .
 
 git commit -m "ajustes minimos links II"
 
+git 
+
+
+
+
+git add .
+
+git commit -m "inclusión de servicios"
+
+git push
+
+git add .
+
+git commit -m "inclusión de terminos glosario "
+
 git push
